@@ -1,0 +1,253 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>PodcastLM — Saturday, 1 August 2026</title><style>
+:root{
+  --bg:#fbfbfa; --panel:#fff; --ink:#1a1a18; --muted:#6b6b66; --line:#e6e4df;
+  --accent:#b4552d; --accent-soft:#fdf3ee;
+  --long:#1a7340; --short:#c0392b; --watch:#2563a8; --reduce:#b8730f;
+  --radius:10px;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#14150f; --panel:#1c1d16; --ink:#eceade; --muted:#a3a094;
+         --line:#2f3126; --accent:#e08a5f; --accent-soft:#241a13;
+         --long:#5cc98a; --short:#ef7d6e; --watch:#7db3e8; --reduce:#e0a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+     line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 96px}
+
+/* masthead */
+header.top{border-bottom:1px solid var(--line);background:var(--panel);
+           position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.4) blur(6px)}
+header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
+                 align-items:baseline;gap:14px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.01em}
+.brand a{color:inherit}
+.crumb{color:var(--muted);font-size:13px}
+.crumb a{color:var(--muted)}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,42px);line-height:1.12;
+         margin:0 0 10px;letter-spacing:-.02em;font-weight:600}
+.hero .meta{color:var(--muted);font-size:14px}
+.pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
+      border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
+
+/* section nav */
+nav.toc{position:sticky;top:52px;background:var(--bg);padding:10px 0 12px;
+        border-bottom:1px solid var(--line);margin-bottom:8px;z-index:10}
+nav.toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0}
+nav.toc a{font-size:12px;padding:4px 10px;border:1px solid var(--line);
+          border-radius:99px;color:var(--muted);background:var(--panel);white-space:nowrap}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);text-decoration:none}
+
+/* sections */
+section{padding:28px 0 4px;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+h2{font-family:var(--serif);font-size:13px;font-weight:700;text-transform:uppercase;
+   letter-spacing:.14em;color:var(--accent);margin:0 0 16px}
+h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:28px 0 8px;
+   letter-spacing:-.01em}
+p{margin:0 0 13px}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin:5px 0}
+strong{font-weight:650}
+.tag{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+
+/* TL;DR */
+.tldr{background:var(--accent-soft);border:1px solid var(--line);
+      border-left:3px solid var(--accent);border-radius:var(--radius);
+      padding:18px 20px;margin-bottom:6px}
+.tldr p:last-child,.tldr ul:last-child{margin-bottom:0}
+.tldr ul{list-style:none;padding-left:0}
+.tldr li{padding-left:15px;position:relative}
+.tldr li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+
+/* trade cards */
+.cards{display:grid;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:15px 17px}
+.card .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.card .asset{font-family:var(--serif);font-size:18px;font-weight:600}
+.card .who{color:var(--muted);font-size:13px}
+.card p{margin:6px 0 0;font-size:14.5px}
+.card .label{color:var(--muted);font-size:11px;text-transform:uppercase;
+             letter-spacing:.08em;margin-right:5px}
+.dir-long{color:var(--long)} .dir-short{color:var(--short)}
+.dir-avoid{color:var(--short)} .dir-reduce{color:var(--reduce)}
+.dir-watching{color:var(--watch)} .dir-other{color:var(--muted)}
+.tier{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+      margin:22px 0 10px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+
+/* topics */
+.topic{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--muted);
+       border-radius:var(--radius);padding:15px 17px;margin:12px 0}
+.topic .t{font-weight:650;margin-bottom:9px}
+
+/* index */
+.days{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:9px}
+.days a{display:flex;justify-content:space-between;align-items:center;gap:14px;
+        background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+        padding:14px 17px;color:inherit}
+.days a:hover{border-color:var(--accent);text-decoration:none}
+.days .d{font-family:var(--serif);font-size:17px;font-weight:600}
+.days .s{color:var(--muted);font-size:13px;text-align:right}
+
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+       color:var(--muted);font-size:12.5px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:12px 15px;font-size:12.5px;color:var(--muted);margin-top:20px}
+@media(max-width:600px){
+  .hero{padding:30px 0 20px}
+  nav.toc{position:static}
+  .card .head{gap:6px}
+}
+</style></head><body><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Saturday, 1 August 2026</span></div></header><div class="wrap"><div class="hero"><h1>Saturday, 1 August 2026</h1><div class="meta"><span class="pill">28 episodes</span>Commodities Hard Assets, Geopolitics, Investment Analysis Factors, Macroeconomics Strategy, Real Estate Wealth Building</div></div><nav class="toc"><ul><li><a href="#tl-dr-read-this-first">TL;DR (read this first)</a></li><li><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a></li><li><a href="#dominant-themes">DOMINANT THEMES</a></li><li><a href="#divergent-views">DIVERGENT VIEWS</a></li><li><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a></li><li><a href="#guest-briefs">GUEST BRIEFS</a></li><li><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a></li><li><a href="#tickers-assets">TICKERS &amp; ASSETS</a></li><li><a href="#spotlight-scorpio-gold-s-98-metre-gold-h">★ Scorpio Gold&#x27;s 98-Metr…</a></li><li><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a></li><li><a href="#watch-catalysts">WATCH CATALYSTS</a></li><li><a href="#miscellaneous">MISCELLANEOUS</a></li><li><a href="#by-person-index">BY-PERSON INDEX</a></li><li><a href="#data-quality-note">DATA QUALITY NOTE</a></li><li><a href="#episode-index">EPISODE INDEX</a></li></ul></nav><section id="tl-dr-read-this-first"><h2>TL;DR (read this first)</h2><div class="tldr"><p>Ben Hunt&#x27;s &quot;World War AI&quot; thesis dominates the narrative, framing a $4-5 trillion CapEx cycle that is crowding out capital and energy markets, forcing a collision between technological ambition and physical constraints. This tension is echoed by the RenMac team, who see a &quot;weak&quot; Fed Chair losing credibility, setting the stage for a forced September rate hike. The core debate is whether this AI-driven boom can be sustained by private markets or if it will necessitate government intervention to avert a systemic crisis.</p>
+<ul><li><strong>CENTRAL TENSION:</strong> The massive capital and energy demands of the AI buildout are creating a &quot;crowding out&quot; effect, risking a systemic crisis that may force government intervention.</li><li><strong>TOP THEME:</strong> The AI Supercycle &amp; Its Constraints: A multi-trillion dollar CapEx cycle is reshaping markets but faces critical bottlenecks in capital, energy, and skilled labor.</li><li><strong>DIVERGENT:</strong> <strong>Software Stocks:</strong> Gil Lauria is short Salesforce, Adobe, and Intuit as AI losers vs. the view that incumbents like Microsoft will leverage data moats to win.</li><li><strong>HIGH-CONVICTION TRADE:</strong> <strong>Long Energy Sector</strong> with support from Andrew Sarnoff, the RenMac team, and Ben Hunt&#x27;s thesis on structural energy demand.</li><li><strong>CALENDAR:</strong> The September FOMC meeting, where mounting internal pressure and credibility concerns may force the Fed to hike rates.</li></ul></div></section>
+<section id="macro-room-temperature"><h2>MACRO ROOM TEMPERATURE</h2><p>Ben Hunt&#x27;s &quot;World War AI&quot; thesis sets the day&#x27;s tone, framing a $4-5 trillion CapEx cycle that is actively crowding out capital and energy markets, forcing a collision between technological ambition and physical constraints. This structural pressure is creating a credibility crisis for the Federal Reserve, with the RenMac team arguing a &quot;weak&quot; Chair Warsh has lost control of the narrative, making a September rate hike almost inevitable to reassert authority. The market is caught between the secular AI boom, which is showing signs of a &quot;momentum crash,&quot; and a central bank being pushed into a hawkish corner.</p></section>
+<section id="dominant-themes"><h2>DOMINANT THEMES</h2><h3>The AI Supercycle &amp; Its Constraints (10 shows)</h3>
+<p><strong>THESIS:</strong> The AI revolution is a multi-trillion-dollar capital expenditure cycle, comparable in scale to WWII, that is fundamentally reshaping capital and energy markets. While creating clear winners in the technology value chain, this unprecedented buildout is creating a &quot;crowding out&quot; effect, straining global capital, energy grids, and labor pools, which may ultimately force government intervention to prevent a systemic crisis.</p>
+<p><strong>THE BUILD-OUT CAMP (Ben Hunt, Dan Ives, Gil Lauria, Michael Zezas)</strong> The scale of the investment is immense, with Ben Hunt — Epsilon Theory / Perscient projecting $4-5 trillion in US AI CapEx and data center spending, which he sees as the primary driver of current GDP growth and market multiples. Dan Ives — Steve Eisman calls this a true fourth industrial revolution, now in year three of an 8-10 year buildout, not a dot-com bubble. The value chain is generating enormous revenue, with Gil Lauria — Steve Eisman highlighting winners from equipment makers (<strong>ASML</strong>, <strong>TSMC</strong>) and chip manufacturers (<strong>Nvidia</strong>) to compute providers (<strong>Microsoft</strong>, <strong>Amazon</strong>) and model companies. Michael Zezas — Morgan Stanley notes that this is one of several major investment cycles (along with energy, manufacturing, and defense) occurring simultaneously, forcing a strategic shift in corporate investment toward resilience.</p>
+<p><strong>THE CONSTRAINTS CAMP (Ben Hunt, Jessica Alsford, Scott North, Pascal Hügli)</strong> This massive spending spree is creating severe bottlenecks. Ben Hunt — Epsilon Theory / Perscient warns of a &quot;dearth of capital&quot; globally as AI CapEx competes with government borrowing, structurally raising interest rates. Energy is a critical constraint, with Hunt projecting data center electricity use to rise from 4% to 25% of US production, necessitating rationing. Jessica Alsford — Morgan Stanley concurs, identifying a 40-gigawatt shortfall for data centers, making power access a key strategic issue. Scott North — Kamoa Capital adds that a human capital shortage in skilled trades is another significant bottleneck. The boom also faces technological risks, as Pascal Hügli — Less Noise More Signal points to open-source models like Kimi K3 as a potential unpriced risk that could commoditize proprietary AI and challenge current valuations.</p>
+<p><strong>KEY TENSION:</strong> Will private capital markets be able to fund the AI buildout, or will the &quot;crowding out&quot; effect on capital and energy become so severe that government intervention—in the form of rationing, price controls, and bailouts—becomes necessary to avert a systemic financial crisis?</p>
+<h3>The Fed&#x27;s Credibility Crisis (4 shows)</h3>
+<p><strong>THESIS:</strong> Fed Chair Warsh&#x27;s recent dovish communication has created a significant credibility problem, contradicting his colleagues and appearing weak. This has shifted market expectations, with a growing consensus that internal committee pressure will force a rate hike at the September FOMC meeting to re-establish the central bank&#x27;s authority on inflation.</p>
+<p><strong>HIKE IS COMING (Neil Dutta, Steven Ricchiuto)</strong> The RenMac team is adamant that Fed Chair Warsh has become a &quot;weaker Fed chair&quot; whose dovish pivot has backfired. Neil Dutta — RenMac and Steven Ricchiuto — RenMac argue that his communication created a credibility issue that must be rectified. They believe internal pressure from more hawkish governors is now so significant that a September rate hike is the base case, with inflation &quot;owning the Fed&#x27;s reaction function.&quot; Marvin Barth — Macro Hive supports a more hawkish stance, arguing the Fed has lost control of inflation expectations and the neutral rate is much higher, implying the Fed should be hiking significantly.</p>
+<p><strong>DATA DEPENDENT (Bilal Hafeez, John J. Hardy)</strong> A more nuanced view holds that policy remains data-dependent. Bilal Hafeez — Macro Hive notes that dovish FOMC members believe the cost of waiting for more data is low, citing tentative signs of disinflation. A hike is not a foregone conclusion but rather an &quot;insurance&quot; option the Fed might take *if* the next two CPI prints are high, especially if the labor market remains resilient. John J. Hardy — Saxo Market Call highlights that the market is pricing in an unusual eight basis points for the upcoming FOMC decision, reflecting this uncertainty.</p>
+<p><strong>KEY TENSION:</strong> Will the next two CPI prints show persistent inflation, forcing the Fed into a &quot;credibility hike&quot; in September, or will disinflationary data allow Chair Warsh to hold the line against internal pressure?</p></section>
+<section id="divergent-views"><h2>DIVERGENT VIEWS</h2><div class="topic"><div class="t">The Outlook for Software-as-a-Service (SaaS) Stocks in the AI Era</div><p><strong>Gil Lauria — Steve Eisman:</strong> <strong>BEARISH / LOSERS</strong> <strong>Reasoning:</strong> Many incumbent SaaS companies are &quot;bad businesses&quot; that have failed to innovate or add value for years while consistently raising prices. He specifically identifies <strong>Salesforce</strong> as a company that has not invested in its software and is now being cut from corporate budgets. He also views <strong>Adobe</strong> and <strong>Intuit</strong> as potential losers, arguing they miscalculated AI&#x27;s disruptive impact on their core business models. These companies are vulnerable to being displaced by more agile, AI-native solutions.</p>
+<p><strong>Dan Ives &amp; Gil Lauria (on incumbents) — Steve Eisman:</strong> <strong>BULLISH / WINNERS</strong> <strong>Reasoning:</strong> The true, defensible moat in the AI era is not the models themselves, which may commoditize, but the proprietary data and massive install bases of incumbent players. Companies like <strong>Microsoft</strong>, <strong>Alphabet</strong>, and <strong>Oracle</strong> are building powerful ecosystems that lock in users. <strong>Microsoft</strong> is singled out as a winner due to its data center business and the &quot;insurmountable&quot; position of its core software like Outlook, which will be enhanced, not replaced, by AI.</p></div>
+<div class="topic"><div class="t">The Health of the US Economy</div><p><strong>Marvin Barth — Macro Hive:</strong> <strong>BULLISH</strong> <strong>Reasoning:</strong> The US is experiencing a broad-based re-industrialization boom driven by the &quot;localization thesis,&quot; where automation makes local production more efficient than outsourcing. This is fueling a capex boom, with over half of $2.5 trillion in recent global investment announcements directed at US manufacturing. This explains the persistent economic resilience and stronger-than-expected growth. A potential Trump 2.0 administration would likely accelerate this trend.</p>
+<p><strong>Andrew Sarnoff — Wealthion:</strong> <strong>CAUTIOUS</strong> <strong>Reasoning:</strong> A US recession is unlikely, but this is not due to organic strength. Instead, the economy is a &quot;fiat economy&quot; propped up by persistent 6-7% government deficits injecting cash. This masks underlying K-shaped weaknesses and an AI overhang in the job market. The S&amp;P 500&#x27;s performance is dangerously concentrated in an AI &quot;rolling bubble&quot; that is now showing signs of a rollover as CapEx growth slows.</p></div>
+<div class="topic"><div class="t">Gold&#x27;s Near-Term Outlook</div><p><strong>Bob Thompson — Sprott Money:</strong> <strong>BULLISH</strong> <strong>Reasoning:</strong> The market has reached &quot;peak hawkishness,&quot; and extreme pessimism in the gold market signals an imminent bounce. The current price action represents a &quot;puking out&quot; phase, which is historically a good entry point for long-term investors. Gold has held above the key $4,000 level despite negative pressures, suggesting a floor is in place.</p>
+<p><strong>Gary Wagner — Wealth Building Blueprint Vladyslav Grab:</strong> <strong>NEUTRAL / CAUTIOUS</strong> <strong>Reasoning:</strong> While a bullish &quot;W pattern&quot; reversal may be forming, the correction in gold is not confirmed to be over. A decisive break and close above the $4,230 resistance level is required for confirmation. Until then, the risk of breaking below the $4,000 support level remains, which would be a bearish signal.</p></div></section>
+<section id="trade-ideas-positions"><h2>TRADE IDEAS &amp; POSITIONS</h2><div class="cards"><div class="tier">HIGH CONVICTION</div>
+<div class="card"><div class="head"><span class="asset">Energy Sector (Oil, Power Plays, Utilities)</span><span class="tag dir-long">LONG</span><span class="who">Andrew Sarnoff — Wealthion · Neil Dutta &amp; Steven Ricchiuto — RenMac</span></div><p><span class="label">why</span>The sector is a key beneficiary of structural underinvestment and geopolitical premiums. The massive energy demand from the AI data center buildout provides a powerful secular tailwind. Valuations are cheap, and sentiment is low, limiting downside risk.</p><p><span class="label">context</span>Sarnoff suggests this as a core, long-term holding. The RenMac team advises buying on weakness.</p><p><span class="label">voices</span>Andrew Sarnoff — Wealthion: Recommends a core holding in energy for long-term portfolios. · Neil Dutta &amp; Steven Ricchiuto — RenMac: View the energy sector as a &quot;relatively decent place to be&quot; with bullish charts, cheap valuations, and low sentiment.</p></div>
+<div class="tier">OPPORTUNISTIC</div>
+<div class="card"><div class="head"><span class="asset">Gold</span><span class="tag dir-long">LONG</span><span class="who">Andrew Sarnoff — Wealthion</span></div><p><span class="label">Andrew Sarnoff — Wealthion</span>Gold is a core real asset holding supported by persistent money printing, geopolitical tensions, and the unlikelihood of G7 countries balancing their budgets.</p><p><span class="label">context</span>Part of a long-term core portfolio allocation.</p></div>
+<div class="card"><div class="head"><span class="asset">Gold &amp; Silver</span><span class="tag dir-long">LONG</span><span class="who">Bob Thompson — Sprott Money</span></div><p><span class="label">Bob Thompson — Sprott Money</span>&quot;Peak hawkishness&quot; has likely been reached, and extreme pessimism signals a short-term bottom. This is a &quot;puking out&quot; phase, presenting a good entry point for a defensive asset.</p><p><span class="label">context</span>A defensive position to protect capital during an anticipated financial rearrangement.</p></div>
+<div class="card"><div class="head"><span class="asset">US Mid-Caps (e.g., Russell 2000) &amp; Industrials</span><span class="tag dir-long">LONG</span><span class="who">Marvin Barth — Macro Hive</span></div><p><span class="label">Marvin Barth — Macro Hive</span>These sectors are direct beneficiaries of the US re-industrialization and capex-fueled boom. He is positive on equities on a rates-hedged basis.</p><p><span class="label">context</span>Positioned to capture gains from broad productivity improvements and strong US earnings.</p></div>
+<div class="card"><div class="head"><span class="asset">US Dollar (USD)</span><span class="tag dir-long">LONG</span><span class="who">Marvin Barth — Macro Hive</span></div><p><span class="label">Marvin Barth — Macro Hive</span>The dollar will be supported by US exceptionalism, rising real interest rates, and benefits from global supply shocks in hydrocarbons where the US is a surplus producer.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Microsoft (MSFT)</strong></span><span class="tag dir-long">LONG</span><span class="who">Gil Lauria — Steve Eisman</span></div><p><span class="label">Gil Lauria — Steve Eisman</span>A top AI winner due to its dominant data center business and &quot;insurmountable&quot; core software like Outlook, which creates a powerful data moat.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Palantir (PLTR)</strong></span><span class="tag dir-long">LONG</span><span class="who">Gil Lauria — Steve Eisman</span></div><p><span class="label">Gil Lauria — Steve Eisman</span>A top AI winner due to its data-centric, model-agnostic approach, which avoids the risk of being tied to a single commoditizing LLM.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Micron (MU)</strong></span><span class="tag dir-long">LONG</span><span class="who">Gil Lauria — Steve Eisman</span></div><p><span class="label">Gil Lauria — Steve Eisman</span>The market is undervaluing Micron due to inconsistencies; it trades at 6x earnings while peers like <strong>AMD</strong> are at 50x, despite memory chips being a potentially better market than CPUs in the AI era.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Salesforce (CRM)</strong></span><span class="tag dir-short">SHORT / LOSER</span><span class="who">Gil Lauria — Steve Eisman</span></div><p><span class="label">Gil Lauria — Steve Eisman</span>It&#x27;s a &quot;bad business&quot; that has failed to add value for years while increasing prices, leading companies to cut it from budgets. It is poorly positioned for the AI revolution.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Adobe (ADBE)</strong> &amp; <strong>Intuit (INTU)</strong></span><span class="tag dir-avoid">AVOID / POTENTIAL LOSERS</span><span class="who">Gil Lauria — Steve Eisman</span></div><p><span class="label">Gil Lauria — Steve Eisman</span>Both companies have miscalculated AI&#x27;s disruptive impact on their core business models and are at risk of being disrupted.</p></div>
+<div class="card"><div class="head"><span class="asset">Bonds / US Treasuries</span><span class="tag dir-avoid">AVOID</span><span class="who">Andrew Sarnoff — Wealthion</span></div><p><span class="label">Andrew Sarnoff — Wealthion</span>Bonds should be viewed only as a trade, not a core holding, due to an implicit cap on yields driven by the government&#x27;s need to finance its massive deficits.</p></div>
+<div class="tier">WATCHING</div>
+<div class="card"><div class="head"><span class="asset">Gold</span><span class="tag dir-watching">WATCHING</span><span class="who">Gary Wagner — Wealth Building Blueprint Vladyslav Grab</span></div><p><span class="label">Gary Wagner — Wealth Building Blueprint Vladyslav Grab</span>Awaiting a confirmed end to the current correction. A break and close above the <strong>$4,230</strong> resistance level would be a bullish confirmation and a trigger to enter.</p></div></div></section>
+<section id="guest-briefs"><h2>GUEST BRIEFS</h2><h3>Ben Hunt — Epsilon Theory / Perscient</h3>
+<p><strong>Thesis:</strong> The US is in the early stages of &quot;World War AI,&quot; a $4-5 trillion CapEx and data center buildout comparable to WWII spending. This is creating a massive &quot;crowding out&quot; effect in capital and energy markets, which will inevitably lead to government intervention (rationing, price controls, bailouts) to prevent a systemic financial crisis. <strong>Positions:</strong> Not stated. <strong>Predictions:</strong></p>
+<ul><li>US spending on AI CapEx and data centers will reach $4-5 trillion.</li><li>Data center electricity consumption will rise from 4% to 25% of US production, leading to rationing.</li><li>The government will intervene with loan backstops, direct financing, and potential ownership of AI infrastructure.</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p>
+<h3>Marvin Barth — Macro Hive</h3>
+<p><strong>Thesis:</strong> The US is undergoing a re-industrialization boom driven by the &quot;localization thesis,&quot; where automation makes domestic production more efficient than global outsourcing. This capex-fueled boom explains US economic resilience and will lead to higher growth, higher real interest rates, and a stronger dollar. <strong>Positions:</strong></p>
+<ul><li>LONG US Mid-Caps &amp; Industrials — They are direct beneficiaries of the capex boom.</li><li>LONG US Dollar — Supported by US exceptionalism and rising real rates.</li><li>Positive on equities on a rates-hedged basis.</li></ul>
+<p><strong>Predictions:</strong></p>
+<ul><li>Real interest rates in the US will continue to rise.</li><li>The Fed will hike rates more than is currently priced in.</li><li>A Trump 2.0 administration would be more effective in pursuing policies that benefit localization.</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p>
+<h3>Gil Lauria — Steve Eisman</h3>
+<p><strong>Thesis:</strong> The AI revolution is creating clear winners and losers. Winners are those with defensible moats in data, install bases, or critical hardware. Losers are incumbent software companies that have failed to innovate and are now vulnerable to AI-driven disruption. <strong>Positions:</strong></p>
+<ul><li>LONG <strong>Microsoft (MSFT)</strong> — A winner with a data center business and insurmountable software moat.</li><li>LONG <strong>Palantir (PLTR)</strong> — A winner due to its data-centric, model-agnostic approach.</li><li>LONG <strong>Micron (MU)</strong> — A winner due to inconsistent market valuation relative to peers.</li><li>SHORT <strong>Salesforce (CRM)</strong> — A loser that has failed to invest in its product.</li><li>AVOID <strong>Adobe (ADBE)</strong> &amp; <strong>Intuit (INTU)</strong> — Potential losers who miscalculated AI&#x27;s impact.</li></ul>
+<p><strong>Predictions:</strong></p>
+<ul><li>Cybersecurity budgets will double due to the increased attack surface from AI agents.</li><li>Most AI companies will be worth zero within five years due to excessive speculation (Bob Thompson quoting him).</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p>
+<h3>Andrew Sarnoff — Wealthion</h3>
+<p><strong>Thesis:</strong> The US is in a &quot;fiat economy&quot; where a recession is unlikely only because of persistent 6-7% government deficits. This creates an implicit cap on Treasury yields to keep the government solvent. In this environment, investors should prioritize real assets over financial assets like bonds. <strong>Positions:</strong></p>
+<ul><li>LONG Gold — A core holding due to money printing and geopolitical tension.</li><li>LONG Energy (Oil, Power, Utilities) — A core holding due to underinvestment and geopolitical risk.</li><li>AVOID Bonds — Only a trade, not a core holding, due to the implicit yield cap.</li></ul>
+<p><strong>Predictions:</strong> The AI &quot;rolling bubble&quot; is showing signs of a rollover as the rate of CapEx increase slows. <strong>Would change view if:</strong> Not stated.</p>
+<h3>Neil Dutta — RenMac</h3>
+<p><strong>Thesis:</strong> Fed Chair Warsh&#x27;s dovish communication has created a credibility crisis, making him appear weak and contradicting his colleagues. This internal pressure makes a September rate hike highly likely as the committee moves to reassert its authority. <strong>Positions:</strong></p>
+<ul><li>LONG Energy Sector — Bullish charts, cheap valuations, and low sentiment make it a good place to be.</li></ul>
+<p><strong>Predictions:</strong></p>
+<ul><li>The Fed will hike rates in September.</li><li>US consumption will slow for the remainder of the year.</li><li>The yield curve will flatten as the two-year yield rises to meet Fed expectations.</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p>
+<h3>Scott North — Kamoa Capital</h3>
+<p><strong>Thesis:</strong> Many promising mining projects, especially for copper, struggle to get financed despite strong demand due to long timelines, policy uncertainty, and a critical lack of processing infrastructure and human capital in the West. The biggest bottleneck for critical minerals is processing, not geology. <strong>Positions:</strong></p>
+<ul><li>STRONGLY BULLISH Copper — The commodity that &quot;really scares&quot; him due to immense demand from AI and electrification, coupled with a limited supply pipeline.</li></ul>
+<p><strong>Predictions:</strong></p>
+<ul><li>$6 could become the new floor for copper once its role in AI is widely acknowledged.</li><li>A significant human capital bottleneck will emerge in the mining industry over the next 3-5 years.</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p>
+<h3>Bob Thompson — Sprott Money</h3>
+<p><strong>Thesis:</strong> The precious metals market has reached a point of extreme pessimism and &quot;peak hawkishness,&quot; which historically signals a bottom and a prime buying opportunity. The mining sector is early in its cycle (&quot;7:00 on the mining clock&quot;) and offers significant upside. <strong>Positions:</strong></p>
+<ul><li>LONG Gold &amp; Silver — Buying the dip during the current &quot;puking out&quot; phase for long-term defensive positioning.</li></ul>
+<p><strong>Predictions:</strong></p>
+<ul><li>While AI will change the world, most AI companies will be worth zero within five years due to excessive speculation.</li><li>Generalist investors will be forced to rotate into precious metals when their tech holdings decline.</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p></section>
+<section id="conviction-scenarios"><h2>CONVICTION &amp; SCENARIOS</h2><p><strong>Bilal Hafeez — Macro Hive</strong> <strong>If:</strong> Disinflation stalls, particularly if the next two CPI prints are high. <strong>Then:</strong> The Fed could consider &quot;insurance hikes,&quot; especially if a more resilient labor market makes hiking less risky from a dove&#x27;s perspective.</p>
+<p><strong>Steve Pavlik — RenMac</strong> <strong>Scenario:</strong> A Republican reconciliation package passing. <strong>Probability:</strong> Increased from 15-20% to closer to 50%, driven by the need to avoid a government shutdown and potential escalation of the war in Iran.</p></section>
+<section id="tickers-assets"><h2>TICKERS &amp; ASSETS</h2><h3>THESIS TICKERS</h3>
+<ul><li><strong>CRM</strong> — Gil Lauria — Steve Eisman — Short thesis; a &quot;bad business&quot; that has failed to add value and is being cut from budgets.</li><li><strong>MSFT</strong> — Gil Lauria — Steve Eisman — Long thesis; a top AI winner due to its data center business and insurmountable software moat.</li><li><strong>MU</strong> — Gil Lauria — Steve Eisman — Long thesis; undervalued relative to peers despite a strong position in the memory market for AI.</li><li><strong>PLTR</strong> — Gil Lauria — Steve Eisman — Long thesis; a winner due to its data-centric, model-agnostic approach to AI.</li><li><strong>SGN.V</strong> — Zane Callinan — Mining Stock Daily — Positioned for significant resource growth towards a 2 million ounce gold target by Q1 2027.</li></ul>
+<h3>TRADE EXPRESSION</h3>
+<ul><li><strong>Russell 2000</strong> — Expresses long view on US Mid-Caps — Marvin Barth — Macro Hive</li><li><strong>SILJ</strong> — Context for silver miners — Bob Thompson — Sprott Money</li><li><strong>GDX</strong> — Context for gold miners — Bob Thompson — Sprott Money</li></ul>
+<h3>WATCH LEVELS</h3>
+<ul><li><strong>Gold</strong> — $4,230/oz resistance level; a break above would confirm the end of the correction — Gary Wagner — Wealth Building Blueprint Vladyslav Grab</li><li><strong>Gold</strong> — $4,000/oz support level; a break below would be a bearish signal — Gary Wagner — Wealth Building Blueprint Vladyslav Grab</li><li><strong>USD/JPY</strong> — 165 level; intervention from Japan&#x27;s Ministry of Finance is expected if it pushes beyond this — Pascal Hügli — Less Noise More Signal</li><li><strong>EUR/USD</strong> — 1.15 level; a key level to watch for further dollar weakness — John J. Hardy — Saxo Market Call</li><li><strong>AUD/USD</strong> — 0.70 level; a key level to watch for further dollar weakness — John J. Hardy — Saxo Market Call</li></ul>
+<h3>CONTEXT MENTIONS</h3>
+<ul><li><strong>ADBE</strong> — Potential AI loser (Lauria)</li><li><strong>AMD</strong> — Competitor to Nvidia, trades at 50x earnings (Lauria)</li><li><strong>AMZN</strong> — AI compute provider, AWS growth of 37% (Hardy, Lauria)</li><li><strong>AAPL</strong> — Seen as an &quot;easy pass&quot; winner on consumer AI (Lauria)</li><li><strong>GOOGL</strong> — AI compute provider, cashflow negative results (Hardy)</li><li><strong>INTC</strong> — Trades at 100x earnings (Lauria)</li><li><strong>INTU</strong> — Potential AI loser (Lauria)</li><li><strong>NVDA</strong> — Dominant AI chip manufacturer, 1.5-2 years ahead of competitors (Lauria)</li><li><strong>ORCL</strong> — Cautioned for its dependence on OpenAI (Lauria)</li><li><strong>TSMC</strong> — Key AI equipment maker (Lauria)</li><li><strong>S&amp;P 500</strong> — Concentration in 10 AI names is a risk (Sarnoff); used as a market benchmark.</li></ul></section>
+<section id="spotlight-scorpio-gold-s-98-metre-gold-h"><h2>SPOTLIGHT: Scorpio Gold&#x27;s 98-Metre Gold Hit Sets Up Manhattan Resource Growth</h2><p><strong>Host:</strong> Trevor Hall <strong>Guest:</strong> Zane Callinan, CEO, Scorpio Gold</p>
+<ul><li><strong>Drilling Success:</strong> Zane Callinan — Mining Stock Daily reported a significant drill result at the Gold Wedge deposit: 2.05 g/t gold over 97.99 meters, which he called the &quot;biggest hole of the year.&quot;</li><li><strong>Resource Growth Target:</strong> The company is aiming for a 2 million ounce gold resource by Q1 2027, while maintaining a grade above one gram per ton, which Callinan believes will be a major re-rate event.</li><li><strong>Geological Analogy:</strong> Callinan noted that mineralization in the Black Mammoth calderas is reminiscent of the Round Mountain Kinross style, suggesting large volcanic potential.</li><li><strong>Strategic Financing:</strong> Despite having capital through October, the company secured a $10 million financing due to market volatility, a move Callinan described as prudent.</li><li><strong>Valuation:</strong> Callinan believes Scorpio Gold is undervalued, a view he says is shared by new long-only institutional investors who participated in the recent financing.</li></ul></section>
+<section id="notable-data-figures"><h2>NOTABLE DATA &amp; FIGURES</h2><ul><li><strong>$4-5 Trillion:</strong> Projected US spending on AI CapEx and data center buildout. — Ben Hunt — Epsilon Theory / Perscient</li><li><strong>25%:</strong> Projected share of US electricity consumption by data centers, up from 4% currently. — Ben Hunt — Epsilon Theory / Perscient</li><li><strong>40 Gigawatts:</strong> Estimated power shortfall for data centers. — Jessica Alsford — Morgan Stanley</li><li><strong>$4,096/oz:</strong> Gold price as of July 27th morning. — Michael McCrae — Mining Stock Daily</li><li><strong>$83.72/bbl:</strong> Crude oil price, down 6.26%. — Michael McCrae — Mining Stock Daily</li><li><strong>$6.39/lb:</strong> Copper futures price, up 0.5%. — Michael McCrae — Mining Stock Daily</li><li><strong>6-7%:</strong> Persistent US government deficit as a percentage of GDP. — Andrew Sarnoff — Wealthion</li><li><strong>40%:</strong> Concentration of the S&amp;P 500 in 10 AI-related names. — Andrew Sarnoff — Wealthion</li><li><strong>37%:</strong> AWS growth reported by Amazon. — John J. Hardy — Saxo Market Call</li><li><strong>11%:</strong> National unemployment rate for graduates in India (40% for graduates under 25). — Jacob Shapiro — Jacob Shapiro</li><li><strong>8 basis points:</strong> Amount priced into the market for the upcoming FOMC decision. — John J. Hardy — Saxo Market Call</li></ul></section>
+<section id="watch-catalysts"><h2>WATCH CATALYSTS</h2><ul><li><strong>September FOMC Meeting:</strong> Widely cited as a key decision point where the Fed may be forced to hike rates to restore credibility. — Neil Dutta, Steven Ricchiuto — RenMac</li><li><strong>Next 2 US CPI Prints:</strong> Will be critical in determining whether disinflation has stalled, potentially triggering an &quot;insurance hike&quot; from the Fed. — Bilal Hafeez — Macro Hive</li><li><strong>Upcoming FOMC &amp; BoJ Meetings (This Week):</strong> Key central bank decisions expected to drive market direction. — John J. Hardy — Saxo Market Call</li><li><strong>Q1 2027:</strong> Target date for Scorpio Gold&#x27;s 2 million ounce resource update. — Zane Callinan — Mining Stock Daily</li><li><strong>October (China):</strong> The Central Committee&#x27;s fifth plenum will be held, focusing on internal party governance. — Dinny McMahon — Trivium China</li></ul></section>
+<section id="miscellaneous"><h2>MISCELLANEOUS</h2><ul><li><strong>Private Credit &amp; Insurance:</strong> A growing entanglement between private credit and the insurance industry creates a &quot;stealth taxpayer bailout&quot; mechanism for private credit losses via state-level insurance guarantee funds, effectively socializing risk. — Andrew Granato, Pranjal Dral — Odd Lots</li><li><strong>Critique of Modern Portfolio Theory:</strong> The theory&#x27;s definition of risk as variance is flawed and ignores the underlying business, leading to widespread underperformance. Risk should be defined as the permanent loss of capital. — Robert Hagstrom — Excess Returns</li><li><strong>National Market Liberalism:</strong> The global economic order is shifting away from neoliberal globalization towards a new model emphasizing domestic activities and mercantilistic external policies. — Branko Milanovic — Odd Lots</li><li><strong>The &quot;Mining Clock&quot;:</strong> The mining sector is currently at &quot;7:00,&quot; indicating it is early in its cycle and in a state of pessimism, far from the euphoria stage. — Bob Thompson — Sprott Money</li><li><strong>Human Capital Shortage:</strong> A significant bottleneck in human capital (geologists, skilled trades) is expected in the mining sector over the next 3-5 years due to university course closures and a negative perception of the industry. — Scott North — Kamoa Capital</li><li><strong>Geopolitical Expertise:</strong> There is a surge in corporate demand for geopolitical expertise, but a mismatch in supply, with many roles filled by former policymakers unprepared for corporate realities. — Peter Zeihan — The Jacob Shapiro Podcast</li><li><strong>&quot;Cockroach Protests&quot; in India:</strong> Widespread youth unemployment and disillusionment among educated graduates in India is a macro indicator of potential social and political instability that could impact the country&#x27;s long-term growth trajectory. — Jacob Shapiro — Jacob Shapiro</li></ul></section>
+<section id="by-person-index"><h2>BY-PERSON INDEX</h2><ul><li>Andrew Sarnoff (Wealthion): Divergent: US Economic Outlook | Long Energy Sector | Long Gold | Avoid Bonds | Guest Brief</li><li>Bao Linghao (Trivium China): Notable Data</li><li>Ben Hunt (Excess Returns): The AI Supercycle &amp; Its Constraints | Notable Data | Guest Brief</li><li>Bilal Hafeez (Macro Hive): The Fed&#x27;s Credibility Crisis | Conviction &amp; Scenarios</li><li>Bob Thompson (Sprott Money): Divergent: Gold&#x27;s Near-Term Outlook | Long Gold &amp; Silver | Miscellaneous | Guest Brief</li><li>Branko Milanovic (Odd Lots): Miscellaneous | Guest Brief</li><li>Dan Ives (Steve Eisman): The AI Supercycle &amp; Its Constraints | Divergent: Software Stocks in the AI Era</li><li>Dinny McMahon (Trivium China): Watch Catalysts</li><li>Gary Wagner (Wealth Building Blueprint Vladyslav Grab): Divergent: Gold&#x27;s Near-Term Outlook | Watching Gold | Watch Levels</li><li>Gil Lauria (Steve Eisman): The AI Supercycle &amp; Its Constraints | Divergent: Software Stocks in the AI Era | Long Microsoft (MSFT) | Long Palantir (PLTR) | Long Micron (MU) | Short Salesforce (CRM) | Avoid Adobe (ADBE) &amp; Intuit (INTU) | Guest Brief</li><li>Jessica Alsford (Morgan Stanley): The AI Supercycle &amp; Its Constraints | Notable Data</li><li>Joe Lowry (Mining Stock Daily): Guest Brief</li><li>John J. Hardy (Saxo Market Call): The Fed&#x27;s Credibility Crisis | Notable Data | Watch Levels</li><li>Marvin Barth (Macro Hive): The Fed&#x27;s Credibility Crisis | Divergent: US Economic Outlook | Long US Mid-Caps &amp; Industrials | Long US Dollar (USD) | Guest Brief</li><li>Michael Zezas (Morgan Stanley): The AI Supercycle &amp; Its Constraints</li><li>Neil Dutta (RenMac): The Fed&#x27;s Credibility Crisis | Long Energy Sector | Watch Catalysts | Guest Brief</li><li>Pascal Hügli (Less Noise More Signal): The AI Supercycle &amp; Its Constraints | Watch Levels</li><li>Peter Zeihan (Jacob Shapiro, The Jacob Shapiro Podcast): Miscellaneous</li><li>Scott North (Kamoa Capital): The AI Supercycle &amp; Its Constraints | Miscellaneous | Guest Brief</li><li>Steve Pavlik (RenMac): Conviction &amp; Scenarios</li><li>Steven Ricchiuto (RenMac): The Fed&#x27;s Credibility Crisis | Long Energy Sector | Watch Catalysts</li><li>Wes Gray (Excess Returns): Guest Brief</li><li>Zane Callinan (Mining Stock Daily): Spotlight: Scorpio Gold | Watch Catalysts</li></ul></section>
+<section id="data-quality-note"><h2>DATA QUALITY NOTE</h2><ul><li><strong>Overlapping Episodes:</strong> A significant number of episodes listed for today&#x27;s digest were also listed on previous days (e.g., Wes Gray, Robert Hagstrom, Zane Callinan, Bob Thompson, Bao Linghao, Dan Ives, Branko Milanovic, Gary Wagner). This digest synthesizes the content provided in the summaries for 2026-08-01, assuming it is the canonical version for this report. However, users should be aware of the potential for content overlap and repetition from digests on preceding days.</li><li><strong>Cross-Show Appearance:</strong> Peter Zeihan appeared on *The Jacob Shapiro Podcast* today and was also a guest on the same show on 2026-07-30. This is noted for context.</li><li>No other significant data quality issues were identified in this session. All tickers were cross-checked and appear correct. Attributions are clear.</li></ul></section>
+<section id="episode-index"><h2>EPISODE INDEX</h2><ul><li><strong>Mining Stock Daily</strong> — Morning Briefing Stocks Bounce Back Fury Gold Mines Restarts Drilling After Wild</li></ul>
+<p>Host: Michael McCrae (filling in for Trevor Hall) | Guest: Solo | Commodities Hard Assets</p>
+<ul><li><strong>Mining Stock Daily</strong> — Scorpio Golds 98-Metre Gold Hit Sets Up Manhattan Resource Growth</li></ul>
+<p>Host: Trevor Hall | Guest: Zane Callinan, CEO, Scorpio Gold | Commodities Hard Assets</p>
+<ul><li><strong>Mining Stock Daily</strong> — The Return of Mr Lithium - Joe Lowry</li></ul>
+<p>Host: Chris Barry | Guest: Joe Lowry | Commodities Hard Assets</p>
+<ul><li><strong>Mining Stock Daily</strong> — Why the Best Mining Projects Still Cant Get Financed - Scott North</li></ul>
+<p>Host: Ian Wagner | Guest: Scott North, Co-founder, Kamoa Capital | Commodities Hard Assets</p>
+<ul><li><strong>Sprott Money</strong> — Gold and Silver at a Breaking Point Is the Next Major Rally About to Begin Bob T</li></ul>
+<p>Host: Craig Hemke | Guest: Bob Thompson, Raymond James | Commodities Hard Assets</p>
+<ul><li><strong>Wealthion</strong> — Why a Recession May Never Come and Why Gold Still Wins</li></ul>
+<p>Host: Maggie Lake | Guest: Andrew Sarnoff, Portfolio Manager, Fourth Lane Partners | Commodities Hard Assets</p>
+<ul><li><strong>Wealthion</strong> — Youre Underestimating AIs Next Trillion-Dollar Opportunity</li></ul>
+<p>Host: Andrew Brill | Guest: Solo | Commodities Hard Assets</p>
+<ul><li><strong>Trivium China</strong> — Ep 75 - DeepSeek Founder Goes Off Script in Leaked Investor Call</li></ul>
+<p>Host: Andrew Polk | Guest: Bao Linghao, Tech Analyst, Trivium China | Geopolitics</p>
+<ul><li><strong>Trivium China</strong> — Ep 76 - Chinas economy is hurting Beijings answer is patience</li></ul>
+<p>Host: Andrew Polk, Dinny McMahon | Guest: Dinny McMahon, Head of Markets Research, Trivium China | Geopolitics</p>
+<ul><li><strong>Excess Returns</strong> — 110th the Liquidity No More Return Wes Gray on Bubbles AI and Why Size Was Never</li></ul>
+<p>Host: Jack Forehand, Justin Carbonneau | Guest: Wes Gray, CEO, Alpha Architect | Investment Analysis Factors</p>
+<ul><li><strong>Excess Returns</strong> — The Government Will Own It Ben Hunt on World War AI</li></ul>
+<p>Host: Jack Forehand, Justin Carbonneau | Guest: Ben Hunt, Epsilon Theory / Perscient | Investment Analysis Factors</p>
+<ul><li><strong>Excess Returns</strong> — Warren Buffett Published His Whole Playbook Robert Hagstrom on Why Only One Tent</li></ul>
+<p>Host: Matt Ziggler and Bogum Baronowski (from Talking Billions) | Guest: Robert Hagstrom, CIO, Equity Compass | Investment Analysis Factors</p>
+<ul><li><strong>Morgan Stanley</strong> — The Structural Forces Moving Capital</li></ul>
+<p>Host: Mike Wilson | Guest: Michelle Weaver, US Thematic and Equity Strategist, Morgan Stanley | Investment Analysis Factors</p>
+<ul><li><strong>Steve Eisman</strong> — The AI Revolution Who Wins Who Loses the SaaSpocalypse The Real Eisman Playbook</li></ul>
+<p>Host: Steve Eisman | Guest: Dan Ives, Gil Lauria | Investment Analysis Factors</p>
+<ul><li><strong>Jacob Shapiro</strong> — Can Modi Handle Indian Youths Who Are Calling Themselves Cockroaches Jacob Shapi</li></ul>
+<p>Host: Jacob Shapiro | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Jacob Shapiro</strong> — Stratfor Reunion Part 2 Peter Zeihan on Mentorship Geopolitics</li></ul>
+<p>Host: Jacob Shapiro | Guest: Peter Zeihan | Macroeconomics Strategy</p>
+<ul><li><strong>Less Noise More Signal</strong> — The Market Is Overpricing a Fed Hike</li></ul>
+<p>Host: Pascal Hügli | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Less Noise More Signal</strong> — Where to Hide if the AI Boom Cracks</li></ul>
+<p>Host: Pascal Hügli | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Macro Hive</strong> — Ep 369 Marvin Barth on US Re-Industrialisation Trump 20 and the Localisation The</li></ul>
+<p>Host: Bilal Hafeez | Guest: Marvin Barth, Creator of Thematic Markets and Seriously Marvin | Macroeconomics Strategy</p>
+<ul><li><strong>Macro Hive</strong> — The Week Ahead Will the Great Labour Market Freeze Begin to Melt</li></ul>
+<p>Host: Bilal Hafeez | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Odd Lots</strong> — Branko Milanovic on What Comes After Globalization</li></ul>
+<p>Host: Joe Weisenthal, Tracy Alloway | Guest: Branko Milanovic, Research Professor, The Graduate Center at CUNY | Macroeconomics Strategy</p>
+<ul><li><strong>Odd Lots</strong> — Why Private Credit Got Entangled With Insurance</li></ul>
+<p>Host: Tracy Alloway, Joe Weisenthal | Guest: Andrew Granato, Assistant Professor of Law at UT Austin | Macroeconomics Strategy</p>
+<ul><li><strong>RenMac</strong> — A Weak Fed Chair a Momentum Crash and Why September Points to a Hike</li></ul>
+<p>Host: Neil Dutta, Steven Ricchiuto, Eric Boucher, Jeff Degraphth, Steve Havley | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>RenMac</strong> — RenMac Off-Script Warsh Case Scenario</li></ul>
+<p>Host: Neil Dutta, Eric Boucher, Jeff DeGraff, Steve Pavlik | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Saxo Market Call</strong> — FOMC BoJ and Earnings Season peak this week</li></ul>
+<p>Host: John J. Hardy | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Saxo Market Call</strong> — Momo trade roars back to life but for how long</li></ul>
+<p>Host: John J. Hardy | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>The Jacob Shapiro Podcast</strong> — Lessons Learned - Geopolitical Cousins</li></ul>
+<p>Host: Jacob Shapiro | Guest: Peter Zihon and Matt Gurken | Macroeconomics Strategy</p>
+<ul><li><strong>Wealth Building Blueprint Vladyslav Grab</strong> — Gary Wagner Gold Correction Over The W Pattern That Could Trigger the Next Rally</li></ul>
+<p>Host: Vladyslav Grabarskyy | Guest: Gary Wagner, Editor, goldforecast.com | Real Estate Wealth Building</p></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-08 · <a href="archive.html">All days</a></footer></div></body></html>

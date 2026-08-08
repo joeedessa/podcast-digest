@@ -1,0 +1,188 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>PodcastLM — Friday, 8 May 2026</title><style>
+:root{
+  --bg:#fbfbfa; --panel:#fff; --ink:#1a1a18; --muted:#6b6b66; --line:#e6e4df;
+  --accent:#b4552d; --accent-soft:#fdf3ee;
+  --long:#1a7340; --short:#c0392b; --watch:#2563a8; --reduce:#b8730f;
+  --radius:10px;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#14150f; --panel:#1c1d16; --ink:#eceade; --muted:#a3a094;
+         --line:#2f3126; --accent:#e08a5f; --accent-soft:#241a13;
+         --long:#5cc98a; --short:#ef7d6e; --watch:#7db3e8; --reduce:#e0a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+     line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 96px}
+
+/* masthead */
+header.top{border-bottom:1px solid var(--line);background:var(--panel);
+           position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.4) blur(6px)}
+header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
+                 align-items:baseline;gap:14px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.01em}
+.brand a{color:inherit}
+.crumb{color:var(--muted);font-size:13px}
+.crumb a{color:var(--muted)}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,42px);line-height:1.12;
+         margin:0 0 10px;letter-spacing:-.02em;font-weight:600}
+.hero .meta{color:var(--muted);font-size:14px}
+.pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
+      border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
+
+/* section nav */
+nav.toc{position:sticky;top:52px;background:var(--bg);padding:10px 0 12px;
+        border-bottom:1px solid var(--line);margin-bottom:8px;z-index:10}
+nav.toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0}
+nav.toc a{font-size:12px;padding:4px 10px;border:1px solid var(--line);
+          border-radius:99px;color:var(--muted);background:var(--panel);white-space:nowrap}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);text-decoration:none}
+
+/* sections */
+section{padding:28px 0 4px;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+h2{font-family:var(--serif);font-size:13px;font-weight:700;text-transform:uppercase;
+   letter-spacing:.14em;color:var(--accent);margin:0 0 16px}
+h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:28px 0 8px;
+   letter-spacing:-.01em}
+p{margin:0 0 13px}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin:5px 0}
+strong{font-weight:650}
+.tag{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+
+/* TL;DR */
+.tldr{background:var(--accent-soft);border:1px solid var(--line);
+      border-left:3px solid var(--accent);border-radius:var(--radius);
+      padding:18px 20px;margin-bottom:6px}
+.tldr p:last-child,.tldr ul:last-child{margin-bottom:0}
+.tldr ul{list-style:none;padding-left:0}
+.tldr li{padding-left:15px;position:relative}
+.tldr li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+
+/* trade cards */
+.cards{display:grid;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:15px 17px}
+.card .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.card .asset{font-family:var(--serif);font-size:18px;font-weight:600}
+.card .who{color:var(--muted);font-size:13px}
+.card p{margin:6px 0 0;font-size:14.5px}
+.card .label{color:var(--muted);font-size:11px;text-transform:uppercase;
+             letter-spacing:.08em;margin-right:5px}
+.dir-long{color:var(--long)} .dir-short{color:var(--short)}
+.dir-avoid{color:var(--short)} .dir-reduce{color:var(--reduce)}
+.dir-watching{color:var(--watch)} .dir-other{color:var(--muted)}
+.tier{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+      margin:22px 0 10px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+
+/* topics */
+.topic{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--muted);
+       border-radius:var(--radius);padding:15px 17px;margin:12px 0}
+.topic .t{font-weight:650;margin-bottom:9px}
+
+/* index */
+.days{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:9px}
+.days a{display:flex;justify-content:space-between;align-items:center;gap:14px;
+        background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+        padding:14px 17px;color:inherit}
+.days a:hover{border-color:var(--accent);text-decoration:none}
+.days .d{font-family:var(--serif);font-size:17px;font-weight:600}
+.days .s{color:var(--muted);font-size:13px;text-align:right}
+
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+       color:var(--muted);font-size:12.5px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:12px 15px;font-size:12.5px;color:var(--muted);margin-top:20px}
+@media(max-width:600px){
+  .hero{padding:30px 0 20px}
+  nav.toc{position:static}
+  .card .head{gap:6px}
+}
+</style></head><body><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Friday, 8 May 2026</span></div></header><div class="wrap"><div class="hero"><h1>Friday, 8 May 2026</h1><div class="meta"><span class="pill">17 episodes</span>[Commodities Hard Assets, Investment Analysis Factors, Macroeconomics Strategy, Real Estate Wealth Building]</div></div><nav class="toc"><ul><li><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a></li><li><a href="#dominant-theme-s">DOMINANT THEME(S)</a></li><li><a href="#divergent-views">DIVERGENT VIEWS</a></li><li><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a></li><li><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a></li><li><a href="#tickers-assets">TICKERS &amp; ASSETS</a></li><li><a href="#spotlight-scorpio-gold-corporate-update">★ Scorpio Gold Corporate…</a></li><li><a href="#spotlight-morgan-stanley-alliance-for-ch">★ Morgan Stanley Allianc…</a></li><li><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a></li><li><a href="#watch-catalysts">WATCH CATALYSTS</a></li><li><a href="#miscellaneous">MISCELLANEOUS</a></li><li><a href="#data-quality-note">DATA QUALITY NOTE</a></li><li><a href="#episode-index">EPISODE INDEX</a></li></ul></nav><section id="macro-room-temperature"><h2>MACRO ROOM TEMPERATURE</h2><p>Mike Green&#x27;s structural thesis of an &quot;almost inevitable&quot; 1987-style crash driven by passive investing&#x27;s dominance sets a deeply bearish tone, creating a stark tension with Mark Newton&#x27;s tactically bullish view that there is &quot;no evidence to be bearish&quot; based on current market breadth and earnings. This core conflict between structural fragility and cyclical strength is playing out against a backdrop of a severe oil supply shock, which Martin Rance — Morgan Stanley warns is rapidly depleting inventories, and Louis-Vincent Gave — Macro Voices argues is forcing a global, inflationary shift toward strategic commodity stockpiling.</p></section>
+<section id="dominant-theme-s"><h2>DOMINANT THEME(S)</h2><h3>The Inevitable Crash vs. The Resilient Bull (5 shows)</h3>
+<p>A sharp divide exists on the fate of US equities. The bearish camp is led by Mike Green — The Julia La Roche Show, who argues the market is fundamentally broken and overvalued by more than 75%. His research suggests that as passive investing&#x27;s market share, currently ~55%, approaches a 65-80% threshold within the next two and a half years, the market will enter a &quot;stochastic regime&quot; where explosive volatility and a crash become a near certainty. This view is reinforced by Mike McGlone — Wealth Building Blueprint Vladyslav Grab, who sees the stock market as an unsustainable &quot;Ponzi scheme&quot; at 2.4x GDP and the primary driver of inflation, predicting a potential 50% drawdown. He points to the divergence between low equity volatility and high commodity volatility as a key warning sign. Adding to the concern, Danielle DiMartino Booth — Competent Man Podcast - Tom Bodrovics warns of an impending liquidity crisis and asserts the US is already in a recession masked by official data, with risks of private credit issues bleeding into public markets.</p>
+<p>In direct opposition, Mark Newton — Milk Road Macro maintains a &quot;glass-half-full&quot; perspective, stating there is currently no evidence to be bearish. He points to one of the strongest bullish reversals in history, driven by improving market breadth, strong earnings, and AI investment. While he anticipates a short-term 3-5% consolidation in mega-cap tech, he sees this as a buying opportunity and expects the market to broaden out and end the year on a positive note.</p>
+<h3>The Great Commodity Stockpiling (4 shows)</h3>
+<p>The era of just-in-time supply chains is over, according to Louis-Vincent Gave — Macro Voices, who argues that recent geopolitical conflicts are forcing a structural shift toward strategic stockpiling of physical commodities. He believes countries must now build inventories of energy, fertilizer, and industrial metals to maintain policy independence, creating a structural long-term tailwind for the entire complex. This thesis is supported by the acute, ongoing oil supply shock detailed by Martin Rance — Morgan Stanley. Rance notes that while initial inventory buffers have muted the price impact of the largest-ever supply disruption, these buffers are being consumed rapidly. He warns that if oil flows through the Strait of Hormuz do not resume within four to six weeks, the market will become &quot;very tight&quot; by early summer.</p>
+<p>Broadening the lens, Craig Tinddale — Less Noise More Signal contends that decades of Western de-industrialization have created critical vulnerabilities and a dangerous dependency on nations like China for essential resources. He sees exponential demand for materials like copper and rare earths for AI and electrification clashing with a severely constrained supply, forcing a panicked re-evaluation of global supply chains and a rotation into the industrial and mining sectors that produce these foundational goods.</p></section>
+<section id="divergent-views"><h2>DIVERGENT VIEWS</h2><div class="topic"><div class="t">US Stock Market Outlook</div><p>Mike Green — The Julia La Roche Show: <strong>Bearish / Crash Imminent</strong> <strong>Reasoning:</strong> The market is fundamentally broken due to the dominance of passive investing (~55% share), which has made it inelastic and behave like a low-float instrument. As passive share grows at 4% annually and approaches a 65-80% threshold in the next ~2.5 years, a 1987-style crash becomes almost inevitable. The market is currently overvalued by over 75%.</p>
+<p>Mark Newton — Milk Road Macro: <strong>Bullish / Buy Dips</strong> <strong>Reasoning:</strong> There is no evidence to be bearish. The market has seen one of the strongest bullish reversals in history, supported by improving breadth and strong earnings. Historical precedents for market concentration exist and do not necessarily signal a bubble. A short-term consolidation of 3-5% in mega-caps should be seen as a buying opportunity before the market broadens out and ends the year higher.</p></div>
+<div class="topic"><div class="t">Crude Oil</div><p>Martin Rance — Morgan Stanley: <strong>Bullish</strong> <strong>Reasoning:</strong> The market is facing the largest-ever supply shock. Initial inventory buffers are being consumed rapidly, and if the Strait of Hormuz disruption continues for another 4-6 weeks, the market will become very tight by summer, with US gasoline prices potentially reaching $4.70-$5.00 per gallon.</p>
+<p>Mike McGlone — Wealth Building Blueprint Vladyslav Grab: <strong>Bearish</strong> <strong>Reasoning:</strong> Significant deflationary forces are at play, driven by political motivation to lower prices ahead of the November election. He expects severe demand destruction and wealth reversion, forecasting December WTI futures to be closer to $50 than $100 by the mid-terms.</p></div>
+<div class="topic"><div class="t">Gold &amp; Silver</div><p>Mark Newton — Milk Road Macro: <strong>Tactically Bearish, then Bullish</strong> <strong>Reasoning:</strong> Expects a short-lived decline for precious metals over the next one to two weeks. This will be followed by a rally to new all-time highs into the September-October timeframe, before a more meaningful, multi-year decline begins.</p>
+<p>Mike McGlone — Wealth Building Blueprint Vladyslav Grab: <strong>Bearish / Peaked</strong> <strong>Reasoning:</strong> Gold and silver have likely put in multi-year peaks. Gold is at its highest level versus its 60-month moving average since 1980, and silver is at its highest ever versus the Bloomberg Commodity Index. Widespread enthusiasm and &quot;known knowns&quot; are already priced in, making it a time to sell, not buy.</p></div>
+<div class="topic"><div class="t">Bitcoin</div><p>Mark Newton — Milk Road Macro: <strong>Bullish on Dips</strong> <strong>Reasoning:</strong> Has updated his outlook to be more constructive. He expects Bitcoin to hold up and perform relatively better than other cryptocurrencies. A potential pullback to the low $70,000s would present a buying opportunity within a bullish cycle for the year.</p>
+<p>Mike McGlone — Wealth Building Blueprint Vladyslav Grab: <strong>Bearish / Short</strong> <strong>Reasoning:</strong> Bitcoin&#x27;s &quot;glory days&quot; have passed, and its performance is now entirely dependent on the stock market&#x27;s ascent. It is showing divergent weakness versus equities and is a prudent short at current levels, with a long-term key reversion level around $10,000.</p></div></section>
+<section id="trade-ideas-positions"><h2>TRADE IDEAS &amp; POSITIONS</h2><div class="cards"><div class="card"><div class="head"><span class="asset"><strong>US Equities</strong></span><span class="tag dir-long">OVERWEIGHT</span><span class="who">Mark Newton — Milk Road Macro</span></div><p><span class="label">Mark Newton — Milk Road Macro</span>Prefers US equities versus the rest of the world due to strong earnings and technicals.</p><p><span class="label">context</span>Believes the market will end the year positively despite near-term consolidation.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Magnificent Seven (MAG 7) Stocks</strong></span><span class="tag dir-other">BUY ON WEAKNESS</span><span class="who">Mark Newton — Milk Road Macro</span></div><p><span class="label">Mark Newton — Milk Road Macro</span>Expects a short-term retracement and consolidation after a rapid ascent.</p><p><span class="label">context</span>Anticipates a 3-5% correction in mid-May, which would be an opportunity to buy.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>AI &amp; Technology Stocks</strong></span><span class="tag dir-reduce">REDUCE / GET OUT</span><span class="who">Craig Tinddale — Less Noise More Signal</span></div><p><span class="label">Craig Tinddale — Less Noise More Signal</span>These stocks are overvalued, and a natural rotation into industrials and mining is expected due to resource scarcity.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Invesco DB Commodity Index Tracking Fund (DBC)</strong></span><span class="tag dir-long">LONG</span><span class="who">Patrick Ceresna — Macro Voices</span></div><p><span class="label">Patrick Ceresna — Macro Voices</span>To gain diversified exposure to the structural theme of global strategic commodity stockpiling.</p><p><span class="label">context</span>Expressed via a longer-dated call option (January 15th, 2027, $30 strike) to participate in upside while defining downside risk against short-term geopolitical de-escalation.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Commodities (Diversified Basket)</strong></span><span class="tag dir-long">LONG</span><span class="who">Mark Newton — Milk Road Macro</span></div><p><span class="label">Mark Newton — Milk Road Macro</span>Recommends a diversified basket of commodities.</p><p><span class="label">context</span>Favors base metals, precious metals ETFs, and grains. Less enthusiastic about soft commodities.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Agriculture &amp; Fertilizer (e.g., Bunge, CF Industries)</strong></span><span class="tag dir-other">BUY ON DIPS</span><span class="who">Mark Newton — Milk Road Macro</span></div><p><span class="label">Mark Newton — Milk Road Macro</span>Bullish on the agriculture and fertilizer sectors.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>US Treasuries (e.g., TLT)</strong></span><span class="tag dir-long">LONG</span><span class="who">Mike McGlone — Wealth Building Blueprint Vladyslav Grab</span></div><p><span class="label">Mike McGlone — Wealth Building Blueprint Vladyslav Grab</span>Views the 30-year bond at 5% as &quot;the place to be.&quot; Considers Treasuries a &quot;put on the S&amp;P 500&quot; that could appreciate 20-30% if the S&amp;P 500 falls 10%.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Bitcoin</strong></span><span class="tag dir-short">SHORT</span><span class="who">Mike McGlone — Wealth Building Blueprint Vladyslav Grab</span></div><p><span class="label">Mike McGlone — Wealth Building Blueprint Vladyslav Grab</span>Views it as a prudent short, noting its divergent weakness versus equities and its dependence on a rising stock market. Long-term reversion level is around $10,000.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Silver</strong></span><span class="tag dir-short">SHORT</span><span class="who">Mike McGlone — Wealth Building Blueprint Vladyslav Grab</span></div><p><span class="label">Mike McGlone — Wealth Building Blueprint Vladyslav Grab</span>Believes silver has likely peaked for years.</p><p><span class="label">context</span>Considers $100 a prudent short level.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Renminbi (Chinese Yuan)</strong></span><span class="tag dir-long">LONG</span><span class="who">Louis-Vincent Gave — Macro Voices</span></div><p><span class="label">Louis-Vincent Gave — Macro Voices</span>Believes it is the easiest trade in the current market, supported by massive valuation tailwinds and a mutual desire from both China and the US for a stronger currency.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Emerging Markets (e.g., Japan, China)</strong></span><span class="tag dir-long">LONG</span><span class="who">Mark Newton — Milk Road Macro</span></div><p><span class="label">Mark Newton — Milk Road Macro</span>Likes emerging markets as the US dollar is expected to pull back.</p></div></div></section>
+<section id="conviction-scenarios"><h2>CONVICTION &amp; SCENARIOS</h2><p>Mike Green — The Julia La Roche Show: A 1987-style market crash is &quot;almost inevitable&quot; within the next two and a half years as passive market share grows from ~55% to a critical threshold of 65-80%.</p>
+<p>Martin Rance — Morgan Stanley: If the flow of oil through the Strait of Hormuz does not resume within the next four to six weeks, the market will become very tight by June or early summer.</p>
+<p>Danielle DiMartino Booth — Competent Man Podcast - Tom Bodrovics: A persistent oil shock, defined as a surge of 50% above trend, has historically predicted recessions and indicates a &quot;perfect recessionary storm&quot; is brewing.</p>
+<p>Mark Newton — Milk Road Macro: A significant risk for Q3 (July-October) is the long end of the yield curve aggressively pushing higher, which could spook the stock market.</p></section>
+<section id="tickers-assets"><h2>TICKERS &amp; ASSETS</h2><h3>THESIS TICKERS</h3>
+<ul><li><strong>BG</strong> — Mark Newton — Milk Road Macro — Recommends buying dips in agriculture stocks like Bunge.</li><li><strong>CF</strong> — Mark Newton — Milk Road Macro — Recommends buying dips in fertilizer stocks like CF Industries.</li><li><strong>SGN.V</strong> — Zayn Calian — Mining Stock Daily — High-grade drill results from the Zanzibar trend indicate significant potential for resource growth and pit optimization.</li></ul>
+<h3>TRADE EXPRESSION</h3>
+<ul><li><strong>DBC</strong> — Invesco DB Commodity Index Tracking Fund, used to express a long view on a broad commodity stockpiling theme — Patrick Ceresna — Macro Voices.</li><li><strong>MAGS</strong> — Roundhill Magnificent 7 ETF, mentioned as a proxy for MAG 7 stocks — Mark Newton — Milk Road Macro.</li><li><strong>TLT</strong> — iShares 20+ Year Treasury Bond ETF, used to express a long view on US Treasuries as a hedge against an S&amp;P 500 decline — Mike McGlone — Wealth Building Blueprint Vladyslav Grab.</li></ul>
+<h3>WATCH LEVELS</h3>
+<ul><li><strong>Bitcoin</strong> — A pullback to the low $70,000s is a buying opportunity — Mark Newton — Milk Road Macro.</li><li><strong>MOVE Index</strong> — Monitor closely as a signal for impending issues in credit markets — Danielle DiMartino Booth — Competent Man Podcast - Tom Bodrovics.</li><li><strong>S&amp;P 500</strong> — Overvalued by &gt;75%, implying a level below 200 based on traditional DCF — Mike Green — The Julia La Roche Show.</li><li><strong>WTI Crude Oil</strong> — $79/barrel is key support; a break below could lead to a move down to $60 — Mark Newton — Milk Road Macro.</li></ul>
+<h3>CONTEXT MENTIONS</h3>
+<ul><li><strong>AAPL</strong> — Context for mega-cap rallies.</li><li><strong>AMD</strong> — Context for overvalued tech stocks.</li><li><strong>ASML</strong> — Context for semiconductor industry.</li><li><strong>BTC</strong> — Referenced as digital gold and a diversifier.</li><li><strong>CSCO</strong> — Context for historical market parallels.</li><li><strong>ETH</strong> — Referenced as digital oil.</li><li><strong>NVDA</strong> — Example of earnings growth driven by margin expansion and vendor financing, creating a circular phenomenon. Also cited as an overvalued tech stock.</li><li><strong>XIV</strong> / <strong>SVXY</strong> — Referenced as historical examples of systematic products causing discontinuous market moves.</li></ul></section>
+<section id="spotlight-scorpio-gold-corporate-update"><h2>SPOTLIGHT: Scorpio Gold Corporate Update</h2><p><strong>Host:</strong> Ian Wagner <strong>Guest:</strong> Zayn Calian, CEO, Scorpio Gold</p>
+<ul><li>Scorpio Gold has unlocked the high-grade Zanzibar trend at its Manhattan Gold District in Nevada, with a recent drill hole showing 10.4 g/t over 5.5 meters.</li><li>The new trend is a splay off the main Reliance trend and is close enough to the existing pit shell (10-20 meters) to be optimized within the same pit.</li><li>The company is dedicating one of its three drill rigs exclusively to exploring the Zanzibar trend as it pursues a 2 million ounce resource target.</li><li>Scorpio Gold has completed about 21,000 meters of its phase two diamond drilling campaign, nearing the halfway point of its overall plan.</li><li>A potential NASDAQ listing is close, which would open the company up to a new investor base.</li></ul></section>
+<section id="spotlight-morgan-stanley-alliance-for-ch"><h2>SPOTLIGHT: Morgan Stanley Alliance for Children&#x27;s Mental Health Innovation Awards</h2><p><strong>Host:</strong> Not stated <strong>Guests:</strong> Representatives from various non-profit organizations</p>
+<ul><li>This series of short episodes highlights the winners of the Morgan Stanley Innovation Awards, all of which are non-profits focused on the youth mental health crisis.</li><li>A recurring theme is the significant gap between the high demand for mental health support among young people and the insufficient supply of professional care.</li><li>Organizations like <strong>Lay Mental Health Advocates</strong> and <strong>The Defensive Line</strong> are training community members, teachers, and coaches to provide non-clinical support and create safe environments for discussion.</li><li>Other groups like <strong>Letters to Strangers</strong>, <strong>NoSo Connection Collective</strong>, and <strong>Only7Seconds</strong> are creating youth-led movements to foster meaningful offline connections and combat loneliness exacerbated by technology.</li><li>The episodes collectively underscore a growing societal and potentially economic issue: the long-term impact of youth mental health on workforce readiness and community stability.</li></ul></section>
+<section id="notable-data-figures"><h2>NOTABLE DATA &amp; FIGURES</h2><ul><li><strong>55%</strong> — Current approximate market share of passive investing. — Mike Green — The Julia La Roche Show</li><li><strong>65-80%</strong> — The passive investing market share threshold at which a 1987-style crash becomes almost a certainty. — Mike Green — The Julia La Roche Show</li><li><strong>&gt;75%</strong> — The amount by which the market is overvalued based on traditional discounted cash flow analysis. — Mike Green — The Julia La Roche Show</li><li><strong>2.4x</strong> — The US stock market capitalization relative to GDP, the highest since 1928 on a year-end basis. — Mike McGlone — Wealth Building Blueprint Vladyslav Grab</li><li><strong>13-14 million b/d</strong> — The scale of the current oil supply shock. — Martin Rance — Morgan Stanley</li><li><strong>$4.70 - $5.00</strong> — Potential US gasoline price per gallon if the oil supply shock persists, a level that historically causes demand destruction concerns. — Martin Rance — Morgan Stanley</li><li><strong>$800B - $1T</strong> — Estimated capital expenditure in AI and data centers this year. — Stefan Rust — Wealthion</li><li><strong>17%</strong> — Percentage of jobs in Allentown, PA that remain in manufacturing. — Matt Turk — Odd Lots</li><li><strong>40%</strong> — Percentage of the U.S. population within a day&#x27;s drive of Allentown, PA, making it attractive for &quot;weight-gaining&quot; industries. — Matt Turk — Odd Lots</li><li><strong>10.4 g/t over 5.5m</strong> — High-grade drill result from hole 67 in Scorpio Gold&#x27;s Zanzibar trend. — Zayn Calian — Mining Stock Daily</li></ul></section>
+<section id="watch-catalysts"><h2>WATCH CATALYSTS</h2><ul><li><strong>Next 4-6 weeks</strong> — Critical window for the resumption of oil flow through the Strait of Hormuz. Failure to resume could lead to a very tight market by early summer. — Martin Rance — Morgan Stanley</li><li><strong>Mid-May</strong> — Expected period of stalling and potential 3-5% correction for MAG 7 stocks. — Mark Newton — Milk Road Macro</li><li><strong>Q3 2026 (July-October)</strong> — A period of risk for the stock market if the long end of the yield curve pushes aggressively higher. — Mark Newton — Milk Road Macro</li><li><strong>September-October 2026</strong> — Timeframe when precious metals are expected to rally to new all-time highs before a multi-year decline. — Mark Newton — Milk Road Macro</li><li><strong>US Mid-term Elections</strong> — Historically a positive catalyst for US stock market weakness, almost always leading to a sharp rally. — Mark Newton — Milk Road Macro</li></ul></section>
+<section id="miscellaneous"><h2>MISCELLANEOUS</h2><ul><li>The current retirement system encourages asset hoarding by older generations who fear outliving their assets, which in turn reduces income and opportunities for younger generations. — Mike Green — The Julia La Roche Show</li><li>The strength of the stock market can create a circular feedback loop for corporate profitability, for example through vendor financing from companies like Nvidia. — Mike Green — The Julia La Roche Show</li><li>The US economy is currently the best globally and the best place to invest, though other jurisdictions are in &quot;La La Land&quot; regarding inflation&#x27;s impact. — Stefan Rust — Wealthion</li><li>The US is not immune to global oil prices despite being a net producer, as there is effectively one global price for oil. — Martin Rance — Morgan Stanley</li><li>Cities can successfully re-industrialize by focusing on smaller-footprint, high-tech component manufacturing and &quot;weight-gaining&quot; industries (like food/beverage) that benefit from proximity to population centers. — Matt Turk — Odd Lots</li><li>The counterintuitive rally in semiconductor stocks amidst a looming energy crisis may be driven by market anticipation of a US-China deal involving rare earths and solar panels for high-end chips. — Louis-Vincent Gave — Macro Voices</li></ul></section>
+<section id="data-quality-note"><h2>DATA QUALITY NOTE</h2><ul><li>The five episodes from the Morgan Stanley podcast are a special series highlighting winners of the &quot;Innovation Awards&quot; for non-profits focused on youth mental health. They are non-market and have been summarized in a single Spotlight section for clarity.</li><li>In the *Milk Road Macro* episode, Mark Newton recommends buying dips in &quot;Bungie.&quot; This is likely a misstatement or transcription error for Bunge (<strong>BG</strong>), a major agribusiness company, as Bungie is a video game developer. The digest reflects the likely intended company, Bunge.</li></ul></section>
+<section id="episode-index"><h2>EPISODE INDEX</h2><ul><li><strong>Mining Stock Daily</strong> — Scorpio Gold Expands High-Grade Zanzibar Trend at Manhattan</li></ul>
+<p>Host: Ian Wagner | Guest: Zayn Calian, CEO, Scorpio Gold | Commodities Hard Assets</p>
+<ul><li><strong>Wealthion</strong> — It Hasnt Kicked In Yet The Inflation Shock Markets Are Missing Stefan Rust</li></ul>
+<p>Host: Chris Perkins | Guest: Stefan Rust, CEO of Truflation | Commodities Hard Assets</p>
+<ul><li><strong>Morgan Stanley</strong> — How Long Can Markets Ignore the Oil Supply Shock</li></ul>
+<p>Host: Andrew Sheets, Martin Rance | Guest: Solo | Investment Analysis Factors</p>
+<ul><li><strong>Morgan Stanley</strong> — Morgan Stanley Innovation Awards Features Lay Mental Health Advocates</li></ul>
+<p>Host: Morgan Stanley | Guest: Lay Mental Health Advocates | Investment Analysis Factors</p>
+<ul><li><strong>Morgan Stanley</strong> — Morgan Stanley Innovation Awards Features Letters to Strangers</li></ul>
+<p>Host: Morgan Stanley | Guest: Letters to Strangers | Investment Analysis Factors</p>
+<ul><li><strong>Morgan Stanley</strong> — Morgan Stanley Innovation Awards Features NoSo Connection Collective</li></ul>
+<p>Host: Morgan Stanley | Guest: NoSo Connection Collective, NoSo | Investment Analysis Factors</p>
+<ul><li><strong>Morgan Stanley</strong> — Morgan Stanley Innovation Awards Features Only7Seconds</li></ul>
+<p>Host: Morgan Stanley | Guest: Only7Seconds | Investment Analysis Factors</p>
+<ul><li><strong>Morgan Stanley</strong> — Morgan Stanley Innovation Awards Features Project Sanctuary</li></ul>
+<p>Host: Morgan Stanley | Guest: Project Sanctuary | Investment Analysis Factors</p>
+<ul><li><strong>Morgan Stanley</strong> — Morgan Stanley Innovation Awards Features The Defensive Line</li></ul>
+<p>Host: Morgan Stanley | Guest: The Defensive Line | Investment Analysis Factors</p>
+<ul><li><strong>The Julia La Roche Show</strong> — Mike Green Why A 1987-Style Crash Is Now Almost Inevitable Heres the Math</li></ul>
+<p>Host: Julia La Roche | Guest: Mike Green, Chief Strategist and Portfolio Manager at Simplify Asset Management | Investment Analysis Factors</p>
+<ul><li><strong>Competent Man Podcast - Tom Bodrovics</strong> — Danielle DiMartino Booth Warshs Fed Takeover A Quiet Coup Brewing</li></ul>
+<p>Host: Tom Bodrovics | Guest: Danielle DiMartino Booth, CEO and Chief Strategist for Qi Research | Macroeconomics Strategy</p>
+<ul><li><strong>Less Noise More Signal</strong> — The West Got Rich But Forgot How to Defend Itself</li></ul>
+<p>Host: Pascal Hügli | Guest: Craig Tinddale, Australian writer and ex-personality | Macroeconomics Strategy</p>
+<ul><li><strong>Macro Voices</strong> — MacroVoices 531 Louis-Vincent Gave Semiconductors AI Iran Conflict</li></ul>
+<p>Host: Erik Townsend, Patrick Ceresna | Guest: Louis-Vincent Gave, Co-founder, Gavcal | Macroeconomics Strategy</p>
+<ul><li><strong>Macro Voices</strong> — Trade of The Week - MacroVoices 531</li></ul>
+<p>Host: Erik Townsend, Patrick Ceresna | Guest: Louis Gave | Macroeconomics Strategy</p>
+<ul><li><strong>Milk Road Macro</strong> — There Is NO Evidence To Be Bearish Right Now - Mark Newton</li></ul>
+<p>Host: John Gillen | Guest: Mark Newton, Managing Director and Head of Technical Strategy at Fundstrat Global Adviserss | Macroeconomics Strategy</p>
+<ul><li><strong>Odd Lots</strong> — How an American City Can Become a Manufacturing Hub</li></ul>
+<p>Host: Tracy Alloway, Joe Weisenthal | Guest: Matt Turk, Mayor of Allentown | Macroeconomics Strategy</p>
+<ul><li><strong>Wealth Building Blueprint Vladyslav Grab</strong> — Golds Scary Signal Stock Market Crash Ahead Bitcoin Oil Deflation Mike McGlone</li></ul>
+<p>Host: Vladyslav Grabarskyy | Guest: Mike McGlone, Senior Commodity Strategist, Bloomberg Intelligence | Real Estate Wealth Building</p></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-08 · <a href="archive.html">All days</a></footer></div></body></html>

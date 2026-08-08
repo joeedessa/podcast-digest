@@ -1,0 +1,250 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>PodcastLM — Thursday, 25 June 2026</title><style>
+:root{
+  --bg:#fbfbfa; --panel:#fff; --ink:#1a1a18; --muted:#6b6b66; --line:#e6e4df;
+  --accent:#b4552d; --accent-soft:#fdf3ee;
+  --long:#1a7340; --short:#c0392b; --watch:#2563a8; --reduce:#b8730f;
+  --radius:10px;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#14150f; --panel:#1c1d16; --ink:#eceade; --muted:#a3a094;
+         --line:#2f3126; --accent:#e08a5f; --accent-soft:#241a13;
+         --long:#5cc98a; --short:#ef7d6e; --watch:#7db3e8; --reduce:#e0a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+     line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 96px}
+
+/* masthead */
+header.top{border-bottom:1px solid var(--line);background:var(--panel);
+           position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.4) blur(6px)}
+header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
+                 align-items:baseline;gap:14px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.01em}
+.brand a{color:inherit}
+.crumb{color:var(--muted);font-size:13px}
+.crumb a{color:var(--muted)}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,42px);line-height:1.12;
+         margin:0 0 10px;letter-spacing:-.02em;font-weight:600}
+.hero .meta{color:var(--muted);font-size:14px}
+.pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
+      border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
+
+/* section nav */
+nav.toc{position:sticky;top:52px;background:var(--bg);padding:10px 0 12px;
+        border-bottom:1px solid var(--line);margin-bottom:8px;z-index:10}
+nav.toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0}
+nav.toc a{font-size:12px;padding:4px 10px;border:1px solid var(--line);
+          border-radius:99px;color:var(--muted);background:var(--panel);white-space:nowrap}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);text-decoration:none}
+
+/* sections */
+section{padding:28px 0 4px;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+h2{font-family:var(--serif);font-size:13px;font-weight:700;text-transform:uppercase;
+   letter-spacing:.14em;color:var(--accent);margin:0 0 16px}
+h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:28px 0 8px;
+   letter-spacing:-.01em}
+p{margin:0 0 13px}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin:5px 0}
+strong{font-weight:650}
+.tag{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+
+/* TL;DR */
+.tldr{background:var(--accent-soft);border:1px solid var(--line);
+      border-left:3px solid var(--accent);border-radius:var(--radius);
+      padding:18px 20px;margin-bottom:6px}
+.tldr p:last-child,.tldr ul:last-child{margin-bottom:0}
+.tldr ul{list-style:none;padding-left:0}
+.tldr li{padding-left:15px;position:relative}
+.tldr li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+
+/* trade cards */
+.cards{display:grid;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:15px 17px}
+.card .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.card .asset{font-family:var(--serif);font-size:18px;font-weight:600}
+.card .who{color:var(--muted);font-size:13px}
+.card p{margin:6px 0 0;font-size:14.5px}
+.card .label{color:var(--muted);font-size:11px;text-transform:uppercase;
+             letter-spacing:.08em;margin-right:5px}
+.dir-long{color:var(--long)} .dir-short{color:var(--short)}
+.dir-avoid{color:var(--short)} .dir-reduce{color:var(--reduce)}
+.dir-watching{color:var(--watch)} .dir-other{color:var(--muted)}
+.tier{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+      margin:22px 0 10px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+
+/* topics */
+.topic{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--muted);
+       border-radius:var(--radius);padding:15px 17px;margin:12px 0}
+.topic .t{font-weight:650;margin-bottom:9px}
+
+/* index */
+.days{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:9px}
+.days a{display:flex;justify-content:space-between;align-items:center;gap:14px;
+        background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+        padding:14px 17px;color:inherit}
+.days a:hover{border-color:var(--accent);text-decoration:none}
+.days .d{font-family:var(--serif);font-size:17px;font-weight:600}
+.days .s{color:var(--muted);font-size:13px;text-align:right}
+
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+       color:var(--muted);font-size:12.5px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:12px 15px;font-size:12.5px;color:var(--muted);margin-top:20px}
+@media(max-width:600px){
+  .hero{padding:30px 0 20px}
+  nav.toc{position:static}
+  .card .head{gap:6px}
+}
+</style></head><body><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Thursday, 25 June 2026</span></div></header><div class="wrap"><div class="hero"><h1>Thursday, 25 June 2026</h1><div class="meta"><span class="pill">45 episodes</span>[Commodities Hard Assets, Equities Trading, Geopolitics, Investment Analysis Factors, Macroeconomics Strategy, Real Estate Wealth Building]</div></div><nav class="toc"><ul><li><a href="#tl-dr-read-this-first">TL;DR (read this first)</a></li><li><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a></li><li><a href="#dominant-themes">DOMINANT THEMES</a></li><li><a href="#divergent-views">DIVERGENT VIEWS</a></li><li><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a></li><li><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a></li><li><a href="#tickers-assets">TICKERS &amp; ASSETS</a></li><li><a href="#spotlight-the-terrifying-truth-about-mex">★ The Terrifying Truth A…</a></li><li><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a></li><li><a href="#watch-catalysts">WATCH CATALYSTS</a></li><li><a href="#miscellaneous">MISCELLANEOUS</a></li><li><a href="#by-person-index">BY-PERSON INDEX</a></li><li><a href="#data-quality-note">DATA QUALITY NOTE</a></li><li><a href="#episode-index">EPISODE INDEX</a></li></ul></nav><section id="tl-dr-read-this-first"><h2>TL;DR (read this first)</h2><div class="tldr"><p>The market is dominated by the tension between a newly hawkish Federal Reserve under Chair Warsh and the unabated speculative fervor in the AI sector. Voices like Neil Dutta — RenMac and Danielle DiMartino Booth — The Julia La Roche Show highlight the increased volatility from the Fed&#x27;s abandonment of forward guidance, while skeptics like Marc Faber — Wealthion and Steve Eisman — Steve Eisman warn of an impending bubble burst fueled by unsustainable capital expenditure and overvaluation.</p>
+<ul><li>CENTRAL TENSION: The Fed&#x27;s new hawkish, less communicative regime is creating macro uncertainty, which the narrowly-focused, AI-driven equity market is ignoring.</li><li>TOP THEME: The AI Investment Supercycle — A debate on whether the massive capex is a transformative revolution or a debt-fueled bubble destined to pop.</li><li>DIVERGENT: Mark Newton — Adam Taggart Thoughtful Money is bullish into year-end vs. Jonathan Krinsky — Adam Taggart Thoughtful Money who is bearish on tech/semis.</li><li>HIGH-CONVICTION TRADE: LONG Precious Metals (Gold &amp; Silver) for long-term currency debasement protection (Brien Lundin, Chris Whalen, Andy Schectman).</li><li>CALENDAR: Micron&#x27;s upcoming earnings report, seen as a critical sentiment check for the entire semiconductor and AI sector.</li></ul></div></section>
+<section id="macro-room-temperature"><h2>MACRO ROOM TEMPERATURE</h2><p>The Federal Reserve&#x27;s abrupt pivot away from forward guidance under Chair Warsh has injected a new era of volatility and uncertainty into markets, a shift championed by Danielle DiMartino Booth — The Julia La Roche Show as a necessary institutional reform but criticized by Neil Dutta — RenMac as a &quot;left tail risk&quot; for the economy. This macro regime change is unfolding against the backdrop of a powerful, but increasingly narrow, AI-driven market rally. The central conflict of the day is this disconnect: while the Fed signals a more reactive and potentially hawkish policy path, equity markets, mesmerized by the AI narrative, continue to price in a frictionless future, a dynamic that voices like Marc Faber — Wealthion and Steve Eisman — Steve Eisman warn is unsustainable and reminiscent of the dot-com bubble.</p></section>
+<section id="dominant-themes"><h2>DOMINANT THEMES</h2><h3>THEME 1 — The AI Investment Supercycle: Bubble or Revolution? (14 shows)</h3>
+<p>THESIS: An unprecedented wave of capital expenditure is flowing into AI infrastructure, fundamentally reshaping hyperscalers into capital-intensive businesses and driving a semiconductor boom. The core debate is whether this is a durable, productivity-enhancing revolution or a debt-fueled, speculative bubble with parallels to the dot-com bust, where most participants will face colossal losses.</p>
+<p><strong>OPTIMISTS (Joyce Shen, Peter McCrory, Scott Kirby)</strong> The current build-out is a necessary technological transformation. Peter McCrory — Odd Lots projects AI could add 1.8 percentage points to annual labor productivity growth over the next decade, a massive boost to the economy. Joyce Shen — SmarterMarkets argues that value will be captured by companies that leverage high-quality, domain-specific data to solve high-impact problems. The investment is not just about replacing jobs but achieving previously impossible tasks, as Scott Kirby — Morgan Stanley notes United Airlines is using AI to optimize complex network operations, not just reduce headcount.</p>
+<p><strong>SKEPTICS (Marc Faber, Steve Eisman, Aswath Damodaran, Tobias Carlisle, Ben from GMO, Chris Whalen, Steve St. Angelo)</strong> This camp warns of a classic &quot;big market delusion.&quot; Aswath Damodaran — Excess Returns points out the current AI boom is largely debt-funded, unlike the equity-funded dot-com bust, raising risks of broader societal pain in a correction. Steve Eisman — Steve Eisman highlights the staggering capex figures (Google&#x27;s projected $180-$190B for 2026) and the lack of &quot;moats,&quot; with leadership shifting weekly and commoditization already beginning as token prices fall. Marc Faber — Wealthion expects the boom to end in &quot;colossal losses for most participants.&quot; Ben — Excess Returns warns of an &quot;earnings bubble,&quot; where the investment itself mechanically inflates corporate profits, masking unsustainable valuations. Chris Whalen — The Julia La Roche Show and Steve St. Angelo — Competent Man Podcast - Tom Bodrovics both explicitly call for an AI bubble collapse.</p>
+<p>KEY TENSION: Resolution hinges on whether the massive capex translates into sustainable, profitable business models across the economy before the capital cycle turns or a liquidity event forces a painful repricing.</p>
+<h3>THEME 2 — The Warsh Fed: A New Era of Volatility (7 shows)</h3>
+<p>THESIS: Fed Chair Kevin Warsh&#x27;s decision to end forward guidance and scrap the dot plot marks a fundamental shift in monetary policy communication. This new regime reintroduces market-driven price discovery and forces a focus on real-time data, but simultaneously increases uncertainty and the potential for sharp, abrupt market repricing.</p>
+<p><strong>PROPONENTS OF THE SHIFT (Danielle DiMartino Booth, Chris Whalen, Lance Roberts)</strong> This change is a necessary and positive institutional reform. Danielle DiMartino Booth — The Julia La Roche Show praises Warsh for eliminating &quot;garbage&quot; forecasts and restoring a focus on real-time data. Chris Whalen — The Julia La Roche Show believes &quot;less is more&quot; for the Fed, arguing the over-communication of the past was a mistake. Lance Roberts — Adam Taggart Thoughtful Money notes the Fed will now take cues from the market, which he sees as a more efficient signaling system.</p>
+<p><strong>CRITICS OF THE EXECUTION (Neil Dutta)</strong> The execution lacks a coherent framework, creating unnecessary risk. Neil Dutta — RenMac repeatedly characterizes Warsh&#x27;s communication as antagonistic and lacking a clear policy structure, which increases market volatility and represents a &quot;left tail risk&quot; for the economy. The result is a market prone to abrupt and significant repricing of rate expectations.</p>
+<p>KEY TENSION: Whether the market can adapt to a less-guided, more data-dependent Fed without a significant risk-off event, particularly as the committee maintains a hawkish bias in a fragile economic environment.</p></section>
+<section id="divergent-views"><h2>DIVERGENT VIEWS</h2><div class="topic"><div class="t">U.S. Equity Market Outlook for H2 2026</div><p>Mark Newton — Adam Taggart Thoughtful Money: <strong>Bullish Finish</strong> <strong>Reasoning:</strong> Newton anticipates a choppy year but a strong finish, with a Q3 correction followed by a Q4 rally, especially from the midterm election into year-end. He is encouraged by broadening market strength outside of tech, with the Russell 3000 advance-decline line at its highest since 2021. He does not see the necessary conditions for a significant pullback yet (breadth deterioration, overly optimistic sentiment, defensive strength).</p>
+<p>Jonathan Krinsky — Adam Taggart Thoughtful Money: <strong>Bearish, Tech-led Correction</strong> <strong>Reasoning:</strong> Krinsky is concerned about the extended and dominant tech/AI sector, believing expectations may not be met. He sees significant risk in the semiconductor cohort due to its extreme performance relative to the NASDAQ 100 and historical parallels to the dot-com bubble. His base case is for a 20-25% correction in technology.</p>
+<p>Marc Faber — Wealthion: <strong>Extremely Bearish / &quot;Disaster&quot;</strong> <strong>Reasoning:</strong> Faber believes the market is approaching a major top that will end in a &quot;complete disaster,&quot; not a mere correction. He argues financial assets are &quot;grossly inflated,&quot; the advance is dangerously narrow, and the U.S. is heading for a fiscal crisis due to unsustainable debt and persistent inflation that leaves the Fed in a &quot;straitjacket.&quot;</p></div>
+<div class="topic"><div class="t">Precious Metals (Gold &amp; Silver) Short-Term Outlook</div><p>Andy Schectman — Adam Taggart Thoughtful Money: <strong>Near a Bottom</strong> <strong>Reasoning:</strong> Schectman believes the market is very close to a bottom for gold and silver. He argues that price is a &quot;tool of misdirection&quot; allowing strong hands (central banks, sovereigns) to accumulate physical metal, as evidenced by record-breaking physical deliveries on the COMEX. He sees the fundamental drivers of global de-dollarization and debt as overwhelmingly bullish long-term.</p>
+<p>Steve St. Angelo — Competent Man Podcast - Tom Bodrovics: <strong>Lofty, More Correction to Come</strong> <strong>Reasoning:</strong> St. Angelo argues that current gold and silver prices are lofty and well above their cost of production, with high margins that are typically unsustainable. He sees weakness in investment and jewelry demand and believes the recent parabolic moves were driven by speculative FOMO, not fundamentals. He forecasts a potential correction to $3,500 for gold and $55 for silver if the AI bubble pops.</p>
+<p>Patrick Ceresna — The Market Huddle: <strong>Bearish / &quot;Difficult Summer&quot;</strong> <strong>Reasoning:</strong> Ceresna describes the gold chart as &quot;ugly and actively distributed.&quot; He anticipates a &quot;very difficult summer for gold&quot; due to the technical breakout in the US dollar and higher interest rates, which create significant headwinds for non-yielding precious metals.</p></div>
+<div class="topic"><div class="t">Oil Price Outlook</div><p>Scott Kirby — Morgan Stanley: <strong>Higher for Longer</strong> <strong>Reasoning:</strong> The CEO of United Airlines believes oil prices will be &quot;higher for longer&quot; due to global events. He states this view diverges from the forward curve and expert consensus, and his company is preparing for this scenario.</p>
+<p>Doomberg — Wealth Building Blueprint Vladyslav Grab: <strong>Much Lower Long-Term</strong> <strong>Reasoning:</strong> Doomberg expects long-term oil prices to trend significantly lower, potentially below $60/barrel. He argues the geopolitical landscape has shifted with the Iran deal, and China has demonstrated an ability to swing crude oil demand by millions of barrels per day, altering demand elasticity and making it difficult for prices to sustain levels above $150.</p></div></section>
+<section id="trade-ideas-positions"><h2>TRADE IDEAS &amp; POSITIONS</h2><div class="cards"><div class="tier">HIGH CONVICTION</div>
+<div class="card"><div class="head"><span class="asset">Precious Metals (Gold &amp; Silver)</span><span class="tag dir-long">LONG</span><span class="who">Brien Lundin — Sprott Money · Chris Whalen — The Julia La Roche Show · Andy Schectman — Adam Taggart Thoughtful Money</span></div><p><span class="label">why</span>The core thesis is that massive global debt and deficits necessitate ongoing currency debasement. Precious metals serve as essential protection against this long-term trend. Central bank buying and physical demand provide a floor, while current pullbacks offer attractive entry points for long-term investors.</p><p><span class="label">context</span>This is a long-term strategic position. Lundin notes gold&#x27;s typical seasonality of bottoming between mid-July and mid-August.</p><p><span class="label">voices</span>Brien Lundin — Sprott Money: Views the recent pullback as &quot;absolutely overdone&quot; and a &quot;buy the dips&quot; opportunity. · Chris Whalen — The Julia La Roche Show: Accumulating silver; sees gold and silver as great medium to long-term trades. · Andy Schectman — Adam Taggart Thoughtful Money: Believes the market is very close to a bottom and the long-term trajectory is much higher.</p></div>
+<div class="card"><div class="head"><span class="asset">REITs</span><span class="tag dir-long">LONG</span><span class="who">Jonathan Krinsky — Adam Taggart Thoughtful Money · Mark Newton — Adam Taggart Thoughtful Money</span></div><p><span class="label">why</span>After a long period of underperformance, the sector is showing technical strength and breaking out of a long-term base. A potential peak in interest rates would provide a significant fundamental tailwind for the asset class.</p><p><span class="label">voices</span>Jonathan Krinsky — Adam Taggart Thoughtful Money: Sees opportunities in REITs, which are breaking out of a multi-year base and could see a tailwind from lower rates. · Mark Newton — Adam Taggart Thoughtful Money: Emphasizes REITs, noting that ETFs like <strong>EWRE</strong> and <strong>RSPR</strong> are breaking out.</p></div>
+<div class="tier">OPPORTUNISTIC</div>
+<div class="card"><div class="head"><span class="asset">US Bonds</span><span class="tag dir-long">LONG</span><span class="who">Marc Faber — Wealthion</span></div><p><span class="label">Marc Faber — Wealthion</span>Faber is personally long US bonds, noting that &quot;everyone else is short.&quot; He anticipates a temporary dip in bond yields over the next six months.</p></div>
+<div class="card"><div class="head"><span class="asset">Trump-related stocks</span><span class="tag dir-short">SHORT</span><span class="who">Marc Faber — Wealthion</span></div><p><span class="label">Marc Faber — Wealthion</span>States that selling short any stock related to the Trump family is a &quot;guaranteed recipe for investors to make money because they all go down.&quot;</p></div>
+<div class="card"><div class="head"><span class="asset">Financials / Banks</span><span class="tag dir-long">LONG</span><span class="who">Mark Newton — Adam Taggart Thoughtful Money</span></div><p><span class="label">Mark Newton — Adam Taggart Thoughtful Money</span>Emphasizes banks, particularly European and US commercial banks, as an area of opportunity due to expanding market breadth.</p></div>
+<div class="card"><div class="head"><span class="asset">Consumer Discretionary (Airlines, Hotels, Apparel)</span><span class="tag dir-long">LONG</span><span class="who">Mark Newton — Adam Taggart Thoughtful Money</span></div><p><span class="label">Mark Newton — Adam Taggart Thoughtful Money</span>Sees a &quot;ceasefire trade&quot; snapback rally in consumer discretionary names like airlines, hotels, booking companies, and apparel.</p></div>
+<div class="card"><div class="head"><span class="asset">Annaly (<strong>NLY</strong>)</span><span class="tag dir-long">LONG</span><span class="who">Chris Whalen — The Julia La Roche Show</span></div><p><span class="label">Chris Whalen — The Julia La Roche Show</span>Has shifted from short-term Treasuries to Annaly due to its portfolio of government-insured assets and strong management.</p></div>
+<div class="card"><div class="head"><span class="asset">Copper</span><span class="tag dir-long">LONG</span><span class="who">Chris Whalen — The Julia La Roche Show</span></div><p><span class="label">Chris Whalen — The Julia La Roche Show</span>Views copper as a medium-term supply-demand trade, noting current shortages and high demand. Expressed via an ETF.</p></div>
+<div class="card"><div class="head"><span class="asset">Visa (<strong>V</strong>)</span><span class="tag dir-long">LONG</span><span class="who">Steve Eisman — Steve Eisman</span></div><p><span class="label">Steve Eisman — Steve Eisman</span>Believes Visa and Mastercard are the only &quot;impregnable franchises&quot; in the brutal and intensely competitive payments space. He owns Visa.</p></div>
+<div class="card"><div class="head"><span class="asset">European Stocks</span><span class="tag dir-avoid">AVOID</span><span class="who">Steve Eisman — Steve Eisman</span></div><p><span class="label">Steve Eisman — Steve Eisman</span>Advises generally avoiding European stocks due to overregulation, slow-growing economies, and low exposure to the tech sector (18% of Euro Stoxx vs. 38-50% in S&amp;P 500).</p></div>
+<div class="card"><div class="head"><span class="asset">Energy Sector</span><span class="tag dir-long">LONG</span><span class="who">Jeff Degrav — RenMac</span></div><p><span class="label">Jeff Degrav — RenMac</span>Intends to be a buyer of energy, seeing good opportunities developing. He describes the charts as bullish and the sector as one of the cheapest areas in the market.</p></div>
+<div class="card"><div class="head"><span class="asset">US Dollar</span><span class="tag dir-long">LONG</span><span class="who">Neil Dutta — RenMac</span></div><p><span class="label">Neil Dutta — RenMac</span>Falling oil prices are a good reason to be long the dollar against most G10 FX, as the Fed&#x27;s focus remains on sticky services inflation, maintaining a hawkish policy differential.</p></div></div></section>
+<section id="conviction-scenarios"><h2>CONVICTION &amp; SCENARIOS</h2><p>Danielle DiMartino Booth — The Julia La Roche Show: Prediction markets (Kalshi) show a 74.8% probability of zero Fed rate cuts in 2026. <strong>If</strong> credit spreads widen and junk bond sales cease: Warsh will be forced to intervene as the lender of last resort.</p>
+<p>Peter McCrory — Odd Lots: <strong>If</strong> AI diffuses widely: It could increase labor productivity growth by 1.8 percentage points annually over the next decade.</p></section>
+<section id="tickers-assets"><h2>TICKERS &amp; ASSETS</h2><h3>THESIS TICKERS</h3>
+<ul><li><strong>ACN (Accenture)</strong> — John J. Hardy — Saxo Market Call — Stock&#x27;s 18% decline reflects market fears that AI will disrupt its legacy consulting and software-as-a-service business models.</li><li><strong>MSTR (MicroStrategy)</strong> — Jack Farley — Forward Guidance — Trading distressed due to management&#x27;s refusal to address liquidity concerns by raising cash, instead continuing to buy Bitcoin.</li><li><strong>NLY (Annaly)</strong> — Chris Whalen — The Julia La Roche Show — Long position due to its government-insured assets and strong management.</li><li><strong>V (Visa)</strong> — Steve Eisman — Steve Eisman — Long position as one of the only &quot;impregnable franchises&quot; in the competitive payments space.</li><li><strong>ZIG, DEEP (Acquire Funds ETFs)</strong> — Tobias Carlisle — Excess Returns — Carlisle&#x27;s ETFs focus on small/micro-cap and mid/large-cap value, which he believes are poised for superior long-term returns.</li></ul>
+<h3>TRADE EXPRESSION</h3>
+<ul><li><strong>Copper ETF</strong> — To express a long view on copper&#x27;s supply/demand imbalance — Chris Whalen — The Julia La Roche Show</li><li><strong>EWRE, RSPR (REIT ETFs)</strong> — To express a long view on the REIT sector, which is breaking out technically — Mark Newton — Adam Taggart Thoughtful Money</li><li><strong>GDX (Gold Miners ETF)</strong> — Pullback from 117 to 73 is &quot;absolutely overdone,&quot; presenting a buying opportunity — Brien Lundin — Sprott Money</li></ul>
+<h3>WATCH LEVELS</h3>
+<ul><li><strong>Gold</strong> — A break below $4,000 would shake out speculative &quot;hopium&quot; — Andy Schectman — Adam Taggart Thoughtful Money</li><li><strong>Gold</strong> — Correction may last until September or October — Marc Faber — Wealthion</li><li><strong>Novo Nordisk (NVO)</strong> — Trading at its 200-day moving average, with a key technical point at 357 — John J. Hardy — Saxo Market Call</li><li><strong>Silver</strong> — A break below $60 would shake out speculative &quot;hopium&quot; — Andy Schectman — Adam Taggart Thoughtful Money</li><li><strong>US Dollar (DXY)</strong> — A break above 101 would be a technical breakout — Pascal Hügli — Less Noise More Signal</li></ul>
+<h3>CONTEXT MENTIONS</h3>
+<ul><li><strong>AMD, ARM, ASML, Broadcom, Intel, Micron, Nvidia, SK Hynix, TSMC</strong> — Mentioned frequently in discussions about the AI/semiconductor boom, its beneficiaries, and bubble risks.</li><li><strong>Apple, Amazon, Google, Meta, Microsoft</strong> — The &quot;hyperscalers&quot; or &quot;Mag 7&quot; discussed as driving the AI capex cycle and transforming into capital-intensive businesses.</li><li><strong>Bitcoin</strong> — Mentioned as an indicator of speculative froth and a non-yielding asset facing competition for capital from the AI buildout.</li><li><strong>SpaceX</strong> — Used as a prime example of &quot;obscene valuations&quot; and a potential market-top signal via its upcoming IPO.</li><li><strong>WTI, Brent</strong> — Referenced in discussions about oil price volatility, geopolitical risk, and inflation.</li></ul></section>
+<section id="spotlight-the-terrifying-truth-about-mex"><h2>SPOTLIGHT: The Terrifying Truth About Mexico&#x27;s Military</h2><p><strong>Host:</strong> Jacob Shapiro <strong>Guest:</strong> Victor Hernandez, National Security Law Professor</p>
+<ul><li>Victor Hernandez argues that the Mexican military has gained unprecedented power and budget without accountability, effectively becoming a de facto government that oversees public works, strategic communications, and more.</li><li>Despite high public trust, Hernandez, a former army member, describes the military as deeply corrupt and &quot;part of the problem.&quot;</li><li>He advises against near-shoring manufacturing to Mexico, warning that companies will face significant unrecorded costs from corruption and extortion by both cartels and local authorities, negating initial cost savings.</li><li>Hernandez anticipates a &quot;modest intervention&quot; from the U.S. in Mexico, likely an aerial campaign targeting specific individuals, which could lead to urban chaos and increased migration.</li><li>The country&#x27;s logistical constraints and lack of a grand strategy make it difficult to diversify trade away from the U.S., reinforcing its economic dependence despite geopolitical friction.</li></ul></section>
+<section id="notable-data-figures"><h2>NOTABLE DATA &amp; FIGURES</h2><ul><li><strong>$1.5 trillion:</strong> The financing gap for AI infrastructure that credit markets are now bridging. — Vishwas Bankura — Morgan Stanley</li><li><strong>$500 billion:</strong> Expected total AI-related debt financing for 2026. — Vishwas Bankura — Morgan Stanley</li><li><strong>$180-$190 billion:</strong> Google&#x27;s projected AI capex for 2026. — Steve Eisman — Steve Eisman</li><li><strong>74.8%:</strong> Probability of zero Fed rate cuts in 2026, according to Kalshi prediction markets. — Danielle DiMartino Booth — The Julia La Roche Show</li><li><strong>70%:</strong> Effective tax rate of the current Polish copper tax, which Lumina Metals is working to reform. — Jordan Pandoff — Jimmy Connor</li><li><strong>45%:</strong> Percentage of U.S. households living payday to payday. — Meredith Whitney — Jimmy Connor</li><li><strong>38.4%:</strong> Year-over-year increase in U.S. bankruptcy filings through early June 2025. — Danielle DiMartino Booth — The Julia La Roche Show</li><li><strong>170 million ounces:</strong> Silver delivered on COMEX from January-May 2026, over 45% more than all of 2023. — Andy Schectman — Adam Taggart Thoughtful Money</li><li><strong>9.9 million ounces:</strong> Gold delivered on COMEX from January-May 2026. — Andy Schectman — Adam Taggart Thoughtful Money</li><li><strong>9.5%:</strong> Decline in China&#x27;s infrastructure spending in May. — Joe Peisel — Trivium China</li><li><strong>-0.6%:</strong> Decline in China&#x27;s retail sales of consumer goods in May, the first in over three years. — Joe Peisel — Trivium China</li><li><strong>1.8 percentage points:</strong> Potential annual increase in labor productivity growth from AI over the next decade. — Peter McCrory — Odd Lots</li></ul></section>
+<section id="watch-catalysts"><h2>WATCH CATALYSTS</h2><ul><li><strong>Ongoing:</strong> Quarter-end rebalancing over the next two weeks, which could see pension funds reduce equity exposure, particularly in tech. — Lance Roberts — Adam Taggart Thoughtful Money</li><li><strong>Upcoming:</strong> Micron (<strong>MU</strong>) earnings report. Seen as a critical status check for the semiconductor sector and broader market sentiment. — Jeff DeGrasse — RenMac; John J. Hardy — Saxo Market Call</li><li><strong>Upcoming:</strong> Core PCE inflation data release. Watched for potential upside risk that could influence Fed policy. — Neil Dutta — RenMac</li><li><strong>July:</strong> Amazon Prime Day. Mentioned as a market event. — Neil Dutta — RenMac</li><li><strong>August-October:</strong> Period of higher risk for a 5-10% market correction due to election uncertainty and corporate buyback blackouts. — Lance Roberts — Adam Taggart Thoughtful Money</li><li><strong>Midterm Elections (Fall 2026):</strong> Seen as a key decision point for the Iran deal and a potential catalyst for a Q4 market rally. — Neil Dutta — RenMac; Mark Newton — Adam Taggart Thoughtful Money</li></ul></section>
+<section id="miscellaneous"><h2>MISCELLANEOUS</h2><ul><li>The current AI boom is largely debt-funded, unlike the equity-funded dot-com bust, which raises concerns about broader societal pain if a correction leads to defaults. — Aswath Damodaran — Excess Returns</li><li>The &quot;inelastic markets hypothesis&quot; suggests that significant new supply from IPOs (SpaceX, OpenAI, Anthropic) and lockup expirations could negatively impact US stock market returns over the next 12 months. — Ben — Excess Returns</li><li>The US government&#x27;s export control directive against Anthropic&#x27;s AI models is a critical early indicator of an emerging geopolitical battle between AI companies and governments over sovereignty. — Jacob Shapiro — Jacob Shapiro</li><li>A global trend of sovereign funding is shifting towards short-term debt (T-bills), which injects liquidity into the system and benefits risk assets, a form of &quot;US Treasury QE.&quot; — Pascal Hügli — Less Noise More Signal</li><li>The TWIG framework (Trade, War, Inflation, Government intervention) suggests that the highest investor returns occur when there is maximum free trade, no war, minimum inflation, and minimum government intervention. Current policies are not aligned with this. — Dr. Brian Taylor — The Meb Faber Show</li><li>For investors with a 20+ year horizon, stocks have historically been less volatile than bonds, a counterintuitive finding from long-term data analysis. — Meb Faber — The Meb Faber Show</li><li>Leveraged buyouts (LBOs) in private equity overwhelmingly target small-cap, &quot;junky&quot; companies, creating a bias that institutional investors should consider balancing in their public equity allocations by favoring high-quality. — Ben — Excess Returns</li></ul></section>
+<section id="by-person-index"><h2>BY-PERSON INDEX</h2><ul><li>Alfie Kurzweil (Less Noise More Signal): Miscellaneous</li><li>Andy Schectman (Adam Taggart Thoughtful Money): Divergent: Precious Metals | HIGH-CONVICTION TRADE: Precious Metals LONG | Notable Data | Watch Levels</li><li>Ari Sussman (Mining Stock Daily): TRADE IDEAS &amp; POSITIONS</li><li>Ariana Salvatore (Morgan Stanley): THEME 1 — The AI Investment Supercycle</li><li>Aswath Damodaran (Excess Returns): THEME 1 — The AI Investment Supercycle | Miscellaneous</li><li>Ben (Excess Returns): THEME 1 — The AI Investment Supercycle | Miscellaneous</li><li>Ben Carlson (The Compound): THEME 1 — The AI Investment Supercycle</li><li>Brien Lundin (Sprott Money): HIGH-CONVICTION TRADE: Precious Metals LONG | TRADE IDEAS &amp; POSITIONS</li><li>Chris Whalen (The Julia La Roche Show): THEME 1 — The AI Investment Supercycle | THEME 2 — The Warsh Fed | HIGH-CONVICTION TRADE: Precious Metals LONG | OPPORTUNISTIC: Annaly LONG | OPPORTUNISTIC: Copper LONG</li><li>Danielle DiMartino Booth (The Julia La Roche Show): THEME 2 — The Warsh Fed | CONVICTION &amp; SCENARIOS | Notable Data</li><li>Doomberg (Wealth Building Blueprint Vladyslav Grab): Divergent: Oil Price Outlook | TRADE IDEAS &amp; POSITIONS</li><li>Dr. Brian Taylor (The Meb Faber Show): Miscellaneous</li><li>Jack Farley (Forward Guidance): TRADE IDEAS &amp; POSITIONS</li><li>James Van Geelen (Odd Lots): THEME 1 — The AI Investment Supercycle | Miscellaneous</li><li>Jeff Degrav (RenMac): OPPORTUNISTIC: Energy Sector LONG</li><li>Jeff DeGrasse (RenMac): THEME 2 — The Warsh Fed | Watch Catalysts</li><li>Jim Egan (Morgan Stanley): DOMINANT THEMES</li><li>Joe Peisel (Trivium China): Notable Data</li><li>John J. Hardy (Saxo Market Call): THESIS TICKERS | Watch Levels | Watch Catalysts</li><li>Jonathan Krinsky (Adam Taggart Thoughtful Money): TL;DR | Divergent: U.S. Equity Market Outlook | HIGH-CONVICTION TRADE: REITs LONG</li><li>Jordan Pandoff (Jimmy Connor): Notable Data</li><li>Joyce Shen (SmarterMarkets): THEME 1 — The AI Investment Supercycle</li><li>Lance Roberts (Adam Taggart Thoughtful Money): THEME 2 — The Warsh Fed | Watch Catalysts</li><li>Leslie Harris (The Market Huddle): Miscellaneous</li><li>Marc Faber (Wealthion): TL;DR | Divergent: U.S. Equity Market Outlook | OPPORTUNISTIC: US Bonds LONG | OPPORTUNISTIC: Trump-related stocks SHORT | Watch Levels</li><li>Mark Newton (Adam Taggart Thoughtful Money): TL;DR | Divergent: U.S. Equity Market Outlook | HIGH-CONVICTION TRADE: REITs LONG | OPPORTUNISTIC: Financials / Banks LONG | OPPORTUNISTIC: Consumer Discretionary LONG | Watch Catalysts</li><li>Martin Wolf (Macro Hive): THEME 1 — The AI Investment Supercycle</li><li>Meb Faber (The Meb Faber Show): Miscellaneous</li><li>Meredith Whitney (Jimmy Connor): Notable Data</li><li>Neil Dutta (RenMac): TL;DR | MACRO ROOM TEMPERATURE | THEME 2 — The Warsh Fed | OPPORTUNISTIC: US Dollar LONG | Watch Catalysts</li><li>Pascal Hügli (Less Noise More Signal): Miscellaneous | Watch Levels</li><li>Patrick Ceresna (The Market Huddle): Divergent: Precious Metals | TRADE IDEAS &amp; POSITIONS</li><li>Peter McCrory (Odd Lots): THEME 1 — The AI Investment Supercycle | CONVICTION &amp; SCENARIOS | Notable Data</li><li>Rory Johnston (Money of Mine): Divergent: Oil Price Outlook</li><li>Sam Rowe (Odd Lots): Miscellaneous</li><li>Sarah Wolfe (Morgan Stanley): DOMINANT THEMES</li><li>Scott Kirby (Morgan Stanley): THEME 1 — The AI Investment Supercycle | Divergent: Oil Price Outlook</li><li>Shashank Chiranawala (The Monetary Matters Network): TRADE IDEAS &amp; POSITIONS</li><li>Shashank Chyranawala (The Monetary Matters Network): TRADE IDEAS &amp; POSITIONS</li><li>Steve Eisman (Steve Eisman): TL;DR | MACRO ROOM TEMPERATURE | THEME 1 — The AI Investment Supercycle | OPPORTUNISTIC: Visa LONG | OPPORTUNISTIC: European Stocks AVOID | Notable Data</li><li>Steve St. Angelo (Competent Man Podcast - Tom Bodrovics): THEME 1 — The AI Investment Supercycle | Divergent: Precious Metals</li><li>Tobias Carlisle (Excess Returns): THEME 1 — The AI Investment Supercycle | THESIS TICKERS</li><li>Victor Hernandez (Jacob Shapiro): SPOTLIGHT: The Terrifying Truth About Mexico&#x27;s Military</li><li>Vishwas Bankura (Morgan Stanley): Notable Data</li></ul></section>
+<section id="data-quality-note"><h2>DATA QUALITY NOTE</h2><p>This digest was synthesized from an unusually large number of episodes (45), including a significant number of same-show repeats from previous days. Content from these repeat episodes was reviewed and deduplicated where it was identical to prior digests. Any new or nuanced information from today&#x27;s broadcasts of these repeat episodes has been incorporated. The high volume of repeats may indicate a data feed issue, but all provided summaries were processed as instructed. Cross-show guest appearances were noted for context but did not require deduplication. All attributions are based on the information provided in the summaries.</p></section>
+<section id="episode-index"><h2>EPISODE INDEX</h2><ul><li><strong>Mining Stock Daily</strong> — From Premier to CEO Ranj Pillai on Seva Mining and Its Direct Shipping Ore Appro</li></ul>
+<p>Host: Trevor Hall | Guest: Ranj Pillai, CEO, Skeena Mining | Commodities Hard Assets</p>
+<ul><li><strong>Mining Stock Daily</strong> — Morning Briefing Newcore Publishes Results for the Enchi PFS</li></ul>
+<p>Host: Trevor Hall | Guest: Solo | Commodities Hard Assets</p>
+<ul><li><strong>Mining Stock Daily</strong> — What Colombias Election Means for Mining Investors and a Corporate Update from C</li></ul>
+<p>Host: Trevor Hall | Guest: Ari Sussman, Executive Chairman, Collective Mining | Commodities Hard Assets</p>
+<ul><li><strong>Money of Mine</strong> — The Oil Shock That Wasnt Rory Johnston</li></ul>
+<p>Host: Mat Glisson, Paul Atherley | Guest: Rory Johnston, oil expert | Commodities Hard Assets</p>
+<ul><li><strong>SmarterMarkets</strong> — How to Raise Your Agent Ep 6 Joyce Shen MP at Together Expedition AI Professor a</li></ul>
+<p>Host: David Greely | Guest: Joyce Shen, Managing Partner at Together Expedition and AI Professor at the University of California, Berkeley | Commodities Hard Assets</p>
+<ul><li><strong>Sprott Money</strong> — The Biggest Gold Bull Market Well Ever See - Brien Lundin Sprott Money</li></ul>
+<p>Host: Craig Hemke | Guest: Brien Lundin, Editor and Publisher, Gold Newsletter | Commodities Hard Assets</p>
+<ul><li><strong>Wealthion</strong> — Marc Faber Were Approaching a Major Market Top It Ends in Disaster</li></ul>
+<p>Host: Maggie Lake | Guest: Marc Faber, Editor, Gloom, Boom, and Doom Report | Commodities Hard Assets</p>
+<ul><li><strong>Jimmy Connor</strong> — Lumina Metals Europes Largest Copper-Silver District Jordan Pandoff and Jimmy Co</li></ul>
+<p>Host: Jimmy Connor | Guest: Jordan Pandoff, CEO, Lumina Metals | Equities Trading</p>
+<ul><li><strong>Jimmy Connor</strong> — Meredith Whitney on the US Economy and the Consumer Jimmy Connor</li></ul>
+<p>Host: Jimmy Connor | Guest: Meredith Whitney, Founder, MeredithWhitneyLLC.com | Equities Trading</p>
+<ul><li><strong>Trivium China</strong> — Ep 70 - Chinas growth model hits another reality check</li></ul>
+<p>Host: Andrew Polk | Guest: Joe Peisel, Lead Macro Analyst, Trivium China | Geopolitics</p>
+<ul><li><strong>Excess Returns</strong> — The 2 Trillion Trapdoor Tobias Carlisle on SpaceX the AI Buildout and the Rotati</li></ul>
+<p>Host: Justin Carbonneau, Jack Forehand | Guest: Tobias Carlisle, Founder and Portfolio Manager, Acquire Funds | Investment Analysis Factors</p>
+<ul><li><strong>Excess Returns</strong> — The Trillion Dollar Gap Aswath Damodaran on SpaceX AI and the Big Market Delusio</li></ul>
+<p>Host: Kai Wu | Guest: Aswath Damodaran, Professor of Corporate Finance, NYU | Investment Analysis Factors</p>
+<ul><li><strong>Excess Returns</strong> — We Asked GMOs Head of Asset Allocation Why This Bubble is Easy But Investors Wil</li></ul>
+<p>Host: Jack Forehand, Justin Carbonneau | Guest: Ben, Head of Asset Allocation, GMO | Investment Analysis Factors</p>
+<ul><li><strong>Morgan Stanley</strong> — Can Policy Solve AIs Chipflation</li></ul>
+<p>Host: Morgan Stanley | Guest: Solo | Investment Analysis Factors</p>
+<ul><li><strong>Morgan Stanley</strong> — Inside the AI Debt Surge</li></ul>
+<p>Host: Mike Wilson | Guest: Carolyn Campbell, Asia Pac Securities Strategist, Morgan Stanley | Investment Analysis Factors</p>
+<ul><li><strong>Morgan Stanley</strong> — Morgan Stanley Exceptional Leaders United Airlines Leading for the Long Haul</li></ul>
+<p>Host: Mike Wilson | Guest: Scott Kirby, CEO, United Airlines | Investment Analysis Factors</p>
+<ul><li><strong>Morgan Stanley</strong> — The Obstacles to Buying a First Home</li></ul>
+<p>Host: Mike Wilson | Guest: Jim Egan, Morgan Stanley Analyst | Investment Analysis Factors</p>
+<ul><li><strong>Steve Eisman</strong> — Anthropic Gets Shut Down By the Government and the AI Story Gets More Complicate</li></ul>
+<p>Host: Steve Eisman | Guest: Solo | Investment Analysis Factors</p>
+<ul><li><strong>The Compound</strong> — Can You Retire on 15 Million</li></ul>
+<p>Host: Ben Carlson | Guest: Solo | Investment Analysis Factors</p>
+<ul><li><strong>The Julia La Roche Show</strong> — Danielle DiMartino Booth On The New Era At Fed And The One Thing Could Derail Ev</li></ul>
+<p>Host: Julia La Roche | Guest: Danielle DiMartino Booth, CEO and Chief Strategist at QI Research | Investment Analysis Factors</p>
+<ul><li><strong>The Julia La Roche Show</strong> — Whalen Bond Market Already Hiked Double-Digit Inflation Still Ahead Warsh Sets N</li></ul>
+<p>Host: Julia La Roche | Guest: Chris Whalen, Chairman of Whalen Global Advisors and author of the Institutional Risk Analyst blog | Investment Analysis Factors</p>
+<ul><li><strong>The Meb Faber Show</strong> — Investors Believe This 200 Years of Data Doesnt Agree</li></ul>
+<p>Host: Meb Faber | Guest: Dr. Brian Taylor, Founder and Chief Economist of Global Financial Data | Investment Analysis Factors</p>
+<ul><li><strong>The Meb Faber Show</strong> — Why Compounding In Investing Feels Like Its Not Working</li></ul>
+<p>Host: Meb Faber | Guest: Solo | Investment Analysis Factors</p>
+<ul><li><strong>Adam Taggart Thoughtful Money</strong> — A Sell-Off In Tech Is The Biggest Near-Term Risk To Markets Right Now Lance Robe</li></ul>
+<p>Host: Adam Taggart | Guest: Lance Roberts, not stated, not stated | Macroeconomics Strategy</p>
+<ul><li><strong>Adam Taggart Thoughtful Money</strong> — DEBATE Mark Newton Jonathan Krinsky On Where The Market Is Headed For The Rest O</li></ul>
+<p>Host: Adam Taggart | Guest: Mark Newton, Head of Technical Strategy, Funstrat | Macroeconomics Strategy</p>
+<ul><li><strong>Adam Taggart Thoughtful Money</strong> — Where Is The Bottom For Gold Silver Andy Schectman</li></ul>
+<p>Host: Adam Taggart | Guest: Andy Schectman, President, Miles Franklin | Macroeconomics Strategy</p>
+<ul><li><strong>Competent Man Podcast - Tom Bodrovics</strong> — Steve St Angelo Gold and Silver Prices Face More Volatility With a Looming Defla</li></ul>
+<p>Host: Tom Bodrovics | Guest: Steve St. Angelo, SRS Rocco Report | Macroeconomics Strategy</p>
+<ul><li><strong>Forward Guidance</strong> — A New Era Is Beginning In Markets Weekly Roundup</li></ul>
+<p>Host: Jack Farley | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Jacob Shapiro</strong> — The Terrifying Truth About Mexicos Military Jacob Shapiro and Victor Hernandez</li></ul>
+<p>Host: Jacob Shapiro | Guest: Victor Hernandez, National Security Law Professor and Activist | Macroeconomics Strategy</p>
+<ul><li><strong>Jacob Shapiro</strong> — US Government vs Anthropic The War Over Claudes Secret Model Jacob Shapiro</li></ul>
+<p>Host: Jacob Shapiro | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Less Noise More Signal</strong> — How a Macro Trader Actually Reads Markets</li></ul>
+<p>Host: Pascal Hügli | Guest: Alfie Kurzweil, Macro Trader and Author, Market Macro Hub | Macroeconomics Strategy</p>
+<ul><li><strong>Less Noise More Signal</strong> — Sovereign Debt Is Changing Investors Must Watch This</li></ul>
+<p>Host: Pascal Hügli | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Less Noise More Signal</strong> — Why Forced Liquidity Could Save Bitcoin Again</li></ul>
+<p>Host: Pascal Hügli | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Macro Hive</strong> — Ep 363 Martin Wolf on AIs Colossal Impact Central Banking Risks and the Democrat</li></ul>
+<p>Host: Bilal Hafeez | Guest: Martin Wolf, Chief Economics Commentator, Financial Times | Macroeconomics Strategy</p>
+<ul><li><strong>Odd Lots</strong> — Anthropics Co-Founder and Top Economist on Doing Research at the AI Frontier</li></ul>
+<p>Host: Joe Weisenthal, Tracy Alloway | Guest: Jack Clark, Co-founder and Head of Public Benefit, Anthropic | Macroeconomics Strategy</p>
+<ul><li><strong>Odd Lots</strong> — How Substack Creators Are Covering This Strange Markets Era</li></ul>
+<p>Host: Joe Weisenthal, Tracy Alloway | Guest: James Van Geelen, Founder, Citrini Research | Macroeconomics Strategy</p>
+<ul><li><strong>RenMac</strong> — A Hawkish Fed Debut a Fragile Iran Deal and a Firmer Dollar</li></ul>
+<p>Host: Neil Dutta, Steven Ricchiuto, Jeff Degrav, Steve Pavlet | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>RenMac</strong> — RenMac Off-Script Warsh Lets the Hawks Fly</li></ul>
+<p>Host: Neil Dutta, Steve Duttonoffer, Jeff DeGrasse, Steve Pavlik | Guest: Warsh | Macroeconomics Strategy</p>
+<ul><li><strong>Saxo Market Call</strong> — Accenture needing dentures after market knocks its teeth out</li></ul>
+<p>Host: John J. Hardy | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Saxo Market Call</strong> — The US dollar is having its cake and eating it toofor now</li></ul>
+<p>Host: John J. Hardy | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>The Jay Martin Show</strong> — Turkey Just Sold Its Gold Heres Why That Should Scare You</li></ul>
+<p>Host: Jay Martin | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>The Market Huddle</strong> — PATIENCE IS LIKE A MUSCLE Guest Leslie Harris</li></ul>
+<p>Host: Kevin Muir, Patrick Ceresna | Guest: Leslie Harris, Global Macro Trader and Executive Coach, private practice | Macroeconomics Strategy</p>
+<ul><li><strong>The Monetary Matters Network</strong> — Inside The Platform Helping to Invest Like Substack FinTwits Top Researchers Plu</li></ul>
+<p>Host: Max Wiethe | Guest: Shashank Chiranawala, Founder, Plutus | Macroeconomics Strategy</p>
+<ul><li><strong>The Monetary Matters Network</strong> — The Secret to Investing Like Substack FinTwits Top Researchers</li></ul>
+<p>Host: Max Spevack | Guest: Shashank Chyranawala, Founder, Plutus | Macroeconomics Strategy</p>
+<ul><li><strong>Wealth Building Blueprint Vladyslav Grab</strong> — Doomberg What the Peace Deal Means for Oil Gold and the Global Economy</li></ul>
+<p>Host: Vladyslav Grabarskyy | Guest: Doomberg, not stated, doomberg.com | Real Estate Wealth Building</p></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-08 · <a href="archive.html">All days</a></footer></div></body></html>

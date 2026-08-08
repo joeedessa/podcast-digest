@@ -1,0 +1,151 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>PodcastLM — Monday, 6 April 2026</title><style>
+:root{
+  --bg:#fbfbfa; --panel:#fff; --ink:#1a1a18; --muted:#6b6b66; --line:#e6e4df;
+  --accent:#b4552d; --accent-soft:#fdf3ee;
+  --long:#1a7340; --short:#c0392b; --watch:#2563a8; --reduce:#b8730f;
+  --radius:10px;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#14150f; --panel:#1c1d16; --ink:#eceade; --muted:#a3a094;
+         --line:#2f3126; --accent:#e08a5f; --accent-soft:#241a13;
+         --long:#5cc98a; --short:#ef7d6e; --watch:#7db3e8; --reduce:#e0a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+     line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 96px}
+
+/* masthead */
+header.top{border-bottom:1px solid var(--line);background:var(--panel);
+           position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.4) blur(6px)}
+header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
+                 align-items:baseline;gap:14px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.01em}
+.brand a{color:inherit}
+.crumb{color:var(--muted);font-size:13px}
+.crumb a{color:var(--muted)}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,42px);line-height:1.12;
+         margin:0 0 10px;letter-spacing:-.02em;font-weight:600}
+.hero .meta{color:var(--muted);font-size:14px}
+.pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
+      border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
+
+/* section nav */
+nav.toc{position:sticky;top:52px;background:var(--bg);padding:10px 0 12px;
+        border-bottom:1px solid var(--line);margin-bottom:8px;z-index:10}
+nav.toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0}
+nav.toc a{font-size:12px;padding:4px 10px;border:1px solid var(--line);
+          border-radius:99px;color:var(--muted);background:var(--panel);white-space:nowrap}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);text-decoration:none}
+
+/* sections */
+section{padding:28px 0 4px;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+h2{font-family:var(--serif);font-size:13px;font-weight:700;text-transform:uppercase;
+   letter-spacing:.14em;color:var(--accent);margin:0 0 16px}
+h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:28px 0 8px;
+   letter-spacing:-.01em}
+p{margin:0 0 13px}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin:5px 0}
+strong{font-weight:650}
+.tag{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+
+/* TL;DR */
+.tldr{background:var(--accent-soft);border:1px solid var(--line);
+      border-left:3px solid var(--accent);border-radius:var(--radius);
+      padding:18px 20px;margin-bottom:6px}
+.tldr p:last-child,.tldr ul:last-child{margin-bottom:0}
+.tldr ul{list-style:none;padding-left:0}
+.tldr li{padding-left:15px;position:relative}
+.tldr li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+
+/* trade cards */
+.cards{display:grid;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:15px 17px}
+.card .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.card .asset{font-family:var(--serif);font-size:18px;font-weight:600}
+.card .who{color:var(--muted);font-size:13px}
+.card p{margin:6px 0 0;font-size:14.5px}
+.card .label{color:var(--muted);font-size:11px;text-transform:uppercase;
+             letter-spacing:.08em;margin-right:5px}
+.dir-long{color:var(--long)} .dir-short{color:var(--short)}
+.dir-avoid{color:var(--short)} .dir-reduce{color:var(--reduce)}
+.dir-watching{color:var(--watch)} .dir-other{color:var(--muted)}
+.tier{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+      margin:22px 0 10px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+
+/* topics */
+.topic{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--muted);
+       border-radius:var(--radius);padding:15px 17px;margin:12px 0}
+.topic .t{font-weight:650;margin-bottom:9px}
+
+/* index */
+.days{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:9px}
+.days a{display:flex;justify-content:space-between;align-items:center;gap:14px;
+        background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+        padding:14px 17px;color:inherit}
+.days a:hover{border-color:var(--accent);text-decoration:none}
+.days .d{font-family:var(--serif);font-size:17px;font-weight:600}
+.days .s{color:var(--muted);font-size:13px;text-align:right}
+
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+       color:var(--muted);font-size:12.5px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:12px 15px;font-size:12.5px;color:var(--muted);margin-top:20px}
+@media(max-width:600px){
+  .hero{padding:30px 0 20px}
+  nav.toc{position:static}
+  .card .head{gap:6px}
+}
+</style></head><body><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Monday, 6 April 2026</span></div></header><div class="wrap"><div class="hero"><h1>Monday, 6 April 2026</h1><div class="meta"><span class="pill">4 episodes</span>Equities Trading, Investment Analysis Factors, Macroeconomics Strategy</div></div><nav class="toc"><ul><li><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a></li><li><a href="#dominant-theme-s">DOMINANT THEME(S)</a></li><li><a href="#divergent-views">DIVERGENT VIEWS</a></li><li><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a></li><li><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a></li><li><a href="#tickers-assets">TICKERS &amp; ASSETS</a></li><li><a href="#spotlight-paladin-energy-update">★ Paladin Energy Update</a></li><li><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a></li><li><a href="#watch-catalysts">WATCH CATALYSTS</a></li><li><a href="#miscellaneous">MISCELLANEOUS</a></li><li><a href="#data-quality-note">DATA QUALITY NOTE</a></li><li><a href="#episode-index">EPISODE INDEX</a></li></ul></nav><section id="macro-room-temperature"><h2>MACRO ROOM TEMPERATURE</h2><p>Michael Pento&#x27;s forecast of a &quot;triumvirate of bubbles&quot; on the verge of popping sets a deeply bearish tone, arguing that a 2008-style crisis in credit, real estate, and stocks is now &quot;more likely than not.&quot; This creates a stark tension with the continued exceptionalism of mega-cap tech, where figures like Michael Mauboussin note that the Magnificent 7 are defying historical base rates and capturing an unprecedented share of economic profits, forcing investors to reconcile a dire macro outlook with resilient corporate performance.</p></section>
+<section id="dominant-theme-s"><h2>DOMINANT THEME(S)</h2><p><strong>Recession Imminent, Bubbles Popping (2 shows)</strong></p>
+<p>A consensus for an impending US recession is forming, driven by both overextended asset markets and fundamental consumer weakness. Michael Pento — Adam Taggart Thoughtful Money — argues the economy faces a repeat of the 2008 crisis, pointing to a &quot;triumvirate of bubbles&quot; in credit, real estate (with market cap at 220% of GDP), and stocks. He believes these are set to pop due to secular headwinds like a &quot;debt-disabled&quot; economy, aging demographics, and the end of a 45-year bull market in bonds, which he expects will usher in a multi-decade bear market with higher yields and near-zero real returns for equities.</p>
+<p>Steven Van Metre — Milk Road Macro — reaches a similar conclusion from a different angle, focusing on the labor market. He highlights that while some headline data appears strong, the employment sub-indices are weak, and crucially, average weekly hours for workers are stagnant. Unlike past cycles where rising costs were met with more work hours, consumers now lack the capacity to absorb price increases, a dynamic he notes preceded the recessions of &#x27;91, &#x27;01, and &#x27;08. Van Metre anticipates a short-term inflation bump from energy prices will quickly give way to disinflation and potential deflationary pockets as the consumer breaks.</p>
+<p><strong>Rethinking Investment Frameworks in an Intangible Economy (1 show)</strong></p>
+<p>The current market structure challenges long-held investment principles. Michael Mauboussin — Excess Returns — notes that intangible investments (software, R&amp;D) surpassed tangible investments in the early 1990s, diminishing the relevance of metrics like price-to-book and leading to greater dispersion of returns. This shift helps explain the dominance of the Magnificent 7, who use massive spending on proprietary software to achieve both scale and differentiation, allowing them to grow faster than historical large-cap counterparts. This reality tests historical base rates; for example, OpenAI&#x27;s projected 108% CAGR is a 9.5 standard deviation event that is historically unprecedented, yet the Mag 7&#x27;s performance suggests such outliers are possible.</p>
+<p>This new landscape also affects systematic strategies. Aan Manan — Excess Returns — explains that commodities defy traditional value investing, as expected returns often rise with price during supply-driven backwardation. This suggests that for certain asset classes, momentum and trend are more relevant frameworks than mean reversion.</p></section>
+<section id="divergent-views"><h2>DIVERGENT VIEWS</h2><div class="topic"><div class="t">Near-Term Gold Outlook</div><p>Michael Pento — Adam Taggart Thoughtful Money: <strong>BULLISH</strong> <strong>Reasoning:</strong> Pento holds precious metals as a core part of his 20% commodity allocation. This position serves as a hedge against the stagflationary environment his model identifies and the future money printing he anticipates will be required to bail out the economy when the current asset bubbles pop.</p>
+<p>Steven Van Metre — Milk Road Macro: <strong>CAUTIOUS / POTENTIAL PULLBACK</strong> <strong>Reasoning:</strong> Despite the long-term bullish case, Van Metre observes selling pressure in gold&#x27;s current chart behavior. He speculates this could be from individuals or a foreign central bank selling out of necessity, a pattern he has seen before major crises. He advises anticipating a potential drop in gold prices before an eventual crisis-driven rally.</p></div>
+<div class="topic"><div class="t">Broad Economic Outlook: Imminent Recession vs. Corporate Exceptionalism</div><p>Michael Pento &amp; Steven Van Metre — Adam Taggart Thoughtful Money &amp; Milk Road Macro: <strong>RECESSION IMMINENT</strong> <strong>Reasoning:</strong> Both see a recession as highly probable. Pento&#x27;s view is driven by the popping of what he calls a &quot;triumvirate of bubbles&quot; in stocks, credit, and real estate, compounded by secular headwinds like debt and demographics. Van Metre&#x27;s view is grounded in a weakening labor market, specifically stagnant average weekly hours, which indicates consumers cannot absorb rising costs, leading to demand destruction.</p>
+<p>Michael Mauboussin (via Kai Woo) — Excess Returns: <strong>EXCEPTIONALISM AMONG DOMINANT FIRMS</strong> <strong>Reasoning:</strong> Mauboussin highlights that the largest companies, particularly the &quot;Magnificent 7,&quot; are growing faster than their historical counterparts. They leverage massive spending on proprietary, non-diffusible technology to create powerful moats, enabling both economies of scale and differentiation. These firms capture two-thirds of all economic profit, suggesting their fundamental performance can defy a broader weak macro environment.</p></div></section>
+<section id="trade-ideas-positions"><h2>TRADE IDEAS &amp; POSITIONS</h2><div class="cards"><div class="card"><div class="head"><span class="asset">T-bills and Cash</span><span class="tag dir-long">LONG</span><span class="who">Michael Pento — Adam Taggart Thoughtful Money</span></div><p><span class="label">Michael Pento — Adam Taggart Thoughtful Money</span>To maintain liquidity and safety ahead of an anticipated popping of credit, real estate, and stock market bubbles.</p><p><span class="label">context</span>Represents 70% of his current portfolio allocation.</p></div>
+<div class="card"><div class="head"><span class="asset">Commodities (Precious Metals, Agriculture, Energy)</span><span class="tag dir-long">LONG</span><span class="who">Michael Pento — Adam Taggart Thoughtful Money</span></div><p><span class="label">Michael Pento — Adam Taggart Thoughtful Money</span>As a hedge for a stagflationary environment and in anticipation of future money printing and bailouts.</p><p><span class="label">context</span>Represents 20% of his current portfolio allocation.</p></div>
+<div class="card"><div class="head"><span class="asset">Defensive Equities (Aerospace and Defense)</span><span class="tag dir-long">LONG</span><span class="who">Michael Pento — Adam Taggart Thoughtful Money</span></div><p><span class="label">Michael Pento — Adam Taggart Thoughtful Money</span>As a defensive equity position in a risk-off portfolio.</p><p><span class="label">context</span>Represents 3% of his current portfolio allocation.</p></div>
+<div class="card"><div class="head"><span class="asset">Unspecified Shorts</span><span class="tag dir-short">SHORT</span><span class="who">Michael Pento — Adam Taggart Thoughtful Money</span></div><p><span class="label">Michael Pento — Adam Taggart Thoughtful Money</span>To hedge against the popping of the &quot;triumvirate of bubbles.&quot;</p><p><span class="label">context</span>Represents 2% of his current portfolio allocation.</p></div>
+<div class="card"><div class="head"><span class="asset">60/40 Portfolio</span><span class="tag dir-avoid">AVOID</span><span class="who">Michael Pento — Adam Taggart Thoughtful Money</span></div><p><span class="label">Michael Pento — Adam Taggart Thoughtful Money</span>The 45-year bull market in bonds is over, and he expects both stocks and bonds to perform poorly, making the strategy ineffective for retirement.</p></div>
+<div class="card"><div class="head"><span class="asset">Companies that miss earnings and drop</span><span class="tag dir-other">BUY (Conditional)</span><span class="who">Cuppy (Harris Copperman) — Excess Returns</span></div><p><span class="label">Cuppy (Harris Copperman) — Excess Returns</span>If the long-term (2-3 year) thesis remains intact, a post-earnings drop can be an opportunity to add to a position.</p></div>
+<div class="card"><div class="head"><span class="asset">Commodities</span><span class="tag dir-long">LONG (Conditional)</span><span class="who">Aan Manan — Excess Returns</span></div><p><span class="label">Aan Manan — Excess Returns</span>The asset class exhibits positive skew and performs best during supply shocks when the term structure is in intense backwardation. Outside of these outlier moves, they are &quot;useless to own.&quot;</p></div>
+<div class="card"><div class="head"><span class="asset">Risk-Parity Portfolio (Stocks, Bonds, Gold, Bitcoin)</span><span class="tag dir-long">LONG (Systematic)</span><span class="who">Aan Manan — Excess Returns</span></div><p><span class="label">Aan Manan — Excess Returns</span>His Prometheus trend-following model uses a risk-parity weighted portfolio, scaling risk based on the number of positive trend signals, to achieve comparable returns to long-only with lower drawdowns.</p></div></div></section>
+<section id="conviction-scenarios"><h2>CONVICTION &amp; SCENARIOS</h2><p>Michael Pento — Adam Taggart Thoughtful Money: The probability of a recession and the popping of the &quot;triumvirate of bubbles&quot; this year is &quot;more likely than not,&quot; stated as above 50%. If the current war continues: his base case is for oil prices to remain around $100 a barrel or higher. If a recession hits: he expects a national fall in home prices of about 23%, with some areas like Florida potentially seeing a 50% drop. If the Fed caps long-term Treasury yields during a period of high inflation: this could lead to hyperinflation.</p>
+<p>Steven Van Metre — Milk Road Macro: Predicts a short-term inflation bump due to rising gasoline prices, which will be followed by disinflation and potentially pockets of deflation as the consumer breaks or a crisis emerges in private credit.</p></section>
+<section id="tickers-assets"><h2>TICKERS &amp; ASSETS</h2><h3>THESIS TICKERS</h3>
+<p>*   <strong>Paladin Energy (ASX: PDN, TSX: PDN)</strong> — Paul Hembrow — Jimmy Connor — Well-positioned in the uranium cycle with the Langer Heinrich mine ramping up and the high-potential Patterson Lake South project under development. (Note: Tickers not explicitly stated but are the correct ones for Paladin Energy).</p>
+<h3>TRADE EXPRESSION</h3>
+<p>*   <strong>T-bills</strong> — Defensive cash position — Michael Pento — Adam Taggart Thoughtful Money *   <strong>Gold</strong> — Stagflation hedge / Long-term store of value — Michael Pento — Adam Taggart Thoughtful Money *   <strong>Silver</strong> — Stagflation hedge / Long-term store of value — Michael Pento — Adam Taggart Thoughtful Money *   <strong>Agriculture (unspecified)</strong> — Commodity long / Stagflation hedge — Michael Pento — Adam Taggart Thoughtful Money *   <strong>Energy (unspecified)</strong> — Commodity long / Stagflation hedge — Michael Pento — Adam Taggart Thoughtful Money *   <strong>Bitcoin</strong> — Component of a systematic trend-following portfolio — Aan Manan — Excess Returns</p>
+<h3>WATCH LEVELS</h3>
+<p>*   <strong>200-day moving average</strong> — A widely watched technical level that can become self-fulfilling support/resistance — Katie Stockton — Excess Returns *   <strong>50-day moving average</strong> — A widely watched technical level that can become self-fulfilling support/resistance — Katie Stockton — Excess Returns</p>
+<h3>CONTEXT MENTIONS</h3>
+<p>*   <strong>Amazon</strong> — Example of a Magnificent 7 company. *   <strong>Brent</strong> — Mentioned in the context of rising energy prices. *   <strong>CLOs</strong> — Mentioned as part of the credit bubble. *   <strong>Copper</strong> — Example of a commodity. *   <strong>Crude Oil</strong> — Example of a commodity. *   <strong>Crypto</strong> — Mentioned as a volatile asset class. *   <strong>DAX</strong> — Example of a global stock index. *   <strong>GE</strong> — Example of a historical large company. *   <strong>GM</strong> — Example of a historical large company. *   <strong>Gasoline</strong> — Key driver of short-term inflation. *   <strong>Google</strong> — Example of a Magnificent 7 company. *   <strong>Junk bonds</strong> — Mentioned as part of the credit bubble. *   <strong>Kospi</strong> — Example of a global stock index. *   <strong>Meta</strong> — Example of a Magnificent 7 company. *   <strong>Mortgage-backed securities</strong> — Mentioned as part of the credit bubble. *   <strong>Natural gas</strong> — Example of an energy commodity. *   <strong>Nvidia</strong> — Example of a Magnificent 7 company. *   <strong>OpenAI</strong> — Its projected growth is used as an example of a historically unprecedented base rate. *   <strong>Russell 2000</strong> — Mentioned in market context. *   <strong>S&amp;P 500</strong> — Mentioned in market context. *   <strong>Treasuries</strong> — Pento believes the multi-decade bull market is over. *   <strong>WTI</strong> — Mentioned in the context of rising energy prices.</p></section>
+<section id="spotlight-paladin-energy-update"><h2>SPOTLIGHT: Paladin Energy Update</h2><p><strong>Host:</strong> Jimmy Connor <strong>Guest:</strong> Paul Hembrow, Paladin Energy</p>
+<ul><li>Paladin Energy&#x27;s Langer Heinrich mine in Namibia is in the final stages of its ramp-up, which is expected to be complete around mid-2026, with 1.23 million pounds of U3O8 produced in the last quarter. — Paul Hembrow — Jimmy Connor</li><li>The company has secured an &quot;exceptional&quot; contract book, with approximately 23 million pounds of production contracted out to 2030. — Paul Hembrow — Jimmy Connor</li><li>The contract portfolio is structured for both downside protection and upside exposure, with 47% of contracts being base-escalated and the remainder market-related. — Paul Hembrow — Jimmy Connor</li><li>The late 2024 acquisition of Fission Uranium brought the Patterson Lake South (PLS) project in Canada&#x27;s Athabasca basin, described as the &quot;best postcode in the world for uranium.&quot; — Paul Hembrow — Jimmy Connor</li><li>The PLS project has a 93 million pound reserve and is planned for a 10-year mine life producing 9 million pounds per annum, with permitting progressing after receiving provincial EIS approval. — Paul Hembrow — Jimmy Connor</li></ul></section>
+<section id="notable-data-figures"><h2>NOTABLE DATA &amp; FIGURES</h2><ul><li><strong>220%:</strong> Total US stock market capitalization as a percentage of GDP. — Michael Pento — Adam Taggart Thoughtful Money</li><li><strong>108%:</strong> OpenAI&#x27;s projected compound annual growth rate (CAGR) from $3.7B revenue in 2024 to $145B in 2029. — Kai Woo — Excess Returns</li><li><strong>70%:</strong> Michael Pento&#x27;s current portfolio allocation to T-bills and cash. — Michael Pento — Adam Taggart Thoughtful Money</li><li><strong>50%:</strong> Potential home price decline in some areas like Florida during the next recession. — Michael Pento — Adam Taggart Thoughtful Money</li><li><strong>47%:</strong> Portion of Paladin Energy&#x27;s contract book that is base-escalated for downside protection. — Paul Hembrow — Jimmy Connor</li><li><strong>43%:</strong> Portion of Paladin Energy&#x27;s shareholder base that is North American. — Paul Hembrow — Jimmy Connor</li><li><strong>23%:</strong> Michael Pento&#x27;s forecast for the national average decline in home prices during the next recession. — Michael Pento — Adam Taggart Thoughtful Money</li><li><strong>20%:</strong> Michael Pento&#x27;s current portfolio allocation to commodities. — Michael Pento — Adam Taggart Thoughtful Money</li><li><strong>$130 billion:</strong> Expansion of the Federal Reserve&#x27;s balance sheet since December 2025. — Michael Pento — Adam Taggart Thoughtful Money</li><li><strong>$100/barrel:</strong> Michael Pento&#x27;s base case for oil prices if the current war continues. — Michael Pento — Adam Taggart Thoughtful Money</li><li><strong>93 million lbs:</strong> The U3O8 reserve at Paladin Energy&#x27;s Patterson Lake South project. — Paul Hembrow — Jimmy Connor</li><li><strong>23 million lbs:</strong> The amount of U3O8 production Paladin has contracted out to 2030. — Paul Hembrow — Jimmy Connor</li><li><strong>9.5:</strong> The standard deviation event represented by OpenAI&#x27;s projected growth, according to Michael Mauboussin. — Kai Woo — Excess Returns</li><li><strong>1.23 million lbs:</strong> U3O8 produced by Paladin&#x27;s Langer Heinrich mine in the last quarter. — Paul Hembrow — Jimmy Connor</li><li><strong>1992-93:</strong> The approximate period when intangible investments surpassed tangible investments in the US economy. — Michael Mauboussin — Excess Returns</li><li><strong>18,900:</strong> The number of firm years of data over 75 years in which no company achieved OpenAI&#x27;s projected growth rate. — Kai Woo — Excess Returns</li></ul></section>
+<section id="watch-catalysts"><h2>WATCH CATALYSTS</h2><ul><li><strong>Mid-2026:</strong> Expected completion of the ramp-up of Paladin Energy&#x27;s Langer Heinrich mine. — Paul Hembrow — Jimmy Connor</li><li><strong>Next 20 years:</strong> The &quot;great baby boomer age out process&quot; is expected to create a secular headwind for asset prices as retirees become net sellers of financial assets. — Michael Pento — Adam Taggart Thoughtful Money</li></ul></section>
+<section id="miscellaneous"><h2>MISCELLANEOUS</h2><ul><li>Intangible assets like software and R&amp;D are expensed rather than capitalized, which has diminished the relevance of traditional valuation metrics like price-to-book since the early 1990s. — Michael Mauboussin — Excess Returns</li><li>Technical indicators like the 50-day and 200-day moving averages are relevant primarily because so many market participants watch them, making them self-fulfilling levels of support or resistance. — Katie Stockton — Excess Returns</li><li>A key &quot;hot take&quot; is that AI-building companies may ultimately prove unprofitable or yield no excess returns due to intense competition, with the primary value accruing to consumers as surplus. — Michael Mauboussin — Excess Returns</li><li>The end of the 45-year bull market in bonds is a major secular headwind that will likely lead to much lower real returns for balanced portfolios going forward. — Michael Pento — Adam Taggart Thoughtful Money</li><li>Investors can gain an edge by thinking in longer time frames (two to three years), as Wall Street is hyper-competitive on short-term predictions. — Cuppy (Harris Copperman) — Excess Returns</li><li>Commodities defy traditional value investing logic; expected returns often rise with price, particularly during supply shocks when backwardation is intense. — Aan Manan — Excess Returns</li></ul></section>
+<section id="data-quality-note"><h2>DATA QUALITY NOTE</h2><ul><li>The episode &quot;Equities_Trading__Jimmy_Connor__Paladin_Energy_Update&quot; is a single-company deep dive. It has been given a dedicated SPOTLIGHT section to reflect its specific focus, while its relevant data and theses have been integrated into the main digest sections.</li><li>No other data quality issues were identified in this session. All attributions are clear, and no ticker discrepancies were found.</li></ul></section>
+<section id="episode-index"><h2>EPISODE INDEX</h2><ul><li><strong>Jimmy Connor</strong> — Paladin Energy Update Paul Hemburrow and Jimmy Connor</li></ul>
+<p>Host: Jimmy Connor | Guest: Paul Hembrow, not stated, Paladin Energy | Equities Trading</p>
+<ul><li><strong>Excess Returns</strong> — The 1 in 18900 Bet The Weekly Wrap 452026</li></ul>
+<p>Host: Jack Forehand | Guest: Kai Woo, Host of &quot;The Intangible Economy with Kai Woo&quot; podcast | Investment Analysis Factors</p>
+<ul><li><strong>Adam Taggart Thoughtful Money</strong> — A Repeat Of The Great Recession Michael Pento</li></ul>
+<p>Host: Adam Taggart | Guest: Michael Pento, Money Manager, pentoport.com | Macroeconomics Strategy</p>
+<ul><li><strong>Milk Road Macro</strong> — This One Signal Says a Recession Is Coming Fast w Steven Van Metre</li></ul>
+<p>Host: John Gillen | Guest: Steven Van Metre | Macroeconomics Strategy</p></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-08 · <a href="archive.html">All days</a></footer></div></body></html>

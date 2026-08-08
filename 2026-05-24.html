@@ -1,0 +1,186 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>PodcastLM — Sunday, 24 May 2026</title><style>
+:root{
+  --bg:#fbfbfa; --panel:#fff; --ink:#1a1a18; --muted:#6b6b66; --line:#e6e4df;
+  --accent:#b4552d; --accent-soft:#fdf3ee;
+  --long:#1a7340; --short:#c0392b; --watch:#2563a8; --reduce:#b8730f;
+  --radius:10px;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#14150f; --panel:#1c1d16; --ink:#eceade; --muted:#a3a094;
+         --line:#2f3126; --accent:#e08a5f; --accent-soft:#241a13;
+         --long:#5cc98a; --short:#ef7d6e; --watch:#7db3e8; --reduce:#e0a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+     line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 96px}
+
+/* masthead */
+header.top{border-bottom:1px solid var(--line);background:var(--panel);
+           position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.4) blur(6px)}
+header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
+                 align-items:baseline;gap:14px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.01em}
+.brand a{color:inherit}
+.crumb{color:var(--muted);font-size:13px}
+.crumb a{color:var(--muted)}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,42px);line-height:1.12;
+         margin:0 0 10px;letter-spacing:-.02em;font-weight:600}
+.hero .meta{color:var(--muted);font-size:14px}
+.pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
+      border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
+
+/* section nav */
+nav.toc{position:sticky;top:52px;background:var(--bg);padding:10px 0 12px;
+        border-bottom:1px solid var(--line);margin-bottom:8px;z-index:10}
+nav.toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0}
+nav.toc a{font-size:12px;padding:4px 10px;border:1px solid var(--line);
+          border-radius:99px;color:var(--muted);background:var(--panel);white-space:nowrap}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);text-decoration:none}
+
+/* sections */
+section{padding:28px 0 4px;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+h2{font-family:var(--serif);font-size:13px;font-weight:700;text-transform:uppercase;
+   letter-spacing:.14em;color:var(--accent);margin:0 0 16px}
+h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:28px 0 8px;
+   letter-spacing:-.01em}
+p{margin:0 0 13px}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin:5px 0}
+strong{font-weight:650}
+.tag{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+
+/* TL;DR */
+.tldr{background:var(--accent-soft);border:1px solid var(--line);
+      border-left:3px solid var(--accent);border-radius:var(--radius);
+      padding:18px 20px;margin-bottom:6px}
+.tldr p:last-child,.tldr ul:last-child{margin-bottom:0}
+.tldr ul{list-style:none;padding-left:0}
+.tldr li{padding-left:15px;position:relative}
+.tldr li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+
+/* trade cards */
+.cards{display:grid;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:15px 17px}
+.card .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.card .asset{font-family:var(--serif);font-size:18px;font-weight:600}
+.card .who{color:var(--muted);font-size:13px}
+.card p{margin:6px 0 0;font-size:14.5px}
+.card .label{color:var(--muted);font-size:11px;text-transform:uppercase;
+             letter-spacing:.08em;margin-right:5px}
+.dir-long{color:var(--long)} .dir-short{color:var(--short)}
+.dir-avoid{color:var(--short)} .dir-reduce{color:var(--reduce)}
+.dir-watching{color:var(--watch)} .dir-other{color:var(--muted)}
+.tier{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+      margin:22px 0 10px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+
+/* topics */
+.topic{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--muted);
+       border-radius:var(--radius);padding:15px 17px;margin:12px 0}
+.topic .t{font-weight:650;margin-bottom:9px}
+
+/* index */
+.days{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:9px}
+.days a{display:flex;justify-content:space-between;align-items:center;gap:14px;
+        background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+        padding:14px 17px;color:inherit}
+.days a:hover{border-color:var(--accent);text-decoration:none}
+.days .d{font-family:var(--serif);font-size:17px;font-weight:600}
+.days .s{color:var(--muted);font-size:13px;text-align:right}
+
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+       color:var(--muted);font-size:12.5px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:12px 15px;font-size:12.5px;color:var(--muted);margin-top:20px}
+@media(max-width:600px){
+  .hero{padding:30px 0 20px}
+  nav.toc{position:static}
+  .card .head{gap:6px}
+}
+</style></head><body><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Sunday, 24 May 2026</span></div></header><div class="wrap"><div class="hero"><h1>Sunday, 24 May 2026</h1><div class="meta"><span class="pill">16 episodes</span>[Commodities Hard Assets, Equities Trading, Investment Analysis Factors, Macroeconomics Strategy, Real Estate Wealth Building]</div></div><nav class="toc"><ul><li><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a></li><li><a href="#dominant-theme-s">DOMINANT THEME(S)</a></li><li><a href="#divergent-views">DIVERGENT VIEWS</a></li><li><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a></li><li><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a></li><li><a href="#tickers-assets">TICKERS &amp; ASSETS</a></li><li><a href="#spotlight-the-new-japan-trade">★ The New Japan Trade</a></li><li><a href="#spotlight-architect-norman-foster-on-why">★ Architect Norman Foste…</a></li><li><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a></li><li><a href="#watch-catalysts">WATCH CATALYSTS</a></li><li><a href="#miscellaneous">MISCELLANEOUS</a></li><li><a href="#data-quality-note">DATA QUALITY NOTE</a></li><li><a href="#episode-index">EPISODE INDEX</a></li></ul></nav><section id="macro-room-temperature"><h2>MACRO ROOM TEMPERATURE</h2><p>The AI-driven equity rally is facing a direct challenge from a bond market in crisis, a dynamic highlighted by Cliff Asness — Excess Returns, who draws direct parallels to the dot-com bubble&#x27;s stretched valuations. This tension is forcing a stark choice for capital: either believe the &quot;this time is different&quot; narrative for tech or heed the warnings from rising real yields and rotate into the hard assets championed by Michael Oliver — Wealth Building Blueprint Vladyslav Grab and Tony Greer — The Market Huddle, who see a historic shift into commodities underway.</p></section>
+<section id="dominant-theme-s"><h2>DOMINANT THEME(S)</h2><p><strong>The Great Rotation: Equities Topping, Commodities Surging</strong> (8 shows)</p>
+<p>A strong consensus is forming that the US equity market is in a late-stage topping process, driven by unsustainable valuations and rising interest rates. Cliff Asness — Excess Returns frames the moment by noting the Shiller CAPE ratio is near 40, its second-highest level in history, making the current market &quot;rhyme&quot; with the dot-com bubble. Jeff Degraphth — RenMac reinforces this concern, stating that yields are in the top decile historically, a condition that typically pushes against equities. The market&#x27;s narrow, semiconductor-driven leadership is seen as a major vulnerability. Steve Eisman — Steve Eisman has become more cautious, lightening up positions as the 10-year Treasury yield crossed his 4.5% &quot;Rubicon.&quot;</p>
+<p>The beneficiary of this dynamic is expected to be the commodity complex. Michael Oliver — Wealth Building Blueprint Vladyslav Grab predicts a major asset shift out of the &quot;meteoric&quot; US stock market and into monetary metals and commodities, which he believes issued a major buy signal in October. Tony Greer — The Market Huddle expects a significant rotation of capital from semiconductors into natural resources, rare earths, and commodities as inflation persists. This view is echoed by Jay Martin — The Jay Martin Show, who advises positioning for the &quot;slow death&quot; of the dollar by investing in hard assets, energy, and real things.</p>
+<p>Silver is a particular focus. Michael DiRienzo — SmarterMarkets points to a fifth consecutive year of a structural supply deficit, driven by over 55% of demand coming from industrial applications like photovoltaics. Michael Oliver — Wealth Building Blueprint Vladyslav Grab is even more bullish, forecasting a potential rapid move to $300-$500 for silver once it clears its current congestion, arguing money printing will flow directly into monetary metals.</p>
+<p><strong>The Bond Market&#x27;s Breaking Point</strong> (6 shows)</p>
+<p>The stability of the government bond market is a primary source of anxiety. Michael Oliver and Jimmy Connor — Jimmy Connor describe an escalating crisis in long-term government debt, with the 30-year yield over 5%, arguing the Fed is ill-equipped to handle a problem far larger than the 2007-2009 mortgage crisis. This is not a universal view; Lance Roberts — Adam Taggart Thoughtful Money believes current yield levels represent a normalization tracking economic growth and inflation, not a breaking point. However, the dominant view is one of concern. Tony Greer — The Market Huddle anticipates the bond market will lead a correction in financial assets once yields push past 4.75% or 5%. The structural rise in global interest rates, noted on Macro Voices, is seen as a direct threat to equity prices, with the only question being when the impact will be felt.</p></section>
+<section id="divergent-views"><h2>DIVERGENT VIEWS</h2><div class="topic"><div class="t">The Severity of Rising Bond Yields</div><p>Steve Eisman — Steve Eisman: <strong>CAUTIOUS</strong> <strong>Reasoning:</strong> Considers the 10-year Treasury yield at 4.5% to be the &quot;Rubicon.&quot; With the yield now at 4.6%, he has lightened up on many positions and is nervous about the market. He expects upcoming inflation data to be unfavorable, potentially leading to further rate hikes.</p>
+<p>Lance Roberts — Adam Taggart Thoughtful Money: <strong>NORMALIZATION</strong> <strong>Reasoning:</strong> Argues that rising bond yields, even with the 30-year auction pricing above 5%, are not a breaking point for the economy. He views yields as normalizing to track economic growth and inflation, and believes they are currently somewhat underpriced given these factors. He anticipates yields will be lower over the next two years.</p>
+<p>Michael Oliver &amp; Jimmy Connor — Jimmy Connor: <strong>CRISIS</strong> <strong>Reasoning:</strong> They see a crash in 30-year bond futures and rising long-term yields as a signal of a market breakdown and an impending government bond crisis far larger than the 2007-2009 mortgage crisis. They believe the Fed lacks a clear mandate to address it and will be forced into &quot;huge fire hoses&quot; of policy intervention.</p></div>
+<div class="topic"><div class="t">The Investment Case for Cryptocurrencies</div><p>Chris Whalen — The Julia La Roche Show: <strong>AVOID / TAKE PROFITS</strong> <strong>Reasoning:</strong> Advises caution in crypto, suggesting investors take profits and reallocate to real estate. He believes &quot;the bloom is off the rose&quot; for the asset class, partly due to the influence of large Wall Street ETFs.</p>
+<p>Pascal Hügli — Less Noise More Signal: <strong>TRADING VEHICLE ONLY</strong> <strong>Reasoning:</strong> Argues that altcoins should be viewed primarily as short-term trading vehicles, not long-term investments. Most do not outperform Bitcoin over multiple cycles and have been poor long-term holds. He advises extreme skepticism and significantly discounting their perceived value for any portfolio allocation due to extremely high long-term risk.</p>
+<p>Zach Pandle — RenMac: <strong>LONG-TERM BULLISH</strong> <strong>Reasoning:</strong> Believes there is a 10 to 15-year trade ahead in the crypto space. He argues that traditional economists miss the intrinsic value of cryptocurrencies like Bitcoin as non-sovereign money systems that provide high settlement assurance without intermediaries, addressing risks like inflation and payment system frictions.</p></div></section>
+<section id="trade-ideas-positions"><h2>TRADE IDEAS &amp; POSITIONS</h2><div class="cards"><div class="card"><div class="head"><span class="asset">Silver</span><span class="tag dir-long">LONG</span><span class="who">Michael Oliver — Wealth Building Blueprint Vladyslav Grab</span></div><p><span class="label">Michael Oliver — Wealth Building Blueprint Vladyslav Grab</span>A major asset shift is underway from the overvalued US stock market into commodities, especially monetary metals. A government bond crisis will necessitate money printing that will flow into gold and silver.</p><p><span class="label">context</span>Holds approximately 95% of his personal portfolio in silver and silver miners. Expects a rapid move to $300-$500 within months after clearing its current congestion zone.</p></div>
+<div class="card"><div class="head"><span class="asset">Silver</span><span class="tag dir-long">LONG</span><span class="who">Michael DiRienzo — SmarterMarkets</span></div><p><span class="label">Michael DiRienzo — SmarterMarkets</span>The market is in its fifth consecutive year of a structural supply deficit, driven by industrial demand (photovoltaics, electrification). The gold-silver ratio indicates a prime buying opportunity.</p><p><span class="label">context</span>Considers investing at $33 to be smart.</p></div>
+<div class="card"><div class="head"><span class="asset">Gold</span><span class="tag dir-long">LONG</span><span class="who">Chris Whalen — The Julia La Roche Show</span></div><p><span class="label">Chris Whalen — The Julia La Roche Show</span>A primary hedge against the double-digit inflation he expects by year-end.</p></div>
+<div class="card"><div class="head"><span class="asset">Commodities (Broad Complex)</span><span class="tag dir-long">LONG</span><span class="who">Michael Oliver — Wealth Building Blueprint Vladyslav Grab</span></div><p><span class="label">Michael Oliver — Wealth Building Blueprint Vladyslav Grab</span>The Bloomberg Commodity Index issued a major buy signal in October. Recommends being in the broader complex, including grain-related and base metal-related companies.</p></div>
+<div class="card"><div class="head"><span class="asset">Oilfield Services (<strong>XES</strong> ETF)</span><span class="tag dir-long">LONG</span><span class="who">Patrick Ceresna — Macro Voices</span></div><p><span class="label">Patrick Ceresna — Macro Voices</span>To position for the long-term &quot;energy resilience rebuild&quot; while managing risk.</p><p><span class="label">context</span>Using a longer-dated call option: the December 18th, 2026 $135 strike call, trading around $14.25.</p></div>
+<div class="card"><div class="head"><span class="asset">Energy Stocks</span><span class="tag dir-long">LONG</span><span class="who">Tony Greer — The Market Huddle</span></div><p><span class="label">Tony Greer — The Market Huddle</span>As a hedge against his expectation that oil prices will rise significantly due to supply constraints and draining inventories.</p></div>
+<div class="card"><div class="head"><span class="asset">Rare Earth Metals</span><span class="tag dir-long">LONG</span><span class="who">Tony Greer — The Market Huddle</span></div><p><span class="label">Tony Greer — The Market Huddle</span>Believes this will be the winning sector for the year, driven by &quot;resource nationalism.&quot;</p></div>
+<div class="card"><div class="head"><span class="asset">Long-Duration Bonds</span><span class="tag dir-long">LONG</span><span class="who">Lance Roberts — Adam Taggart Thoughtful Money</span></div><p><span class="label">Lance Roberts — Adam Taggart Thoughtful Money</span>Sees an opportunity for income and return over the next year, anticipating bond yields will be lower over the next two years.</p><p><span class="label">context</span>Plans to add duration to his bond portfolio, increasing long duration exposure from 4.5% to 5-6%.</p></div>
+<div class="card"><div class="head"><span class="asset">Circle (<strong>CRCL</strong>)</span><span class="tag dir-long">LONG</span><span class="who">Zach Pandle — RenMac</span></div><p><span class="label">Zach Pandle — RenMac</span>Views it as both a crypto beta and a rates beta trade. It benefits from stablecoin adoption and also from higher interest rates due to its net interest margin business model.</p></div>
+<div class="card"><div class="head"><span class="asset">Hot IPOs (e.g., SpaceX)</span><span class="tag dir-avoid">AVOID (on day one)</span><span class="who">Lance Roberts — Adam Taggart Thoughtful Money</span></div><p><span class="label">Lance Roberts — Adam Taggart Thoughtful Money</span>High probability of initial losses. Recommends a staggered buying approach over several weeks to account for initial volatility and the influx of shares from SPVs and index inclusions.</p></div>
+<div class="card"><div class="head"><span class="asset">Gold</span><span class="tag dir-reduce">REDUCE / EXIT</span><span class="who">Patrick Ceresna — Macro Voices</span></div><p><span class="label">Patrick Ceresna — Macro Voices</span>Gold is expected to operate inversely to oil. If oil prices rise significantly, it is advisable to exit long gold positions and wait for lower prices.</p><p><span class="label">changes if</span>Oil tops out, which would be a signal to go long gold in a significant way.</p></div>
+<div class="card"><div class="head"><span class="asset">US Dollar Index (DXY)</span><span class="tag dir-short">SHORT</span><span class="who">Patrick Ceresna — Macro Voices</span></div><p><span class="label">Patrick Ceresna — Macro Voices</span>Expects much lower numbers for the dollar index after the Strait of Hormuz reopens.</p><p><span class="label">context</span>Wait for the dollar to run to the top of its trading range (around 101) before initiating the short.</p></div></div></section>
+<section id="conviction-scenarios"><h2>CONVICTION &amp; SCENARIOS</h2><p>Tony Greer — The Market Huddle: Sees a 25-30% probability of Brent crude reaching $200 on a future contract month due to potential delivery issues for shorts.</p>
+<p>Erik Townsend — Macro Voices: Anticipates a cyclical pullback in the S&amp;P 500 of 38.2% to 50% of the recent rally, targeting potential levels of 7,000 or 7,200.</p>
+<p>Michael Oliver — Wealth Building Blueprint Vladyslav Grab: If the S&amp;P 500 slips back below 7,000 in Q3, it would signal a &quot;floor coming out&quot; due to momentum shifts.</p>
+<p>Jay Martin — The Jay Martin Show: The next Fed Chair faces three choices: 1) Save the dollar via rate hikes (fast death for the economy), 2) Save the bond market via money printing (slow death for the currency), or 3) End the war with Iran (death of US credibility). He predicts the choice will be #2, the &quot;slow death&quot; of the dollar.</p>
+<p>Chris Whalen — The Julia La Roche Show: If the Fed chair has a committee consensus to raise rates to fight inflation, and this causes the economy to slow down, political pressure will eventually force a cut.</p></section>
+<section id="tickers-assets"><h2>TICKERS &amp; ASSETS</h2><h3>THESIS TICKERS</h3>
+<p><strong>CRCL</strong> — Zach Pandle — RenMac — A dual crypto beta and rates beta trade, benefiting from stablecoin adoption and higher interest rates. <strong>Silver</strong> — Michael Oliver — Wealth Building Blueprint Vladyslav Grab — Poised for a rapid, vertical move to $300-$500 as money printing flows into monetary metals. <strong>Silver</strong> — Michael DiRienzo — SmarterMarkets — A smart investment due to a persistent structural supply deficit and growing industrial demand.</p>
+<h3>TRADE EXPRESSION</h3>
+<p><strong>BCOM</strong> — A way to express a long view on natural resources and commodities — Tony Greer — The Market Huddle <strong>XES</strong> — A way to express a long view on the &quot;energy resilience rebuild&quot; in oilfield services — Patrick Ceresna — Macro Voices</p>
+<h3>WATCH LEVELS</h3>
+<p><strong>S&amp;P 500</strong> — A slip back below 7,000 in Q3 would be a major negative momentum signal — Michael Oliver — Wealth Building Blueprint Vladyslav Grab <strong>S&amp;P 500</strong> — Watch for a pullback to 7,000 or 7,200 — Erik Townsend — Macro Voices <strong>10-Year US Treasury Yield</strong> — 4.5% is the &quot;Rubicon&quot;; levels above this are a cause for market nervousness — Steve Eisman — Steve Eisman <strong>10-Year US Treasury Yield</strong> — A move above 4.75% or 5% would significantly impact markets — Tony Greer — The Market Huddle <strong>US Dollar Index (DXY)</strong> — A move north of 100 would likely attack the commodity space — Tony Greer — The Market Huddle <strong>US Dollar Index (DXY)</strong> — Watch for a retest of the top of its range around 101 as a potential short entry point — Patrick Ceresna — Macro Voices <strong>Crude Oil (July Contract)</strong> — A break above $105 could lead to a move to $115-$120 — Patrick Ceresna — Macro Voices <strong>Gold</strong> — The 200-day moving average around 4,400 is the next support level to watch — Patrick Ceresna — Macro Voices</p>
+<h3>CONTEXT MENTIONS</h3>
+<p><strong>AMD</strong> — Referenced in discussion. <strong>CRM</strong> (Salesforce) — Down 35% YTD due to AI disruption fears. <strong>GDX</strong> — Referenced in discussion of gold miners. <strong>GLD</strong> — Referenced as a gold product. <strong>IGV</strong> — Referenced in discussion of software ETFs. <strong>INTU</strong> (Intuit) — Stock down 50% for the year amid lackluster results and layoffs. <strong>JGBs</strong> — Japanese banks are not buying due to strong lending growth. <strong>NVDA</strong> (Nvidia) — Strong results (revenue up 85% YoY) but stock was little changed as guidance was below &quot;whisper numbers.&quot; <strong>SMH</strong> — Referenced in discussion of semiconductors. <strong>URA</strong> — Referenced in discussion of uranium.</p></section>
+<section id="spotlight-the-new-japan-trade"><h2>SPOTLIGHT: The New Japan Trade</h2><p><strong>Host:</strong> Seth Carpenter <strong>Guest:</strong> Jonathan (analyst)</p>
+<ul><li>A strong, conviction bullish case for Japanese equities is being made, based on three structural changes: a stable macro environment with inflation and wage growth, structural corporate profit improvements, and enhanced corporate governance.</li><li>Japanese banks are notably not buying JGBs due to strong corporate capex-driven lending activity, while life insurers are net sellers of longer-dated JGBs, suggesting reduced domestic demand for government debt.</li><li>The government&#x27;s &quot;Sanaenomics&quot; policy is focused on supply-side investment in 17 strategic areas, including AI, semiconductors, and defense, which could drive long-term growth.</li><li>A key catalyst to watch is the government&#x27;s growth strategy report due in June, which is expected to outline a more flexible, multi-year budget process for strategic investments.</li><li>There is significant room for Japanese corporates to improve capital efficiency by utilizing non-cash earning assets, which currently amount to 60% of GDP.</li></ul></section>
+<section id="spotlight-architect-norman-foster-on-why"><h2>SPOTLIGHT: Architect Norman Foster on Why the West Struggles to Build Big</h2><p><strong>Host:</strong> Joe Weisenthal, Tracy Alloway <strong>Guest:</strong> Lord Norman Foster, Foster and Partners</p>
+<ul><li>Western nations struggle with large-scale infrastructure projects due to &quot;short-termism,&quot; a decline in the status of craft skills, and a lack of civic ambition compared to nations like China.</li><li>Quality in building is an &quot;attitude of mind&quot; and about how wisely resources are spent, not simply how much is spent. The initial construction cost is a small part of a building&#x27;s lifetime financial picture.</li><li>An integrated design approach, where all disciplines (architects, engineers, etc.) collaborate from a project&#x27;s inception, leads to higher quality, more sustainable, and more flexible outcomes.</li><li>Foster contrasts China&#x27;s 54,000 kilometers of high-speed rail built in 16 years with the difficulties faced by the UK and US, suggesting that societies that prioritize &quot;making&quot; may experience greater economic progress.</li><li>AI is viewed as &quot;backward-looking&quot; and incapable of true innovation, as it relies on past data and cannot suggest paradigm-shifting concepts like a skyscraper without a central core.</li></ul></section>
+<section id="notable-data-figures"><h2>NOTABLE DATA &amp; FIGURES</h2><ul><li><strong>40:</strong> The approximate current level of the Shiller CAPE ratio, the second highest in history. — Cliff Asness — Excess Returns</li><li><strong>4.6%:</strong> The 10-Year US Treasury yield, which is above the 4.5% level considered a &quot;Rubicon.&quot; — Steve Eisman — Steve Eisman</li><li><strong>5.1%:</strong> The approximate 30-Year US Treasury yield. — Michael Oliver and Jimmy Connor — Jimmy Connor</li><li><strong>55%:</strong> The percentage of silver demand now accounted for by industrial applications. — Michael DiRienzo — SmarterMarkets</li><li><strong>5:</strong> The number of consecutive years the silver market has been in a structural supply deficit. — Michael DiRienzo — SmarterMarkets</li><li><strong>75-85%:</strong> The portion of the US stock market&#x27;s 30-year outperformance over non-US stocks that came from multiple expansion, not fundamental growth. — Cliff Asness — Excess Returns</li><li><strong>85%:</strong> Nvidia&#x27;s year-over-year revenue growth. — Steve Eisman — Steve Eisman</li><li><strong>95%:</strong> Nvidia&#x27;s year-over-year EPS growth. — Steve Eisman — Steve Eisman</li><li><strong>35%:</strong> Year-to-date decline in Salesforce (CRM) stock. — Steve Eisman — Steve Eisman</li><li><strong>50%:</strong> Year-to-date decline in Intuit (INTU) stock. — Steve Eisman — Steve Eisman</li><li><strong>60%:</strong> Japan&#x27;s non-cash earning assets as a percentage of GDP, highlighting room for improved capital efficiency. — Seth Carpenter — Morgan Stanley</li><li><strong>54,000 km:</strong> Amount of high-speed rail built by China in 16 years. — Lord Norman Foster — Odd Lots</li></ul></section>
+<section id="watch-catalysts"><h2>WATCH CATALYSTS</h2><ul><li><strong>June 2026:</strong> Japan&#x27;s government is due to release its growth strategy report and basic policy on fiscal management, which could outline multi-year investment plans. — Seth Carpenter — Morgan Stanley</li><li><strong>July 2026:</strong> A potential month for a Fed rate hike, contrary to earlier expectations of cuts. — Chris Whalen — The Julia La Roche Show</li><li><strong>August 2026:</strong> A more likely time to consider buying the dip in uranium, based on seasonal patterns. — Patrick Ceresna — Macro Voices</li><li><strong>2028-2031:</strong> Key period for software company debt refinancings, which will be a true test of credit stress from AI disruption. — Steve Eisman — Steve Eisman</li><li><strong>Upcoming Inflation Data:</strong> Expected to be &quot;non-benign&quot; and could lead to further rate hikes. — Steve Eisman — Steve Eisman</li></ul></section>
+<section id="miscellaneous"><h2>MISCELLANEOUS</h2><ul><li>The concept of &quot;cash on the sidelines&quot; is a fallacy; when cash is spent on stocks, it simply transfers to the seller, meaning the total cash in the system is unchanged. — Cliff Asness — Excess Returns</li><li>Private equity engages in &quot;volatility laundering&quot; by using stale, unobserved prices to report artificially low volatility (e.g., 5%) compared to public markets (e.g., 17% for S&amp;P 500), misrepresenting true risk. — Cliff Asness — Excess Returns</li><li>The traditional institutional strategy of &quot;fading&quot; retail investors is now often incorrect, as retail is more likely to be long-term holders, while &quot;pod shops&quot; are more frequently stopped out of positions. — Tony Greer — The Market Huddle</li><li>The illiquidity premium for private investments may have inverted; investors may now be paying for illiquidity as a &quot;feature&quot; (enforcing long-termism) rather than being paid for it as a &quot;bug,&quot; leading to lower expected returns. — Cliff Asness — Excess Returns</li><li>The argument against market timing that focuses on &quot;missing the 10 best days&quot; is illogical because it symmetrically ignores the benefit of missing the 10 worst days. — Cliff Asness — Excess Returns</li><li>Economists arguing that AI&#x27;s growth is lost abroad due to imported chips are &quot;cosplaying as accountants&quot; and missing wealth effects and tax receipts from tech company gains. — Neil Dutta — RenMac</li></ul></section>
+<section id="data-quality-note"><h2>DATA QUALITY NOTE</h2><ul><li><strong>Overlapping Episodes:</strong> Several guests appeared on the same show on consecutive days or had multiple summaries released for the same recording. Content from the following was de-duplicated and synthesized into a single viewpoint for each speaker/show:</li><li>Cliff Asness on *Excess Returns* (two summaries from the same interview).</li><li>Chris Whalen on *The Julia La Roche Show* (today&#x27;s episode and a check against a May 23rd episode).</li><li>Lance Roberts on *Adam Taggart Thoughtful Money* (three summaries covering the same interview).</li><li>Pascal Hügli on *Less Noise More Signal* (two summaries of the same solo episode).</li><li><strong>Cross-Show Appearance:</strong> Michael Oliver appeared on *Jimmy Connor* and *Wealth Building Blueprint Vladyslav Grab*. His views were consistent and integrated across sections.</li><li>No ticker discrepancies or major attribution gaps were identified in this session.</li></ul></section>
+<section id="episode-index"><h2>EPISODE INDEX</h2><ul><li><strong>SmarterMarkets</strong> — Encore Episode Ideas Worth Repeating with Michael DiRienzo President CEO The Sil</li></ul>
+<p>Host: David Greely | Guest: Michael DiRienzo, President and CEO, The Silver Institute | Commodities Hard Assets</p>
+<ul><li><strong>Jimmy Connor</strong> — Bond Market is in Trouble Michael Oliver and Jimmy Connor</li></ul>
+<p>Host: Jimmy Connor | Guest: Michael Oliver and Jimmy Connor | Equities Trading</p>
+<ul><li><strong>Excess Returns</strong> — Cliff Asness on Bubbles Private Equity and His Resesarch Greatest Hits</li></ul>
+<p>Host: Jack Forehand, Matt Ziegler | Guest: Cliff Asness, Founder, AQR | Investment Analysis Factors</p>
+<ul><li><strong>Excess Returns</strong> — He Wrote the Papers Finance Didnt Want to Hear Cliff Asness Breaks Down His Grea</li></ul>
+<p>Host: Jack Forehand, Matt Ziggler | Guest: Cliff Asness, Founder, AQR | Investment Analysis Factors</p>
+<ul><li><strong>Morgan Stanley</strong> — The New Japan Trade</li></ul>
+<p>Host: Seth Carpenter | Guest: Solo | Investment Analysis Factors</p>
+<ul><li><strong>Steve Eisman</strong> — Walmart Target Signal Consumer Stress as the 10-Year Yield Hits 46 The Weekly Wr</li></ul>
+<p>Host: Steve Eisman | Guest: Solo | Investment Analysis Factors</p>
+<ul><li><strong>The Julia La Roche Show</strong> — Chris Whalen Why We Could See Double-Digit Inflation Rationing Fed Hikes</li></ul>
+<p>Host: Julia La Roche | Guest: Chris Whalen, Chairman, Whalen Global Advisors | Investment Analysis Factors</p>
+<ul><li><strong>Adam Taggart Thoughtful Money</strong> — It Wont Take Much To Tip This Market Over Lance Roberts</li></ul>
+<p>Host: Adam Taggart | Guest: Lance Roberts, Portfolio Manager, RAA | Macroeconomics Strategy</p>
+<ul><li><strong>Less Noise More Signal</strong> — Why the Altcoin Game Has Changed ForeverUntitled video</li></ul>
+<p>Host: Pascal Hügli | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Less Noise More Signal</strong> — Why the Altcoin Game Has Changed Forever</li></ul>
+<p>Host: Pascal Hügli | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Macro Voices</strong> — Trade of The Week - MacroVoices 533</li></ul>
+<p>Host: Erik Townsend, Patrick Ceresna | Guest: Morgan Downey | Macroeconomics Strategy</p>
+<ul><li><strong>Odd Lots</strong> — Architect Norman Foster on Why the West Struggles to Build Big</li></ul>
+<p>Host: Joe Weisenthal, Tracy Alloway | Guest: Lord Norman Foster, Founder, Foster and Partners | Macroeconomics Strategy</p>
+<ul><li><strong>RenMac</strong> — Breakouts and Breaking Points Yields AI and Cryptos New Era</li></ul>
+<p>Host: Neil Dutta, Steve Duttonhoffer, Jeff Degraphth, Steve Pavick | Guest: Zach Pandle, Head of Research, Grayscale Investments | Macroeconomics Strategy</p>
+<ul><li><strong>The Jay Martin Show</strong> — The Day America Ran Out of Options</li></ul>
+<p>Host: Jay Martin | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>The Market Huddle</strong> — WEAPONIZE THE PERIODIC TABLE Guest Tony Greer</li></ul>
+<p>Host: Kevin Muir, Patrick Ceresna | Guest: Tony Greer, Author, TJ Macro | Macroeconomics Strategy</p>
+<ul><li><strong>Wealth Building Blueprint Vladyslav Grab</strong> — Stocks to Crash Michael Oliver Says 300500 Silver Still in Play</li></ul>
+<p>Host: Vladyslav Grabarskyy | Guest: Michael Oliver, Founder, Momentum Structural Analysis | Real Estate Wealth Building</p></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-08 · <a href="archive.html">All days</a></footer></div></body></html>

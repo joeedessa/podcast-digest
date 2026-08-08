@@ -1,0 +1,169 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>PodcastLM — Saturday, 4 April 2026</title><style>
+:root{
+  --bg:#fbfbfa; --panel:#fff; --ink:#1a1a18; --muted:#6b6b66; --line:#e6e4df;
+  --accent:#b4552d; --accent-soft:#fdf3ee;
+  --long:#1a7340; --short:#c0392b; --watch:#2563a8; --reduce:#b8730f;
+  --radius:10px;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#14150f; --panel:#1c1d16; --ink:#eceade; --muted:#a3a094;
+         --line:#2f3126; --accent:#e08a5f; --accent-soft:#241a13;
+         --long:#5cc98a; --short:#ef7d6e; --watch:#7db3e8; --reduce:#e0a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+     line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 96px}
+
+/* masthead */
+header.top{border-bottom:1px solid var(--line);background:var(--panel);
+           position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.4) blur(6px)}
+header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
+                 align-items:baseline;gap:14px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.01em}
+.brand a{color:inherit}
+.crumb{color:var(--muted);font-size:13px}
+.crumb a{color:var(--muted)}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,42px);line-height:1.12;
+         margin:0 0 10px;letter-spacing:-.02em;font-weight:600}
+.hero .meta{color:var(--muted);font-size:14px}
+.pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
+      border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
+
+/* section nav */
+nav.toc{position:sticky;top:52px;background:var(--bg);padding:10px 0 12px;
+        border-bottom:1px solid var(--line);margin-bottom:8px;z-index:10}
+nav.toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0}
+nav.toc a{font-size:12px;padding:4px 10px;border:1px solid var(--line);
+          border-radius:99px;color:var(--muted);background:var(--panel);white-space:nowrap}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);text-decoration:none}
+
+/* sections */
+section{padding:28px 0 4px;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+h2{font-family:var(--serif);font-size:13px;font-weight:700;text-transform:uppercase;
+   letter-spacing:.14em;color:var(--accent);margin:0 0 16px}
+h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:28px 0 8px;
+   letter-spacing:-.01em}
+p{margin:0 0 13px}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin:5px 0}
+strong{font-weight:650}
+.tag{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+
+/* TL;DR */
+.tldr{background:var(--accent-soft);border:1px solid var(--line);
+      border-left:3px solid var(--accent);border-radius:var(--radius);
+      padding:18px 20px;margin-bottom:6px}
+.tldr p:last-child,.tldr ul:last-child{margin-bottom:0}
+.tldr ul{list-style:none;padding-left:0}
+.tldr li{padding-left:15px;position:relative}
+.tldr li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+
+/* trade cards */
+.cards{display:grid;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:15px 17px}
+.card .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.card .asset{font-family:var(--serif);font-size:18px;font-weight:600}
+.card .who{color:var(--muted);font-size:13px}
+.card p{margin:6px 0 0;font-size:14.5px}
+.card .label{color:var(--muted);font-size:11px;text-transform:uppercase;
+             letter-spacing:.08em;margin-right:5px}
+.dir-long{color:var(--long)} .dir-short{color:var(--short)}
+.dir-avoid{color:var(--short)} .dir-reduce{color:var(--reduce)}
+.dir-watching{color:var(--watch)} .dir-other{color:var(--muted)}
+.tier{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+      margin:22px 0 10px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+
+/* topics */
+.topic{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--muted);
+       border-radius:var(--radius);padding:15px 17px;margin:12px 0}
+.topic .t{font-weight:650;margin-bottom:9px}
+
+/* index */
+.days{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:9px}
+.days a{display:flex;justify-content:space-between;align-items:center;gap:14px;
+        background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+        padding:14px 17px;color:inherit}
+.days a:hover{border-color:var(--accent);text-decoration:none}
+.days .d{font-family:var(--serif);font-size:17px;font-weight:600}
+.days .s{color:var(--muted);font-size:13px;text-align:right}
+
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+       color:var(--muted);font-size:12.5px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:12px 15px;font-size:12.5px;color:var(--muted);margin-top:20px}
+@media(max-width:600px){
+  .hero{padding:30px 0 20px}
+  nav.toc{position:static}
+  .card .head{gap:6px}
+}
+</style></head><body><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Saturday, 4 April 2026</span></div></header><div class="wrap"><div class="hero"><h1>Saturday, 4 April 2026</h1><div class="meta"><span class="pill">10 episodes</span>Commodities Hard Assets, Equities Trading, Investment Analysis Factors, Macroeconomics Strategy</div></div><nav class="toc"><ul><li><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a></li><li><a href="#dominant-theme-s">DOMINANT THEME(S)</a></li><li><a href="#divergent-views">DIVERGENT VIEWS</a></li><li><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a></li><li><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a></li><li><a href="#tickers-assets">TICKERS &amp; ASSETS</a></li><li><a href="#spotlight-scott-bok-explains-what-invest">★ Scott Bok Explains Wha…</a></li><li><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a></li><li><a href="#watch-catalysts">WATCH CATALYSTS</a></li><li><a href="#miscellaneous">MISCELLANEOUS</a></li><li><a href="#data-quality-note">DATA QUALITY NOTE</a></li><li><a href="#episode-index">EPISODE INDEX</a></li></ul></nav><section id="macro-room-temperature"><h2>MACRO ROOM TEMPERATURE</h2><p>The escalating conflict in the Middle East is the dominant force repricing global assets, with strategists like Serena Tang — Morgan Stanley framing the market&#x27;s future through the lens of oil price scenarios ranging from relief rally to recession. The central tension pits a stagflationary shock, which Chase Taylor — The Jacob Shapiro Podcast argues is already manifesting in physical shortages, against a longer-term structural bull market in hard assets, championed by voices like Rick Rule — Competent Man Podcast and John Ciampaglia — Wealthion, who see the crisis accelerating a pre-existing trend of resource nationalism and underinvestment.</p></section>
+<section id="dominant-theme-s"><h2>DOMINANT THEME(S)</h2><p><strong>The Geopolitical Oil Shock Reprices Everything (7 shows)</strong></p>
+<p>The market is now entirely hostage to the trajectory of oil prices. Martin Ratz — Morgan Stanley outlines three core scenarios: de-escalation with oil at $80-90/barrel, ongoing constraints holding oil at $100-110, or an &quot;effective closure&quot; of the Strait of Hormuz pushing prices above $150. Each path has radically different cross-asset implications, as detailed by Serena Tang — Morgan Stanley. The de-escalation scenario would trigger a classic risk-on rally in cyclical equities and a fall in bond yields. The middle scenario implies a volatile, range-bound S&amp;P 500 (6,000-6,850) with a flight to quality. The high-price scenario necessitates a &quot;recession playbook,&quot; dialing back equity exposure in favor of government bonds and cash. Tang — Morgan Stanley warns that in a severe shock, the typical diversification benefit of bonds breaks down in a stagflationary setup.</p>
+<p>This is not just a short-term shock. Rick Rule — Competent Man Podcast argues the conflict has simply accelerated energy price increases that were already baked in for 2029 due to years of underinvestment in sustaining capital. The hosts of Forward Guidance concur, noting that oil at $100-110 is not yet high enough to cause demand destruction but is sufficient to fuel inflation, trapping policymakers and markets in a painful corridor. This view is reinforced by Chase Taylor — The Jacob Shapiro Podcast, who reports that physical shortages of oil and chemicals are already appearing in Southeast Asia, Africa, and Australia, suggesting the supply-side impact is real and worsening.</p>
+<p><strong>The New Commodity Regime: Stockpiling, Security, and Uranium (4 shows)</strong></p>
+<p>Beyond the immediate oil shock, a more profound structural shift is underway. John Ciampaglia — Wealthion describes it as a move from &quot;free trade to strategic stockpiling,&quot; driven by the breakdown in East-West relations. This aligns with Rick Rule&#x27;s — Competent Man Podcast identification of a 10-15 year trend of &quot;resource nationalism,&quot; compelling nations to secure physical supply chains.</p>
+<p>Uranium is emerging as a primary beneficiary of this new regime. Ciampaglia — Wealthion and Jimmy Connor notes that politicians in the EU are now openly acknowledging the strategic mistake of phasing out nuclear power. He sees a multi-year constructive setup, with institutional investors taking a three-to-five-year view based on tightening supply and rising long-term contract prices, which now sit at a post-2008 high of $90/lb. Rick Rule — Competent Man Podcast is also bullish, expecting a significant near-term demand increase from accelerated Japanese nuclear restarts. Both see the need for energy security and density as powerful, long-term tailwinds for nuclear power and, by extension, uranium.</p>
+<p><strong>Market Structure &amp; Positioning Under Stress (3 shows)</strong></p>
+<p>The macro uncertainty is causing significant stress under the market&#x27;s surface. Jack Farley — Forward Guidance describes the past month as a &quot;choppy&quot; period that has &quot;shredded&quot; traders, with multi-platform hedge funds getting &quot;absolutely rocked&quot; by high factor volatility in single stocks. This has led to significant de-risking. Quinn — Forward Guidance notes that his conviction has waned as the market is now so hedged and deleveraged—evidenced by extreme CTA deleveraging and high options costs—that shorting has become difficult. From a technical perspective, Katie Stockton — Excess Returns sees a new MACD sell signal on the monthly S&amp;P 500 chart, indicating not a sharp crash but a &quot;prolonged choppy phase&quot; and a &quot;slow grind lower,&quot; exacerbated by the underperformance of mega-cap tech.</p></section>
+<section id="divergent-views"><h2>DIVERGENT VIEWS</h2><div class="topic"><div class="t">Near-Term Outlook for Gold</div><p>Katie Stockton — Excess Returns: <strong>CAUTIOUS / CHOPPY</strong> <strong>Reasoning:</strong> Technicals suggest this might be an &quot;off year&quot; for gold. Long-term exhaustive signals are present, indicating the market needs a &quot;pause to refresh&quot; its secular bull trend. This points to a period of choppiness and consolidation, making a shorter-term time horizon more appropriate for traders.</p>
+<p>John Ciampaglia — Wealthion &amp; Rick Rule — Competent Man Podcast: <strong>STRUCTURALLY BULLISH</strong> <strong>Reasoning:</strong> While near-term tailwinds from some central bank buying may be dissipating due to defense spending needs, the long-term thesis remains intact. China will remain a stalwart, opportunistic buyer of physical gold on any price dips as it recycles its Treasury holdings into hard assets (Ciampaglia — Wealthion). Over a 10-year horizon, the gold price is expected to perform well, with gold equities poised to do even better as the industry&#x27;s focus shifts to reserve replacement and M&amp;A (Rule — Competent Man Podcast).</p></div>
+<div class="topic"><div class="t">Broad US Equity Market Positioning</div><p>Chase Taylor — The Jacob Shapiro Podcast: <strong>DEFENSIVE / RISK-OFF</strong> <strong>Reasoning:</strong> The geopolitical situation is highly unstable, with a high potential for miscalculation and escalation. Physical supply chain shortages are already emerging. This warrants a highly defensive posture, holding 50% cash, with the remainder of the portfolio heavily weighted towards hedges and specific commodity longs (energy, sugar) while shorting risk-on assets like small caps.</p>
+<p>Serena Tang — Morgan Stanley &amp; Katie Stockton — Excess Returns: <strong>SCENARIO-DEPENDENT / SELECTIVE</strong> <strong>Reasoning:</strong> The outlook is not uniformly negative but depends on key variables. The path for equities is highly contingent on where oil prices settle; a de-escalation to $80-90/barrel would be very bullish for cyclical stocks, while a spike above $150 would demand a recessionary, risk-off playbook (Tang — Morgan Stanley). Separately, technicals point to a prolonged choppy phase rather than a crash, with a clear rotation from growth to value underway. This creates opportunities in sectors like materials, utilities, and financials even as the broader index grinds lower due to mega-cap weakness (Stockton — Excess Returns).</p></div></section>
+<section id="trade-ideas-positions"><h2>TRADE IDEAS &amp; POSITIONS</h2><div class="cards"><div class="card"><div class="head"><span class="asset"><strong>Cameco (CCO)</strong></span><span class="tag dir-long">LONG</span><span class="who">Rick Rule — Competent Man Podcast - Tom Bodrovics</span></div><p><span class="label">Rick Rule — Competent Man Podcast - Tom Bodrovics</span>A &quot;one-size-fits-all stock&quot; for uranium exposure. It is a large, low-cost producer that is also vertically integrated with Westinghouse, giving it a strong market position.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Sprott Physical Uranium Trust (U.UN)</strong></span><span class="tag dir-long">LONG</span><span class="who">Rick Rule — Competent Man Podcast - Tom Bodrovics</span></div><p><span class="label">Rick Rule — Competent Man Podcast - Tom Bodrovics</span>An alternative to single-stock exposure for investors who want to own the physical commodity.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Copper</strong></span><span class="tag dir-long">LONG</span><span class="who">Rick Rule — Competent Man Podcast - Tom Bodrovics</span></div><p><span class="label">Rick Rule — Competent Man Podcast - Tom Bodrovics</span>The investment case is a &quot;no-brainer&quot; over the next five years, absent a global depression.</p><p><span class="label">context</span>Five-year timeframe.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Gold Equities</strong></span><span class="tag dir-long">LONG</span><span class="who">Rick Rule — Competent Man Podcast - Tom Bodrovics</span></div><p><span class="label">Rick Rule — Competent Man Podcast - Tom Bodrovics</span>Structurally long, believing gold equities will outperform the metal over the next 10 years due to a coming M&amp;A cycle and a shift in focus to reserve replacement.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Cash (via T-bill ETF)</strong></span><span class="tag dir-other">HOLD</span><span class="who">Chase Taylor — The Jacob Shapiro Podcast</span></div><p><span class="label">Chase Taylor — The Jacob Shapiro Podcast</span>To manage risk and maintain liquidity amid extreme geopolitical uncertainty and the potential for a &quot;worst-case scenario&quot; for global supply chains.</p><p><span class="label">context</span>Currently holds 50% of his portfolio in a T-bill ETF.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Sugar</strong></span><span class="tag dir-long">LONG</span><span class="who">Chase Taylor — The Jacob Shapiro Podcast</span></div><p><span class="label">Chase Taylor — The Jacob Shapiro Podcast</span>A &quot;perfect straight closed trade&quot; due to supply reductions from ethanol conversion, potential crop shifts, and India&#x27;s resource nationalism restricting exports.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Energy</strong></span><span class="tag dir-long">LONG</span><span class="who">Chase Taylor — The Jacob Shapiro Podcast</span></div><p><span class="label">Chase Taylor — The Jacob Shapiro Podcast</span>To position for physical shortages and geopolitical risk premium. Advises average investors to own a bit more energy than the market benchmark.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Small Caps</strong></span><span class="tag dir-short">SHORT</span><span class="who">Chase Taylor — The Jacob Shapiro Podcast</span></div><p><span class="label">Chase Taylor — The Jacob Shapiro Podcast</span>As a hedge against a risk-off environment driven by geopolitical conflict and supply chain disruptions.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Volatility (e.g., V fund)</strong></span><span class="tag dir-long">LONG</span><span class="who"></span></div><p><span class="label">why</span>To capitalize on market structure-driven events, buying insurance when it is cheap and selling it when it is expensive.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Long-term Bonds</strong></span><span class="tag dir-long">LONG</span><span class="who">Neil Dutta — RenMac</span></div><p><span class="label">Neil Dutta — RenMac</span>The market is mispricing the probability of Fed cuts in the back half of the year. With real rates substantially higher than expected, long bonds offer value.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Main Street items, inflation protection, real assets</strong></span><span class="tag dir-long">LONG</span><span class="who"></span></div><p><span class="label">why</span>This is a conditional trade. If Trump announces stimulus and forces the Fed to cut rates while inflation is high, these assets would benefit.</p><p><span class="label">changes if</span>This scenario does not materialize.</p></div>
+<div class="card"><div class="head"><span class="asset"><strong>Bonds and Semiconductors</strong></span><span class="tag dir-other">SELL</span><span class="who"></span></div><p><span class="label">why</span>This is the other side of the conditional Trump stimulus trade. These assets would underperform in a scenario of forced rate cuts amid high inflation.</p><p><span class="label">changes if</span>This scenario does not materialize.</p></div></div></section>
+<section id="conviction-scenarios"><h2>CONVICTION &amp; SCENARIOS</h2><p>Serena Tang &amp; Martin Ratz — Morgan Stanley: Outlined three distinct scenarios based on oil prices, each with specific cross-asset implications. <strong>If</strong> oil de-escalates to <strong>$80-90/barrel</strong>: Expect a &quot;sigh of relief&quot; rally. Equities, particularly cyclicals, would outperform. Bond yields would fall. Classic risk-on environment. <strong>If</strong> oil remains in a <strong>$100-110/barrel</strong> range: Expect increased volatility. The S&amp;P 500 would trade in a wide 6,000 to 6,850 range. Leadership would shift to higher-quality companies and select defensives. <strong>If</strong> oil spikes above <strong>$150/barrel</strong>: Implement a &quot;recession playbook.&quot; Dial back equity exposure, increase allocation to government bonds and cash. Defensive sectors would lead, and the US dollar would strengthen.</p>
+<p>Neil Dutta — RenMac: The market is currently pricing in only an 11% chance of a Fed rate cut by December, which is considered too low. The team suggests positioning for cuts in the back half of the year.</p></section>
+<section id="tickers-assets"><h2>TICKERS &amp; ASSETS</h2><h3>THESIS TICKERS</h3>
+<p><strong>CCO</strong> — Rick Rule — Competent Man Podcast - Tom Bodrovics — A &quot;one-size-fits-all&quot; long position in uranium as a large, low-cost, vertically integrated producer. <strong>U.UN</strong> — Rick Rule — Competent Man Podcast - Tom Bodrovics — An alternative to single stocks for physical uranium exposure. <strong>YPF</strong> — Chase Taylor — The Jacob Shapiro Podcast — A potential &quot;silver lining&quot; in Argentina&#x27;s energy sector, benefiting from the Vaca Muerta shale project and distance from geopolitical conflict.</p>
+<h3>TRADE EXPRESSION</h3>
+<p><strong>TAC</strong> — Katie Stockton — Excess Returns — Fairlead&#x27;s tactical sector ETF, which rotates into top-performing sectors and holds treasuries/gold when sectors don&#x27;t qualify. <strong>T-bill ETF</strong> — Chase Taylor — The Jacob Shapiro Podcast — Used to express a 50% cash position for risk management.</p>
+<h3>WATCH LEVELS</h3>
+<p><strong>S&amp;P 500</strong> — Key support level around 6130-6175. A break below could lead to 5,900. — Katie Stockton — Excess Returns <strong>WTI Crude Oil</strong> — A cyclical shift towards higher highs and higher lows is underway. — Katie Stockton — Excess Returns</p>
+<h3>CONTEXT MENTIONS</h3>
+<p><strong>AMZN</strong> — Context for mega-cap underperformance. <strong>AAPL</strong> — Context for mega-cap underperformance. <strong>GOOGL</strong> — Context for mega-cap underperformance. <strong>META</strong> — One of only two MAG-7 stocks that outperformed last year. <strong>MSFT</strong> — Context for mega-cap underperformance. <strong>NVDA</strong> — Mentioned in context of AI fundamentals being good despite potential credit market punishment. <strong>QQQ</strong> — The transportation index is outperforming the QQQ, indicating a potential capital shift from tech to the real economy. <strong>SPY</strong>s — Mentioned in passing. <strong>VIX</strong> — Mentioned in passing.</p></section>
+<section id="spotlight-scott-bok-explains-what-invest"><h2>SPOTLIGHT: Scott Bok Explains What Investment Bankers Actually Do All Day</h2><p><strong>Host:</strong> Joe Weisenthal, Tracy Alloway — Odd Lots <strong>Guest:</strong> Scott Bok, Former CEO, Greenhill</p>
+<ul><li>The investment banking industry has transformed from a small, idea-driven field in the early 1980s to a hyper-competitive, transaction-focused business.</li><li>The rise of private equity and hedge funds created a client base &quot;permanently in the transaction business,&quot; making them the most important clients for investment banks.</li><li>Bok&#x27;s &quot;dirty little secret&quot; of banking is that building financial models is quick; the long hours are spent perfecting PowerPoint presentations due to intense internal competition.</li><li>Technology and AI are diminishing the value of information asymmetry, shifting the competitive edge to execution, comprehensive &quot;one-stop shopping&quot; services, and human-centric skills like negotiation and psychology.</li><li>The market for public companies has shrunk by half in 25 years, a trend Bok sees as negative for market transparency and information flow.</li><li>Bok anticipates the popularity of finance as a career will likely decline, possibly triggered by a future crisis in an area like private credit.</li></ul></section>
+<section id="notable-data-figures"><h2>NOTABLE DATA &amp; FIGURES</h2><ul><li><strong>$80-$90/barrel:</strong> Oil price in a de-escalation scenario. — Martin Ratz — Morgan Stanley</li><li><strong>$90/lb:</strong> Current term price for uranium, the highest since 2008. — John Ciampaglia — Jimmy Connor</li><li><strong>$100-$110/barrel:</strong> Oil price in an ongoing constraints scenario. — Martin Ratz — Morgan Stanley</li><li><strong>&gt;$150/barrel:</strong> Oil price in an &quot;effective closure&quot; scenario, potentially reaching $180. — Martin Ratz — Morgan Stanley</li><li><strong>3.4%:</strong> Year-over-year increase in average hourly earnings, the weakest pace this cycle. — Neil Dutta — RenMac</li><li><strong>11%:</strong> Market-implied probability of a Fed rate cut by December 2026. — Neil Dutta — RenMac</li><li><strong>15%:</strong> Approximate decline in forward price-to-earnings equity valuations over the past month. — Serena Tang — Morgan Stanley</li><li><strong>50%:</strong> Portion of Chase Taylor&#x27;s portfolio currently in cash. — Chase Taylor — The Jacob Shapiro Podcast</li><li><strong>75%:</strong> Approximate percentage of elements on the periodic table now considered critical materials in the U.S. — John Ciampaglia — Wealthion</li><li><strong>85%:</strong> Percentage of India&#x27;s oil and gas needs that are imported. — Kapir Tanija — The Jacob Shapiro Podcast</li><li><strong>6,000-6,850:</strong> Potential trading range for the S&amp;P 500 if oil stays in the $100-110 range. — Serena Tang — Morgan Stanley</li><li><strong>6,130-6,175:</strong> Key technical support level for the S&amp;P 500. — Katie Stockton — Excess Returns</li></ul></section>
+<section id="watch-catalysts"><h2>WATCH CATALYSTS</h2><ul><li><strong>Next 3-4 Months:</strong> Key period for uranium catalysts, including potential de-escalation in the Gulf, increased contracting activity, and details on new US public-private nuclear partnerships. — John Ciampaglia — Jimmy Connor</li><li><strong>Q2 2026 Earnings Season:</strong> Analysts may be forced to revise earnings estimates downward if the Iran situation persists. — Neil Dutta — RenMac</li><li><strong>April 2026:</strong> A push for crypto legislation is expected in the US Congress. — Neil Dutta — RenMac</li><li><strong>H2 2026:</strong> Potential timing for Fed rate cuts, which the market is currently underpricing. — Neil Dutta — RenMac</li><li><strong>Next 10 Months:</strong> Expected timeframe for a significant increase in uranium demand driven by accelerated Japanese nuclear restarts. — Rick Rule — Competent Man Podcast - Tom Bodrovics</li></ul></section>
+<section id="miscellaneous"><h2>MISCELLANEOUS</h2><ul><li>In a severe, stagflationary oil shock, the typical diversification benefit of bonds offsetting equity losses can break down. — Serena Tang — Morgan Stanley</li><li>A generational trade shift may be underway, with capital rotating out of high-multiple software and into essential real-economy assets like natural resources and metals. — Quinn — Forward Guidance</li><li>High-yield ETFs pose a systemic risk, as a surge in redemptions could create a &quot;bank run without a central guarantor&quot; due to the illiquidity of the underlying junk bonds. — Rick Rule — Competent Man Podcast - Tom Bodrovics</li><li>The US may be suffering from a &quot;Dutch disease&quot; related to financialization and hydrocarbon exports, leading to underinvestment in critical technologies like EVs and drones where China is gaining a lead. — Chase Taylor — The Jacob Shapiro Podcast</li><li>Extreme sovereign debt levels could lead to &quot;wacky policy mode,&quot; with one strategist cited as suggesting a potential 50% haircut on Treasury coupons overnight. — Jack Farley — Forward Guidance</li><li>The shrinking number of public companies over the past 25 years is a negative development for market information and transparency. — Scott Bok — Odd Lots</li></ul></section>
+<section id="data-quality-note"><h2>DATA QUALITY NOTE</h2><ul><li><strong>Cross-Show Appearance:</strong> Chase Taylor (Pinecone Macro) was a guest on The Jacob Shapiro Podcast in this session and also appeared on the Competent Man Podcast - Tom Bodrovics on 2026-04-03. The content from today&#x27;s appearance has been included.</li><li><strong>Overlapping Episodes:</strong> John Ciampaglia (Sprott) appeared on both Wealthion and Jimmy Connor. The content was complementary, focusing on broad commodities and then specifically uranium, and both have been synthesized.</li><li>No ticker discrepancies or significant attribution gaps were identified in this session.</li></ul></section>
+<section id="episode-index"><h2>EPISODE INDEX</h2><ul><li><strong>Wealthion</strong> — John Ciampaglia Why Stockpiling Is Replacing Free Trade The New Commodity Regime</li></ul>
+<p>Host: Maggie Lake | Guest: John Ciampaglia, CEO, Sprott Asset Management | Commodities Hard Assets</p>
+<ul><li><strong>Jimmy Connor</strong> — Where Is Uranium Price Going John Ciampaglia and Jimmy Connor</li></ul>
+<p>Host: Jimmy Connor | Guest: John Ciampaglia, Sprott | Equities Trading</p>
+<ul><li><strong>Excess Returns</strong> — The Signal Before the Spike Katie Stockton on What the Charts Tell Us About What</li></ul>
+<p>Host: Justin Carbonneau | Guest: Katie Stockton, Founder and Managing Partner, Fairlead Strategies | Investment Analysis Factors</p>
+<ul><li><strong>Morgan Stanley</strong> — How the Oil Shock Is Reshaping Markets</li></ul>
+<p>Host: Morgan Stanley | Guest: Serena Tang, Chief Cross-Asset Strategist, Morgan Stanley | Investment Analysis Factors</p>
+<ul><li><strong>Competent Man Podcast - Tom Bodrovics</strong> — Rick Rule What Im Buying When Commodities Go On Sale</li></ul>
+<p>Host: Tom Bodrovics | Guest: Rick Rule, Founder, Rule Investment Media | Macroeconomics Strategy</p>
+<ul><li><strong>Forward Guidance</strong> — Market Structure is Distorting Reality as Inflation Builds Weekly Roundup</li></ul>
+<p>Host: Jack Farley, Quinn | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Odd Lots</strong> — Scott Bok Explains What Investment Bankers Actually Do All Day</li></ul>
+<p>Host: Joe Weisenthal, Tracy Alloway | Guest: Scott Bok, Former CEO, Greenhill | Macroeconomics Strategy</p>
+<ul><li><strong>RenMac</strong> — RenMac Off-Script Good Friday Dark Crosses</li></ul>
+<p>Host: Neil Dutta, Steven Ricchiuto, Steve Dutton-Hoffer, Jeff DeGraff, Steve Pavlik | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>The Jacob Shapiro Podcast</strong> — Soft Power is Underrated</li></ul>
+<p>Host: Jacob Shapiro | Guest: Chase Taylor, Pinecone Macro | Macroeconomics Strategy</p>
+<ul><li><strong>The Jacob Shapiro Podcast</strong> — The View From Delhi</li></ul>
+<p>Host: Jacob Shapiro | Guest: Kapir Tanija, Executive Director, Observer Research Foundation Middle East | Macroeconomics Strategy</p></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-08 · <a href="archive.html">All days</a></footer></div></body></html>

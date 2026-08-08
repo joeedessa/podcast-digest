@@ -1,0 +1,317 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>PodcastLM — Saturday, 23 May 2026</title><style>
+:root{
+  --bg:#fbfbfa; --panel:#fff; --ink:#1a1a18; --muted:#6b6b66; --line:#e6e4df;
+  --accent:#b4552d; --accent-soft:#fdf3ee;
+  --long:#1a7340; --short:#c0392b; --watch:#2563a8; --reduce:#b8730f;
+  --radius:10px;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#14150f; --panel:#1c1d16; --ink:#eceade; --muted:#a3a094;
+         --line:#2f3126; --accent:#e08a5f; --accent-soft:#241a13;
+         --long:#5cc98a; --short:#ef7d6e; --watch:#7db3e8; --reduce:#e0a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+     line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 96px}
+
+/* masthead */
+header.top{border-bottom:1px solid var(--line);background:var(--panel);
+           position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.4) blur(6px)}
+header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
+                 align-items:baseline;gap:14px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.01em}
+.brand a{color:inherit}
+.crumb{color:var(--muted);font-size:13px}
+.crumb a{color:var(--muted)}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,42px);line-height:1.12;
+         margin:0 0 10px;letter-spacing:-.02em;font-weight:600}
+.hero .meta{color:var(--muted);font-size:14px}
+.pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
+      border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
+
+/* section nav */
+nav.toc{position:sticky;top:52px;background:var(--bg);padding:10px 0 12px;
+        border-bottom:1px solid var(--line);margin-bottom:8px;z-index:10}
+nav.toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0}
+nav.toc a{font-size:12px;padding:4px 10px;border:1px solid var(--line);
+          border-radius:99px;color:var(--muted);background:var(--panel);white-space:nowrap}
+nav.toc a:hover{color:var(--accent);border-color:var(--accent);text-decoration:none}
+
+/* sections */
+section{padding:28px 0 4px;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+h2{font-family:var(--serif);font-size:13px;font-weight:700;text-transform:uppercase;
+   letter-spacing:.14em;color:var(--accent);margin:0 0 16px}
+h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:28px 0 8px;
+   letter-spacing:-.01em}
+p{margin:0 0 13px}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin:5px 0}
+strong{font-weight:650}
+.tag{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+
+/* TL;DR */
+.tldr{background:var(--accent-soft);border:1px solid var(--line);
+      border-left:3px solid var(--accent);border-radius:var(--radius);
+      padding:18px 20px;margin-bottom:6px}
+.tldr p:last-child,.tldr ul:last-child{margin-bottom:0}
+.tldr ul{list-style:none;padding-left:0}
+.tldr li{padding-left:15px;position:relative}
+.tldr li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+
+/* trade cards */
+.cards{display:grid;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:15px 17px}
+.card .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.card .asset{font-family:var(--serif);font-size:18px;font-weight:600}
+.card .who{color:var(--muted);font-size:13px}
+.card p{margin:6px 0 0;font-size:14.5px}
+.card .label{color:var(--muted);font-size:11px;text-transform:uppercase;
+             letter-spacing:.08em;margin-right:5px}
+.dir-long{color:var(--long)} .dir-short{color:var(--short)}
+.dir-avoid{color:var(--short)} .dir-reduce{color:var(--reduce)}
+.dir-watching{color:var(--watch)} .dir-other{color:var(--muted)}
+.tier{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+      margin:22px 0 10px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+
+/* topics */
+.topic{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--muted);
+       border-radius:var(--radius);padding:15px 17px;margin:12px 0}
+.topic .t{font-weight:650;margin-bottom:9px}
+
+/* index */
+.days{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:9px}
+.days a{display:flex;justify-content:space-between;align-items:center;gap:14px;
+        background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+        padding:14px 17px;color:inherit}
+.days a:hover{border-color:var(--accent);text-decoration:none}
+.days .d{font-family:var(--serif);font-size:17px;font-weight:600}
+.days .s{color:var(--muted);font-size:13px;text-align:right}
+
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+       color:var(--muted);font-size:12.5px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:12px 15px;font-size:12.5px;color:var(--muted);margin-top:20px}
+@media(max-width:600px){
+  .hero{padding:30px 0 20px}
+  nav.toc{position:static}
+  .card .head{gap:6px}
+}
+</style></head><body><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Saturday, 23 May 2026</span></div></header><div class="wrap"><div class="hero"><h1>Saturday, 23 May 2026</h1><div class="meta"><span class="pill">69 episodes</span>Commodities Hard Assets, Equities Trading, Geopolitics, Investment Analysis Factors, Macroeconomics Strategy</div></div><nav class="toc"><ul><li><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a></li><li><a href="#dominant-theme-s">DOMINANT THEME(S)</a></li><li><a href="#divergent-views">DIVERGENT VIEWS</a></li><li><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a></li><li><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a></li><li><a href="#tickers-assets">TICKERS &amp; ASSETS</a></li><li><a href="#spotlight-mining-sector-deep-dives">★ Mining Sector Deep Div…</a></li><li><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a></li><li><a href="#watch-catalysts">WATCH CATALYSTS</a></li><li><a href="#miscellaneous">MISCELLANEOUS</a></li><li><a href="#data-quality-note">DATA QUALITY NOTE</a></li><li><a href="#episode-index">EPISODE INDEX</a></li></ul></nav><section id="macro-room-temperature"><h2>MACRO ROOM TEMPERATURE</h2><p>An AI-fueled equity rally, described by bulls like Doug Clinton and Gene Munster — Excess Returns as being in its &quot;early innings,&quot; is clashing with a bond market screaming distress. Voices like George Noble — The Julia La Roche Show and Dale Pinkert — Maggie Lake Talking Markets see a fundamental &quot;regime change&quot; and a market on the verge of a significant correction, driven by unsustainable debt and rising global yields. The dominant force is this bifurcation: a narrow, momentum-driven tech melt-up against a broad deterioration in macro fundamentals, with Mike Green — Adam Taggart Thoughtful Money arguing that mechanical passive flows, not fundamentals, are the only thing holding the precarious structure together.</p></section>
+<section id="dominant-theme-s"><h2>DOMINANT THEME(S)</h2><p><strong>The AI Bubble: Revolution or Reckoning?</strong> (15 shows)</p>
+<p>The debate over the AI trade&#x27;s sustainability is the market&#x27;s central tension. On one side, bulls argue we are in the early stages of a transformative technology cycle. Doug Clinton and Gene Munster — Excess Returns compare the current environment to 1995-1996 of the internet era, predicting an AI bubble larger than the dot-com bubble with several years left to run. They point to &quot;infinite&quot; demand for intelligence and power, justifying massive CapEx and identifying energy infrastructure as a key underappreciated investment theme. Jim Bianco — Wealthion justifies the boom by pointing to a 27% YoY surge in S&amp;P 500 earnings, driven by cross-ownership among AI firms, and AI&#x27;s potential to replace disparate SaaS tools, offering a theoretical path to revenue.</p>
+<p>On the other side, skeptics see a classic bubble in the making. George Noble — The Julia La Roche Show calls the AI trade the &quot;biggest misallocation of capital in history,&quot; arguing the bubble is in the unsustainable margins of cyclical tech companies, not just valuations. Andy Constan — The Monetary Matters Network frames it as an &quot;earnings bubble,&quot; where S&amp;P 500 and AI company profit projections are untethered from plausible GDP growth. Jeremy Grantham — Excess Returns believes AI will ultimately become a ubiquitous &quot;cost of doing business,&quot; compressing, not expanding, aggregate profit margins long-term. Steve Eisman — Steve Eisman expresses nervousness about the &quot;frothy&quot; and &quot;bubbly&quot; conditions, noting the semiconductor sector now comprises over 18% of the S&amp;P, and has lightened up on high-flyers.</p>
+<p><strong>The Bond Market&#x27;s &quot;Nuclear Event&quot;</strong> (11 shows)</p>
+<p>Rising global bond yields are seen as the primary driver of risk. John J. Hardy — Saxo Market Call states flatly that &quot;global bond yields are the captain now.&quot; Dale Pinkert — Maggie Lake Talking Markets describes the bond market&#x27;s picture as &quot;ugly,&quot; with the <strong>TLT</strong> trading like a penny stock and showing signs of an impending crash. Michael Oliver — Jimmy Connor calls the situation a &quot;nuclear event&quot; already unfolding, with the 30-year yield over 5.10%, forcing the Fed&#x27;s hand toward more money printing. This view is echoed by Chris Whalen — The Julia La Roche Show, who sees the 30-year bond topping 5% as just the beginning of a &quot;higher for longer&quot; reality, potentially reaching 6%. The pressure is global, with Bilal Hafi — Macro Hive noting a lack of demand for government debt stems from both inflation fears and the sheer size of the debt burden. George Noble — Maggie Lake Talking Markets argues that in a world with over 3% inflation and 7% budget deficits, buying a 10-year bond at 4% is illogical, calling bonds &quot;certificates of confiscation.&quot;</p>
+<p><strong>Inflation, Fiscal Dominance, and the Fed&#x27;s Dilemma</strong> (9 shows)</p>
+<p>Persistent inflation and runaway government spending are boxing in central banks. George Noble — The Julia La Roche Show argues the &quot;buy the dip&quot; mentality is a &quot;category error&quot; in an inflationary world where policymakers&#x27; ability to rescue markets is severely curtailed. Chris Whalen — The Julia La Roche Show predicts double-digit inflation by year-end, driven by fuel costs, making Fed cuts unlikely. The potential confirmation of Kevin Warsh as Fed Chair is a major focus. Dr. Art Laffer — Adam Taggart Thoughtful Money is optimistic Warsh will implement a &quot;price rule&quot; to stabilize inflation, while Chris Whalen — The Julia La Roche Show believes Warsh will push to shrink the balance sheet. This creates a conflict: a hawkish Fed tightening into a fragile market. Bilal Hafeez — Macro Hive suggests the market is over-interpreting the Fed&#x27;s hawkishness, but notes that persistent oil price increases are disrupting the narrative and could force a hawkish shift in the Fed&#x27;s projections.</p></section>
+<section id="divergent-views"><h2>DIVERGENT VIEWS</h2><div class="topic"><div class="t">Artificial Intelligence &amp; Technology Stocks</div><p>George Noble — Maggie Lake Talking Markets: SHORT / AVOID <strong>Reasoning:</strong> The AI trade is potentially the &quot;biggest misallocation of capital in history.&quot; The bubble is not just in valuations but in the margins of cyclical semiconductor companies, which are unsustainable. The business models for many AI firms lack a credible path to monetization. Investors should &quot;run, don&#x27;t walk&quot; from the sector.</p>
+<p>Doug Clinton &amp; Gene Munster — Excess Returns: LONG / BULLISH <strong>Reasoning:</strong> The AI revolution is in its early stages, comparable to 1995-1996 of the internet era, and will culminate in a bubble larger than the dot-com boom. The demand for intelligence is &quot;infinite,&quot; driving a massive, multi-year CapEx cycle in infrastructure and, critically, energy. This is a long-term transformative trend.</p></div>
+<div class="topic"><div class="t">Gold</div><p>George Noble — Maggie Lake Talking Markets: LONG <strong>Reasoning:</strong> Gold miners are &quot;phenomenal&quot; and represent a &quot;debasement trade&quot; against runaway money printing and fiscal dominance. Stocks like <strong>SSRM</strong> are trading at low multiples (7x earnings) with strong margins and cash flow, offering significant upside even without higher gold prices.</p>
+<p>Dr. Art Laffer — Adam Taggart Thoughtful Money: BEARISH <strong>Reasoning:</strong> The implementation of a sound monetary &quot;price rule,&quot; which he expects under new Fed Chair Kevin Warsh, will stabilize prices and reduce the need to hold gold as an inflation hedge. This will lead to a significant drop in its price.</p>
+<p>Dale Pinkert — Maggie Lake Talking Markets: SELL RALLIES <strong>Reasoning:</strong> The outlook is for continued US dollar strength. In this environment, investors should be selling rallies in gold and buying dollar weakness.</p></div>
+<div class="topic"><div class="t">Silver</div><p>Michael Oliver — Jimmy Connor: EXCEPTIONALLY BULLISH <strong>Reasoning:</strong> Silver is poised for an &quot;absolutely parabolic&quot; move, with a target of $300 to $500 by late summer. The move is driven by money degradation and its significant relative undervaluation compared to gold.</p>
+<p>Emanuel Datt — Money of Mine: OVERRATED <strong>Reasoning:</strong> In a rapid-fire assessment of various assets, silver was explicitly labeled as &quot;overrated.&quot;</p></div>
+<div class="topic"><div class="t">Bitcoin</div><p>Michael Oliver — Jimmy Connor: VERY BEARISH <strong>Reasoning:</strong> Bitcoin&#x27;s recent rally is an unsustainable counter-trend move. It is expected to follow the broader stock market lower when it rolls over. Its long-term viability is questionable if it breaks key support levels again.</p>
+<p>James Check — Less Noise More Signal: BULLISH ACCUMULATOR <strong>Reasoning:</strong> Bitcoin offers &quot;tremendous value&quot; anywhere below $70k for long-term investors. This is a &quot;deep value&quot; zone for accumulation. The bear case dies once the price surpasses the 95k 50-week moving average.</p></div>
+<div class="topic"><div class="t">U.S. Treasury Bonds</div><p>George Noble — The Julia La Roche Show: AVOID <strong>Reasoning:</strong> Bonds are &quot;certificates of confiscation&quot; due to negative real returns after taxes and inflation. In a world of fiscal dominance, high inflation, and rising commodity prices, buying long-duration government debt is illogical.</p>
+<p>Jim Bianco — Wealthion: DIVERSIFIER / ATTRACTIVE YIELD <strong>Reasoning:</strong> For investors seeking realistic 5% to 7% returns, bonds and TIPS offer attractive yields and principal return. They serve as a viable diversification tool away from the high-risk AI trade.</p>
+<p>Lance Roberts — Adam Taggart Thoughtful Money: HEDGE / ADD ON CORRECTION <strong>Reasoning:</strong> Fixed income should be added to portfolios as a hedge. Bond prices are expected to jump sharply when the equity market corrects. He plans to increase long-duration exposure when yields are oversold.</p></div>
+<div class="topic"><div class="t">Broad U.S. Equity Market</div><p>George Noble — Maggie Lake Talking Markets: BEARISH / REDUCE <strong>Reasoning:</strong> The market is undergoing a regime change to an inflationary environment where the &quot;buy the dip&quot; mentality is dead. Valuations are stretched, particularly in tech, and fundamentals for the consumer are weakening. Investors should run from tech and short consumer stocks.</p>
+<p>Jim Bianco — Wealthion: MUST HOLD / CANNOT UNDERWEIGHT <strong>Reasoning:</strong> Despite worries about a broken market held up by a narrow group of stocks, investors cannot afford to underweight equities. The potential for a continued &quot;melt-up&quot; driven by the AI tech chips trade necessitates maintaining exposure.</p></div></section>
+<section id="trade-ideas-positions"><h2>TRADE IDEAS &amp; POSITIONS</h2><div class="cards"><div class="card"><div class="head"><span class="asset">U.S. Tech Stocks / Semiconductors</span><span class="tag dir-short">SHORT / AVOID</span><span class="who">George Noble — Maggie Lake Talking Markets</span></div><p><span class="label">George Noble — Maggie Lake Talking Markets</span>Valuations are unsustainable, business models lack monetization paths, and there is a &quot;bubble in the margins&quot; for cyclical semiconductor companies. This is potentially the &quot;biggest misallocation of capital in history.&quot;</p></div>
+<div class="card"><div class="head"><span class="asset">U.S. Consumer Stocks (<strong>XLY</strong>)</span><span class="tag dir-short">SHORT</span><span class="who">George Noble — The Julia La Roche Show</span></div><p><span class="label">George Noble — The Julia La Roche Show</span>Many consumer stocks are making multi-year relative lows. Large segments of the consumer base are in a recession, creating short opportunities in names like Home Depot, McDonald&#x27;s, and Lululemon.</p></div>
+<div class="card"><div class="head"><span class="asset">Energy Stocks</span><span class="tag dir-long">LONG</span><span class="who">George Noble — Maggie Lake Talking Markets</span></div><p><span class="label">George Noble — Maggie Lake Talking Markets</span>The sector is undervalued, out of favor, and accounts for a disproportionately small share of the S&amp;P 500 relative to its free cash flow generation. Service companies and drillers look particularly good.</p></div>
+<div class="card"><div class="head"><span class="asset">Gold Miners</span><span class="tag dir-long">LONG</span><span class="who">George Noble — The Julia La Roche Show</span></div><p><span class="label">George Noble — The Julia La Roche Show</span>Miners are an outstanding &quot;debasement trade&quot; benefiting from money printing. They are cheap, with strong cash flow and stock buybacks.</p></div>
+<div class="card"><div class="head"><span class="asset">Silver</span><span class="tag dir-long">LONG</span><span class="who">Michael Oliver — Jimmy Connor</span></div><p><span class="label">Michael Oliver — Jimmy Connor</span>Expects an &quot;absolutely parabolic&quot; move due to money degradation and relative undervaluation to gold.</p><p><span class="label">context</span>Target of $300 to $500 by late summer.</p></div>
+<div class="card"><div class="head"><span class="asset">WTI Crude Oil</span><span class="tag dir-long">LONG / BUY PULLBACKS</span><span class="who">Michael Oliver — Jimmy Connor</span></div><p><span class="label">Michael Oliver — Jimmy Connor</span>Oil at $100/barrel is cheap and in a major bull trend. It is expected to go significantly higher.</p><p><span class="label">context</span>Advised waiting for a pullback to the $80s before buying to shake out headline chasers.</p></div>
+<div class="card"><div class="head"><span class="asset">Bitcoin</span><span class="tag dir-short">SHORT / BEARISH</span><span class="who">Michael Oliver — Jimmy Connor</span></div><p><span class="label">Michael Oliver — Jimmy Connor</span>The recent rally is an unsustainable counter-trend move. Expects it to follow the stock market lower.</p></div>
+<div class="card"><div class="head"><span class="asset">U.S. Bonds (<strong>TLT</strong>)</span><span class="tag dir-short">SHORT / BEARISH</span><span class="who">Dale Pinkert — Maggie Lake Talking Markets</span></div><p><span class="label">Dale Pinkert — Maggie Lake Talking Markets</span>The chart shows an &quot;ugly&quot; picture with a bear flag formation suggesting a breakdown.</p><p><span class="label">context</span>Targets 82, then 72, and potentially 52 in a financial crisis scenario.</p></div>
+<div class="card"><div class="head"><span class="asset">U.S. Dollar (<strong>DXY</strong>)</span><span class="tag dir-long">LONG</span><span class="who">Dale Pinkert — Maggie Lake Talking Markets</span></div><p><span class="label">Dale Pinkert — Maggie Lake Talking Markets</span>Anticipates a rally based on technicals and rising US yields.</p><p><span class="label">context</span>Looking for a rally to 103-104. Advises buying weakness.</p></div>
+<div class="card"><div class="head"><span class="asset">Gold</span><span class="tag dir-other">SELL RALLIES</span><span class="who">Dale Pinkert — Maggie Lake Talking Markets</span></div><p><span class="label">Dale Pinkert — Maggie Lake Talking Markets</span>Expects continued US dollar strength, which will pressure gold.</p><p><span class="label">context</span>Gold targets around $37.5 (typo in summary, likely meant a different level) and $4,100.</p></div>
+<div class="card"><div class="head"><span class="asset">Natural Gas</span><span class="tag dir-long">LONG</span><span class="who">Dale Pinkert — Maggie Lake Talking Markets</span></div><p><span class="label">Dale Pinkert — Maggie Lake Talking Markets</span>Identifies it as a strong long opportunity.</p><p><span class="label">context</span>Buy pullbacks. A potential buying area is 270 on a pullback.</p></div>
+<div class="card"><div class="head"><span class="asset">Semiconductors (<strong>NVIDIA</strong>, <strong>Micron</strong>, <strong>SOXX</strong>)</span><span class="tag dir-short">SHORT (short-term)</span><span class="who">Dale Pinkert — Maggie Lake Talking Markets</span></div><p><span class="label">Dale Pinkert — Maggie Lake Talking Markets</span>Crowded, parabolic stocks are due for a correction. Sees a &quot;three drives to a top&quot; formation.</p><p><span class="label">context</span>A pullback is seen as a &quot;gift&quot; for future long positions in the next phase of the melt-up.</p></div>
+<div class="card"><div class="head"><span class="asset">Tesla (<strong>TSLA</strong>)</span><span class="tag dir-short">SELL / SHORT</span><span class="who">Dale Pinkert — Maggie Lake Talking Markets</span></div><p><span class="label">Dale Pinkert — Maggie Lake Talking Markets</span>Views the current rally as a failing one that could fall back under its pivot.</p><p><span class="label">context</span>Use stops over the recent high.</p></div>
+<div class="card"><div class="head"><span class="asset">Silver</span><span class="tag dir-long">LONG</span><span class="who">Chris Whalen — The Julia La Roche Show</span></div><p><span class="label">Chris Whalen — The Julia La Roche Show</span>Adding to positions. Views it as a commodity and technology story driven by strong Chinese industrial demand, new solid-state battery developments, and reduced derivative mining supply.</p></div>
+<div class="card"><div class="head"><span class="asset">Long-dated TIPS</span><span class="tag dir-long">LONG</span><span class="who">Mike Green — Adam Taggart Thoughtful Money</span></div><p><span class="label">Mike Green — Adam Taggart Thoughtful Money</span>An &quot;incredible&quot; opportunity offering a 2.7% real return for 30 years, which is competitive with the historical real return of the S&amp;P 500.</p></div>
+<div class="card"><div class="head"><span class="asset">Meritage Homes (<strong>MTH</strong>)</span><span class="tag dir-long">LONG (long-term)</span><span class="who">Steve Eisman — Steve Eisman</span></div><p><span class="label">Steve Eisman — Steve Eisman</span>Bullish on buying a home builder below tangible book value when it is growing book value.</p><p><span class="label">context</span>Advises waiting to buy due to the current headwind of rising long-term rates.</p></div>
+<div class="card"><div class="head"><span class="asset">Select Harvest (<strong>SHV.AX</strong>)</span><span class="tag dir-long">LONG</span><span class="who">Vas Piperoglou — Money of Mine</span></div><p><span class="label">Vas Piperoglou — Money of Mine</span>The almond market is in a bull cycle, driven by decreasing supply (older trees, California water issues) and consistently rising demand from Asia and the Gulf region.</p></div>
+<div class="card"><div class="head"><span class="asset">Kaspi (<strong>KSPI</strong>)</span><span class="tag dir-long">LONG</span><span class="who">Vas Piperoglou — Money of Mine</span></div><p><span class="label">Vas Piperoglou — Money of Mine</span>A monopoly in banking, online payments, and fintech in Kazakhstan, trading at 6x earnings with a 10% dividend yield, overlooked due to geopolitical fears.</p></div>
+<div class="card"><div class="head"><span class="asset">New Hope (<strong>NHC.AX</strong>)</span><span class="tag dir-long">LONG</span><span class="who">Emanuel Datt — Money of Mine</span></div><p><span class="label">Emanuel Datt — Money of Mine</span>His largest thermal coal position. It is a pure-play expression with organic growth potential (New Acland 3) and a stake in Malabar.</p></div>
+<div class="card"><div class="head"><span class="asset">Europe vs. US Equities</span><span class="tag dir-short">LONG Europe / SHORT US</span><span class="who">Mark Rubinstein — Excess Returns</span></div><p><span class="label">Mark Rubinstein — Excess Returns</span>Prefers utility-like financial entities built at lower valuations doing global work outside the US.</p></div>
+<div class="card"><div class="head"><span class="asset">Financials vs. Market</span><span class="tag dir-short">LONG Financials / SHORT Market</span><span class="who">Mark Rubinstein — Excess Returns</span></div><p><span class="label">Mark Rubinstein — Excess Returns</span>Growth is often a &quot;red flag&quot; in financial services.</p></div>
+<div class="card"><div class="head"><span class="asset">Korean Market</span><span class="tag dir-long">LONG</span><span class="who">Fahmi Quadir — Odd Lots</span></div><p><span class="label">Fahmi Quadir — Odd Lots</span>First-ever long position. Driven by its chip industry benefiting from AI, and significant, concerted changes in corporate governance (enshrining shareholder rights) that will unlock value from depressed assets.</p></div></div></section>
+<section id="conviction-scenarios"><h2>CONVICTION &amp; SCENARIOS</h2><p>Rory Johnston — Jimmy Connor: The base case for OPEC&#x27;s future is that it will manage to &quot;muddle through&quot; with its current structure after the war and for the coming years. <strong>Probability:</strong> 80%</p>
+<p>Mike Green — Adam Taggart Thoughtful Money: The market is approaching a &quot;danger zone&quot; for passive investing&#x27;s market share. If [passive share exceeds ~65% of market activity]: there won&#x27;t be enough discretionary capital to offset emerging volatility, potentially leading to a market event similar to the <strong>XIV</strong> trade. <strong>Timeframe:</strong> This threshold is about two and a half years away at the current rate of change.</p>
+<p>Dale Pinkert — Maggie Lake Talking Markets: A stock market pullback could be the last good buying opportunity. If [S&amp;P 500 pulls back to 6,900]: this could be the last chance to buy before a final melt-up to 8,900.</p></section>
+<section id="tickers-assets"><h2>TICKERS &amp; ASSETS</h2><h3>THESIS TICKERS</h3>
+<ul><li><strong>CRCL (Circle)</strong> — Zach Pandell — RenMac — A crypto beta and a rates beta trade, benefiting from higher interest rates via its net interest margin business model.</li><li><strong>CTGO (Contango Silver &amp; Gold)</strong> — Rick Van Nieuwenhuyse — Mining Stock Daily — Leveraging cash flow from a producing asset to advance a pipeline of high-grade projects, aiming to close a significant valuation gap.</li><li><strong>ECR.V (Cartier Resources)</strong> — Philippe Cloutier — Mining Stock Daily — Compelling case driven by improved project economics (higher gold price, better recovery), exploration success, and enhanced marketing to re-rate an undervalued stock.</li><li><strong>EQX (Equinox Gold)</strong> — Ryan King — Mining Stock Daily — Merger with Ora Mining creates a scaled North American producer with significant free cash flow potential and a clear growth pipeline, positioning it for a rerating.</li><li><strong>KSPI (Kaspi)</strong> — Vas Piperoglou — Money of Mine — A Kazakh fintech/banking monopoly trading at 6x earnings with a 10% dividend yield, overlooked due to geopolitical fears.</li><li><strong>NHC.AX (New Hope)</strong> — Emanuel Datt — Money of Mine — Largest thermal coal position; a pure-play on the theme with organic growth potential.</li><li><strong>SHV.AX (Select Harvest)</strong> — Vas Piperoglou — Money of Mine — Bullish on the almond producer due to a supply-driven bull cycle in the almond market.</li><li><strong>SSRM (SSRM Holdings)</strong> — George Noble — The Julia La Roche Show — Example of a &quot;phenomenal&quot; gold stock, trading at 7x earnings with 75% margins.</li></ul>
+<h3>TRADE EXPRESSION</h3>
+<ul><li><strong>DXY (US Dollar Index)</strong> — Long the US Dollar — Dale Pinkert — Maggie Lake Talking Markets</li><li><strong>GLD (SPDR Gold Shares)</strong> — Sell rallies in gold — Dale Pinkert — Maggie Lake Talking Markets</li><li><strong>MAGS (Roundhill Magnificent 7 ETF)</strong> — Buy weakness in Mag 7 — Mark Newton — Milk Road Macro</li><li><strong>SMH (VanEck Semiconductor ETF)</strong> — Key driver of Van&#x27;s growth, allows up to 20% weight in <strong>NVDA</strong> — Yan Van — The Compound</li><li><strong>TLT (iShares 20+ Year Treasury Bond ETF)</strong> — Bearish on long-duration bonds — Dale Pinkert — Maggie Lake Talking Markets</li><li><strong>XLY (Consumer Discretionary SPDR Fund)</strong> — Short consumer stocks — George Noble — The Julia La Roche Show</li></ul>
+<h3>WATCH LEVELS</h3>
+<ul><li><strong>Bitcoin</strong> — 95k (50-week moving average) is where the bear case dies — James Check — Less Noise More Signal</li><li><strong>Bitcoin</strong> — Below 70k is a &quot;deep value&quot; accumulation zone — James Check — Less Noise More Signal</li><li><strong>Bonds (generic)</strong> — 82 support level is a critical test for the new Fed chairman — Dale Pinkert — Maggie Lake Talking Markets</li><li><strong>S&amp;P 500</strong> — A slip below 6,900 after its recent breakout would be an &quot;abort&quot; signal — Michael Oliver — Jimmy Connor</li><li><strong>S&amp;P 500</strong> — A pullback to 6,900 could be the last good buying opportunity before a melt-up to 8,900 — Dale Pinkert — Maggie Lake Talking Markets</li><li><strong>US 10-Year Treasury Yield</strong> — Nearing 4.5% is a historical &quot;Rubicon for markets&quot; — Steve Eisman — Steve Eisman</li><li><strong>US 30-Year Treasury Yield</strong> — Topping 5% signals &quot;higher for longer&quot; — Chris Whalen — The Julia La Roche Show</li><li><strong>WTI Crude Oil</strong> — A break below $79 support could lead to a drop to $60 — Mark Newton — Milk Road Macro</li></ul>
+<h3>CONTEXT MENTIONS</h3>
+<ul><li><strong>Anthropic</strong> — Its valuation contributed to S&amp;P 500 &quot;other income&quot; earnings beats for owners like <strong>MSFT</strong> and <strong>AMZN</strong> (Jim Bianco); one of three massive upcoming IPOs (Ariel, Gene Munster).</li><li><strong>FICO</strong> — Short position based on research into its scoring monopoly, not a bearish view on the mortgage sector itself (Steve Eisman).</li><li><strong>FSK (FS KKR Capital Corp)</strong> — Example of private credit stress; Moody&#x27;s downgrade to junk, credit line cut by JP Morgan (Steve Eisman).</li><li><strong>IGV (iShares Expanded Tech-Software ETF)</strong> — Shows excessive inflows, suggesting an overbought condition worth fading (Jeff DeGroff).</li><li><strong>KOSPI</strong> — Fahmi Quadir is long the Korean market, not a specific index, due to governance reforms.</li><li><strong>MTUM (iShares MSCI USA Momentum Factor ETF)</strong> — Example of a parabolic move that will eventually reverse (Lance Roberts).</li><li><strong>Nvidia (NVDA)</strong> — Larger than the entire healthcare sector (Steve Eisman); its CUDA ecosystem provides a durable moat (Yan Van); earnings are a crucial upcoming catalyst (John J. Hardy).</li><li><strong>SpaceX</strong> — One of three massive upcoming IPOs that could be a market top signal (Ben Brey); valuation is &quot;pure la-la land&quot; (George Noble).</li><li><strong>XIV</strong> — Referenced as a past volatility event that could be repeated if passive market share grows too large (Mike Green).</li></ul></section>
+<section id="spotlight-mining-sector-deep-dives"><h2>SPOTLIGHT: Mining Sector Deep Dives</h2><h3>Elemental Royalties Makes a Transformational Bet on Panuco</h3>
+<p><strong>Host:</strong> Trevor <strong>Guest:</strong> Fred Bell, COO, Elemental Royalties</p>
+<ul><li>Elemental Royalties&#x27; Q1 2026 revenue nearly doubled YoY to $24.3M, with operating cash flow up six-fold.</li><li>The transformational acquisition of Visla Royalties, including the Panuco project, is projected to boost organic growth to 75% by 2029.</li><li>The Panuco project has exceptional economics, with a post-tax NPV of $1.8B and an IRR of 111% in the base case.</li><li>The company&#x27;s strategy is to build a mid-tier royalty company through high-quality cornerstone assets while maintaining a strong balance sheet and initiating a dividend.</li></ul>
+<h3>Equinox Gold&#x27;s Next Chapter: Bigger Scale, Bigger Cash Flow</h3>
+<p><strong>Host:</strong> Trevor Hall <strong>Guest:</strong> Ryan King, Executive Vice President of Capital Markets, Equinox Gold</p>
+<ul><li>The all-stock merger with Ora Mining creates a new senior gold producer with an internally funded path to nearly 2 million ounces of annual production.</li><li>The combined entity will be the second-largest gold producer from Canadian mines, a strategic advantage given the geopolitical landscape.</li><li>Scale is crucial for attracting institutional investors in the current commodity environment, and the merger accelerates a &quot;rerate path&quot; for both companies.</li><li>The combined entity targets $1.4B in free cash flow this year and projects cumulative free cash flow of over $9B from 2026-2030, assuming a long-term gold price of $4,000-$4,200/oz.</li></ul>
+<h3>Live from Deutsche Goldmesse: Cartier Resources</h3>
+<p><strong>Host:</strong> Ian Wagner <strong>Guest:</strong> Philippe Cloutier, CEO, Cartier Resources</p>
+<ul><li>Recent metallurgical tests for the Cadillac project show gold recoveries of 96-97%, a 7% improvement.</li><li>This, combined with a resource increase to 3.2M ounces and a much higher current gold price ($4700-$5000 vs. $1750 in the 2023 PEA), provides strong positive catalysts for the project&#x27;s economics.</li><li>The company is increasing marketing efforts to address an &quot;unrecognized story&quot; and re-rate its share price to attract M&amp;A interest in a &quot;hungry&quot; market.</li><li>Strategic investor Agnico Eagle owns 27% of the company.</li></ul>
+<h3>Live from the Deutsche Goldmesse: Contango Silver &amp; Gold</h3>
+<p><strong>Host:</strong> Ian Wagner <strong>Guest:</strong> Rick Van Nieuwenhuyse, CEO and Director, Contango Silver &amp; Gold</p>
+<ul><li>Contango is using cash flow from its Mancho JV with Kinross to fund the advancement of its project pipeline (Lucky Shot, Johnson Tract, Kitsault).</li><li>The company is trading at a significant valuation gap to peers (0.3x NAV vs. 0.6-0.7x), which the CEO attributes to post-merger investor base shifts and a trading halt.</li><li>The strategy is a &quot;hub and spoke&quot; model, aiming to acquire a central processing facility for its polymetallic deposits.</li><li>A new mineral resource update for the Kitsault exploration project is expected by the end of June, guiding a 40,000-meter drill program this summer.</li></ul></section>
+<section id="notable-data-figures"><h2>NOTABLE DATA &amp; FIGURES</h2><ul><li><strong>4%:</strong> The energy sector&#x27;s small weighting in the S&amp;P 500. — Bob Brackett — Steve Eisman</li><li><strong>4.1%:</strong> China&#x27;s industrial output growth in April, the weakest pace in almost three years. — Joe Peisel — Trivium China</li><li><strong>5%:</strong> The 30-year Treasury bond yield topped this level for the first time since the GFC. — Chris Whalen — The Julia La Roche Show</li><li><strong>9%:</strong> Decline in China&#x27;s aggregate fixed asset investment in April. — Joe Peisel — Trivium China</li><li><strong>18%:</strong> The semiconductor sector now comprises over 18% of the S&amp;P 500. — Steve Eisman — Steve Eisman</li><li><strong>20%:</strong> The portion of global oil and natural gas flows that could be blocked by a closure of the Strait of Hormuz. — Bob Brackett — Steve Eisman</li><li><strong>27%:</strong> Year-over-year increase in S&amp;P 500 earnings, driven by cross-ownership in AI companies. — Jim Bianco — Wealthion</li><li><strong>65%:</strong> The approximate threshold of passive share in market activity beyond which there may not be enough discretionary capital to absorb volatility. — Mike Green — Adam Taggart Thoughtful Money</li><li><strong>71%:</strong> Year-over-year increase in new business creation on Stripe in Q1 2026. — John Collison — Odd Lots</li><li><strong>84%:</strong> Increase in hiring for workers aged 55 and up. — Mike Green — Adam Taggart Thoughtful Money</li><li><strong>$21B - $82B:</strong> Potential revenue at risk for global wholesale banks by 2030 as clients migrate from traditional to digital rails. — Betsy Grasik — Morgan Stanley</li><li><strong>$48B:</strong> Approximate monthly inflow into markets from 401k corporate retirement contributions. — Lance Roberts — Adam Taggart Thoughtful Money</li><li><strong>$400B:</strong> Approximate passive capital inflows in April that mechanistically drove a $10 trillion market cap appreciation. — Mike Green — Adam Taggart Thoughtful Money</li><li><strong>$1.8B:</strong> Post-tax NPV of the Panuco silver project. — Fred Bell — Mining Stock Daily</li></ul></section>
+<section id="watch-catalysts"><h2>WATCH CATALYSTS</h2><ul><li><strong>This Week:</strong> NVIDIA earnings release, a crucial catalyst for the AI space and broader market. — John J. Hardy — Saxo Market Call</li><li><strong>This Week:</strong> SpaceX Starship 12 launch, critical for its credibility ahead of a potential IPO. — John J. Hardy — Saxo Market Call</li><li><strong>This Week:</strong> UK CPI figure release, pivotal for Sterling given current yield pressures. — John J. Hardy — Saxo Market Call</li><li><strong>Late July 2026:</strong> Shareholder vote on the Equinox Gold-Ora Mining merger. — Ryan King — Mining Stock Daily</li><li><strong>Late Aug / Early Sep 2026:</strong> Expected closing of the Equinox Gold-Ora Mining merger. — Ryan King — Mining Stock Daily</li><li><strong>Fall 2026:</strong> The DTCC is expected to add tokenized products. — Betsy Grasik — Morgan Stanley</li><li><strong>December 6th, 2026:</strong> NASDAQ and NYSE expected to extend trading hours to 23 hours a day, five days a week. — Betsy Grasik — Morgan Stanley</li><li><strong>Calendar Year 2026:</strong> Major AI companies like SpaceX, Anthropic, and OpenAI are anticipated to IPO. — Doug Clinton &amp; Gene Munster — Excess Returns</li><li><strong>Ongoing:</strong> The confirmation process for Kevin Warsh as the new Federal Reserve Chair is a major catalyst for monetary policy expectations. — Chris Whalen, Dr. Art Laffer, Bilal Hafeez</li><li><strong>Ongoing:</strong> The upcoming Xi-Trump summit is a key geopolitical event for US-China trade relations. — Marko Papic — Jacob Shapiro</li></ul></section>
+<section id="miscellaneous"><h2>MISCELLANEOUS</h2><ul><li>The concept of &quot;cash on the sidelines&quot; is a fallacy; when cash is spent on stocks, the seller receives that cash, meaning the total amount in the system is unchanged. — Cliff Asness — Excess Returns</li><li>The current retirement savings paradigm is creating a &quot;paradox of thrift,&quot; where older generations&#x27; oversaving inflates asset prices, lowers forward returns, and negatively impacts younger generations&#x27; income and opportunities. — Mike Green — Adam Taggart Thoughtful Money</li><li>The market is exhibiting a K-shaped recovery, where strong performance and spending from the top economic segment masks struggles and demand destruction for the majority. — Lance Roberts — Adam Taggart Thoughtful Money; Dale Pinkert — Maggie Lake Talking Markets</li><li>The illiquidity premium for private investments may have reversed; where investors were once paid extra for illiquidity, they may now be paying for it (accepting lower expected returns) to enforce long-term discipline. — Cliff Asness — Excess Returns</li><li>The massive CapEx for AI data centers will likely necessitate a bifurcation of the electricity grid, with dedicated power generation for data centers and a separate grid for the general economy. — Doomberg — Competent Man Podcast - Tom Bodrovics</li><li>A historical market top indicator has been when the market leaders from the second-to-last year decline while the broad market continues to rise, a pattern seen in 1929, 1972, and 2000. This is not currently flashing. — Jeremy Grantham — Excess Returns</li><li>The US&#x27;s four-year election cycle creates foreign policy &quot;whiplash,&quot; making long-term deals with the US unreliable for other nations, as exemplified by the abrogation of the Iran nuclear deal. — Doomberg — Competent Man Podcast - Tom Bodrovics</li></ul></section>
+<section id="data-quality-note"><h2>DATA QUALITY NOTE</h2><ul><li><strong>Same-Show Repeats:</strong> Several guests appeared on the same show multiple times in the past two weeks (Dale Pinkert, James Check, Rory Johnston, Marko Papic, Ian Forester, Chris Whalen, Lance Roberts). Content from these repeat appearances was reviewed for overlap. The analysis presented synthesizes the most current views and avoids redundant information from earlier episodes in the period.</li><li><strong>Cross-Show Appearances:</strong> Several guests appeared on different shows within the digest period (Ozan Tarman, Andy Constan, Mike Green). Their views were synthesized across all appearances to present a coherent and comprehensive perspective.</li><li><strong>Attribution Note:</strong> The episode &quot;Sprott Money: Physical Metals vs. ETFs&quot; did not state a host name. The guest was identified as Andrew Sleigh.</li><li><strong>Ticker Discrepancy:</strong> In the summary for &quot;Maggie Lake Talking Markets: Episode 50,&quot; Dale Pinkert is quoted with a gold target of &quot;$37.5.&quot; This is almost certainly a transcription error for a different level (e.g., $3750 or a key futures level) but is reproduced as stated in the source summary, with this note of caution.</li><li><strong>Language Note:</strong> The episode &quot;Morgan Stanley: 日本の銀行業の新たな地図&quot; was in Japanese. The digest relies on the provided English summary for its content.</li><li><strong>Empty Episode:</strong> The summary for &quot;The Macro Dirt Podcast: TG Macro Conference II Registration Opens Soon&quot; contained no substantive content and was therefore excluded from the synthesis.</li></ul></section>
+<section id="episode-index"><h2>EPISODE INDEX</h2><ul><li><strong>Mining Stock Daily</strong> — Elemental Royalties Makes a Transformational Bet on Panuco</li></ul>
+<p>Host: Trevor | Guest: Fred Bell, COO, Elemental Royalties | Commodities Hard Assets</p>
+<ul><li><strong>Mining Stock Daily</strong> — Equinox Golds Next Chapter Bigger Scale Bigger Cash Flow</li></ul>
+<p>Host: Trevor Hall | Guest: Ryan King, Executive Vice President of Capital Markets, Equinox Gold | Commodities Hard Assets</p>
+<ul><li><strong>Mining Stock Daily</strong> — Live from Deutsche Goldmesse Cartier Resources CEO Philippe Cloutier on Cadillac</li></ul>
+<p>Host: Ian Wagner | Guest: Philippe Cloutier, CEO, Cartier Resources | Commodities Hard Assets</p>
+<ul><li><strong>Mining Stock Daily</strong> — Live from the Deutsche Goldmesse Contango Silver Gold CEO Rick Van Nieuwenhuyse</li></ul>
+<p>Host: Ian Wagner | Guest: Rick Van Nieuwenhuyse, CEO and Director, Contango Silver &amp; Gold | Commodities Hard Assets</p>
+<ul><li><strong>Mining Stock Daily</strong> — More Than Gold Bernie Kreft on Family Prospecting and Discovery</li></ul>
+<p>Host: Trevor Hall | Guest: Bernie Kreft, Prospector and Prospect Generator | Commodities Hard Assets</p>
+<ul><li><strong>Money of Mine</strong> — The Most Overlooked Commodity Opportunity Vas Piperoglou</li></ul>
+<p>Host: Mat Glisson, Paul Atherley | Guest: Vas Piperoglou, Collins Street Value | Commodities Hard Assets</p>
+<ul><li><strong>Money of Mine</strong> — This is a Hard Reset Moment Emanuel Datt</li></ul>
+<p>Host: Mat Glisson, Paul Atherley | Guest: Emanuel Datt | Commodities Hard Assets</p>
+<ul><li><strong>SmarterMarkets</strong> — How to Raise Your Agent Ep 2 Michelle Dennedy Chief Data Strategy Officer Abaxx</li></ul>
+<p>Host: David Greely | Guest: Michelle Dennedy, Chief Data Strategy Officer, Abaxx Technologies | Commodities Hard Assets</p>
+<ul><li><strong>SmarterMarkets</strong> — How to Raise Your Agent Episode 1 Ian Forester Head of Abaxx Labs at Abaxx Techn</li></ul>
+<p>Host: David Greely | Guest: Ian Forester, Head of Abaxx Labs at Abaxx Technologies | Commodities Hard Assets</p>
+<ul><li><strong>Sprott Money</strong> — Physical Metals vs ETFs What Do You Actually Own If the Banks Shut Down Andrew S</li></ul>
+<p>Host: Sprott Money | Guest: Andrew Sleigh, not stated, 1-888-861-0775 extension 230 | Commodities Hard Assets</p>
+<ul><li><strong>Wealthion</strong> — Jim Bianco AI Is Holding Up A Broken Market</li></ul>
+<p>Host: Andrew Brill | Guest: Jim Bianco | Commodities Hard Assets</p>
+<ul><li><strong>Jimmy Connor</strong> — Is Carney and Liberals Helping the Canadian Oil Sector Rory Johnston and Jimmy C</li></ul>
+<p>Host: Jimmy Connor | Guest: Rory Johnston | Equities Trading</p>
+<ul><li><strong>Jimmy Connor</strong> — Michael Oliver Latest on Gold Silver Oil and SP Recorded Evening May 15</li></ul>
+<p>Host: Jimmy Connor | Guest: Michael Oliver, oliversa.com | Equities Trading</p>
+<ul><li><strong>Jimmy Connor</strong> — Why Did UAE Leave OPEC and Does OPEC Survive Rory Johnston and Jimmy Connor</li></ul>
+<p>Host: Jimmy Connor | Guest: Rory Johnston | Equities Trading</p>
+<ul><li><strong>Markets Unscripted</strong> — Is The AI Pullback Just Starting Real Simple Ariel Joins</li></ul>
+<p>Host: Matt Cruz, Jason Shapiro | Guest: Ariel, trader (known as Real Simple Ariel on X) | Equities Trading</p>
+<ul><li><strong>The Macro Dirt Podcast</strong> — TG Macro Conference II Registration Opens Soon</li></ul>
+<p>Host: The Macro Dirt Podcast | Guest: Solo | Equities Trading</p>
+<ul><li><strong>Trivium China</strong> — Ep 65 - Xi-Trump vibes meetings about meetings and the PBoCs next moves</li></ul>
+<p>Host: Andrew Polk, Corey Combs, Dinny McMahon | Guest: Solo | Geopolitics</p>
+<ul><li><strong>Trivium China</strong> — Ep 66 - Jon Czin on Xi Trump and the US-China stalemate</li></ul>
+<p>Host: Andrew Polk | Guest: Jon Czin, Michael H. Armacost Chair in Foreign Policy Studies and Fellow at the John L. Thornton China Center at Brookings Institution. | Geopolitics</p>
+<ul><li><strong>Excess Returns</strong> — He Invested Through Five Bubbles He Wrote the Book on Them The Weekly Wrap - 517</li></ul>
+<p>Host: Jack Forehand, Matt Ziggler | Guest: Solo | Investment Analysis Factors</p>
+<ul><li><strong>Excess Returns</strong> — He Predicted the AI Bubble in 2023 Doug Clinton and Gene Munster on Why Were Sti</li></ul>
+<p>Host: Jack Forehand | Guest: Doug Clinton and Gene Munster, Deepwater Asset Management | Investment Analysis Factors</p>
+<ul><li><strong>Excess Returns</strong> — Is AI Still in 1995 Gene Munster and Doug Clinton on the Next Phase of the AI Bo</li></ul>
+<p>Host: Jack Forehand | Guest: Gene Munster, Managing Partner at Deepwater Asset Management | Investment Analysis Factors</p>
+<ul><li><strong>Excess Returns</strong> — Jeremy Grantham on AI Bubbles and Why Mean Reversion Lives On</li></ul>
+<p>Host: Jack Forehand, Justin Carbonneau | Guest: Jeremy Grantham, Co-founder and Chief Investment Strategist, GMO | Investment Analysis Factors</p>
+<ul><li><strong>Excess Returns</strong> — We Asked Cliff Asness What Investors Get Wrong About Risk and Why Private Equity</li></ul>
+<p>Host: Jack Forehand, Matt Ziggler | Guest: Cliff Asness, Founder, AQR | Investment Analysis Factors</p>
+<ul><li><strong>Excess Returns</strong> — We Asked Jeremy Grantham Why AI Wont Boost Profits and What It Will Do Instead</li></ul>
+<p>Host: Jack Forehand, Justin Carbonneau | Guest: Jeremy Grantham | Investment Analysis Factors</p>
+<ul><li><strong>Morgan Stanley</strong> — Alberto Tamura on Bloomberg from the Japan Summit</li></ul>
+<p>Host: Morgan Stanley | Guest: Alberto Tamura, CEO, Morningstar Japan | Investment Analysis Factors</p>
+<ul><li><strong>Morgan Stanley</strong> — How Digital Assets Are Changing Banking</li></ul>
+<p>Host: Morgan Stanley | Guest: Betsy Grasik, Global Head of Banks and Diversified Finance Research, Morgan Stanley | Investment Analysis Factors</p>
+<ul><li><strong>Morgan Stanley</strong> — Investing Through an Uneasy Boom</li></ul>
+<p>Host: Serena Tang | Guest: Solo | Investment Analysis Factors</p>
+<ul><li><strong>Morgan Stanley</strong> — Whats Driving Japans Market Momentum</li></ul>
+<p>Host: Seth Carpenter | Guest: Chetan Ahya, Chief Asia Economist, Morgan Stanley | Investment Analysis Factors</p>
+<ul><li><strong>Morgan Stanley</strong> — 日本の銀行業の新たな地図</li></ul>
+<p>Host: Morgan Stanley | Guest: 長坂美也, 日本の金融業界リサーチヘッド, モルガン・スタンレーMUFG証券 | Investment Analysis Factors</p>
+<ul><li><strong>Steve Eisman</strong> — Why Energy Stocks Are Down When They Should Be Up with Bob Brackett The Real Eis</li></ul>
+<p>Host: Steve Eisman | Guest: Bob Brackett, Oil and Mining Analyst, Bernstein | Investment Analysis Factors</p>
+<ul><li><strong>Steve Eisman</strong> — Why This Market Melt-Up is Making Me Nervous The Weekly Wrap</li></ul>
+<p>Host: Steve Eisman | Guest: Solo | Investment Analysis Factors</p>
+<ul><li><strong>The Compound</strong> — Why Memory is a Bubble but Nvidia isnt TCAF 243</li></ul>
+<p>Host: Josh Brown, Michael Batnick | Guest: Yan Van, President and CEO, Van | Investment Analysis Factors</p>
+<ul><li><strong>The Julia La Roche Show</strong> — Chris Whalen Why Double-Digit Inflation Is Possible 30-Year Tops 5</li></ul>
+<p>Host: Julia La Roche | Guest: Chris Whalen, Chairman of Whalen Global Advisors | Investment Analysis Factors</p>
+<ul><li><strong>The Julia La Roche Show</strong> — George Noble Feds Hands Tied Bond Vigilantes Waking Up Buy the Dip Dead Margin o</li></ul>
+<p>Host: Julia La Roche | Guest: George Noble, CIO, Noble Capital Advisors | Investment Analysis Factors</p>
+<ul><li><strong>The Meb Faber Show</strong> — Meb Faber Investors Are Repeating The Stock Markets History</li></ul>
+<p>Host: Meb Faber | Guest: Meb Faber, Co-founder and Chief Investment Officer at Camri Investment Management | Investment Analysis Factors</p>
+<ul><li><strong>Adam Taggart Thoughtful Money</strong> — Passive Capital Flows Are All That Matter For Stocks Are They Starting To Falter</li></ul>
+<p>Host: Adam Taggart | Guest: Mike Green, Portfolio Manager and Chief Strategist at Simplify Asset Management | Macroeconomics Strategy</p>
+<ul><li><strong>Adam Taggart Thoughtful Money</strong> — Stocks Looking Vulnerable As Bond Yields Surge Lance Roberts</li></ul>
+<p>Host: Adam Taggart | Guest: Lance Roberts, Apex Portfolio Manager, RIA | Macroeconomics Strategy</p>
+<ul><li><strong>Adam Taggart Thoughtful Money</strong> — The Doubters Are Wrong Boom Times Ahead For The USA Dr Art Laffer</li></ul>
+<p>Host: Adam Taggart | Guest: Dr. Art Laffer, not stated (find: laffercenter.org) | Macroeconomics Strategy</p>
+<ul><li><strong>Adam Taggart Thoughtful Money</strong> — The Giant Mindless Robot Driving Stocks Is Starting to Falter Mike Green</li></ul>
+<p>Host: Adam Taggart | Guest: Mike Green, Portfolio Manager and Chief Strategist at Simplify Asset Management | Macroeconomics Strategy</p>
+<ul><li><strong>Adam Taggart Thoughtful Money</strong> — Warning Markets at Risk as Bond Yields Explode Higher Lance Roberts</li></ul>
+<p>Host: Adam Taggart | Guest: Lance Roberts, Portfolio Manager at Apex | Macroeconomics Strategy</p>
+<ul><li><strong>Benny The Squirrel</strong> — Beware the Gamma Hammer</li></ul>
+<p>Host: Rupert Mitchell, Ben Brey | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Benny The Squirrel</strong> — Episode 53 The Debut LIVE Ask us Everything Show</li></ul>
+<p>Host: Rupert Mitchell, Ben Brey | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Competent Man Podcast - Tom Bodrovics</strong> — Doomberg The Late Stages of US Supremacy</li></ul>
+<p>Host: Tom Bodrovics | Guest: Doomberg, Doomberg (Substack) | Macroeconomics Strategy</p>
+<ul><li><strong>Jacob Shapiro</strong> — Is the Iran War About China Jacob Shapiro and Marko Papic</li></ul>
+<p>Host: Jacob Shapiro | Guest: Marko Papic | Macroeconomics Strategy</p>
+<ul><li><strong>Jacob Shapiro</strong> — Trump Xi and the Secret Iran Peace Deal Jacob Shapiro and Marko Papic</li></ul>
+<p>Host: Jacob Shapiro | Guest: Jacob Shapiro and Marko Papic | Macroeconomics Strategy</p>
+<ul><li><strong>Less Noise More Signal</strong> — Major Podcast Update</li></ul>
+<p>Host: Pascal Hügli | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Less Noise More Signal</strong> — The Central Bank Put Is Dying Heres What Breaks Next</li></ul>
+<p>Host: Pascal Hügli | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Less Noise More Signal</strong> — When Do Bitcoin Bears Lose James Check Explains</li></ul>
+<p>Host: Pascal Hügli | Guest: James Check | Macroeconomics Strategy</p>
+<ul><li><strong>Macro Hive</strong> — Al Jazeera Interview Bilal Hafeez on the Iran War Triggering the Next Debt Shock</li></ul>
+<p>Host: Scott Mlan | Guest: Bilal Hafi, Markets Analyst and CEO of Macrohive | Macroeconomics Strategy</p>
+<ul><li><strong>Macro Hive</strong> — Ep 359 Dylan Smith on the Hormuz Supply Shock US Macro Regimes and Private Marke</li></ul>
+<p>Host: Bilal Hafeez | Guest: Dylan Smith, Founder, Ark Macro | Macroeconomics Strategy</p>
+<ul><li><strong>Macro Hive</strong> — The Week Ahead Persistent Oil Price Increases Disrupt Fed Narrative</li></ul>
+<p>Host: Bilal Hafeez | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Maggie Lake Talking Markets</strong> — Episode 50 Is The Bond Markt Breaking With Dale Pinkert</li></ul>
+<p>Host: Maggie Lake | Guest: Dale Pinkert, Trading Coach at TradeGateHub | Macroeconomics Strategy</p>
+<ul><li><strong>Maggie Lake Talking Markets</strong> — Episode 51 Run From Tech Stocks With George Noble</li></ul>
+<p>Host: Maggie Lake | Guest: George Noble, Author, Noble Update (Substack) | Macroeconomics Strategy</p>
+<ul><li><strong>Maggie Lake Talking Markets</strong> — Is It Time for a Reality Check for Wall Street With George Noble</li></ul>
+<p>Host: Maggie Lake | Guest: George Noble, Author, Noble Update Substack | Macroeconomics Strategy</p>
+<ul><li><strong>Maggie Lake Talking Markets</strong> — Is the 8-Week SP Streak a Bull Trap With Dale Pinkert</li></ul>
+<p>Host: Maggie Lake | Guest: Dale Pinkert, Tradegate Hub | Macroeconomics Strategy</p>
+<ul><li><strong>Milk Road Macro</strong> — Why Energy Prices Could Decide The Election Markets w Mark Newton</li></ul>
+<p>Host: John Gillen | Guest: Mark Newton | Macroeconomics Strategy</p>
+<ul><li><strong>Milk Road Macro</strong> — Why Geopolitical Chaos Is Bullish For the US w Eric Wallerstein</li></ul>
+<p>Host: John Gillen | Guest: Eric Wallerstein, Principal and Chief Macro Strategist, Clocktower Group | Macroeconomics Strategy</p>
+<ul><li><strong>Odd Lots</strong> — Deutsche Banks Ozan Tarman and Aditya Singhal on Understanding the Macro Risks</li></ul>
+<p>Host: Tracy Alloway, Joe Weisenthal | Guest: Ozan Tarman, Vice Chair of Global Macro, Deutsche Bank | Macroeconomics Strategy</p>
+<ul><li><strong>Odd Lots</strong> — Stripes John Collison on How Agentic Commerce Will Reshape the Internet</li></ul>
+<p>Host: Joe Weisenthal, Tracy Alloway | Guest: John Collison, President and Co-founder, Stripe | Macroeconomics Strategy</p>
+<ul><li><strong>Odd Lots</strong> — The Assassin Fahmi Quadir on How to Survive as a Short-Seller</li></ul>
+<p>Host: Joe Weisenthal, Tracy Alloway | Guest: Fahmi Quadir, Founder and CIO, Safcat Capital | Macroeconomics Strategy</p>
+<ul><li><strong>Odd Lots</strong> — Why the Price of Oil Beef Electricity and Everything Else Makes No Sense</li></ul>
+<p>Host: Tracy Alloway, Joe Weisenthal | Guest: Javier Blas, Bloomberg Opinion columnist and author of &quot;The World for Sale&quot; | Macroeconomics Strategy</p>
+<ul><li><strong>RenMac</strong> — RenMac Off-Script Seeking Crypto Clarity</li></ul>
+<p>Host: Neil Dutta, Steven Ricchiuto | Guest: Zach Pandell, Head of Research, Grayscale Investments | Macroeconomics Strategy</p>
+<ul><li><strong>Saxo Market Call</strong> — Global bond yields are the captain now</li></ul>
+<p>Host: John J. Hardy | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Saxo Market Call</strong> — Solace for quantum investors as long weekend awaits</li></ul>
+<p>Host: John J. Hardy | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>Saxo Market Call</strong> — Which vehicle does the Musk cult choose post SpaceX IPO</li></ul>
+<p>Host: John J. Hardy | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>The Jacob Shapiro Podcast</strong> — Are the Cartels Winning</li></ul>
+<p>Host: Jacob Shapiro | Guest: Yoan Grillo, Journalist, Substack | Macroeconomics Strategy</p>
+<ul><li><strong>The Jay Martin Show</strong> — The First Domino in the US Debt Crisis</li></ul>
+<p>Host: Jay Martin | Guest: Solo | Macroeconomics Strategy</p>
+<ul><li><strong>The Monetary Matters Network</strong> — A Basel III Deep Dive What to Know About How It Will Transform Banking Globally</li></ul>
+<p>Host: Jack Farley | Guest: Chen Shu, Corporate Counsel, Debavo and Plimpmpton | Macroeconomics Strategy</p>
+<ul><li><strong>The Monetary Matters Network</strong> — Why Andy Constan Says The AI Bubble is in Earnings Not Price</li></ul>
+<p>Host: Jack Farley, Max Wiethe | Guest: Andy Constan, Veteran Macro Trader, Damp Spring (Substack) | Macroeconomics Strategy</p></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-08 · <a href="archive.html">All days</a></footer></div></body></html>
