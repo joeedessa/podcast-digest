@@ -1,0 +1,251 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#14150f"><title>Less Noise More Signal — Heres Why Bad New No Longer Tanks Bitcoin</title><style>
+:root{
+  --bg:#fbfbfa; --panel:#fff; --ink:#1a1a18; --muted:#6b6b66; --line:#e6e4df;
+  --accent:#b4552d; --accent-soft:#fdf3ee;
+  --long:#1a7340; --short:#c0392b; --watch:#2563a8; --reduce:#b8730f;
+  --radius:10px;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#14150f; --panel:#1c1d16; --ink:#eceade; --muted:#a3a094;
+         --line:#2f3126; --accent:#e08a5f; --accent-soft:#241a13;
+         --long:#5cc98a; --short:#ef7d6e; --watch:#7db3e8; --reduce:#e0a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+     line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 96px}
+
+/* masthead */
+header.top{border-bottom:1px solid var(--line);background:var(--panel);
+           position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.4) blur(6px)}
+header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
+                 align-items:baseline;gap:14px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.01em}
+.brand a{color:inherit}
+.crumb{color:var(--muted);font-size:13px}
+.crumb a{color:var(--muted)}
+/* header action — sits right, stays a 44px tap target on a phone */
+.btn{display:inline-flex;align-items:center;gap:2px;
+     padding:9px 15px;min-height:38px;border:1px solid var(--line);
+     border-radius:99px;background:var(--bg);color:var(--ink);
+     font-size:13.5px;font-weight:550;white-space:nowrap;line-height:1}
+.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.btn:active{transform:translateY(1px)}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,42px);line-height:1.12;
+         margin:0 0 10px;letter-spacing:-.02em;font-weight:600}
+.hero .meta{color:var(--muted);font-size:14px}
+.pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
+      border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
+
+/* sections */
+section{padding:28px 0 4px;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+h2{font-family:var(--serif);font-size:13px;font-weight:700;text-transform:uppercase;
+   letter-spacing:.14em;color:var(--accent);margin:0 0 16px}
+h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:28px 0 8px;
+   letter-spacing:-.01em}
+p{margin:0 0 13px}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin:5px 0}
+strong{font-weight:650}
+.tag{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+
+/* TL;DR */
+.tldr{background:var(--accent-soft);border:1px solid var(--line);
+      border-left:3px solid var(--accent);border-radius:var(--radius);
+      padding:18px 20px;margin-bottom:6px}
+.tldr p:last-child,.tldr ul:last-child{margin-bottom:0}
+.tldr ul{list-style:none;padding-left:0}
+.tldr li{padding-left:15px;position:relative}
+.tldr li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+
+/* trade cards */
+.cards{display:grid;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:15px 17px}
+.card .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.card .asset{font-family:var(--serif);font-size:18px;font-weight:600}
+.card .who{color:var(--muted);font-size:13px}
+.card p{margin:6px 0 0;font-size:14.5px}
+.card .label{color:var(--muted);font-size:11px;text-transform:uppercase;
+             letter-spacing:.08em;margin-right:5px}
+.dir-long{color:var(--long)} .dir-short{color:var(--short)}
+.dir-avoid{color:var(--short)} .dir-reduce{color:var(--reduce)}
+.dir-watching{color:var(--watch)} .dir-other{color:var(--muted)}
+.tier{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+      margin:22px 0 10px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+
+/* topics */
+.topic{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--muted);
+       border-radius:var(--radius);padding:15px 17px;margin:12px 0}
+.topic .t{font-weight:650;margin-bottom:9px}
+
+/* index */
+.days{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:9px}
+.days a{display:flex;justify-content:space-between;align-items:center;gap:14px;
+        background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+        padding:14px 17px;color:inherit}
+.days a:hover{border-color:var(--accent);text-decoration:none}
+.days .d{font-family:var(--serif);font-size:17px;font-weight:600}
+.days .s{color:var(--muted);font-size:13px;text-align:right}
+
+
+/* right-side outline rail (desktop) */
+.layout{display:block}
+@media(min-width:1150px){
+  .layout{display:grid;grid-template-columns:minmax(0,820px) 220px;gap:44px;
+          max-width:1120px;margin:0 auto;padding:0 20px}
+  .layout>.wrap{max-width:none;padding:0}
+  .layout .rail{display:block}
+}
+.rail{display:none;position:sticky;top:76px;align-self:start;max-height:calc(100vh - 100px);
+      overflow-y:auto;padding:8px 0 24px;font-size:12.5px}
+.rail .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+          margin-bottom:10px}
+.rail a{display:block;color:var(--muted);padding:4px 10px;border-left:2px solid var(--line);
+        line-height:1.4}
+.rail a:hover{color:var(--accent);text-decoration:none}
+.rail a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+
+/* floating buttons */
+.fab{position:fixed;right:16px;z-index:40;display:flex;align-items:center;justify-content:center;
+     width:44px;height:44px;border-radius:50%;background:var(--panel);color:var(--ink);
+     border:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.18);font-size:18px;
+     cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
+.fab.show{opacity:1;pointer-events:auto}
+.fab:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+#fab-top{bottom:18px}
+#fab-toc{bottom:72px}
+@media(min-width:1150px){#fab-toc{display:none}}
+
+/* outline drawer (mobile) */
+.drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;opacity:0;
+           pointer-events:none;transition:opacity .2s}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:var(--panel);
+        z-index:61;transform:translateX(105%);transition:transform .22s ease;
+        padding:20px 18px;overflow-y:auto;border-left:1px solid var(--line)}
+body.drawer-open .drawer{transform:none}
+body.drawer-open .drawer-bg{opacity:1;pointer-events:auto}
+.drawer .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+            margin:2px 0 12px}
+.drawer a{display:block;padding:9px 10px;border-radius:8px;color:var(--ink);font-size:14.5px}
+.drawer a:hover{background:var(--accent-soft);text-decoration:none}
+.drawer a.on{color:var(--accent);font-weight:600}
+
+/* search */
+.sbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;min-height:36px;
+      border:1px solid var(--line);border-radius:99px;background:var(--bg);color:var(--muted);
+      font-size:13px;cursor:pointer;white-space:nowrap}
+.sbtn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.search-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:70;opacity:0;
+           pointer-events:none;transition:opacity .15s}
+.search-box{position:fixed;top:min(12vh,110px);left:50%;transform:translateX(-50%) scale(.98);
+            width:min(620px,92vw);background:var(--panel);border:1px solid var(--line);
+            border-radius:14px;z-index:71;opacity:0;pointer-events:none;transition:all .15s;
+            box-shadow:0 18px 60px rgba(0,0,0,.35);overflow:hidden}
+body.search-open .search-bg{opacity:1;pointer-events:auto}
+body.search-open .search-box{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.search-box input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+                  font-size:17px;padding:17px 19px;border-bottom:1px solid var(--line);
+                  font-family:var(--sans)}
+.search-res{max-height:52vh;overflow-y:auto;padding:8px}
+.search-res a{display:block;padding:10px 12px;border-radius:9px;color:var(--ink)}
+.search-res a:hover,.search-res a.sel{background:var(--accent-soft);text-decoration:none}
+.search-res .st{font-weight:600;font-size:14.5px}
+.search-res .ss{color:var(--muted);font-size:12.5px;margin-top:1px}
+.search-res .empty{padding:16px;color:var(--muted);font-size:14px;text-align:center}
+
+/* episode cards inside a digest's episode index */
+.eplist{display:grid;gap:10px}
+.eplist a.epc{display:block;background:var(--panel);border:1px solid var(--line);
+              border-radius:var(--radius);padding:13px 16px;color:inherit}
+.eplist a.epc:hover{border-color:var(--accent);text-decoration:none}
+.eplist .epc .es{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.eplist .epc .et{font-family:var(--serif);font-size:16.5px;font-weight:600;margin:2px 0 3px}
+.eplist .epc .em{color:var(--muted);font-size:13px}
+.eplist div.epc{background:var(--panel);border:1px solid var(--line);opacity:.75;
+                border-radius:var(--radius);padding:13px 16px}
+
+/* episode page */
+blockquote.q{margin:14px 0;padding:13px 17px;background:var(--panel);border-left:3px solid var(--accent);
+             border-radius:var(--radius);font-family:var(--serif);font-size:16px;font-style:italic}
+blockquote.q .qw{display:block;margin-top:7px;font-family:var(--sans);font-size:12.5px;
+                 font-style:normal;color:var(--muted)}
+.verdict{background:var(--accent-soft);border:1px solid var(--line);border-left:3px solid var(--accent);
+         border-radius:var(--radius);padding:15px 18px;font-family:var(--serif);font-size:16.5px}
+.ivrow{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);
+       font-size:14.5px;flex-wrap:wrap}
+.ivrow:last-child{border-bottom:0}
+.ivrow .who{font-weight:600;min-width:130px}
+.ivrow .what{color:var(--ink)}
+
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+       color:var(--muted);font-size:12.5px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:12px 15px;font-size:12.5px;color:var(--muted);margin-top:20px}
+@media(max-width:600px){
+  .hero{padding:30px 0 20px}
+  nav.toc{position:static}
+  .card .head{gap:6px}
+}
+</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-06.html">6 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Less Noise More Signal</span><span class="pill">6 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Heres Why Bad New No Longer Tanks Bitcoin</h1><div class="meta">Host: Pascal Hügli · Guest: Johan Burkman, (no title stated), The Bitcoin Layer (TBL)</div></div><section id="overview"><h2>Overview</h2><p>Pascal Hügli and Johan Burkman discuss the recent Coldcard exploit and its implications for Bitcoin self-custody, emphasizing the need for improved security practices and the potential for multi-signature solutions. They also explore the current state of the Bitcoin market, debating whether a bottom has been reached, considering factors like miner capitulation, on-chain metrics, and the influence of AI capital rotation. Burkman expresses a re-adjusted bullish outlook on Bitcoin, while Hügli remains cautiously optimistic.</p></section>
+<section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>The Coldcard exploit is philosophically devastating for Bitcoin, challenging the core tenet of self-custody and leading to feelings of betrayal among Bitcoiners, as stated by Johan Burkman.</li><li>Pascal Hügli notes that the Coldcard incident, unlike FTX, affects those who followed best practices for self-custody, highlighting human fallibility even in trustless systems.</li><li>Johan Burkman suggests that the Coldcard exploit could lead to improvements in self-custody practices, emphasizing the &quot;don&#x27;t trust, verify&quot; ethos and the need for better code review and peer collaboration.</li><li>Pascal Hügli argues that self-custody is not for everyone, and institutional-grade custody solutions are a valid option, especially for large sums, citing his experience with hardcore Bitcoiners using bank custody.</li><li>Johan Burkman differentiates Bitcoin&#x27;s utility based on user problems: IBIT for debasement, Lightning Network for remittances, and self-custody for &quot;freedom money&quot; and borderless movement.</li><li>Pascal Hügli expresses concern about the long-term network security of Bitcoin if a critical mass (e.g., 50%) holds their Bitcoin with custodians, potentially centralizing the asset like gold.</li><li>Johan Burkman views the market&#x27;s reaction to custody issues as a pendulum swing, with the community constantly seeking the &quot;right percentage&quot; of self-custody given evolving technology and AI threats.</li><li>Johan Burkman believes that strong encryption at Bitcoin&#x27;s base layer is resistant to AI brute-forcing, but second-layer applications built on Bitcoin may introduce more attack vectors.</li><li>Pascal Hügli and Johan Burkman discuss the absence of a major miner capitulation in the current bear market, suggesting that miners&#x27; diversification into AI revenue streams might make them more robust.</li><li>Pascal Hügli tracks the realized cap in a &quot;bottoming range&quot; of $53k to $73k, noting that 25% of the realized cap now sits in this zone, which historically signals a bottom.</li><li>Johan Burkman&#x27;s base case since late February was a Bitcoin bottom in the $60k range in 2026, equating it to the $20k range in 2022, with a possibility of $48k-$50k in a black swan event.</li><li>Johan Burkman observes a bullish divergence in the 30-day 25-delta options skew, where price is lower but the skew is higher (less negative), indicating reduced demand for puts relative to calls.</li><li>Pascal Hügli notes that the Bitcoin funding rate has turned positive across exchanges, suggesting that longs are paying shorts, which he interprets as a sign of disbelief towards the end of a bear market.</li><li>Pascal Hügli tracks Bitcoin&#x27;s beta, downside beta, and correlation to an AI basket, observing an improvement (lower sensitivity, less downside, falling correlation) over the last 60 days, suggesting potential capital rotation.</li></ul></section>
+<section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"This time around, it&#x27;s been a hardware wallet that&#x27;s been exploited. And so this is goes to the core of Bitcoin&#x27;s philosophy. And that&#x27;s why I think it&#x27;s potentially even more devastating emotionally and and philosophically."<span class="qw">— Pascal Hügli</span></blockquote><blockquote class="q">"I think what you alluded to about the Bitcoin ethos don&#x27;t trust verify. I think we we also should look towards ourselves like did did we maybe we did trust too much we didn&#x27;t verify enough we didn&#x27;t verify the the code base and um maybe we should do it more because it&#x27;s so important."<span class="qw">— Johan Burkman</span></blockquote></section>
+<section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Johan Burkman</span><span class="tag dir-other">PREDICTION</span><span class="what">Bitcoin bottom in the $60,000 range — 2026 (base case, 60-80% likelihood)</span></div><div class="ivrow"><span class="who">Johan Burkman</span><span class="tag dir-other">PREDICTION</span><span class="what">Bitcoin bottom in the $48,000-$50,000 range — (if a black swan event occurs)</span></div><div class="ivrow"><span class="who">Johan Burkman</span><span class="tag dir-other">VIEW</span><span class="what">Bitcoin options market skew (25-delta, 30-day expiry) showing bullish divergence (price lower, skew higher)</span></div><div class="ivrow"><span class="who">Johan Burkman</span><span class="tag dir-other">VIEW</span><span class="what">Bitcoin supply in profit/loss crossing 50% (similar to 2018, COVID, FTX bottoms)</span></div><div class="ivrow"><span class="who">Pascal Hügli</span><span class="tag dir-other">VIEW</span><span class="what">Bitcoin realized cap in the $53k-$73k range (25% of realized cap in this zone) — (signal for bottom)</span></div><div class="ivrow"><span class="who">Pascal Hügli</span><span class="tag dir-other">VIEW</span><span class="what">Bitcoin funding rate turned positive across exchanges — (sign of disbelief, end of bear market)</span></div><div class="ivrow"><span class="who">Pascal Hügli</span><span class="tag dir-watching">WATCHING</span><span class="what">Bitcoin&#x27;s beta, downside beta, and correlation to an AI basket — (for signs of capital rotation)</span></div><div class="ivrow"><span class="who">Johan Burkman</span><span class="tag dir-avoid">AVOID</span><span class="what">Using leverage for Bitcoin investments — (stated 2x)</span></div><div class="ivrow"><span class="who">Johan Burkman</span><span class="tag dir-other">RECOMMENDATION</span><span class="what">Move funds from Coldcard wallets (especially single-sig or multi-sig with Coldcard majority) — (due to exploit)</span></div><div class="ivrow"><span class="who">Johan Burkman</span><span class="tag dir-other">RECOMMENDATION</span><span class="what">Use multi-signature (multi-sig) for Bitcoin self-custody — (especially for larger amounts)</span></div><div class="ivrow"><span class="who">Johan Burkman</span><span class="tag dir-other">RECOMMENDATION</span><span class="what">Use multi-vendor (different brands) for multi-sig setups</span></div><div class="ivrow"><span class="who">Johan Burkman</span><span class="tag dir-other">RECOMMENDATION</span><span class="what">Document firmware versions of hardware wallets used for key generation</span></div><div class="ivrow"><span class="who">Johan Burkman</span><span class="tag dir-other">VIEW</span><span class="what">The Coldcard exploit did not tank Bitcoin price below $60k — (seen as a positive tell, similar to negative news not affecting price much at bear market end)</span></div><div class="ivrow"><span class="who">Johan Burkman</span><span class="tag dir-other">VIEW</span><span class="what">Bitcoin market is currently in &quot;disbelief&quot; based on funding rates.</span></div><div class="ivrow"><span class="who">Pascal Hügli</span><span class="tag dir-other">VIEW</span><span class="what">Bitcoin is closer to a bottom than previously thought, but expects &quot;further chop until further notice.&quot;</span></div></section>
+<section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Johan Burkman views the Coldcard exploit as a humbling event for Bitcoiners, reinforcing the need for continuous improvement in self-custody and verification.</li><li>Pascal Hügli suggests that the lack of a significant Bitcoin price drop after the Coldcard exploit could be a &quot;sentiment bottoming signal,&quot; indicating that negative news no longer has a strong downside impact.</li><li>Johan Burkman&#x27;s base case for a Bitcoin bottom is around $60,000 in 2026, with a lower possibility of $48,000-$50,000 if a black swan event occurs.</li><li>Johan Burkman uses the 25-delta 30-day options skew as an indicator of experienced investors&#x27; positioning, noting a bullish divergence where price is lower but the skew is higher (less negative), suggesting reduced demand for downside protection.</li><li>Pascal Hügli observes that Bitcoin&#x27;s beta, downside beta, and correlation to an AI basket have been falling over the last 60 days, indicating a potential rotation of capital back into Bitcoin from AI.</li><li>Pascal Hügli and Johan Burkman agree that the absence of a traditional miner capitulation might be due to miners diversifying revenue streams into AI, making them more resilient to Bitcoin price drops.</li></ul></section>
+<section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>IBIT, BTC</p></section>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">Despite the Coldcard exploit, Bitcoin&#x27;s resilience above $60k, improving options market sentiment, and signs of AI capital rotation suggest a potential market bottom, though further chop is expected.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-06.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-06.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+(function(){
+var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
+var top=qs('#fab-top');
+if(top){addEventListener('scroll',function(){top.classList.toggle('show',scrollY>600)},{passive:true});
+        top.onclick=function(){scrollTo({top:0,behavior:'smooth'})};}
+var toc=qs('#fab-toc');
+if(toc){toc.classList.add('show');
+        addEventListener('scroll',function(){toc.classList.toggle('show',true)},{passive:true});}
+function closeDrawer(){document.body.classList.remove('drawer-open')}
+if(toc){toc.onclick=function(){document.body.classList.add('drawer-open')};
+        qs('.drawer-bg').onclick=closeDrawer;
+        qa('.drawer a').forEach(function(a){a.addEventListener('click',closeDrawer)});}
+var links=qa('.rail a, .drawer a');
+if(links.length){
+  var map={};links.forEach(function(a){var id=a.getAttribute('href').slice(1);(map[id]=map[id]||[]).push(a)});
+  var cur=null;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){
+      if(cur&&map[cur])map[cur].forEach(function(a){a.classList.remove('on')});
+      cur=e.target.id;
+      if(map[cur])map[cur].forEach(function(a){a.classList.add('on')});
+    }});
+  },{rootMargin:'-10% 0px -80% 0px'});
+  qa('section[id]').forEach(function(x){io.observe(x)});
+}
+var ROOT=document.body.getAttribute('data-root')||'';
+var idx=null,inp=qs('.search-box input'),res=qs('.search-res');
+function openS(){document.body.classList.add('search-open');inp.focus();
+  if(!idx){fetch(ROOT+'search-index.json').then(function(r){return r.json()})
+    .then(function(j){idx=j;run()}).catch(function(){res.innerHTML='<div class=empty>index unavailable</div>'});}}
+function closeS(){document.body.classList.remove('search-open')}
+function run(){
+  if(!idx)return;
+  var q=inp.value.trim().toLowerCase();
+  var hits=!q?idx.slice(0,20):idx.filter(function(e){
+    return (e.t+' '+e.s+' '+e.d).toLowerCase().indexOf(q)>=0}).slice(0,30);
+  res.innerHTML=hits.length?hits.map(function(e){
+    return '<a href="'+ROOT+e.u+'"><div class=st>'+e.t+'</div><div class=ss>'+e.d+' · '+e.s+'</div></a>';
+  }).join(''):'<div class=empty>no matches</div>';}
+if(inp){inp.addEventListener('input',run);
+  qs('.sbtn').onclick=openS;qs('.search-bg').onclick=closeS;
+  addEventListener('keydown',function(e){
+    if(e.key==='/'&&!document.body.classList.contains('search-open')&&
+       document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
+    if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+</script></body></html>

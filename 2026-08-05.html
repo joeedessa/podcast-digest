@@ -29,7 +29,7 @@ header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
 .crumb{color:var(--muted);font-size:13px}
 .crumb a{color:var(--muted)}
 /* header action — sits right, stays a 44px tap target on a phone */
-.btn{margin-left:auto;display:inline-flex;align-items:center;gap:2px;
+.btn{display:inline-flex;align-items:center;gap:2px;
      padding:9px 15px;min-height:38px;border:1px solid var(--line);
      border-radius:99px;background:var(--bg);color:var(--ink);
      font-size:13.5px;font-weight:550;white-space:nowrap;line-height:1}
@@ -43,14 +43,6 @@ header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
 .hero .meta{color:var(--muted);font-size:14px}
 .pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
       border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
-
-/* section nav */
-nav.toc{position:sticky;top:52px;background:var(--bg);padding:10px 0 12px;
-        border-bottom:1px solid var(--line);margin-bottom:8px;z-index:10}
-nav.toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0}
-nav.toc a{font-size:12px;padding:4px 10px;border:1px solid var(--line);
-          border-radius:99px;color:var(--muted);background:var(--panel);white-space:nowrap}
-nav.toc a:hover{color:var(--accent);border-color:var(--accent);text-decoration:none}
 
 /* sections */
 section{padding:28px 0 4px;border-top:1px solid var(--line)}
@@ -104,6 +96,96 @@ strong{font-weight:650}
 .days .d{font-family:var(--serif);font-size:17px;font-weight:600}
 .days .s{color:var(--muted);font-size:13px;text-align:right}
 
+
+/* right-side outline rail (desktop) */
+.layout{display:block}
+@media(min-width:1150px){
+  .layout{display:grid;grid-template-columns:minmax(0,820px) 220px;gap:44px;
+          max-width:1120px;margin:0 auto;padding:0 20px}
+  .layout>.wrap{max-width:none;padding:0}
+  .layout .rail{display:block}
+}
+.rail{display:none;position:sticky;top:76px;align-self:start;max-height:calc(100vh - 100px);
+      overflow-y:auto;padding:8px 0 24px;font-size:12.5px}
+.rail .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+          margin-bottom:10px}
+.rail a{display:block;color:var(--muted);padding:4px 10px;border-left:2px solid var(--line);
+        line-height:1.4}
+.rail a:hover{color:var(--accent);text-decoration:none}
+.rail a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+
+/* floating buttons */
+.fab{position:fixed;right:16px;z-index:40;display:flex;align-items:center;justify-content:center;
+     width:44px;height:44px;border-radius:50%;background:var(--panel);color:var(--ink);
+     border:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.18);font-size:18px;
+     cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
+.fab.show{opacity:1;pointer-events:auto}
+.fab:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+#fab-top{bottom:18px}
+#fab-toc{bottom:72px}
+@media(min-width:1150px){#fab-toc{display:none}}
+
+/* outline drawer (mobile) */
+.drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;opacity:0;
+           pointer-events:none;transition:opacity .2s}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:var(--panel);
+        z-index:61;transform:translateX(105%);transition:transform .22s ease;
+        padding:20px 18px;overflow-y:auto;border-left:1px solid var(--line)}
+body.drawer-open .drawer{transform:none}
+body.drawer-open .drawer-bg{opacity:1;pointer-events:auto}
+.drawer .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+            margin:2px 0 12px}
+.drawer a{display:block;padding:9px 10px;border-radius:8px;color:var(--ink);font-size:14.5px}
+.drawer a:hover{background:var(--accent-soft);text-decoration:none}
+.drawer a.on{color:var(--accent);font-weight:600}
+
+/* search */
+.sbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;min-height:36px;
+      border:1px solid var(--line);border-radius:99px;background:var(--bg);color:var(--muted);
+      font-size:13px;cursor:pointer;white-space:nowrap}
+.sbtn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.search-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:70;opacity:0;
+           pointer-events:none;transition:opacity .15s}
+.search-box{position:fixed;top:min(12vh,110px);left:50%;transform:translateX(-50%) scale(.98);
+            width:min(620px,92vw);background:var(--panel);border:1px solid var(--line);
+            border-radius:14px;z-index:71;opacity:0;pointer-events:none;transition:all .15s;
+            box-shadow:0 18px 60px rgba(0,0,0,.35);overflow:hidden}
+body.search-open .search-bg{opacity:1;pointer-events:auto}
+body.search-open .search-box{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.search-box input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+                  font-size:17px;padding:17px 19px;border-bottom:1px solid var(--line);
+                  font-family:var(--sans)}
+.search-res{max-height:52vh;overflow-y:auto;padding:8px}
+.search-res a{display:block;padding:10px 12px;border-radius:9px;color:var(--ink)}
+.search-res a:hover,.search-res a.sel{background:var(--accent-soft);text-decoration:none}
+.search-res .st{font-weight:600;font-size:14.5px}
+.search-res .ss{color:var(--muted);font-size:12.5px;margin-top:1px}
+.search-res .empty{padding:16px;color:var(--muted);font-size:14px;text-align:center}
+
+/* episode cards inside a digest's episode index */
+.eplist{display:grid;gap:10px}
+.eplist a.epc{display:block;background:var(--panel);border:1px solid var(--line);
+              border-radius:var(--radius);padding:13px 16px;color:inherit}
+.eplist a.epc:hover{border-color:var(--accent);text-decoration:none}
+.eplist .epc .es{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.eplist .epc .et{font-family:var(--serif);font-size:16.5px;font-weight:600;margin:2px 0 3px}
+.eplist .epc .em{color:var(--muted);font-size:13px}
+.eplist div.epc{background:var(--panel);border:1px solid var(--line);opacity:.75;
+                border-radius:var(--radius);padding:13px 16px}
+
+/* episode page */
+blockquote.q{margin:14px 0;padding:13px 17px;background:var(--panel);border-left:3px solid var(--accent);
+             border-radius:var(--radius);font-family:var(--serif);font-size:16px;font-style:italic}
+blockquote.q .qw{display:block;margin-top:7px;font-family:var(--sans);font-size:12.5px;
+                 font-style:normal;color:var(--muted)}
+.verdict{background:var(--accent-soft);border:1px solid var(--line);border-left:3px solid var(--accent);
+         border-radius:var(--radius);padding:15px 18px;font-family:var(--serif);font-size:16.5px}
+.ivrow{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);
+       font-size:14.5px;flex-wrap:wrap}
+.ivrow:last-child{border-bottom:0}
+.ivrow .who{font-weight:600;min-width:130px}
+.ivrow .what{color:var(--ink)}
+
 footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
        color:var(--muted);font-size:12.5px}
 .note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
@@ -113,7 +195,7 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Wednesday, 5 August 2026</span><a class="btn" href="archive.html">☰&nbsp; Archive</a></div></header><div class="wrap"><div class="hero"><h1>Wednesday, 5 August 2026</h1><div class="meta"><span class="pill">23 episodes (27 files — 4 arrived twice from two sources)</span>Commodities &amp; Hard Assets, Equities &amp; Trading, Geopolitics, Investment Analysis &amp; Factors, Macroeconomics &amp; Strategy</div></div><nav class="toc"><ul><li><a href="#tl-dr-read-this-first">TL;DR (read this first)</a></li><li><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a></li><li><a href="#divergent-views">DIVERGENT VIEWS</a></li><li><a href="#dominant-themes">DOMINANT THEMES</a></li><li><a href="#guest-briefs">GUEST BRIEFS</a></li><li><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a></li><li><a href="#tickers-assets">TICKERS &amp; ASSETS</a></li><li><a href="#spotlight-the-return-of-mr-lithium">★ The Return of Mr. Lith…</a></li><li><a href="#spotlight-why-the-best-mining-projects-s">★ Why the Best Mining Pr…</a></li><li><a href="#spotlight-china-s-patient-economic-suppo">★ China&#x27;s Patient Econom…</a></li><li><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a></li><li><a href="#watch-catalysts">WATCH CATALYSTS</a></li><li><a href="#miscellaneous">MISCELLANEOUS</a></li><li><a href="#data-quality-note">DATA QUALITY NOTE</a></li></ul></nav><section id="tl-dr-read-this-first"><h2>TL;DR (read this first)</h2><div class="tldr"><p>The AI trade&#x27;s violent unwind dominates the narrative, forcing a stark re-evaluation of market leverage and fundamental viability. Jesse Felder — Wealthion and Ben Hunt — Excess Returns frame the AI CapEx boom as a systemic risk financed by fragile private credit, warning the &quot;beginning of the end&quot; is here as rising yields expose deteriorating earnings quality. In the opposing camp, Jason Shapiro — Markets Unscripted argues the forced liquidation of a single leveraged fund created a &quot;perfect bottom,&quot; a technical event to be bought, not a fundamental crisis. Resolution hinges on whether hyperscalers can secure public market financing for their massive compute commitments, making the potential IPOs of Anthropic and OpenAI the market&#x27;s critical tell.</p>
+</style></head><body data-root=""><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Wednesday, 5 August 2026</span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><h1>Wednesday, 5 August 2026</h1><div class="meta"><span class="pill">23 episodes (27 files — 4 arrived twice from two sources)</span>Commodities &amp; Hard Assets, Equities &amp; Trading, Geopolitics, Investment Analysis &amp; Factors, Macroeconomics &amp; Strategy</div></div><section id="tl-dr-read-this-first"><h2>TL;DR (read this first)</h2><div class="tldr"><p>The AI trade&#x27;s violent unwind dominates the narrative, forcing a stark re-evaluation of market leverage and fundamental viability. Jesse Felder — Wealthion and Ben Hunt — Excess Returns frame the AI CapEx boom as a systemic risk financed by fragile private credit, warning the &quot;beginning of the end&quot; is here as rising yields expose deteriorating earnings quality. In the opposing camp, Jason Shapiro — Markets Unscripted argues the forced liquidation of a single leveraged fund created a &quot;perfect bottom,&quot; a technical event to be bought, not a fundamental crisis. Resolution hinges on whether hyperscalers can secure public market financing for their massive compute commitments, making the potential IPOs of Anthropic and OpenAI the market&#x27;s critical tell.</p>
 <ul><li>CENTRAL TENSION: The AI trade has either experienced a technical, liquidity-driven &quot;perfect bottom&quot; or is at the &quot;beginning of the end&quot; due to fundamental financing and valuation pressures.</li><li>TOP THEME: The AI Unwind — The market is digesting a massive, leverage-driven liquidation in AI-related stocks, questioning the sustainability of the CapEx boom and its financing.</li><li>DIVERGENT: <strong>AI Stocks:</strong> Jason Shapiro — Markets Unscripted is buying the &quot;perfect bottom&quot; created by forced liquidation vs. Jesse Felder — Wealthion who sees the &quot;beginning of the end&quot; for the AI bubble.</li><li>HIGH-CONVICTION TRADE: <strong>LONG Gold:</strong> Supported by Andrew Sarna — Wealthion, Jesse Felder — Wealthion, Tony Greer — Maggie Lake Talking Markets, Scott North — Mining Stock Daily, Ben Brey — Benny &amp; The Squirrel, and Mickey Mannick — The Julia La Roche Show.</li><li>CALENDAR: September FOMC Meeting, where the market expects a potential rate hike to re-assert Fed credibility.</li></ul></div></section>
 <section id="trade-ideas-positions"><h2>TRADE IDEAS &amp; POSITIONS</h2><div class="cards"><div class="tier">HIGH CONVICTION</div>
 <div class="card"><div class="head"><span class="asset">Gold</span><span class="tag dir-long">LONG</span><span class="who">Andrew Sarna — Wealthion · Jesse Felder — Wealthion · Tony Greer — Maggie Lake Talking Markets · Scott North — Mining Stock Daily · Ben Brey — Benny &amp; The Squirrel · Mickey Mannick — The Julia La Roche Show</span></div><p><span class="label">why</span>Gold is seen as a primary hedge against systemic financial risk, a &quot;slow motion debt crisis,&quot; persistent government deficits and money printing, and escalating geopolitical tensions. Central bank buying provides a strong support level.</p><p><span class="label">context</span>Multiple speakers view this as a core, long-term strategic holding.</p><p><span class="label">voices</span>Andrew Sarna — Wealthion: A core holding due to persistent money printing and geopolitical tension. · Jesse Felder — Wealthion: Overweight position, viewing it as a store of value during a &quot;slow motion debt crisis.&quot; · Tony Greer — Maggie Lake Talking Markets: The fundamental story has not changed and its price will go higher. · Scott North — Mining Stock Daily: Sees a &quot;good base&quot; at $4,000/oz, with central bank buying providing a floor. · Ben Brey — Benny &amp; The Squirrel: Time to start &quot;nibbling on gold again&quot; given the macro backdrop. · Mickey Mannick — The Julia La Roche Show: The &quot;lowest entropy asset&quot; and &quot;cheapest insurance&quot; during a systemic phase transition.</p></div>
@@ -214,4 +296,51 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
 <section id="notable-data-figures"><h2>NOTABLE DATA &amp; FIGURES</h2><ul><li><strong>4-5 Trillion USD:</strong> Ben Hunt&#x27;s estimated size of the AI CapEx buildout. — Excess Returns</li><li><strong>250%:</strong> The current valuation of the US stock market as a percentage of GDP, an unprecedented level. — Liaquat Ahamed — The Meb Faber Show</li><li><strong>50%:</strong> Michael Pento&#x27;s prediction for the potential decline in the US stock market. — Adam Taggart | Thoughtful Money®</li><li><strong>25-30%:</strong> Michael Pento&#x27;s prediction for the potential decline in the US real estate market. — Adam Taggart | Thoughtful Money®</li><li><strong>6 Trillion USD:</strong> Michael Pento&#x27;s forecast for annual US deficits during the next recession. — Adam Taggart | Thoughtful Money®</li><li><strong>500 Billion USD:</strong> Dinny McMahon&#x27;s forecast for an additional allocation of Chinese government borrowing in Q4 2026. — Trivium China</li><li><strong>43%:</strong> Microsoft Azure&#x27;s year-over-year cloud growth, the highest since 2022. — Alex Kantrowitz — The Compound</li><li><strong>36.7%:</strong> Amazon Web Services&#x27; (AWS) year-over-year growth, its fastest in 18 quarters. — Alex Kantrowitz — The Compound</li><li><strong>90%:</strong> The decline in Meta&#x27;s free cash flow from Q1 to Q2 2026 ($12B to $784M) due to AI CapEx. — Alex Kantrowitz — The Compound</li><li><strong>8,000:</strong> Mike Wilson&#x27;s year-end target for the S&amp;P 500. — Morgan Stanley</li><li><strong>6%:</strong> The consensus long-term expected annual return for US equities, which Victor Haghani agrees with. — The Monetary Matters Network</li><li><strong>3%:</strong> The real yield on 30-year TIPS that Ben Brey finds very attractive. — Benny &amp; The Squirrel</li><li><strong>3%:</strong> The percentage of China&#x27;s supply chain investment that Joe Lowry estimates the US has invested. — Mining Stock Daily</li></ul></section>
 <section id="watch-catalysts"><h2>WATCH CATALYSTS</h2><ul><li><strong>September 2026:</strong> FOMC Meeting. Widely watched for a potential rate hike to re-assert Fed credibility after recent communication was perceived as dovish. — Neil Dutta — RenMac</li><li><strong>Upcoming (next week):</strong> JOLTS data release. Watched for signs of stabilization and recovery in labor market churn (hires, quits) as an indicator of labor market health. — Dominique Dwor-Frecaut — Macro Hive</li><li><strong>Upcoming (next week):</strong> US Payrolls data release. A key input for the Fed&#x27;s September decision. — Neil Dutta — RenMac</li><li><strong>Next 2-3 Quarters:</strong> Growth and earnings estimates are expected to start coming down from recent peaks. — Quinn — Forward Guidance</li><li><strong>Next 2 Months:</strong> Potential IPOs for Anthropic and OpenAI. Seen as a critical test of the market&#x27;s willingness to finance the AI CapEx boom. — Jesse Felder — Wealthion</li><li><strong>September 30, 2026:</strong> US Government funding deadline. A potential shutdown could be a catalyst for passing a Republican reconciliation package. — Steve Pavlik — RenMac</li><li><strong>Mid-term Elections (US):</strong> Market returns are historically muted heading into mid-terms but strong post-elections. — Ben Brey — Benny &amp; The Squirrel</li></ul></section>
 <section id="miscellaneous"><h2>MISCELLANEOUS</h2><ul><li><strong>The Biggest Leak in Finance:</strong> People are too negative and bearish all the time. Bearish content gets more engagement, creating a systemic information bias that investors must actively counteract. — Brent Donnelly — Excess Returns</li><li><strong>Value vs. Size:</strong> The perceived outperformance of small-cap value is primarily driven by the &quot;value&quot; factor, not the &quot;size&quot; factor. An equal-weight large-cap portfolio matched for value characteristics can achieve similar returns with far more liquidity. — Wes Gray — Excess Returns</li><li><strong>Physics Framework for Markets:</strong> The global financial system can be viewed through the lens of physics as a system requiring energy (trust, capital) to maintain equilibrium. It is currently in a high-entropy &quot;phase transition&quot; between control and fracture. — Mickey Mannick — The Julia La Roche Show</li><li><strong>Passive Asset Allocation is the Problem:</strong> &quot;Passive stock picking&quot; (i.e., buying market-cap-weighted index funds) is fine, but &quot;passive asset allocation&quot; (sticking to a fixed 60/40 mix regardless of valuations) is a primary driver of market booms and busts. — Victor Haghani — The Monetary Matters Network</li><li><strong>Price Drives Narrative:</strong> The market&#x27;s narrative follows price action, not the other way around. This was reinforced by the AI unwind, where the story soured only after prices broke. — Quinn — Forward Guidance</li><li><strong>Human Capital Bottleneck:</strong> A critical and under-discussed constraint for the re-industrialization and mining booms is the lack of skilled labor, as universities are closing relevant programs like geology. — Scott North — Mining Stock Daily</li></ul></section>
-<section id="data-quality-note"><h2>DATA QUALITY NOTE</h2><ul><li><strong>Overlapping Episodes:</strong> Several speakers appeared on the same show on consecutive days or within the same week.</li><li><strong>Tony Greer</strong> on *Maggie Lake Talking Markets* (today and 08-04): Content was consistent, reiterating short semiconductor/long broad market themes.</li><li><strong>Dinny McMahon</strong> on *Trivium China* (today and 08-03): Today&#x27;s episode was a deeper dive into the Politburo meeting discussed previously, providing more specific policy predictions.</li><li><strong>Ben Hunt</strong> on *Excess Returns* (today, 08-03, 08-02, 08-01): Consistent theme development around the AI CapEx buildout as a systemic risk.</li><li><strong>Joe Lowry</strong> on *Mining Stock Daily* (today and 08-01): The content appears to be from the same recording, split into multiple parts. Synthesized as a single viewpoint.</li><li><strong>Scott North</strong> on *Mining Stock Daily* (today and 08-01): The content appears to be from the same recording. Synthesized as a single viewpoint.</li><li><strong>Marvin Barth</strong> on *Macro Hive* (today and 08-01): The content appears to be from the same recording. Synthesized as a single viewpoint.</li><li><strong>Attribution Gaps:</strong> The guest on *Less Noise More Signal* (&quot;Where to Hide if the AI Boom Cracks&quot;) was not clearly identified in the summary and is attributed as &quot;(speaker unclear)&quot;.</li><li><strong>Duplicate Summaries:</strong> Summaries for *Adam Taggart | Thoughtful Money* with Michael Pento, *Excess Returns* with Brent Donnelly, *The Monetary Matters Network* with Victor Haghani, and *RenMac* were provided twice from different sources but contained identical content. They were de-duplicated and treated as single episodes.</li></ul></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-08 · <a href="archive.html">All days</a></footer></div></body></html>
+<section id="data-quality-note"><h2>DATA QUALITY NOTE</h2><ul><li><strong>Overlapping Episodes:</strong> Several speakers appeared on the same show on consecutive days or within the same week.</li><li><strong>Tony Greer</strong> on *Maggie Lake Talking Markets* (today and 08-04): Content was consistent, reiterating short semiconductor/long broad market themes.</li><li><strong>Dinny McMahon</strong> on *Trivium China* (today and 08-03): Today&#x27;s episode was a deeper dive into the Politburo meeting discussed previously, providing more specific policy predictions.</li><li><strong>Ben Hunt</strong> on *Excess Returns* (today, 08-03, 08-02, 08-01): Consistent theme development around the AI CapEx buildout as a systemic risk.</li><li><strong>Joe Lowry</strong> on *Mining Stock Daily* (today and 08-01): The content appears to be from the same recording, split into multiple parts. Synthesized as a single viewpoint.</li><li><strong>Scott North</strong> on *Mining Stock Daily* (today and 08-01): The content appears to be from the same recording. Synthesized as a single viewpoint.</li><li><strong>Marvin Barth</strong> on *Macro Hive* (today and 08-01): The content appears to be from the same recording. Synthesized as a single viewpoint.</li><li><strong>Attribution Gaps:</strong> The guest on *Less Noise More Signal* (&quot;Where to Hide if the AI Boom Cracks&quot;) was not clearly identified in the summary and is attributed as &quot;(speaker unclear)&quot;.</li><li><strong>Duplicate Summaries:</strong> Summaries for *Adam Taggart | Thoughtful Money* with Michael Pento, *Excess Returns* with Brent Donnelly, *The Monetary Matters Network* with Victor Haghani, and *RenMac* were provided twice from different sources but contained identical content. They were de-duplicated and treated as single episodes.</li></ul></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-09 · <a href="archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-the-return-of-mr-lithium">★ The Return of Mr. Lith…</a><a href="#spotlight-why-the-best-mining-projects-s">★ Why the Best Mining Pr…</a><a href="#spotlight-china-s-patient-economic-suppo">★ China&#x27;s Patient Econom…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-the-return-of-mr-lithium">★ The Return of Mr. Lith…</a><a href="#spotlight-why-the-best-mining-projects-s">★ Why the Best Mining Pr…</a><a href="#spotlight-china-s-patient-economic-suppo">★ China&#x27;s Patient Econom…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+(function(){
+var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
+var top=qs('#fab-top');
+if(top){addEventListener('scroll',function(){top.classList.toggle('show',scrollY>600)},{passive:true});
+        top.onclick=function(){scrollTo({top:0,behavior:'smooth'})};}
+var toc=qs('#fab-toc');
+if(toc){toc.classList.add('show');
+        addEventListener('scroll',function(){toc.classList.toggle('show',true)},{passive:true});}
+function closeDrawer(){document.body.classList.remove('drawer-open')}
+if(toc){toc.onclick=function(){document.body.classList.add('drawer-open')};
+        qs('.drawer-bg').onclick=closeDrawer;
+        qa('.drawer a').forEach(function(a){a.addEventListener('click',closeDrawer)});}
+var links=qa('.rail a, .drawer a');
+if(links.length){
+  var map={};links.forEach(function(a){var id=a.getAttribute('href').slice(1);(map[id]=map[id]||[]).push(a)});
+  var cur=null;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){
+      if(cur&&map[cur])map[cur].forEach(function(a){a.classList.remove('on')});
+      cur=e.target.id;
+      if(map[cur])map[cur].forEach(function(a){a.classList.add('on')});
+    }});
+  },{rootMargin:'-10% 0px -80% 0px'});
+  qa('section[id]').forEach(function(x){io.observe(x)});
+}
+var ROOT=document.body.getAttribute('data-root')||'';
+var idx=null,inp=qs('.search-box input'),res=qs('.search-res');
+function openS(){document.body.classList.add('search-open');inp.focus();
+  if(!idx){fetch(ROOT+'search-index.json').then(function(r){return r.json()})
+    .then(function(j){idx=j;run()}).catch(function(){res.innerHTML='<div class=empty>index unavailable</div>'});}}
+function closeS(){document.body.classList.remove('search-open')}
+function run(){
+  if(!idx)return;
+  var q=inp.value.trim().toLowerCase();
+  var hits=!q?idx.slice(0,20):idx.filter(function(e){
+    return (e.t+' '+e.s+' '+e.d).toLowerCase().indexOf(q)>=0}).slice(0,30);
+  res.innerHTML=hits.length?hits.map(function(e){
+    return '<a href="'+ROOT+e.u+'"><div class=st>'+e.t+'</div><div class=ss>'+e.d+' · '+e.s+'</div></a>';
+  }).join(''):'<div class=empty>no matches</div>';}
+if(inp){inp.addEventListener('input',run);
+  qs('.sbtn').onclick=openS;qs('.search-bg').onclick=closeS;
+  addEventListener('keydown',function(e){
+    if(e.key==='/'&&!document.body.classList.contains('search-open')&&
+       document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
+    if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+</script></body></html>

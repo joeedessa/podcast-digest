@@ -29,7 +29,7 @@ header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
 .crumb{color:var(--muted);font-size:13px}
 .crumb a{color:var(--muted)}
 /* header action — sits right, stays a 44px tap target on a phone */
-.btn{margin-left:auto;display:inline-flex;align-items:center;gap:2px;
+.btn{display:inline-flex;align-items:center;gap:2px;
      padding:9px 15px;min-height:38px;border:1px solid var(--line);
      border-radius:99px;background:var(--bg);color:var(--ink);
      font-size:13.5px;font-weight:550;white-space:nowrap;line-height:1}
@@ -43,14 +43,6 @@ header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
 .hero .meta{color:var(--muted);font-size:14px}
 .pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
       border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
-
-/* section nav */
-nav.toc{position:sticky;top:52px;background:var(--bg);padding:10px 0 12px;
-        border-bottom:1px solid var(--line);margin-bottom:8px;z-index:10}
-nav.toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0}
-nav.toc a{font-size:12px;padding:4px 10px;border:1px solid var(--line);
-          border-radius:99px;color:var(--muted);background:var(--panel);white-space:nowrap}
-nav.toc a:hover{color:var(--accent);border-color:var(--accent);text-decoration:none}
 
 /* sections */
 section{padding:28px 0 4px;border-top:1px solid var(--line)}
@@ -104,6 +96,96 @@ strong{font-weight:650}
 .days .d{font-family:var(--serif);font-size:17px;font-weight:600}
 .days .s{color:var(--muted);font-size:13px;text-align:right}
 
+
+/* right-side outline rail (desktop) */
+.layout{display:block}
+@media(min-width:1150px){
+  .layout{display:grid;grid-template-columns:minmax(0,820px) 220px;gap:44px;
+          max-width:1120px;margin:0 auto;padding:0 20px}
+  .layout>.wrap{max-width:none;padding:0}
+  .layout .rail{display:block}
+}
+.rail{display:none;position:sticky;top:76px;align-self:start;max-height:calc(100vh - 100px);
+      overflow-y:auto;padding:8px 0 24px;font-size:12.5px}
+.rail .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+          margin-bottom:10px}
+.rail a{display:block;color:var(--muted);padding:4px 10px;border-left:2px solid var(--line);
+        line-height:1.4}
+.rail a:hover{color:var(--accent);text-decoration:none}
+.rail a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+
+/* floating buttons */
+.fab{position:fixed;right:16px;z-index:40;display:flex;align-items:center;justify-content:center;
+     width:44px;height:44px;border-radius:50%;background:var(--panel);color:var(--ink);
+     border:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.18);font-size:18px;
+     cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
+.fab.show{opacity:1;pointer-events:auto}
+.fab:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+#fab-top{bottom:18px}
+#fab-toc{bottom:72px}
+@media(min-width:1150px){#fab-toc{display:none}}
+
+/* outline drawer (mobile) */
+.drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;opacity:0;
+           pointer-events:none;transition:opacity .2s}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:var(--panel);
+        z-index:61;transform:translateX(105%);transition:transform .22s ease;
+        padding:20px 18px;overflow-y:auto;border-left:1px solid var(--line)}
+body.drawer-open .drawer{transform:none}
+body.drawer-open .drawer-bg{opacity:1;pointer-events:auto}
+.drawer .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+            margin:2px 0 12px}
+.drawer a{display:block;padding:9px 10px;border-radius:8px;color:var(--ink);font-size:14.5px}
+.drawer a:hover{background:var(--accent-soft);text-decoration:none}
+.drawer a.on{color:var(--accent);font-weight:600}
+
+/* search */
+.sbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;min-height:36px;
+      border:1px solid var(--line);border-radius:99px;background:var(--bg);color:var(--muted);
+      font-size:13px;cursor:pointer;white-space:nowrap}
+.sbtn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.search-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:70;opacity:0;
+           pointer-events:none;transition:opacity .15s}
+.search-box{position:fixed;top:min(12vh,110px);left:50%;transform:translateX(-50%) scale(.98);
+            width:min(620px,92vw);background:var(--panel);border:1px solid var(--line);
+            border-radius:14px;z-index:71;opacity:0;pointer-events:none;transition:all .15s;
+            box-shadow:0 18px 60px rgba(0,0,0,.35);overflow:hidden}
+body.search-open .search-bg{opacity:1;pointer-events:auto}
+body.search-open .search-box{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.search-box input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+                  font-size:17px;padding:17px 19px;border-bottom:1px solid var(--line);
+                  font-family:var(--sans)}
+.search-res{max-height:52vh;overflow-y:auto;padding:8px}
+.search-res a{display:block;padding:10px 12px;border-radius:9px;color:var(--ink)}
+.search-res a:hover,.search-res a.sel{background:var(--accent-soft);text-decoration:none}
+.search-res .st{font-weight:600;font-size:14.5px}
+.search-res .ss{color:var(--muted);font-size:12.5px;margin-top:1px}
+.search-res .empty{padding:16px;color:var(--muted);font-size:14px;text-align:center}
+
+/* episode cards inside a digest's episode index */
+.eplist{display:grid;gap:10px}
+.eplist a.epc{display:block;background:var(--panel);border:1px solid var(--line);
+              border-radius:var(--radius);padding:13px 16px;color:inherit}
+.eplist a.epc:hover{border-color:var(--accent);text-decoration:none}
+.eplist .epc .es{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.eplist .epc .et{font-family:var(--serif);font-size:16.5px;font-weight:600;margin:2px 0 3px}
+.eplist .epc .em{color:var(--muted);font-size:13px}
+.eplist div.epc{background:var(--panel);border:1px solid var(--line);opacity:.75;
+                border-radius:var(--radius);padding:13px 16px}
+
+/* episode page */
+blockquote.q{margin:14px 0;padding:13px 17px;background:var(--panel);border-left:3px solid var(--accent);
+             border-radius:var(--radius);font-family:var(--serif);font-size:16px;font-style:italic}
+blockquote.q .qw{display:block;margin-top:7px;font-family:var(--sans);font-size:12.5px;
+                 font-style:normal;color:var(--muted)}
+.verdict{background:var(--accent-soft);border:1px solid var(--line);border-left:3px solid var(--accent);
+         border-radius:var(--radius);padding:15px 18px;font-family:var(--serif);font-size:16.5px}
+.ivrow{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);
+       font-size:14.5px;flex-wrap:wrap}
+.ivrow:last-child{border-bottom:0}
+.ivrow .who{font-weight:600;min-width:130px}
+.ivrow .what{color:var(--ink)}
+
 footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
        color:var(--muted);font-size:12.5px}
 .note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
@@ -113,7 +195,7 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Saturday, 8 August 2026</span><a class="btn" href="archive.html">☰&nbsp; Archive</a></div></header><div class="wrap"><div class="hero"><h1>Saturday, 8 August 2026</h1><div class="meta"><span class="pill">31 episodes (33 files — 2 arrived twice from two sources)</span>Commodities &amp; Hard Assets, Equities &amp; Trading, Investment Analysis &amp; Factors, Macroeconomics &amp; Strategy, Real Estate &amp; Wealth Building</div></div><nav class="toc"><ul><li><a href="#tl-dr-read-this-first">TL;DR (read this first)</a></li><li><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a></li><li><a href="#divergent-views">DIVERGENT VIEWS</a></li><li><a href="#dominant-themes">DOMINANT THEMES</a></li><li><a href="#guest-briefs">GUEST BRIEFS</a></li><li><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a></li><li><a href="#tickers-assets">TICKERS &amp; ASSETS</a></li><li><a href="#spotlight-money-of-mine-all-you-need-to-">★ Money of Mine: All You…</a></li><li><a href="#spotlight-mining-stock-daily-1911-gold-t">★ Mining Stock Daily: 19…</a></li><li><a href="#spotlight-odd-lots-how-a-sardine-gets-fr">★ Odd Lots: How a Sardin…</a></li><li><a href="#spotlight-odd-lots-the-tungsten-market-i">★ Odd Lots: The Tungsten…</a></li><li><a href="#spotlight-the-meb-faber-show-what-wall-s">★ The Meb Faber Show: Wh…</a></li><li><a href="#spotlight-morgan-stanley-why-brick-and-m">★ Morgan Stanley: Why Br…</a></li><li><a href="#spotlight-macro-hive-ep-370-eric-beinhoc">★ Macro Hive: Ep 370 Eri…</a></li><li><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a></li><li><a href="#watch-catalysts">WATCH CATALYSTS</a></li><li><a href="#miscellaneous">MISCELLANEOUS</a></li><li><a href="#data-quality-note">DATA QUALITY NOTE</a></li><li><a href="#not-covered-above">NOT COVERED ABOVE</a></li></ul></nav><section id="tl-dr-read-this-first"><h2>TL;DR (read this first)</h2><div class="tldr"><p>Increasingly visible state intervention is the dominant force shaping markets, as the US Treasury and Federal Reserve act to suppress volatility and manage the economic consequences of the AI boom. Key voices like Jared Dillian, Mike Green, and Tyler see a shift toward fiscal dominance, where policy actions like the coordinated yen intervention are designed to stabilize bond markets and support strategic sectors. This creates a central tension between a market narrative driven by AI&#x27;s long-term promise, championed by Ed Yardeni and Jim Bianco, and a reality where policymakers are actively distorting price signals to prevent instability, a dynamic that could lead to unforeseen consequences.</p>
+</style></head><body data-root=""><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Saturday, 8 August 2026</span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><h1>Saturday, 8 August 2026</h1><div class="meta"><span class="pill">31 episodes (33 files — 2 arrived twice from two sources)</span>Commodities &amp; Hard Assets, Equities &amp; Trading, Investment Analysis &amp; Factors, Macroeconomics &amp; Strategy, Real Estate &amp; Wealth Building</div></div><section id="tl-dr-read-this-first"><h2>TL;DR (read this first)</h2><div class="tldr"><p>Increasingly visible state intervention is the dominant force shaping markets, as the US Treasury and Federal Reserve act to suppress volatility and manage the economic consequences of the AI boom. Key voices like Jared Dillian, Mike Green, and Tyler see a shift toward fiscal dominance, where policy actions like the coordinated yen intervention are designed to stabilize bond markets and support strategic sectors. This creates a central tension between a market narrative driven by AI&#x27;s long-term promise, championed by Ed Yardeni and Jim Bianco, and a reality where policymakers are actively distorting price signals to prevent instability, a dynamic that could lead to unforeseen consequences.</p>
 <ul><li>CENTRAL TENSION: The AI-driven market rally versus increasing state intervention to suppress volatility and manage economic fallout.</li><li>TOP THEME: AI Market Rotation — The consensus is shifting from AI hardware/semis towards AI adopters, infrastructure, and other sectors.</li><li>DIVERGENT: AI/Tech Stocks: Bulls (Jim Bianco) see a multi-year boom vs. Bears (Jared Dillian, Tian Yang) calling a top on valuation/narrative exhaustion.</li><li>HIGH-CONVICTION TRADE: LONG Gold, with broad support as a hedge against debt crises, inflation, and policy error (multiple speakers).</li><li>CALENDAR: US Non-Farm Payrolls report, cited as a key near-term catalyst for Fed policy and market volatility.</li></ul></div></section>
 <section id="trade-ideas-positions"><h2>TRADE IDEAS &amp; POSITIONS</h2><div class="cards"><div class="tier">HIGH CONVICTION</div>
 <div class="card"><div class="head"><span class="asset">Gold</span><span class="tag dir-long">LONG</span><span class="who">Tony Greer — The Macro Dirt Podcast · Jared Dillian — Mauldin Economics · Don Durrett — Wealth Building Blueprint – Vladyslav Grabarskyy · Clive Thompson — Wealth Building Blueprint – Vladyslav Grabarskyy · Rupert Mitchell — Benny &amp; The Squirrel · Multiple others including</span></div><p><span class="label">why</span>Consensus sees gold as a crucial hedge against rising sovereign debt risks, inevitable policy error from central banks trapped between inflation and growth, and geopolitical instability. Strategic accumulation by Eastern central banks provides a strong underlying bid, while technicals are showing signs of a bottom and potential breakout.</p><p><span class="label">context</span>Timeframes range from tactical trades to permanent strategic allocations.</p><p><span class="label">voices</span>Tony Greer — The Macro Dirt Podcast: Sees a secular bull market with $4500 as the breakaway level. · Jared Dillian — Mauldin Economics: Recommends a 20-40% long-term allocation, viewing it as a core portfolio holding. · Don Durrett — Wealth Building Blueprint – Vladyslav Grabarskyy: Targets $7,000/oz, driven by central bank policy failure. · Clive Thompson — Wealth Building Blueprint – Vladyslav Grabarskyy: Holds as a hedge against a &quot;when, not if&quot; debt crisis. · Rupert Mitchell — Benny &amp; The Squirrel: Believes real rate concerns should be put aside; the chart &quot;looks like a buy.&quot; · Multiple others including: Eric Balchunas, Patrick Ceresna, Masil Bagnan, Peter Boockvar, Frank Cappelleri, Tian Yang.</p></div>
@@ -224,4 +306,52 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
 <section id="not-covered-above"><h2>NOT COVERED ABOVE</h2><p>Recorded calls that did not make the narrative. Full detail with verbatim quotes is in CALL_LEDGER_2026-08-08.txt.</p>
 <p><strong>Speakers:</strong></p>
 <ul><li>Ariana Salvatore — Morgan Stanley — 8 calls</li><li>Chris Casey — Wealthion — 7 calls</li><li>JD — Money of Mine — 6 calls, 1 trade</li><li>Alan Greenspan — Steve Eisman — 3 calls</li></ul>
-<p><strong>Tickers:</strong> <strong>BTC</strong> (LONG, Tyler) · <strong>VPG</strong> (LONG, Deya Pernas) · <strong>TLT</strong> (AVOID, Ben Brey) · <strong>SPX, RUA</strong> (LONG, Jeff DeGraaf) · <strong>RUA</strong> (LONG, Jeff DeGraaf) · <strong>IWM</strong> (LONG, Ed Yardeni) · <strong>BTC/XAU</strong> (LONG, Pascal Hügli)</p></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-08 · <a href="archive.html">All days</a></footer></div></body></html>
+<p><strong>Tickers:</strong> <strong>BTC</strong> (LONG, Tyler) · <strong>VPG</strong> (LONG, Deya Pernas) · <strong>TLT</strong> (AVOID, Ben Brey) · <strong>SPX, RUA</strong> (LONG, Jeff DeGraaf) · <strong>RUA</strong> (LONG, Jeff DeGraaf) · <strong>IWM</strong> (LONG, Ed Yardeni) · <strong>BTC/XAU</strong> (LONG, Pascal Hügli)</p></section>
+<section id="episode-index"><h2>EPISODE INDEX</h2><div class="eplist"><a class="epc" href="ep/2026-08-08/mining-stock-daily-1911-gold-targets-mil.html"><span class="es">Mining Stock Daily</span><div class="et">1911 Gold Targets Mill Restart by End of 2026 Closes 3565M Bought-Deal Financing</div><div class="em">Host: Michael McCrae · Guest: Sean Hinrich, CEO, 1911 Gold</div></a><a class="epc" href="ep/2026-08-08/mining-stock-daily-the-fed-japan-gold-in.html"><span class="es">Mining Stock Daily</span><div class="et">The Fed Japan Gold Intervention Changes Everything</div><div class="em">Host: Trevor Hall · Guest: Peter Boockvar, Chief Investment Officer, 1. BFG, Author of The Book Report</div></a><a class="epc" href="ep/2026-08-08/money-of-mine-all-you-need-to-know-about.html"><span class="es">Money of Mine</span><div class="et">All You Need to Know About Diggers 2026</div><div class="em">Host: Travis Ricciardo, JD · Solo episode</div></a><a class="epc" href="ep/2026-08-08/wealthion-jim-bianco-there-are-now-two-s.html"><span class="es">Wealthion</span><div class="et">Jim Bianco There Are Now Two Stock Markets</div><div class="em">Host: Wealthion host (unidentified) · Guest: Jim Bianco</div></a><a class="epc" href="ep/2026-08-08/wealthion-your-401k-isnt-as-safe-as-you-.html"><span class="es">Wealthion</span><div class="et">Your 401k Isnt as Safe as You Think</div><div class="em">Host: Maggie Lake · Guest: Chris Casey, Founder and Managing Director of Windrock Wealth Management</div></a><a class="epc" href="ep/2026-08-08/the-macro-dirt-podcast-eric-balchunas-on.html"><span class="es">The Macro Dirt Podcast</span><div class="et">Eric Balchunas on Stocks Gold ETFs AI</div><div class="em">Host: Tony Greer, Jared Dillian · Guest: Eric Balchunas, Senior ETF Analyst, Bloomberg</div></a><a class="epc" href="ep/2026-08-08/excess-returns-inflation-well-above-targ.html"><span class="es">Excess Returns</span><div class="et">Inflation Well Above Target A Market All In on AI What Does the Market Top Check</div><div class="em">Host: Jack Forehand · Guest: Chan Yang, Head of Research at Varied Perception and Portfolio Manager of the VPX ETF</div></a><a class="epc" href="ep/2026-08-08/morgan-stanley-ais-new-rules-of-engageme.html"><span class="es">Morgan Stanley</span><div class="et">AIs New Rules of Engagement</div><div class="em">Host: Ariana Salvatore · Solo episode</div></a><a class="epc" href="ep/2026-08-08/morgan-stanley-ariana-salvatore-on-bloom.html"><span class="es">Morgan Stanley</span><div class="et">Ariana Salvatore on Bloomberg Surveillance</div><div class="em">Host: (speaker unclear) · Guest: Ariana Salvatore, (title unclear), Morgan Stanley</div></a><a class="epc" href="ep/2026-08-08/morgan-stanley-why-brick-and-mortar-bank.html"><span class="es">Morgan Stanley</span><div class="et">Why Brick and Mortar Banking Still Matters</div><div class="em">Host: Manan Gasalia · Solo episode</div></a><a class="epc" href="ep/2026-08-08/steve-eisman-250-years-of-american-capit.html"><span class="es">Steve Eisman</span><div class="et">250 Years of American Capitalism Hamilton the GFC the AI Boom The Real Eisman Pl</div><div class="em">Host: Steve Eisman · Guest: Adrian Wooldridge, Co-author of &quot;Capitalism in America, an economic history of the United States&quot;</div></a><a class="epc" href="ep/2026-08-08/the-compound-the-man-who-called-the-roar.html"><span class="es">The Compound</span><div class="et">The Man Who Called the Roaring 2020s TCAF 254</div><div class="em">Host: Josh Brown, Michael Batnick, Ben Carlson · Guest: Ed Yardeni, President of Yardeni Research</div></a><a class="epc" href="ep/2026-08-08/the-meb-faber-show-what-wall-street-look.html"><span class="es">The Meb Faber Show</span><div class="et">What Wall Street Looked Like Before Buybacks</div><div class="em">Host: Meb Faber · Guest: (speaker unclear)</div></a><a class="epc" href="ep/2026-08-08/benny-the-squirrel-checking-in-on-the-cu.html"><span class="es">Benny The Squirrel</span><div class="et">Checking in on The Cult</div><div class="em">Host: Rupert Mitchell, Ben Brey · Solo episode</div></a><a class="epc" href="ep/2026-08-08/benny-the-squirrel-mike-greens-new-adven.html"><span class="es">Benny The Squirrel</span><div class="et">Mike Greens New Adventure</div><div class="em">Host: Rupert Mitchell, Ben Brey · Guest: Mike Green, Founder, Tier One Alpha Asset Management</div></a><a class="epc" href="ep/2026-08-08/forward-guidance-washington-is-suppressi.html"><span class="es">Forward Guidance</span><div class="et">Washington Is Suppressing Volatility To Keep The AI Boom Alive Weekly Roundup</div><div class="em">Host: Felix Jauvin, Quinn, Tyler · Solo episode</div></a><a class="epc" href="ep/2026-08-08/less-noise-more-signal-market-update-tim.html"><span class="es">Less Noise More Signal</span><div class="et">Market Update Time to Get Bullish on Bitcoin Again</div><div class="em">Host: Pascal Hügli · Solo episode</div></a><a class="epc" href="ep/2026-08-08/less-noise-more-signal-why-waiting-for-5.html"><span class="es">Less Noise More Signal</span><div class="et">Why Waiting for 50K Bitcoin Could Be a Mistake</div><div class="em">Host: Pascal Hügli · Guest: Matt Crosby, Director of Research and Analytics at Bitcoin Magazine Pro</div></a><a class="epc" href="ep/2026-08-08/macro-hive-ep-370-eric-beinhocker-on-mar.html"><span class="es">Macro Hive</span><div class="et">Ep 370 Eric Beinhocker on Market Humanism the End of Neoliberalism and Human Flo</div><div class="em">Host: Bilal Hafeez · Guest: Eric Beinhocker, Professor at the University of Oxford&#x27;s Levatnik School of Government and Founder and Executive Director of the Institute for New Economic Thinking at the Oxford Martin School (INET Oxford); Chairman of the Science Board at the Santa Fe Institute.</div></a><a class="epc" href="ep/2026-08-08/macro-hive-the-week-ahead-dovish-data-dr.html"><span class="es">Macro Hive</span><div class="et">The Week Ahead Dovish Data Drops Incoming</div><div class="em">Host: (host unclear) · Guest: Dominique Dwor-Frecaut, Macro Hive</div></a><a class="epc" href="ep/2026-08-08/macro-voices-trading-desk-august-6th-202.html"><span class="es">Macro Voices</span><div class="et">Trading Desk - August 6th 2026</div><div class="em">Host: Erik Townsend, Patrick Ceresna, Masil Bagnan · Solo episode</div></a><a class="epc" href="ep/2026-08-08/mauldin-economics-jared-dillian-we-just-.html"><span class="es">Mauldin Economics</span><div class="et">Jared Dillian We Just Saw the Starting Gun for a Tech Bear Market</div><div class="em">Host: Ed D&#x27;Agostino · Guest: Jared Dillian, Editor of The Daily Dirtnap</div></a><a class="epc" href="ep/2026-08-08/mauldin-economics-the-feds-72d-chess-pla.html"><span class="es">Mauldin Economics</span><div class="et">The Feds 72D Chess Playbook</div><div class="em">Host: Ed D&#x27;Agostino · Guest: Jared Dillian, Editor of The Daily Dirtnap</div></a><a class="epc" href="ep/2026-08-08/odd-lots-how-a-sardine-gets-from-the-oce.html"><span class="es">Odd Lots</span><div class="et">How a Sardine Gets From the Ocean to a Can</div><div class="em">Host: Tracy Alloway, Joe Weisenthal · Guest: Becca Milstein, Founder and CEO of Fish Wife</div></a><a class="epc" href="ep/2026-08-08/odd-lots-the-tungsten-market-is-warning-.html"><span class="es">Odd Lots</span><div class="et">The Tungsten Market Is Warning of an Upcoming War</div><div class="em">Host: Joe Weisenthal, Tracy Alloway · Guest: David Fickling, Bloomberg Opinion Columnist</div></a><a class="epc" href="ep/2026-08-08/renmac-renmac-off-script-forecasts-feeli.html"><span class="es">RenMac</span><div class="et">RenMac Off-Script Forecasts Feelings</div><div class="em">Host: Steve Duttenhofer, Jeff deGraaf, Neil Dutta, Steve Pavlik · Guest: Dr. Steve Myron, Former Chairman of the White House Council of Economic Advisors and Senior Strategist at Hudson Bay Capital</div></a><a class="epc" href="ep/2026-08-08/renmac-stronger-growth-a-stubborn-fed-an.html"><span class="es">RenMac</span><div class="et">Stronger Growth A Stubborn Fed and Tariff Redux</div><div class="em">Host: Steve Duttenhofer, Jeff deGraaf, Neil Dutta, Steve Pavlik · Guest: Dr. Steve Myin, Former Chairman of the White House Council of Economic Advisors and a key architect of the administration&#x27;s tariff framework, former Federal Reserve member, and Senior Strategist at Hudson Bay Capital.</div></a><a class="epc" href="ep/2026-08-08/saxo-market-call-coordinated-jpy-interve.html"><span class="es">Saxo Market Call</span><div class="et">Coordinated JPY intervention and a cleaner AI hardware slate</div><div class="em">Host: John J. Hardy · Solo episode</div></a><a class="epc" href="ep/2026-08-08/saxo-market-call-polysilicon-supply-chai.html"><span class="es">Saxo Market Call</span><div class="et">Polysilicon supply chains may surprise you US jobs data today</div><div class="em">Host: John J. Hardy · Solo episode</div></a><a class="epc" href="ep/2026-08-08/the-monetary-matters-network-ai-trade-de.html"><span class="es">The Monetary Matters Network</span><div class="et">AI Trade Dead Money For Now - But Macro Overall Is Pretty Risk-On For Stocks Tia</div><div class="em">Host: Jack Farley · Guest: Tian Yang, Co-founder and Head of Research at Variant Perception</div></a><a class="epc" href="ep/2026-08-08/the-monetary-matters-network-misundersto.html"><span class="es">The Monetary Matters Network</span><div class="et">Misunderstood Stocks in Data Center Power Cybersecurity and Payments Dean Deiya</div><div class="em">Host: Jack Farley · Guest: Deya Pernas, Co-Founder, Pernas Research</div></a><a class="epc" href="ep/2026-08-08/wealth-building-blueprint-vladyslav-grab.html"><span class="es">Wealth Building Blueprint Vladyslav Grab</span><div class="et">Clive Thompson Gold Bottom Is In Debt Crisis Risks Rising AI Stocks in Trouble</div><div class="em">Host: Vladyslav Grabarskyy · Guest: Clive Thompson, author, retired wealth manager from Switzerland, and host of a YouTube channel.</div></a><a class="epc" href="ep/2026-08-08/wealth-building-blueprint-vladyslav-grab-2.html"><span class="es">Wealth Building Blueprint Vladyslav Grab</span><div class="et">Don Durretts Top 12 Gold Silver Stock Picks Why Gold Silver Go Much Higher</div><div class="em">Host: Vladyslav Grabarskyy · Guest: Don Durrett, Founder of goldstockdata.com</div></a></div></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-09 · <a href="archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-money-of-mine-all-you-need-to-">★ Money of Mine: All You…</a><a href="#spotlight-mining-stock-daily-1911-gold-t">★ Mining Stock Daily: 19…</a><a href="#spotlight-odd-lots-how-a-sardine-gets-fr">★ Odd Lots: How a Sardin…</a><a href="#spotlight-odd-lots-the-tungsten-market-i">★ Odd Lots: The Tungsten…</a><a href="#spotlight-the-meb-faber-show-what-wall-s">★ The Meb Faber Show: Wh…</a><a href="#spotlight-morgan-stanley-why-brick-and-m">★ Morgan Stanley: Why Br…</a><a href="#spotlight-macro-hive-ep-370-eric-beinhoc">★ Macro Hive: Ep 370 Eri…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#not-covered-above">NOT COVERED ABOVE</a><a href="#episode-index">EPISODE INDEX</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-money-of-mine-all-you-need-to-">★ Money of Mine: All You…</a><a href="#spotlight-mining-stock-daily-1911-gold-t">★ Mining Stock Daily: 19…</a><a href="#spotlight-odd-lots-how-a-sardine-gets-fr">★ Odd Lots: How a Sardin…</a><a href="#spotlight-odd-lots-the-tungsten-market-i">★ Odd Lots: The Tungsten…</a><a href="#spotlight-the-meb-faber-show-what-wall-s">★ The Meb Faber Show: Wh…</a><a href="#spotlight-morgan-stanley-why-brick-and-m">★ Morgan Stanley: Why Br…</a><a href="#spotlight-macro-hive-ep-370-eric-beinhoc">★ Macro Hive: Ep 370 Eri…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#not-covered-above">NOT COVERED ABOVE</a><a href="#episode-index">EPISODE INDEX</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+(function(){
+var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
+var top=qs('#fab-top');
+if(top){addEventListener('scroll',function(){top.classList.toggle('show',scrollY>600)},{passive:true});
+        top.onclick=function(){scrollTo({top:0,behavior:'smooth'})};}
+var toc=qs('#fab-toc');
+if(toc){toc.classList.add('show');
+        addEventListener('scroll',function(){toc.classList.toggle('show',true)},{passive:true});}
+function closeDrawer(){document.body.classList.remove('drawer-open')}
+if(toc){toc.onclick=function(){document.body.classList.add('drawer-open')};
+        qs('.drawer-bg').onclick=closeDrawer;
+        qa('.drawer a').forEach(function(a){a.addEventListener('click',closeDrawer)});}
+var links=qa('.rail a, .drawer a');
+if(links.length){
+  var map={};links.forEach(function(a){var id=a.getAttribute('href').slice(1);(map[id]=map[id]||[]).push(a)});
+  var cur=null;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){
+      if(cur&&map[cur])map[cur].forEach(function(a){a.classList.remove('on')});
+      cur=e.target.id;
+      if(map[cur])map[cur].forEach(function(a){a.classList.add('on')});
+    }});
+  },{rootMargin:'-10% 0px -80% 0px'});
+  qa('section[id]').forEach(function(x){io.observe(x)});
+}
+var ROOT=document.body.getAttribute('data-root')||'';
+var idx=null,inp=qs('.search-box input'),res=qs('.search-res');
+function openS(){document.body.classList.add('search-open');inp.focus();
+  if(!idx){fetch(ROOT+'search-index.json').then(function(r){return r.json()})
+    .then(function(j){idx=j;run()}).catch(function(){res.innerHTML='<div class=empty>index unavailable</div>'});}}
+function closeS(){document.body.classList.remove('search-open')}
+function run(){
+  if(!idx)return;
+  var q=inp.value.trim().toLowerCase();
+  var hits=!q?idx.slice(0,20):idx.filter(function(e){
+    return (e.t+' '+e.s+' '+e.d).toLowerCase().indexOf(q)>=0}).slice(0,30);
+  res.innerHTML=hits.length?hits.map(function(e){
+    return '<a href="'+ROOT+e.u+'"><div class=st>'+e.t+'</div><div class=ss>'+e.d+' · '+e.s+'</div></a>';
+  }).join(''):'<div class=empty>no matches</div>';}
+if(inp){inp.addEventListener('input',run);
+  qs('.sbtn').onclick=openS;qs('.search-bg').onclick=closeS;
+  addEventListener('keydown',function(e){
+    if(e.key==='/'&&!document.body.classList.contains('search-open')&&
+       document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
+    if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+</script></body></html>

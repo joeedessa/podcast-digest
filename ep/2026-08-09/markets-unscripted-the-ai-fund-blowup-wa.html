@@ -1,0 +1,251 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#14150f"><title>Markets Unscripted — The AI Fund Blowup Was This the Perfect Bottom</title><style>
+:root{
+  --bg:#fbfbfa; --panel:#fff; --ink:#1a1a18; --muted:#6b6b66; --line:#e6e4df;
+  --accent:#b4552d; --accent-soft:#fdf3ee;
+  --long:#1a7340; --short:#c0392b; --watch:#2563a8; --reduce:#b8730f;
+  --radius:10px;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#14150f; --panel:#1c1d16; --ink:#eceade; --muted:#a3a094;
+         --line:#2f3126; --accent:#e08a5f; --accent-soft:#241a13;
+         --long:#5cc98a; --short:#ef7d6e; --watch:#7db3e8; --reduce:#e0a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+     line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 96px}
+
+/* masthead */
+header.top{border-bottom:1px solid var(--line);background:var(--panel);
+           position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.4) blur(6px)}
+header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
+                 align-items:baseline;gap:14px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.01em}
+.brand a{color:inherit}
+.crumb{color:var(--muted);font-size:13px}
+.crumb a{color:var(--muted)}
+/* header action — sits right, stays a 44px tap target on a phone */
+.btn{display:inline-flex;align-items:center;gap:2px;
+     padding:9px 15px;min-height:38px;border:1px solid var(--line);
+     border-radius:99px;background:var(--bg);color:var(--ink);
+     font-size:13.5px;font-weight:550;white-space:nowrap;line-height:1}
+.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.btn:active{transform:translateY(1px)}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,42px);line-height:1.12;
+         margin:0 0 10px;letter-spacing:-.02em;font-weight:600}
+.hero .meta{color:var(--muted);font-size:14px}
+.pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
+      border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
+
+/* sections */
+section{padding:28px 0 4px;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+h2{font-family:var(--serif);font-size:13px;font-weight:700;text-transform:uppercase;
+   letter-spacing:.14em;color:var(--accent);margin:0 0 16px}
+h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:28px 0 8px;
+   letter-spacing:-.01em}
+p{margin:0 0 13px}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin:5px 0}
+strong{font-weight:650}
+.tag{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+
+/* TL;DR */
+.tldr{background:var(--accent-soft);border:1px solid var(--line);
+      border-left:3px solid var(--accent);border-radius:var(--radius);
+      padding:18px 20px;margin-bottom:6px}
+.tldr p:last-child,.tldr ul:last-child{margin-bottom:0}
+.tldr ul{list-style:none;padding-left:0}
+.tldr li{padding-left:15px;position:relative}
+.tldr li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+
+/* trade cards */
+.cards{display:grid;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:15px 17px}
+.card .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.card .asset{font-family:var(--serif);font-size:18px;font-weight:600}
+.card .who{color:var(--muted);font-size:13px}
+.card p{margin:6px 0 0;font-size:14.5px}
+.card .label{color:var(--muted);font-size:11px;text-transform:uppercase;
+             letter-spacing:.08em;margin-right:5px}
+.dir-long{color:var(--long)} .dir-short{color:var(--short)}
+.dir-avoid{color:var(--short)} .dir-reduce{color:var(--reduce)}
+.dir-watching{color:var(--watch)} .dir-other{color:var(--muted)}
+.tier{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+      margin:22px 0 10px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+
+/* topics */
+.topic{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--muted);
+       border-radius:var(--radius);padding:15px 17px;margin:12px 0}
+.topic .t{font-weight:650;margin-bottom:9px}
+
+/* index */
+.days{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:9px}
+.days a{display:flex;justify-content:space-between;align-items:center;gap:14px;
+        background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+        padding:14px 17px;color:inherit}
+.days a:hover{border-color:var(--accent);text-decoration:none}
+.days .d{font-family:var(--serif);font-size:17px;font-weight:600}
+.days .s{color:var(--muted);font-size:13px;text-align:right}
+
+
+/* right-side outline rail (desktop) */
+.layout{display:block}
+@media(min-width:1150px){
+  .layout{display:grid;grid-template-columns:minmax(0,820px) 220px;gap:44px;
+          max-width:1120px;margin:0 auto;padding:0 20px}
+  .layout>.wrap{max-width:none;padding:0}
+  .layout .rail{display:block}
+}
+.rail{display:none;position:sticky;top:76px;align-self:start;max-height:calc(100vh - 100px);
+      overflow-y:auto;padding:8px 0 24px;font-size:12.5px}
+.rail .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+          margin-bottom:10px}
+.rail a{display:block;color:var(--muted);padding:4px 10px;border-left:2px solid var(--line);
+        line-height:1.4}
+.rail a:hover{color:var(--accent);text-decoration:none}
+.rail a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+
+/* floating buttons */
+.fab{position:fixed;right:16px;z-index:40;display:flex;align-items:center;justify-content:center;
+     width:44px;height:44px;border-radius:50%;background:var(--panel);color:var(--ink);
+     border:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.18);font-size:18px;
+     cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
+.fab.show{opacity:1;pointer-events:auto}
+.fab:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+#fab-top{bottom:18px}
+#fab-toc{bottom:72px}
+@media(min-width:1150px){#fab-toc{display:none}}
+
+/* outline drawer (mobile) */
+.drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;opacity:0;
+           pointer-events:none;transition:opacity .2s}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:var(--panel);
+        z-index:61;transform:translateX(105%);transition:transform .22s ease;
+        padding:20px 18px;overflow-y:auto;border-left:1px solid var(--line)}
+body.drawer-open .drawer{transform:none}
+body.drawer-open .drawer-bg{opacity:1;pointer-events:auto}
+.drawer .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+            margin:2px 0 12px}
+.drawer a{display:block;padding:9px 10px;border-radius:8px;color:var(--ink);font-size:14.5px}
+.drawer a:hover{background:var(--accent-soft);text-decoration:none}
+.drawer a.on{color:var(--accent);font-weight:600}
+
+/* search */
+.sbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;min-height:36px;
+      border:1px solid var(--line);border-radius:99px;background:var(--bg);color:var(--muted);
+      font-size:13px;cursor:pointer;white-space:nowrap}
+.sbtn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.search-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:70;opacity:0;
+           pointer-events:none;transition:opacity .15s}
+.search-box{position:fixed;top:min(12vh,110px);left:50%;transform:translateX(-50%) scale(.98);
+            width:min(620px,92vw);background:var(--panel);border:1px solid var(--line);
+            border-radius:14px;z-index:71;opacity:0;pointer-events:none;transition:all .15s;
+            box-shadow:0 18px 60px rgba(0,0,0,.35);overflow:hidden}
+body.search-open .search-bg{opacity:1;pointer-events:auto}
+body.search-open .search-box{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.search-box input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+                  font-size:17px;padding:17px 19px;border-bottom:1px solid var(--line);
+                  font-family:var(--sans)}
+.search-res{max-height:52vh;overflow-y:auto;padding:8px}
+.search-res a{display:block;padding:10px 12px;border-radius:9px;color:var(--ink)}
+.search-res a:hover,.search-res a.sel{background:var(--accent-soft);text-decoration:none}
+.search-res .st{font-weight:600;font-size:14.5px}
+.search-res .ss{color:var(--muted);font-size:12.5px;margin-top:1px}
+.search-res .empty{padding:16px;color:var(--muted);font-size:14px;text-align:center}
+
+/* episode cards inside a digest's episode index */
+.eplist{display:grid;gap:10px}
+.eplist a.epc{display:block;background:var(--panel);border:1px solid var(--line);
+              border-radius:var(--radius);padding:13px 16px;color:inherit}
+.eplist a.epc:hover{border-color:var(--accent);text-decoration:none}
+.eplist .epc .es{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.eplist .epc .et{font-family:var(--serif);font-size:16.5px;font-weight:600;margin:2px 0 3px}
+.eplist .epc .em{color:var(--muted);font-size:13px}
+.eplist div.epc{background:var(--panel);border:1px solid var(--line);opacity:.75;
+                border-radius:var(--radius);padding:13px 16px}
+
+/* episode page */
+blockquote.q{margin:14px 0;padding:13px 17px;background:var(--panel);border-left:3px solid var(--accent);
+             border-radius:var(--radius);font-family:var(--serif);font-size:16px;font-style:italic}
+blockquote.q .qw{display:block;margin-top:7px;font-family:var(--sans);font-size:12.5px;
+                 font-style:normal;color:var(--muted)}
+.verdict{background:var(--accent-soft);border:1px solid var(--line);border-left:3px solid var(--accent);
+         border-radius:var(--radius);padding:15px 18px;font-family:var(--serif);font-size:16.5px}
+.ivrow{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);
+       font-size:14.5px;flex-wrap:wrap}
+.ivrow:last-child{border-bottom:0}
+.ivrow .who{font-weight:600;min-width:130px}
+.ivrow .what{color:var(--ink)}
+
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+       color:var(--muted);font-size:12.5px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:12px 15px;font-size:12.5px;color:var(--muted);margin-top:20px}
+@media(max-width:600px){
+  .hero{padding:30px 0 20px}
+  nav.toc{position:static}
+  .card .head{gap:6px}
+}
+</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-09.html">9 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Markets Unscripted</span><span class="pill">9 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">The AI Fund Blowup Was This the Perfect Bottom</h1><div class="meta">Host: Matt Caruso, Jason Shapiro · Solo episode</div></div><section id="overview"><h2>Overview</h2><p>This episode discusses the recent &quot;AI fund blowup&quot; and its implications for market dynamics, positioning, and risk management. Jason Shapiro argues that the liquidation event, while brutal for specific AI stocks, created a &quot;perfect bottom&quot; due to the forced unwinding of highly leveraged positions and the subsequent rapid rebound, making it difficult for new buyers to enter. Matt Caruso emphasizes the importance of relative strength in stock selection post-liquidation and the need for simplified trading processes. Both hosts highlight the recurring nature of market psychology and the dangers of excessive leverage.</p></section>
+<section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Jason Shapiro identifies three key factors for trading: positioning, sentiment, and market action. He notes that the AI market&#x27;s sentiment shifted with news failures from MU, Samsung, Heinix, and Google, indicating a &quot;bad tape&quot; even before the full liquidation event.</li><li>The &quot;AI fund blowup&quot; is compared to the LTCM crisis of 1998, where highly leveraged positions led to forced liquidations despite the underlying trade potentially being correct in the long term. Jason Shapiro states that the blown-out fund&#x27;s manager &quot;had it 100% right&quot; but &quot;got too levered.&quot;</li><li>Matt Caruso highlights that the market&#x27;s internal health, as measured by 52-week highs versus lows and the performance of the JNK ETF, remained stable despite the AI sector&#x27;s turmoil, suggesting a localized liquidity event rather than a broader market breakdown.</li><li>Jason Shapiro suggests that the most contrarian trade currently might be to look at non-AI related stocks, as &quot;everyone&#x27;s talking about this freaking guy and this kid and this hedge fund and the AI.&quot;</li><li>Matt Caruso observes that consumer stocks, including restaurants like Brinker International and Cheesecake Factory, have shown significant strength and breakouts, indicating demand in areas overlooked by the AI focus.</li><li>Jason Shapiro believes the long-term viability of AI hinges on its financing, stating, &quot;where this could fail is in is if it can&#x27;t be financed.&quot; He emphasizes watching credit spreads on AI-related companies and general interest rates as the most important indicators.</li><li>Matt Caruso points out that major tech companies like Google and Microsoft may be compelled to continue spending heavily on AI to avoid falling behind, even if it impacts short-term earnings, due to the existential threat to their core businesses.</li><li>Jason Shapiro notes that the Yen intervention was predictable based on crowded positioning, as indicated by COT data, and that the widely anticipated market crash due to the Yen carry trade did not materialize because &quot;everybody&#x27;s adjusted to it.&quot;</li><li>Matt Caruso advises simplifying trading processes and understanding tools to their core, rather than relying on too many variables, to avoid &quot;analysis paralysis&quot; and react effectively to market changes.</li><li>Jason Shapiro reiterates that &quot;the market will tell you&quot; what to do, and that an edge is found in one&#x27;s ability to read market action, not in superior fundamental knowledge, citing the AI fund manager&#x27;s blowup despite deep AI expertise.</li></ul></section>
+<section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"To me, that&#x27;s like a that&#x27;s like a perfect bottom in all those ways. Now, the other thing perfect about it is we know damn well now what the risk is. We go through those Wednesday lows and there&#x27;s something else going on."<span class="qw">— Jason Shapiro</span></blockquote><blockquote class="q">"If I&#x27;m reading papers on AI, it can&#x27;t be fought. Okay, it&#x27;s the same thing. If you, not you, you out there, any of us are talking about how the yen carry trade is going to crash the stock market. Well, where did you get that from? Did you write a paper in college about the yen carry trade? Did you study it when you were getting your PhD in economics about the yen? No, you didn&#x27;t. Okay. If you can figure out the yen carry trade, just like if I can figure out that, hey, the world is going to need more freaking whatever, you know, computer, you know, if I can figure that out, then it&#x27;s out there is my point."<span class="qw">— Jason Shapiro</span></blockquote></section>
+<section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Jason Shapiro</span><span class="tag dir-other">VIEW</span><span class="what">AI stocks — if they go through &quot;that Wednesday close from last week,&quot; &quot;done,&quot; &quot;you better be out.&quot;</span></div><div class="ivrow"><span class="who">Jason Shapiro</span><span class="tag dir-avoid">AVOID</span><span class="what">Long anything that went through &quot;that Wednesday low&quot; (stated 2x)</span></div><div class="ivrow"><span class="who">Matt Caruso</span><span class="tag dir-long">LONG</span><span class="what">AI stocks — &quot;much smaller position&quot; after reducing, &quot;rebuilding positions if this does like Cisco in 98 and we get back up to the highs.&quot;</span></div><div class="ivrow"><span class="who">Jason Shapiro</span><span class="tag dir-other">VIEW</span><span class="what">Non-AI related stocks — &quot;most contrarian thing there is,&quot; &quot;most opportunity.&quot;</span></div><div class="ivrow"><span class="who">Matt Caruso</span><span class="tag dir-watching">WATCHING</span><span class="what">Dell (DELL) — &quot;keep a close eye on.&quot;</span></div><div class="ivrow"><span class="who">Matt Caruso</span><span class="tag dir-watching">WATCHING</span><span class="what">Hewlett Packard Enterprise (HPE) — &quot;keep a close eye on.&quot;</span></div><div class="ivrow"><span class="who">Matt Caruso</span><span class="tag dir-other">VIEW</span><span class="what">Buying &quot;worst merchandise&quot; (stocks that fell the most) — &quot;on the greed side.&quot;</span></div><div class="ivrow"><span class="who">Matt Caruso</span><span class="tag dir-other">VIEW</span><span class="what">Buying &quot;most resilient&quot; merchandise (stocks that fell the least) — &quot;on the risk side.&quot;</span></div><div class="ivrow"><span class="who">Jason Shapiro</span><span class="tag dir-other">VIEW</span><span class="what">Canadian Dollar (CAD) — &quot;most crowded market there is,&quot; implying a potential rally.</span></div></section>
+<section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Jason Shapiro views the AI fund blowup as a &quot;perfect bottom&quot; for the sector, characterized by forced liquidation and a rapid, unbuyable rebound. He sets the prior Wednesday&#x27;s low as a critical invalidation point for any long AI positions.</li><li>Matt Caruso emphasizes that relative strength is key post-liquidation; investors should favor stocks that showed resilience during the downturn rather than those that fell the most.</li><li>Both hosts suggest that the market&#x27;s focus on AI might be creating opportunities in overlooked sectors, with Matt Caruso specifically pointing to strength in consumer and restaurant stocks.</li><li>Jason Shapiro identifies the financing of AI as the critical long-term risk, recommending close monitoring of credit spreads and interest rates.</li><li>The Yen intervention is cited as an example of how crowded positioning can lead to predictable central bank action, but also how widely known narratives (e.g., Yen carry trade crashing markets) often fail to materialize due to market adjustment.</li></ul></section>
+<section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>MU, Samsung, Heinix, Google, NASDAQ, Dow, S&amp;P, DAX, JNK, Cisco, NBIS, MRVL, Aluminina, Yen, Canadian Dollar, Hewlett Packard (HPQ), Dell (DELL), HPE</p></section>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">Focus on relative strength in post-liquidation AI names, consider overlooked non-AI sectors, and monitor credit spreads and interest rates as the key drivers for AI&#x27;s future.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-09.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-09.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+(function(){
+var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
+var top=qs('#fab-top');
+if(top){addEventListener('scroll',function(){top.classList.toggle('show',scrollY>600)},{passive:true});
+        top.onclick=function(){scrollTo({top:0,behavior:'smooth'})};}
+var toc=qs('#fab-toc');
+if(toc){toc.classList.add('show');
+        addEventListener('scroll',function(){toc.classList.toggle('show',true)},{passive:true});}
+function closeDrawer(){document.body.classList.remove('drawer-open')}
+if(toc){toc.onclick=function(){document.body.classList.add('drawer-open')};
+        qs('.drawer-bg').onclick=closeDrawer;
+        qa('.drawer a').forEach(function(a){a.addEventListener('click',closeDrawer)});}
+var links=qa('.rail a, .drawer a');
+if(links.length){
+  var map={};links.forEach(function(a){var id=a.getAttribute('href').slice(1);(map[id]=map[id]||[]).push(a)});
+  var cur=null;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){
+      if(cur&&map[cur])map[cur].forEach(function(a){a.classList.remove('on')});
+      cur=e.target.id;
+      if(map[cur])map[cur].forEach(function(a){a.classList.add('on')});
+    }});
+  },{rootMargin:'-10% 0px -80% 0px'});
+  qa('section[id]').forEach(function(x){io.observe(x)});
+}
+var ROOT=document.body.getAttribute('data-root')||'';
+var idx=null,inp=qs('.search-box input'),res=qs('.search-res');
+function openS(){document.body.classList.add('search-open');inp.focus();
+  if(!idx){fetch(ROOT+'search-index.json').then(function(r){return r.json()})
+    .then(function(j){idx=j;run()}).catch(function(){res.innerHTML='<div class=empty>index unavailable</div>'});}}
+function closeS(){document.body.classList.remove('search-open')}
+function run(){
+  if(!idx)return;
+  var q=inp.value.trim().toLowerCase();
+  var hits=!q?idx.slice(0,20):idx.filter(function(e){
+    return (e.t+' '+e.s+' '+e.d).toLowerCase().indexOf(q)>=0}).slice(0,30);
+  res.innerHTML=hits.length?hits.map(function(e){
+    return '<a href="'+ROOT+e.u+'"><div class=st>'+e.t+'</div><div class=ss>'+e.d+' · '+e.s+'</div></a>';
+  }).join(''):'<div class=empty>no matches</div>';}
+if(inp){inp.addEventListener('input',run);
+  qs('.sbtn').onclick=openS;qs('.search-bg').onclick=closeS;
+  addEventListener('keydown',function(e){
+    if(e.key==='/'&&!document.body.classList.contains('search-open')&&
+       document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
+    if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+</script></body></html>

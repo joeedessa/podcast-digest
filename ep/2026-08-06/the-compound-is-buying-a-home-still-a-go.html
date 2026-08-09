@@ -1,0 +1,251 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#14150f"><title>The Compound — Is Buying a Home Still a Good Investment</title><style>
+:root{
+  --bg:#fbfbfa; --panel:#fff; --ink:#1a1a18; --muted:#6b6b66; --line:#e6e4df;
+  --accent:#b4552d; --accent-soft:#fdf3ee;
+  --long:#1a7340; --short:#c0392b; --watch:#2563a8; --reduce:#b8730f;
+  --radius:10px;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#14150f; --panel:#1c1d16; --ink:#eceade; --muted:#a3a094;
+         --line:#2f3126; --accent:#e08a5f; --accent-soft:#241a13;
+         --long:#5cc98a; --short:#ef7d6e; --watch:#7db3e8; --reduce:#e0a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+     line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 96px}
+
+/* masthead */
+header.top{border-bottom:1px solid var(--line);background:var(--panel);
+           position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.4) blur(6px)}
+header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
+                 align-items:baseline;gap:14px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.01em}
+.brand a{color:inherit}
+.crumb{color:var(--muted);font-size:13px}
+.crumb a{color:var(--muted)}
+/* header action — sits right, stays a 44px tap target on a phone */
+.btn{display:inline-flex;align-items:center;gap:2px;
+     padding:9px 15px;min-height:38px;border:1px solid var(--line);
+     border-radius:99px;background:var(--bg);color:var(--ink);
+     font-size:13.5px;font-weight:550;white-space:nowrap;line-height:1}
+.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.btn:active{transform:translateY(1px)}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,42px);line-height:1.12;
+         margin:0 0 10px;letter-spacing:-.02em;font-weight:600}
+.hero .meta{color:var(--muted);font-size:14px}
+.pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
+      border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
+
+/* sections */
+section{padding:28px 0 4px;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+h2{font-family:var(--serif);font-size:13px;font-weight:700;text-transform:uppercase;
+   letter-spacing:.14em;color:var(--accent);margin:0 0 16px}
+h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:28px 0 8px;
+   letter-spacing:-.01em}
+p{margin:0 0 13px}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin:5px 0}
+strong{font-weight:650}
+.tag{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+
+/* TL;DR */
+.tldr{background:var(--accent-soft);border:1px solid var(--line);
+      border-left:3px solid var(--accent);border-radius:var(--radius);
+      padding:18px 20px;margin-bottom:6px}
+.tldr p:last-child,.tldr ul:last-child{margin-bottom:0}
+.tldr ul{list-style:none;padding-left:0}
+.tldr li{padding-left:15px;position:relative}
+.tldr li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+
+/* trade cards */
+.cards{display:grid;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:15px 17px}
+.card .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.card .asset{font-family:var(--serif);font-size:18px;font-weight:600}
+.card .who{color:var(--muted);font-size:13px}
+.card p{margin:6px 0 0;font-size:14.5px}
+.card .label{color:var(--muted);font-size:11px;text-transform:uppercase;
+             letter-spacing:.08em;margin-right:5px}
+.dir-long{color:var(--long)} .dir-short{color:var(--short)}
+.dir-avoid{color:var(--short)} .dir-reduce{color:var(--reduce)}
+.dir-watching{color:var(--watch)} .dir-other{color:var(--muted)}
+.tier{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+      margin:22px 0 10px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+
+/* topics */
+.topic{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--muted);
+       border-radius:var(--radius);padding:15px 17px;margin:12px 0}
+.topic .t{font-weight:650;margin-bottom:9px}
+
+/* index */
+.days{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:9px}
+.days a{display:flex;justify-content:space-between;align-items:center;gap:14px;
+        background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+        padding:14px 17px;color:inherit}
+.days a:hover{border-color:var(--accent);text-decoration:none}
+.days .d{font-family:var(--serif);font-size:17px;font-weight:600}
+.days .s{color:var(--muted);font-size:13px;text-align:right}
+
+
+/* right-side outline rail (desktop) */
+.layout{display:block}
+@media(min-width:1150px){
+  .layout{display:grid;grid-template-columns:minmax(0,820px) 220px;gap:44px;
+          max-width:1120px;margin:0 auto;padding:0 20px}
+  .layout>.wrap{max-width:none;padding:0}
+  .layout .rail{display:block}
+}
+.rail{display:none;position:sticky;top:76px;align-self:start;max-height:calc(100vh - 100px);
+      overflow-y:auto;padding:8px 0 24px;font-size:12.5px}
+.rail .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+          margin-bottom:10px}
+.rail a{display:block;color:var(--muted);padding:4px 10px;border-left:2px solid var(--line);
+        line-height:1.4}
+.rail a:hover{color:var(--accent);text-decoration:none}
+.rail a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+
+/* floating buttons */
+.fab{position:fixed;right:16px;z-index:40;display:flex;align-items:center;justify-content:center;
+     width:44px;height:44px;border-radius:50%;background:var(--panel);color:var(--ink);
+     border:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.18);font-size:18px;
+     cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
+.fab.show{opacity:1;pointer-events:auto}
+.fab:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+#fab-top{bottom:18px}
+#fab-toc{bottom:72px}
+@media(min-width:1150px){#fab-toc{display:none}}
+
+/* outline drawer (mobile) */
+.drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;opacity:0;
+           pointer-events:none;transition:opacity .2s}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:var(--panel);
+        z-index:61;transform:translateX(105%);transition:transform .22s ease;
+        padding:20px 18px;overflow-y:auto;border-left:1px solid var(--line)}
+body.drawer-open .drawer{transform:none}
+body.drawer-open .drawer-bg{opacity:1;pointer-events:auto}
+.drawer .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+            margin:2px 0 12px}
+.drawer a{display:block;padding:9px 10px;border-radius:8px;color:var(--ink);font-size:14.5px}
+.drawer a:hover{background:var(--accent-soft);text-decoration:none}
+.drawer a.on{color:var(--accent);font-weight:600}
+
+/* search */
+.sbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;min-height:36px;
+      border:1px solid var(--line);border-radius:99px;background:var(--bg);color:var(--muted);
+      font-size:13px;cursor:pointer;white-space:nowrap}
+.sbtn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.search-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:70;opacity:0;
+           pointer-events:none;transition:opacity .15s}
+.search-box{position:fixed;top:min(12vh,110px);left:50%;transform:translateX(-50%) scale(.98);
+            width:min(620px,92vw);background:var(--panel);border:1px solid var(--line);
+            border-radius:14px;z-index:71;opacity:0;pointer-events:none;transition:all .15s;
+            box-shadow:0 18px 60px rgba(0,0,0,.35);overflow:hidden}
+body.search-open .search-bg{opacity:1;pointer-events:auto}
+body.search-open .search-box{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.search-box input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+                  font-size:17px;padding:17px 19px;border-bottom:1px solid var(--line);
+                  font-family:var(--sans)}
+.search-res{max-height:52vh;overflow-y:auto;padding:8px}
+.search-res a{display:block;padding:10px 12px;border-radius:9px;color:var(--ink)}
+.search-res a:hover,.search-res a.sel{background:var(--accent-soft);text-decoration:none}
+.search-res .st{font-weight:600;font-size:14.5px}
+.search-res .ss{color:var(--muted);font-size:12.5px;margin-top:1px}
+.search-res .empty{padding:16px;color:var(--muted);font-size:14px;text-align:center}
+
+/* episode cards inside a digest's episode index */
+.eplist{display:grid;gap:10px}
+.eplist a.epc{display:block;background:var(--panel);border:1px solid var(--line);
+              border-radius:var(--radius);padding:13px 16px;color:inherit}
+.eplist a.epc:hover{border-color:var(--accent);text-decoration:none}
+.eplist .epc .es{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.eplist .epc .et{font-family:var(--serif);font-size:16.5px;font-weight:600;margin:2px 0 3px}
+.eplist .epc .em{color:var(--muted);font-size:13px}
+.eplist div.epc{background:var(--panel);border:1px solid var(--line);opacity:.75;
+                border-radius:var(--radius);padding:13px 16px}
+
+/* episode page */
+blockquote.q{margin:14px 0;padding:13px 17px;background:var(--panel);border-left:3px solid var(--accent);
+             border-radius:var(--radius);font-family:var(--serif);font-size:16px;font-style:italic}
+blockquote.q .qw{display:block;margin-top:7px;font-family:var(--sans);font-size:12.5px;
+                 font-style:normal;color:var(--muted)}
+.verdict{background:var(--accent-soft);border:1px solid var(--line);border-left:3px solid var(--accent);
+         border-radius:var(--radius);padding:15px 18px;font-family:var(--serif);font-size:16.5px}
+.ivrow{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);
+       font-size:14.5px;flex-wrap:wrap}
+.ivrow:last-child{border-bottom:0}
+.ivrow .who{font-weight:600;min-width:130px}
+.ivrow .what{color:var(--ink)}
+
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+       color:var(--muted);font-size:12.5px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:12px 15px;font-size:12.5px;color:var(--muted);margin-top:20px}
+@media(max-width:600px){
+  .hero{padding:30px 0 20px}
+  nav.toc{position:static}
+  .card .head{gap:6px}
+}
+</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-06.html">6 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">The Compound</span><span class="pill">6 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Is Buying a Home Still a Good Investment</h1><div class="meta">Host: Ben Carlson, Duncan Hill · Guest: Jack Reins, Author of Young Money: A Field Guide to Wealth and Purpose in Your 20s</div></div><section id="overview"><h2>Overview</h2><p>This episode of Ask the Compound features Ben Carlson and Duncan Hill interviewing Jack Reins, author of &quot;Young Money.&quot; The discussion focuses on financial and career advice for young people, particularly those in their 20s, addressing topics such as early career spending, homeownership in high-cost-of-living cities, the impact of AI on career paths, and the risks of using margin in investing. Reins shares personal anecdotes and practical advice, emphasizing flexibility, continuous learning, and understanding the fundamental building blocks of one&#x27;s profession.</p></section>
+<section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Jack Reins advises his younger self to have sold all SPACs in February 2021 after being up 6,000% and turning $6,000 into $400,000 in his Roth, instead of continuing to trade and blowing half of it.</li><li>Reins suggests that young people in their early to mid-20s, especially those on high-slope career paths in high-cost-of-living cities, can afford to spend a little more on experiences with people they care about, rather than solely focusing on maxing out retirement savings, provided they don&#x27;t have high-interest debt.</li><li>Ben Carlson recommends that young people not feel guilty about investing small amounts, even $10 a week, to build a habit and do enough to get their 401k match, then have fun with the rest.</li><li>Jack Reins believes that for young people in high-cost-of-living cities who do not plan to raise children there, it is acceptable to rent and not stress about homeownership, maintaining flexibility to move later.</li><li>Regarding AI, Jack Reins advises young people to learn the fundamental building blocks of their field manually before layering AI on top, and to also tinker with AI coding tools for data collection and synthesis.</li><li>Ben Carlson emphasizes that people skills, such as selling, effective communication, creativity, and providing context and perspective, will become more important than ever in an AI-driven world.</li><li>Jack Reins, reflecting on his past SPAC trading, cautions against using margin, stating that while it feels good on the way up, investors will eventually get margin called, leading to regret and potential significant losses.</li><li>Ben Carlson and Jack Reins agree that increasing one&#x27;s income and contributions to a portfolio is a more effective way to build wealth over time than using margin, as it compounds and provides more resilience.</li></ul></section>
+<section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"You should sell all the spaxs that you were yoloing in February 2021. When you send your data screenshot of your portfolio that you&#x27;re up 6,000% and you&#x27;ve turned six grand and 400 grand in your Roth, you should just sell and put in the S&amp;P and it&#x27; be a million dollars right now instead of continuing to trade and then blowing half of it."<span class="qw">— Jack Reins</span></blockquote><blockquote class="q">"My my actual take is unless you&#x27;re really really committed to living in like New York, SF, Chicago, whatever your high cost of living city is, if you don&#x27;t want to raise kids there, I actually just don&#x27;t think you should stress too much about whether or not you can afford a home and just like focus on your career, focus on your personal life, and once you get married and you&#x27;re thinking about having kids, you might have spent all of your 20s or early 30s in Manhattan, but then you end up moving to Jersey, Long Island, Connecticut, upstate New York, where it&#x27;s just cheaper."<span class="qw">— Jack Reins</span></blockquote></section>
+<section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Sell all SPACs — when portfolio was up 6,000% from $6,000 to $400,000 in Roth in February 2021</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Put money in S&amp;P — after selling SPACs in February 2021</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">It&#x27;s okay to spend a little more than comfortable with at a really young age — if on a career path where income will scale quickly, and not in high-interest debt.</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-other">VIEW</span><span class="what">Travel as much as possible before having kids — (stated 2x)</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-other">VIEW</span><span class="what">Move to a big city when young — (stated 2x)</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-other">VIEW</span><span class="what">Not feel guilty about investing when you don&#x27;t have a lot of money</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-other">VIEW</span><span class="what">Build a habit of investing — by putting $10 a week into the market</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-other">VIEW</span><span class="what">Do enough to get your 401k match</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Keep renting — if in a high-cost-of-living city and do not plan to raise kids there</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Focus on career and personal life — if in a high-cost-of-living city and do not plan to raise kids there</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Broad index ETFs like VOO, SPY — for grandparents funding an UGMA for grandkids</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">S&amp;P ETFs — for most of his money</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-avoid">AVOID</span><span class="what">Triple levered ETFs like TQQQ — outside of specific market conditions (e.g., right before AI boom)</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Figure out the fundamental building blocks of your thing and know how to do those manually — before layering AI on top</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Use AI for data collection and data synthesis</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Go in the office — especially when young, even if remote option is available</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-avoid">AVOID</span><span class="what">Using 5x margin — (stated 2x)</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">It&#x27;s probably good to lose a little bit of money when you&#x27;re like 23 — if using margin in a play account with a couple grand</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-other">VIEW</span><span class="what">Survival is a big key in investing</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Focus on making more money — as the actual way to increase returns over time</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Upskill yourself to 5x your contributions to your portfolio — as a better move than using 5x margin</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Take some of the money ($700,000) and spend 3-4 months learning about other things and experimenting — for a 36-year-old living in a van in the desert</span></div></section>
+<section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Jack Reins views broad index ETFs like VOO and SPY as the simplest way to achieve market rate of return.</li><li>Jack Reins believes money will historically compound faster in stocks than other asset classes.</li><li>Ben Carlson notes that people under 40 are the least likely to see a home as a good investment, according to a Pew Research Center study.</li><li>Ben Carlson highlights that stock market ownership by people under 40 is up three times this decade alone, suggesting a trade-off where money saved for a house is going into the stock market.</li></ul></section>
+<section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>VOO, SPY, QQQ, TQQQ, Tesla, Nikolai Motors, Ford, Lucid, Fisker, Rivian</p></section>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">For young investors, prioritize career growth and experiences over early homeownership in high-cost areas, invest consistently in broad market ETFs, and avoid margin, while embracing AI as a tool after mastering fundamental skills.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-06.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-06.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+(function(){
+var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
+var top=qs('#fab-top');
+if(top){addEventListener('scroll',function(){top.classList.toggle('show',scrollY>600)},{passive:true});
+        top.onclick=function(){scrollTo({top:0,behavior:'smooth'})};}
+var toc=qs('#fab-toc');
+if(toc){toc.classList.add('show');
+        addEventListener('scroll',function(){toc.classList.toggle('show',true)},{passive:true});}
+function closeDrawer(){document.body.classList.remove('drawer-open')}
+if(toc){toc.onclick=function(){document.body.classList.add('drawer-open')};
+        qs('.drawer-bg').onclick=closeDrawer;
+        qa('.drawer a').forEach(function(a){a.addEventListener('click',closeDrawer)});}
+var links=qa('.rail a, .drawer a');
+if(links.length){
+  var map={};links.forEach(function(a){var id=a.getAttribute('href').slice(1);(map[id]=map[id]||[]).push(a)});
+  var cur=null;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){
+      if(cur&&map[cur])map[cur].forEach(function(a){a.classList.remove('on')});
+      cur=e.target.id;
+      if(map[cur])map[cur].forEach(function(a){a.classList.add('on')});
+    }});
+  },{rootMargin:'-10% 0px -80% 0px'});
+  qa('section[id]').forEach(function(x){io.observe(x)});
+}
+var ROOT=document.body.getAttribute('data-root')||'';
+var idx=null,inp=qs('.search-box input'),res=qs('.search-res');
+function openS(){document.body.classList.add('search-open');inp.focus();
+  if(!idx){fetch(ROOT+'search-index.json').then(function(r){return r.json()})
+    .then(function(j){idx=j;run()}).catch(function(){res.innerHTML='<div class=empty>index unavailable</div>'});}}
+function closeS(){document.body.classList.remove('search-open')}
+function run(){
+  if(!idx)return;
+  var q=inp.value.trim().toLowerCase();
+  var hits=!q?idx.slice(0,20):idx.filter(function(e){
+    return (e.t+' '+e.s+' '+e.d).toLowerCase().indexOf(q)>=0}).slice(0,30);
+  res.innerHTML=hits.length?hits.map(function(e){
+    return '<a href="'+ROOT+e.u+'"><div class=st>'+e.t+'</div><div class=ss>'+e.d+' · '+e.s+'</div></a>';
+  }).join(''):'<div class=empty>no matches</div>';}
+if(inp){inp.addEventListener('input',run);
+  qs('.sbtn').onclick=openS;qs('.search-bg').onclick=closeS;
+  addEventListener('keydown',function(e){
+    if(e.key==='/'&&!document.body.classList.contains('search-open')&&
+       document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
+    if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+</script></body></html>

@@ -29,7 +29,7 @@ header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
 .crumb{color:var(--muted);font-size:13px}
 .crumb a{color:var(--muted)}
 /* header action — sits right, stays a 44px tap target on a phone */
-.btn{margin-left:auto;display:inline-flex;align-items:center;gap:2px;
+.btn{display:inline-flex;align-items:center;gap:2px;
      padding:9px 15px;min-height:38px;border:1px solid var(--line);
      border-radius:99px;background:var(--bg);color:var(--ink);
      font-size:13.5px;font-weight:550;white-space:nowrap;line-height:1}
@@ -43,14 +43,6 @@ header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
 .hero .meta{color:var(--muted);font-size:14px}
 .pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
       border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
-
-/* section nav */
-nav.toc{position:sticky;top:52px;background:var(--bg);padding:10px 0 12px;
-        border-bottom:1px solid var(--line);margin-bottom:8px;z-index:10}
-nav.toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0}
-nav.toc a{font-size:12px;padding:4px 10px;border:1px solid var(--line);
-          border-radius:99px;color:var(--muted);background:var(--panel);white-space:nowrap}
-nav.toc a:hover{color:var(--accent);border-color:var(--accent);text-decoration:none}
 
 /* sections */
 section{padding:28px 0 4px;border-top:1px solid var(--line)}
@@ -104,6 +96,96 @@ strong{font-weight:650}
 .days .d{font-family:var(--serif);font-size:17px;font-weight:600}
 .days .s{color:var(--muted);font-size:13px;text-align:right}
 
+
+/* right-side outline rail (desktop) */
+.layout{display:block}
+@media(min-width:1150px){
+  .layout{display:grid;grid-template-columns:minmax(0,820px) 220px;gap:44px;
+          max-width:1120px;margin:0 auto;padding:0 20px}
+  .layout>.wrap{max-width:none;padding:0}
+  .layout .rail{display:block}
+}
+.rail{display:none;position:sticky;top:76px;align-self:start;max-height:calc(100vh - 100px);
+      overflow-y:auto;padding:8px 0 24px;font-size:12.5px}
+.rail .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+          margin-bottom:10px}
+.rail a{display:block;color:var(--muted);padding:4px 10px;border-left:2px solid var(--line);
+        line-height:1.4}
+.rail a:hover{color:var(--accent);text-decoration:none}
+.rail a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+
+/* floating buttons */
+.fab{position:fixed;right:16px;z-index:40;display:flex;align-items:center;justify-content:center;
+     width:44px;height:44px;border-radius:50%;background:var(--panel);color:var(--ink);
+     border:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.18);font-size:18px;
+     cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
+.fab.show{opacity:1;pointer-events:auto}
+.fab:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+#fab-top{bottom:18px}
+#fab-toc{bottom:72px}
+@media(min-width:1150px){#fab-toc{display:none}}
+
+/* outline drawer (mobile) */
+.drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;opacity:0;
+           pointer-events:none;transition:opacity .2s}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:var(--panel);
+        z-index:61;transform:translateX(105%);transition:transform .22s ease;
+        padding:20px 18px;overflow-y:auto;border-left:1px solid var(--line)}
+body.drawer-open .drawer{transform:none}
+body.drawer-open .drawer-bg{opacity:1;pointer-events:auto}
+.drawer .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+            margin:2px 0 12px}
+.drawer a{display:block;padding:9px 10px;border-radius:8px;color:var(--ink);font-size:14.5px}
+.drawer a:hover{background:var(--accent-soft);text-decoration:none}
+.drawer a.on{color:var(--accent);font-weight:600}
+
+/* search */
+.sbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;min-height:36px;
+      border:1px solid var(--line);border-radius:99px;background:var(--bg);color:var(--muted);
+      font-size:13px;cursor:pointer;white-space:nowrap}
+.sbtn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.search-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:70;opacity:0;
+           pointer-events:none;transition:opacity .15s}
+.search-box{position:fixed;top:min(12vh,110px);left:50%;transform:translateX(-50%) scale(.98);
+            width:min(620px,92vw);background:var(--panel);border:1px solid var(--line);
+            border-radius:14px;z-index:71;opacity:0;pointer-events:none;transition:all .15s;
+            box-shadow:0 18px 60px rgba(0,0,0,.35);overflow:hidden}
+body.search-open .search-bg{opacity:1;pointer-events:auto}
+body.search-open .search-box{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.search-box input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+                  font-size:17px;padding:17px 19px;border-bottom:1px solid var(--line);
+                  font-family:var(--sans)}
+.search-res{max-height:52vh;overflow-y:auto;padding:8px}
+.search-res a{display:block;padding:10px 12px;border-radius:9px;color:var(--ink)}
+.search-res a:hover,.search-res a.sel{background:var(--accent-soft);text-decoration:none}
+.search-res .st{font-weight:600;font-size:14.5px}
+.search-res .ss{color:var(--muted);font-size:12.5px;margin-top:1px}
+.search-res .empty{padding:16px;color:var(--muted);font-size:14px;text-align:center}
+
+/* episode cards inside a digest's episode index */
+.eplist{display:grid;gap:10px}
+.eplist a.epc{display:block;background:var(--panel);border:1px solid var(--line);
+              border-radius:var(--radius);padding:13px 16px;color:inherit}
+.eplist a.epc:hover{border-color:var(--accent);text-decoration:none}
+.eplist .epc .es{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.eplist .epc .et{font-family:var(--serif);font-size:16.5px;font-weight:600;margin:2px 0 3px}
+.eplist .epc .em{color:var(--muted);font-size:13px}
+.eplist div.epc{background:var(--panel);border:1px solid var(--line);opacity:.75;
+                border-radius:var(--radius);padding:13px 16px}
+
+/* episode page */
+blockquote.q{margin:14px 0;padding:13px 17px;background:var(--panel);border-left:3px solid var(--accent);
+             border-radius:var(--radius);font-family:var(--serif);font-size:16px;font-style:italic}
+blockquote.q .qw{display:block;margin-top:7px;font-family:var(--sans);font-size:12.5px;
+                 font-style:normal;color:var(--muted)}
+.verdict{background:var(--accent-soft);border:1px solid var(--line);border-left:3px solid var(--accent);
+         border-radius:var(--radius);padding:15px 18px;font-family:var(--serif);font-size:16.5px}
+.ivrow{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);
+       font-size:14.5px;flex-wrap:wrap}
+.ivrow:last-child{border-bottom:0}
+.ivrow .who{font-weight:600;min-width:130px}
+.ivrow .what{color:var(--ink)}
+
 footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
        color:var(--muted);font-size:12.5px}
 .note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
@@ -113,7 +195,7 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Sunday, 31 May 2026</span><a class="btn" href="archive.html">☰&nbsp; Archive</a></div></header><div class="wrap"><div class="hero"><h1>Sunday, 31 May 2026</h1><div class="meta"><span class="pill">71 episodes</span>Commodities Hard Assets, Equities Trading, Geopolitics, Investment Analysis Factors, Macroeconomics Strategy, Real Estate Wealth Building</div></div><nav class="toc"><ul><li><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a></li><li><a href="#dominant-theme-s">DOMINANT THEME(S)</a></li><li><a href="#divergent-views">DIVERGENT VIEWS</a></li><li><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a></li><li><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a></li><li><a href="#tickers-assets">TICKERS &amp; ASSETS</a></li><li><a href="#spotlight-excellent-grade-continuity-sag">★ Excellent Grade Contin…</a></li><li><a href="#spotlight-how-the-invention-of-rope-gave">★ How the Invention of R…</a></li><li><a href="#spotlight-the-surprising-ownership-model">★ The Surprising Ownersh…</a></li><li><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a></li><li><a href="#watch-catalysts">WATCH CATALYSTS</a></li><li><a href="#miscellaneous">MISCELLANEOUS</a></li><li><a href="#data-quality-note">DATA QUALITY NOTE</a></li><li><a href="#episode-index">EPISODE INDEX</a></li></ul></nav><section id="macro-room-temperature"><h2>MACRO ROOM TEMPERATURE</h2><p>The AI-fueled equity rally is forcing a stark division between analysts, with Darius Dale — Adam Taggart Thoughtful Money and Denise Chisum — The Compound arguing the market will bubble sharply higher, while a growing chorus led by Kevin Muir — Competent Man Podcast - Tom Bodrovics and Dario Perkins — GlobalData TS Lombard Perkins Vs Beamish warns of a classic bubble top. This central tension is playing out against a backdrop of a bond market that George Goncalves — Wealthion describes as executing a &quot;stealth tightening&quot; for a Federal Reserve that many, including Chris Whalen — The Julia La Roche Show, believe is losing its efficacy, creating a precarious environment where asset prices are increasingly detached from underlying economic fragility.</p></section>
+</style></head><body data-root=""><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Sunday, 31 May 2026</span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><h1>Sunday, 31 May 2026</h1><div class="meta"><span class="pill">71 episodes</span>Commodities Hard Assets, Equities Trading, Geopolitics, Investment Analysis Factors, Macroeconomics Strategy, Real Estate Wealth Building</div></div><section id="macro-room-temperature"><h2>MACRO ROOM TEMPERATURE</h2><p>The AI-fueled equity rally is forcing a stark division between analysts, with Darius Dale — Adam Taggart Thoughtful Money and Denise Chisum — The Compound arguing the market will bubble sharply higher, while a growing chorus led by Kevin Muir — Competent Man Podcast - Tom Bodrovics and Dario Perkins — GlobalData TS Lombard Perkins Vs Beamish warns of a classic bubble top. This central tension is playing out against a backdrop of a bond market that George Goncalves — Wealthion describes as executing a &quot;stealth tightening&quot; for a Federal Reserve that many, including Chris Whalen — The Julia La Roche Show, believe is losing its efficacy, creating a precarious environment where asset prices are increasingly detached from underlying economic fragility.</p></section>
 <section id="dominant-theme-s"><h2>DOMINANT THEME(S)</h2><p><strong>The AI Bubble Debate: Generational Boom or Parabolic Top?</strong> (31 shows)</p>
 <p>The narrative surrounding AI has reached a fever pitch, splitting commentators into two distinct camps. On one side, bulls argue the market is in the early innings of a transformative productivity cycle. Denise Chisum — The Compound contends that the earnings growth cycle for the S&amp;P 493 (ex-Mag 7) is just beginning, and that persistent investor fear is a sign of a healthy &quot;wall of worry,&quot; not a bubble. Darius Dale — Adam Taggart Thoughtful Money echoes this, suggesting that if the Fed ignores sticky inflation, the market will bubble sharply higher, fueled by an AI CapEx boom he calls a &quot;massive aggregate demand shock.&quot; This view is supported by Chetan Aya — Morgan Stanley, who sees a broader Asia CapEx supercycle extending beyond AI, and Katy Huberty — Morgan Stanley, who notes AI adopters are seeing double the margin expansion of market indices.</p>
 <p>On the other side, skeptics see classic signs of a speculative frenzy. Dario Perkins — GlobalData TS Lombard Perkins Vs Beamish points to &quot;circularity&quot; in AI revenues, where hyperscaler CapEx is largely recycled within the ecosystem, and flags insider selling via upcoming IPOs as a major warning. Kevin Muir — Competent Man Podcast - Tom Bodrovics believes the &quot;diabolically overpriced&quot; SpaceX IPO has a &quot;very good chance&quot; of marking a market top, absorbing capital from other assets. Brent Kochuba — Excess Returns highlights &quot;bananas&quot; options pricing and extreme call buying as historical topping signals. This skepticism is echoed by Adam Parker — Excess Returns, who maintains a &quot;semis over software&quot; thesis, anticipating significant underperformance for the median software company as customers push back on pricing.</p>
@@ -321,4 +403,51 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
 <ul><li><strong>The Monetary Matters Network</strong> — Overvaluation Meets Macro Risk Why This Massive Asset Manager is Getting Bearish</li></ul>
 <p>Host: Jack Farley | Guest: Jim Mustzo, Partner and Chief Investment Officer, Research Affiliates | Macroeconomics Strategy</p>
 <ul><li><strong>Wealth Building Blueprint Vladyslav Grab</strong> — Gary Savage Gold Silver Parabolic Phase Is OFF Bigger Bull Market Ahead</li></ul>
-<p>Host: Vladyslav Grabarskyy | Guest: Gary Savage, Founder, smart money tracker | Real Estate Wealth Building</p></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-08 · <a href="archive.html">All days</a></footer></div></body></html>
+<p>Host: Vladyslav Grabarskyy | Guest: Gary Savage, Founder, smart money tracker | Real Estate Wealth Building</p></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-09 · <a href="archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a><a href="#dominant-theme-s">DOMINANT THEME(S)</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-excellent-grade-continuity-sag">★ Excellent Grade Contin…</a><a href="#spotlight-how-the-invention-of-rope-gave">★ How the Invention of R…</a><a href="#spotlight-the-surprising-ownership-model">★ The Surprising Ownersh…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a><a href="#dominant-theme-s">DOMINANT THEME(S)</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-excellent-grade-continuity-sag">★ Excellent Grade Contin…</a><a href="#spotlight-how-the-invention-of-rope-gave">★ How the Invention of R…</a><a href="#spotlight-the-surprising-ownership-model">★ The Surprising Ownersh…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+(function(){
+var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
+var top=qs('#fab-top');
+if(top){addEventListener('scroll',function(){top.classList.toggle('show',scrollY>600)},{passive:true});
+        top.onclick=function(){scrollTo({top:0,behavior:'smooth'})};}
+var toc=qs('#fab-toc');
+if(toc){toc.classList.add('show');
+        addEventListener('scroll',function(){toc.classList.toggle('show',true)},{passive:true});}
+function closeDrawer(){document.body.classList.remove('drawer-open')}
+if(toc){toc.onclick=function(){document.body.classList.add('drawer-open')};
+        qs('.drawer-bg').onclick=closeDrawer;
+        qa('.drawer a').forEach(function(a){a.addEventListener('click',closeDrawer)});}
+var links=qa('.rail a, .drawer a');
+if(links.length){
+  var map={};links.forEach(function(a){var id=a.getAttribute('href').slice(1);(map[id]=map[id]||[]).push(a)});
+  var cur=null;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){
+      if(cur&&map[cur])map[cur].forEach(function(a){a.classList.remove('on')});
+      cur=e.target.id;
+      if(map[cur])map[cur].forEach(function(a){a.classList.add('on')});
+    }});
+  },{rootMargin:'-10% 0px -80% 0px'});
+  qa('section[id]').forEach(function(x){io.observe(x)});
+}
+var ROOT=document.body.getAttribute('data-root')||'';
+var idx=null,inp=qs('.search-box input'),res=qs('.search-res');
+function openS(){document.body.classList.add('search-open');inp.focus();
+  if(!idx){fetch(ROOT+'search-index.json').then(function(r){return r.json()})
+    .then(function(j){idx=j;run()}).catch(function(){res.innerHTML='<div class=empty>index unavailable</div>'});}}
+function closeS(){document.body.classList.remove('search-open')}
+function run(){
+  if(!idx)return;
+  var q=inp.value.trim().toLowerCase();
+  var hits=!q?idx.slice(0,20):idx.filter(function(e){
+    return (e.t+' '+e.s+' '+e.d).toLowerCase().indexOf(q)>=0}).slice(0,30);
+  res.innerHTML=hits.length?hits.map(function(e){
+    return '<a href="'+ROOT+e.u+'"><div class=st>'+e.t+'</div><div class=ss>'+e.d+' · '+e.s+'</div></a>';
+  }).join(''):'<div class=empty>no matches</div>';}
+if(inp){inp.addEventListener('input',run);
+  qs('.sbtn').onclick=openS;qs('.search-bg').onclick=closeS;
+  addEventListener('keydown',function(e){
+    if(e.key==='/'&&!document.body.classList.contains('search-open')&&
+       document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
+    if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+</script></body></html>

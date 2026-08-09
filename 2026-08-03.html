@@ -29,7 +29,7 @@ header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
 .crumb{color:var(--muted);font-size:13px}
 .crumb a{color:var(--muted)}
 /* header action — sits right, stays a 44px tap target on a phone */
-.btn{margin-left:auto;display:inline-flex;align-items:center;gap:2px;
+.btn{display:inline-flex;align-items:center;gap:2px;
      padding:9px 15px;min-height:38px;border:1px solid var(--line);
      border-radius:99px;background:var(--bg);color:var(--ink);
      font-size:13.5px;font-weight:550;white-space:nowrap;line-height:1}
@@ -43,14 +43,6 @@ header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
 .hero .meta{color:var(--muted);font-size:14px}
 .pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
       border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
-
-/* section nav */
-nav.toc{position:sticky;top:52px;background:var(--bg);padding:10px 0 12px;
-        border-bottom:1px solid var(--line);margin-bottom:8px;z-index:10}
-nav.toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0}
-nav.toc a{font-size:12px;padding:4px 10px;border:1px solid var(--line);
-          border-radius:99px;color:var(--muted);background:var(--panel);white-space:nowrap}
-nav.toc a:hover{color:var(--accent);border-color:var(--accent);text-decoration:none}
 
 /* sections */
 section{padding:28px 0 4px;border-top:1px solid var(--line)}
@@ -104,6 +96,96 @@ strong{font-weight:650}
 .days .d{font-family:var(--serif);font-size:17px;font-weight:600}
 .days .s{color:var(--muted);font-size:13px;text-align:right}
 
+
+/* right-side outline rail (desktop) */
+.layout{display:block}
+@media(min-width:1150px){
+  .layout{display:grid;grid-template-columns:minmax(0,820px) 220px;gap:44px;
+          max-width:1120px;margin:0 auto;padding:0 20px}
+  .layout>.wrap{max-width:none;padding:0}
+  .layout .rail{display:block}
+}
+.rail{display:none;position:sticky;top:76px;align-self:start;max-height:calc(100vh - 100px);
+      overflow-y:auto;padding:8px 0 24px;font-size:12.5px}
+.rail .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+          margin-bottom:10px}
+.rail a{display:block;color:var(--muted);padding:4px 10px;border-left:2px solid var(--line);
+        line-height:1.4}
+.rail a:hover{color:var(--accent);text-decoration:none}
+.rail a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+
+/* floating buttons */
+.fab{position:fixed;right:16px;z-index:40;display:flex;align-items:center;justify-content:center;
+     width:44px;height:44px;border-radius:50%;background:var(--panel);color:var(--ink);
+     border:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.18);font-size:18px;
+     cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
+.fab.show{opacity:1;pointer-events:auto}
+.fab:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+#fab-top{bottom:18px}
+#fab-toc{bottom:72px}
+@media(min-width:1150px){#fab-toc{display:none}}
+
+/* outline drawer (mobile) */
+.drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;opacity:0;
+           pointer-events:none;transition:opacity .2s}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:var(--panel);
+        z-index:61;transform:translateX(105%);transition:transform .22s ease;
+        padding:20px 18px;overflow-y:auto;border-left:1px solid var(--line)}
+body.drawer-open .drawer{transform:none}
+body.drawer-open .drawer-bg{opacity:1;pointer-events:auto}
+.drawer .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+            margin:2px 0 12px}
+.drawer a{display:block;padding:9px 10px;border-radius:8px;color:var(--ink);font-size:14.5px}
+.drawer a:hover{background:var(--accent-soft);text-decoration:none}
+.drawer a.on{color:var(--accent);font-weight:600}
+
+/* search */
+.sbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;min-height:36px;
+      border:1px solid var(--line);border-radius:99px;background:var(--bg);color:var(--muted);
+      font-size:13px;cursor:pointer;white-space:nowrap}
+.sbtn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.search-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:70;opacity:0;
+           pointer-events:none;transition:opacity .15s}
+.search-box{position:fixed;top:min(12vh,110px);left:50%;transform:translateX(-50%) scale(.98);
+            width:min(620px,92vw);background:var(--panel);border:1px solid var(--line);
+            border-radius:14px;z-index:71;opacity:0;pointer-events:none;transition:all .15s;
+            box-shadow:0 18px 60px rgba(0,0,0,.35);overflow:hidden}
+body.search-open .search-bg{opacity:1;pointer-events:auto}
+body.search-open .search-box{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.search-box input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+                  font-size:17px;padding:17px 19px;border-bottom:1px solid var(--line);
+                  font-family:var(--sans)}
+.search-res{max-height:52vh;overflow-y:auto;padding:8px}
+.search-res a{display:block;padding:10px 12px;border-radius:9px;color:var(--ink)}
+.search-res a:hover,.search-res a.sel{background:var(--accent-soft);text-decoration:none}
+.search-res .st{font-weight:600;font-size:14.5px}
+.search-res .ss{color:var(--muted);font-size:12.5px;margin-top:1px}
+.search-res .empty{padding:16px;color:var(--muted);font-size:14px;text-align:center}
+
+/* episode cards inside a digest's episode index */
+.eplist{display:grid;gap:10px}
+.eplist a.epc{display:block;background:var(--panel);border:1px solid var(--line);
+              border-radius:var(--radius);padding:13px 16px;color:inherit}
+.eplist a.epc:hover{border-color:var(--accent);text-decoration:none}
+.eplist .epc .es{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.eplist .epc .et{font-family:var(--serif);font-size:16.5px;font-weight:600;margin:2px 0 3px}
+.eplist .epc .em{color:var(--muted);font-size:13px}
+.eplist div.epc{background:var(--panel);border:1px solid var(--line);opacity:.75;
+                border-radius:var(--radius);padding:13px 16px}
+
+/* episode page */
+blockquote.q{margin:14px 0;padding:13px 17px;background:var(--panel);border-left:3px solid var(--accent);
+             border-radius:var(--radius);font-family:var(--serif);font-size:16px;font-style:italic}
+blockquote.q .qw{display:block;margin-top:7px;font-family:var(--sans);font-size:12.5px;
+                 font-style:normal;color:var(--muted)}
+.verdict{background:var(--accent-soft);border:1px solid var(--line);border-left:3px solid var(--accent);
+         border-radius:var(--radius);padding:15px 18px;font-family:var(--serif);font-size:16.5px}
+.ivrow{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);
+       font-size:14.5px;flex-wrap:wrap}
+.ivrow:last-child{border-bottom:0}
+.ivrow .who{font-weight:600;min-width:130px}
+.ivrow .what{color:var(--ink)}
+
 footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
        color:var(--muted);font-size:12.5px}
 .note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
@@ -113,7 +195,7 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Monday, 3 August 2026</span><a class="btn" href="archive.html">☰&nbsp; Archive</a></div></header><div class="wrap"><div class="hero"><h1>Monday, 3 August 2026</h1><div class="meta"><span class="pill">16 episodes</span>[Commodities Hard Assets, Geopolitics, Investment Analysis Factors, Macroeconomics Strategy]</div></div><nav class="toc"><ul><li><a href="#tl-dr-read-this-first">TL;DR (read this first)</a></li><li><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a></li><li><a href="#dominant-themes">DOMINANT THEMES</a></li><li><a href="#divergent-views">DIVERGENT VIEWS</a></li><li><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a></li><li><a href="#guest-briefs">GUEST BRIEFS</a></li><li><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a></li><li><a href="#tickers-assets">TICKERS &amp; ASSETS</a></li><li><a href="#spotlight-opening-doors-to-opportunity-i">★ Opening Doors to Oppor…</a></li><li><a href="#spotlight-morning-briefing-zijin-gold-al">★ Morning Briefing: Ziji…</a></li><li><a href="#spotlight-every-crypto-coin-is-a-memecoi">★ Every Crypto Coin Is a…</a></li><li><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a></li><li><a href="#watch-catalysts">WATCH CATALYSTS</a></li><li><a href="#miscellaneous">MISCELLANEOUS</a></li><li><a href="#by-person-index">BY-PERSON INDEX</a></li><li><a href="#data-quality-note">DATA QUALITY NOTE</a></li><li><a href="#episode-index">EPISODE INDEX</a></li></ul></nav><section id="tl-dr-read-this-first"><h2>TL;DR (read this first)</h2><div class="tldr"><p>The market&#x27;s AI-driven momentum is fracturing, pitting voices like Ben Hunt, who warns of a systemic crisis brewing in the AI CapEx financing chain, against rotation advocates like Barry Knapp, who are shifting capital into cyclicals. This debate unfolds against a backdrop of a newly unpredictable Federal Reserve, with Jim Bianco arguing for immediate rate hikes while others expect a pause, amplifying uncertainty around the cost of capital that underpins the entire AI buildout.</p>
+</style></head><body data-root=""><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Monday, 3 August 2026</span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><h1>Monday, 3 August 2026</h1><div class="meta"><span class="pill">16 episodes</span>[Commodities Hard Assets, Geopolitics, Investment Analysis Factors, Macroeconomics Strategy]</div></div><section id="tl-dr-read-this-first"><h2>TL;DR (read this first)</h2><div class="tldr"><p>The market&#x27;s AI-driven momentum is fracturing, pitting voices like Ben Hunt, who warns of a systemic crisis brewing in the AI CapEx financing chain, against rotation advocates like Barry Knapp, who are shifting capital into cyclicals. This debate unfolds against a backdrop of a newly unpredictable Federal Reserve, with Jim Bianco arguing for immediate rate hikes while others expect a pause, amplifying uncertainty around the cost of capital that underpins the entire AI buildout.</p>
 <ul><li>CENTRAL TENSION: The AI CapEx narrative is exhausting, forcing a choice between rotating out of tech or buying a dip amid rising capital costs and a less predictable Fed.</li><li>TOP THEME: The AI &amp; Tech Trade at an Inflection Point — The rally faces headwinds from financing constraints, resource scarcity, and narrative fatigue.</li><li>DIVERGENT: U.S. Tech Sector — Barry Knapp is UNDERWEIGHT on decelerating capex growth vs. Tian Yang who is tactically fading but looking to BUY the dip.</li><li>HIGH-CONVICTION TRADE: LONG Energy Equities, supported by Barry Knapp, Rupert Mitchell, and Tian Yang, citing a favorable macro environment and portfolio hedging benefits.</li><li>CALENDAR: The upcoming FOMC meeting, with markets divided on whether the Fed will hike or execute a &quot;hawkish hold.&quot;</li></ul></div></section>
 <section id="macro-room-temperature"><h2>MACRO ROOM TEMPERATURE</h2><p>A profound narrative schism defines today&#x27;s session, as the market&#x27;s monolithic faith in the &quot;World War AI&quot; buildout splinters. Ben Hunt — Excess Returns lays out a stark thesis where the entire AI CapEx boom, financed by a precarious private credit &quot;hamster wheel,&quot; poses a systemic risk that will ultimately require government intervention. This view finds tactical expression in the work of Barry Knapp — Wealthion, who is actively reducing tech exposure on decelerating capital spending, rotating into cyclicals like energy and industrials. The critical variable in this equation is the Federal Reserve, which Jim Bianco — Wealthion describes as a fundamentally changed, unpredictable institution, arguing it should be hiking rates immediately to tame inflation, a move that would directly challenge the financing assumptions of the AI trade.</p></section>
 <section id="dominant-themes"><h2>DOMINANT THEMES</h2><h3>The AI &amp; Tech Trade at an Inflection Point (6 shows)</h3>
@@ -201,35 +283,51 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
 <section id="miscellaneous"><h2>MISCELLANEOUS</h2><ul><li><strong>Primacy of Sovereignty:</strong> This is a key 5-10 year investment theme where US-China competition will drive government intervention and CapEx in energy, manufacturing, and technology. — Tian Yang — The Monetary Matters Network</li><li><strong>Equity Issuance Headwind:</strong> Increased equity issuance from large tech companies could turn the &quot;massive tailwind&quot; of buybacks into a &quot;huge headwind&quot; for U.S. equities. — Rupert Mitchell — Excess Returns</li><li><strong>China&#x27;s &quot;Collar&quot; on Oil:</strong> China&#x27;s role as a monopsony in energy markets, buying for strategic storage, effectively creates a price collar, putting a floor under crude in the high $60s but also capping sustained triple-digit prices. — Rupert Mitchell — Excess Returns</li><li><strong>The Market is a Momentum Strategy:</strong> The S&amp;P 500 itself is the &quot;world&#x27;s greatest momentum strategy&quot; because it systematically over-weights the stocks that have performed the best recently. — Josh Brown — The Compound</li><li><strong>Death of the Nation State:</strong> A plausible, though not base-case, scenario for the next 10 years involves the hollowing out of state power as elites no longer care about society and youth lack attachment to the state. — (speaker unclear) — Jacob Shapiro</li><li><strong>Mega IPOs Capital Drain:</strong> Upcoming cash-settled IPOs for companies like SpaceX, Anthropic, and OpenAI could suck capital out of the public markets, forcing sales of other assets like NVIDIA. — Tian Yang — The Monetary Matters Network</li></ul></section>
 <section id="by-person-index"><h2>BY-PERSON INDEX</h2><p>Andrew Polk (Trivium China): [Miscellaneous] Barry Knapp (Wealthion): [The AI &amp; Tech Trade at an Inflection Point | Divergent: U.S. Technology Sector | HIGH-CONVICTION TRADE: Energy Equities LONG | OPPORTUNISTIC: Tech UNDERWEIGHT | OPPORTUNISTIC: Comm Services UNDERWEIGHT | OPPORTUNISTIC: Industrials, Materials, Financials OVERWEIGHT | Guest Brief | Notable Data] Ben Carlson (The Compound): [TRADE IDEAS &amp; POSITIONS] Ben Hunt (Excess Returns): [The AI &amp; Tech Trade at an Infinflection Point | Guest Brief | Conviction &amp; Scenarios | Notable Data] Dinny McMahon (Trivium China): [Miscellaneous] Emily Thomas (Morgan Stanley): [OPPORTUNISTIC: Affordable Housing LONG | SPOTLIGHT: Opening Doors to Opportunity: Investing in Affordable Housing | Notable Data] Jacob Shapiro (Jacob Shapiro): [CONVICTION &amp; SCENARIOS] Jim Bianco (Wealthion): [The Federal Reserve&#x27;s Regime Shift | Divergent: Immediate Fed Policy Action | Guest Brief | Conviction &amp; Scenarios | Notable Data | WATCH CATALYSTS] John J. Hardy (Saxo Market Call): [WATCH CATALYSTS] Josh Brown (The Compound): [OPPORTUNISTIC: Shake Shack (SHAK) LONG | Miscellaneous] Matthew Hornbach (Morgan Stanley): [The Federal Reserve&#x27;s Regime Shift] Michael Batnick (The Compound): [The AI &amp; Tech Trade at an Inflection Point | OPPORTUNISTIC: Nike (NKE) AVOID | WATCHING: IMAX | Notable Data] Michael Gapin (Morgan Stanley): [The Federal Reserve&#x27;s Regime Shift | Divergent: Immediate Fed Policy Action | Notable Data | WATCH CATALYSTS] Michael McRae (Mining Stock Daily): [SPOTLIGHT: Morning Briefing: Zijin Gold, Allied Gold $5.5B deal no longer going ahead | WATCH CATALYSTS] Peter Zeihan (The Jacob Shapiro Podcast): [Guest Brief | Conviction &amp; Scenarios] Rupert Mitchell (Excess Returns): [HIGH-CONVICTION TRADE: Energy Equities LONG | OPPORTUNISTIC: RSP LONG / QQQ SHORT | OPPORTUNISTIC: UK Investment Trusts LONG | OPPORTUNISTIC: Uzbekistan GDRs (UZNIF) LONG | OPPORTUNISTIC: Turkish Equities LONG | OPPORTUNISTIC: Long-duration fixed income AVOID | Guest Brief | Miscellaneous] Tian Yang (The Monetary Matters Network): [The AI &amp; Tech Trade at an Inflection Point | Divergent: U.S. Technology Sector | HIGH-CONVICTION TRADE: Energy Equities LONG | OPPORTUNISTIC: Chinese Equity Market AVOID | WATCHING: Crashed Tech and Semiconductor stocks | WATCHING: Japan | Guest Brief | Miscellaneous | WATCH CATALYSTS]</p></section>
 <section id="data-quality-note"><h2>DATA QUALITY NOTE</h2><ul><li><strong>Overlapping Episodes:</strong> Several guests appeared on the same show on consecutive days with identical or near-identical episode titles, suggesting the source material is from the same recording session. This includes Barry Knapp (Wealthion), Jim Bianco (Wealthion), Rupert Mitchell (Excess Returns), and Peter (Jacob Shapiro). The content has been synthesized and deduplicated to avoid repetition.</li><li><strong>Cross-Show Overlap:</strong> Ben Hunt&#x27;s &quot;World War AI&quot; thesis appeared across multiple episodes of Excess Returns this week. The core thesis was consistent and has been synthesized into a single viewpoint.</li><li><strong>Attribution Gaps:</strong> The `Mining Stock Daily` summary contained several predictions and market takes attributed to &quot;(speaker unclear).&quot; As this was a solo-hosted episode, these points have been contextually attributed to the host, Michael McRae, for the purpose of the digest, but the original ambiguity is noted. Several speakers on the `Jacob Shapiro` podcast were also unattributed by name in the summary.</li></ul></section>
-<section id="episode-index"><h2>EPISODE INDEX</h2><ul><li><strong>Mining Stock Daily</strong> — Morning Briefing Zijin Gold Allied Gold 55B deal no longer going ahead</li></ul>
-<p>Host: Michael McRae (filling in for Trevor Hall) | Guest: Solo | Commodities Hard Assets</p>
-<ul><li><strong>Wealthion</strong> — Barry Knapp I Cut Tech Heres Why</li></ul>
-<p>Host: Andrew Brill | Guest: Barry Knapp, Founder, Ironside&#x27;s Macroeconomics | Commodities Hard Assets</p>
-<ul><li><strong>Wealthion</strong> — Jim Bianco The Fed Has Changed Forever</li></ul>
-<p>Host: Andrew Brill | Guest: Jim Bianco, President, Bianco Research | Commodities Hard Assets</p>
-<ul><li><strong>Trivium China</strong> — Ep 77 - Theres no such thing as overcapacity China says</li></ul>
-<p>Host: Andrew Polk, Dinny McMahon | Guest: Dinny McMahon, Head of Markets Research, Trivium China | Geopolitics</p>
-<ul><li><strong>Excess Returns</strong> — A War-Sized AI Bet Private Credit Went All In Will the Government End Up Owning</li></ul>
-<p>Host: Jack Forehand, Justin Carbonneau | Guest: Ben Hunt, Perseid | Investment Analysis Factors</p>
-<ul><li><strong>Excess Returns</strong> — He Called It the Worst Chart Imaginable Then He Bought It Rupert Mitchell on Cra</li></ul>
-<p>Host: Jack Forehand, Justin Carbonneau | Guest: Rupert Mitchell, Blind Squirrel Macro | Investment Analysis Factors</p>
-<ul><li><strong>Excess Returns</strong> — Rupert Mitchell Called It the Worst Chart Imaginable Then He Bought It Inside Hi</li></ul>
-<p>Host: Jack Forehand, Justin Carbonneau | Guest: Rupert Mitchell, Blind Squirrel Macro | Investment Analysis Factors</p>
-<ul><li><strong>Morgan Stanley</strong> — Fed in July A Weaker Case for Hiking</li></ul>
-<p>Host: Mike Wilson | Guest: Solo | Investment Analysis Factors</p>
-<ul><li><strong>Morgan Stanley</strong> — Opening Doors to Opportunity Investing in Affordable Housing</li></ul>
-<p>Host: Emily Thomas | Guest: Solo | Investment Analysis Factors</p>
-<ul><li><strong>The Compound</strong> — 45 Million Rich Households AS 475</li></ul>
-<p>Host: Michael Batnick | Guest: Solo | Investment Analysis Factors</p>
-<ul><li><strong>The Compound</strong> — When Should You Turn Bearish on the Stock Market</li></ul>
-<p>Host: Josh Brown, Ben Carlson | Guest: Ben Carlson, host of &quot;Ask the Compound&quot; | Investment Analysis Factors</p>
-<ul><li><strong>Jacob Shapiro</strong> — Four Ex-Stratfor Analysts Reunite to Predict How the World Ends</li></ul>
-<p>Host: Jacob Shapiro | Guest: Peter | Macroeconomics Strategy</p>
-<ul><li><strong>Less Noise More Signal</strong> — Every Crypto Coin Is a Memecoin With Extra Steps</li></ul>
-<p>Host: Pascal Hügli | Guest: Solo | Macroeconomics Strategy</p>
-<ul><li><strong>Saxo Market Call</strong> — Peak SK Hynix madness</li></ul>
-<p>Host: John J. Hardy | Guest: Solo | Macroeconomics Strategy</p>
-<ul><li><strong>The Jacob Shapiro Podcast</strong> — This Is The Way The World Ends w Zeihan Gertken - Geopolitical Cousins</li></ul>
-<p>Host: (speaker unclear) | Guest: Peter Zeihan &amp; Matt Gertken | Macroeconomics Strategy</p>
-<ul><li><strong>The Monetary Matters Network</strong> — Why Macro is Pretty Risk-On for Equities Tian Yang of Variant Perception</li></ul>
-<p>Host: Jack Farley | Guest: Tian Yang, Co-founder and Head of Research at Variant Perception | Macroeconomics Strategy</p></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-08 · <a href="archive.html">All days</a></footer></div></body></html>
+<section id="episode-index"><h2>EPISODE INDEX</h2><div class="eplist"><a class="epc" href="ep/2026-08-03/mining-stock-daily-morning-briefing-ziji.html"><span class="es">Mining Stock Daily</span><div class="et">Morning Briefing Zijin Gold Allied Gold 55B deal no longer going ahead</div><div class="em">Host: Michael McRae (filling in for Trevor Hall) · Solo episode</div></a><a class="epc" href="ep/2026-08-03/wealthion-barry-knapp-i-cut-tech-heres-w.html"><span class="es">Wealthion</span><div class="et">Barry Knapp I Cut Tech Heres Why</div><div class="em">Host: Andrew Brill · Guest: Barry Knapp, Founder, Ironside&#x27;s Macroeconomics</div></a><a class="epc" href="ep/2026-08-03/wealthion-jim-bianco-the-fed-has-changed.html"><span class="es">Wealthion</span><div class="et">Jim Bianco The Fed Has Changed Forever</div><div class="em">Host: Andrew Brill · Guest: Jim Bianco, President, Bianco Research</div></a><a class="epc" href="ep/2026-08-03/trivium-china-ep-77-theres-no-such-thing.html"><span class="es">Trivium China</span><div class="et">Ep 77 - Theres no such thing as overcapacity China says</div><div class="em">Host: Andrew Polk, Dinny McMahon · Guest: Dinny McMahon, Head of Markets Research, Trivium China</div></a><a class="epc" href="ep/2026-08-03/excess-returns-a-war-sized-ai-bet-privat.html"><span class="es">Excess Returns</span><div class="et">A War-Sized AI Bet Private Credit Went All In Will the Government End Up Owning</div><div class="em">Host: Jack Forehand, Justin Carbonneau · Guest: Ben Hunt, Perseid</div></a><a class="epc" href="ep/2026-08-03/excess-returns-he-called-it-the-worst-ch.html"><span class="es">Excess Returns</span><div class="et">He Called It the Worst Chart Imaginable Then He Bought It Rupert Mitchell on Cra</div><div class="em">Host: Jack Forehand, Justin Carbonneau · Guest: Rupert Mitchell, Blind Squirrel Macro</div></a><a class="epc" href="ep/2026-08-03/excess-returns-rupert-mitchell-called-it.html"><span class="es">Excess Returns</span><div class="et">Rupert Mitchell Called It the Worst Chart Imaginable Then He Bought It Inside Hi</div><div class="em">Host: Jack Forehand, Justin Carbonneau · Guest: Rupert Mitchell, Blind Squirrel Macro</div></a><a class="epc" href="ep/2026-08-03/morgan-stanley-fed-in-july-a-weaker-case.html"><span class="es">Morgan Stanley</span><div class="et">Fed in July A Weaker Case for Hiking</div><div class="em">Host: Mike Wilson · Solo episode</div></a><a class="epc" href="ep/2026-08-03/morgan-stanley-opening-doors-to-opportun.html"><span class="es">Morgan Stanley</span><div class="et">Opening Doors to Opportunity Investing in Affordable Housing</div><div class="em">Host: Emily Thomas · Solo episode</div></a><a class="epc" href="ep/2026-08-03/the-compound-45-million-rich-households-.html"><span class="es">The Compound</span><div class="et">45 Million Rich Households AS 475</div><div class="em">Host: Michael Batnick · Solo episode</div></a><a class="epc" href="ep/2026-08-03/the-compound-when-should-you-turn-bearis.html"><span class="es">The Compound</span><div class="et">When Should You Turn Bearish on the Stock Market</div><div class="em">Host: Josh Brown, Ben Carlson · Guest: Ben Carlson, host of &quot;Ask the Compound&quot;</div></a><a class="epc" href="ep/2026-08-03/jacob-shapiro-four-ex-stratfor-analysts-.html"><span class="es">Jacob Shapiro</span><div class="et">Four Ex-Stratfor Analysts Reunite to Predict How the World Ends</div><div class="em">Host: Jacob Shapiro · Guest: Peter</div></a><a class="epc" href="ep/2026-08-03/less-noise-more-signal-every-crypto-coin.html"><span class="es">Less Noise More Signal</span><div class="et">Every Crypto Coin Is a Memecoin With Extra Steps</div><div class="em">Host: Pascal Hügli · Solo episode</div></a><a class="epc" href="ep/2026-08-03/saxo-market-call-peak-sk-hynix-madness.html"><span class="es">Saxo Market Call</span><div class="et">Peak SK Hynix madness</div><div class="em">Host: John J. Hardy · Solo episode</div></a><a class="epc" href="ep/2026-08-03/the-jacob-shapiro-podcast-this-is-the-wa.html"><span class="es">The Jacob Shapiro Podcast</span><div class="et">This Is The Way The World Ends w Zeihan Gertken - Geopolitical Cousins</div><div class="em">Host: (speaker unclear) · Guest: Peter Zeihan &amp; Matt Gertken</div></a><a class="epc" href="ep/2026-08-03/the-monetary-matters-network-why-macro-i.html"><span class="es">The Monetary Matters Network</span><div class="et">Why Macro is Pretty Risk-On for Equities Tian Yang of Variant Perception</div><div class="em">Host: Jack Farley · Guest: Tian Yang, Co-founder and Head of Research at Variant Perception</div></a></div></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-09 · <a href="archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-opening-doors-to-opportunity-i">★ Opening Doors to Oppor…</a><a href="#spotlight-morning-briefing-zijin-gold-al">★ Morning Briefing: Ziji…</a><a href="#spotlight-every-crypto-coin-is-a-memecoi">★ Every Crypto Coin Is a…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#by-person-index">BY-PERSON INDEX</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-opening-doors-to-opportunity-i">★ Opening Doors to Oppor…</a><a href="#spotlight-morning-briefing-zijin-gold-al">★ Morning Briefing: Ziji…</a><a href="#spotlight-every-crypto-coin-is-a-memecoi">★ Every Crypto Coin Is a…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#by-person-index">BY-PERSON INDEX</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+(function(){
+var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
+var top=qs('#fab-top');
+if(top){addEventListener('scroll',function(){top.classList.toggle('show',scrollY>600)},{passive:true});
+        top.onclick=function(){scrollTo({top:0,behavior:'smooth'})};}
+var toc=qs('#fab-toc');
+if(toc){toc.classList.add('show');
+        addEventListener('scroll',function(){toc.classList.toggle('show',true)},{passive:true});}
+function closeDrawer(){document.body.classList.remove('drawer-open')}
+if(toc){toc.onclick=function(){document.body.classList.add('drawer-open')};
+        qs('.drawer-bg').onclick=closeDrawer;
+        qa('.drawer a').forEach(function(a){a.addEventListener('click',closeDrawer)});}
+var links=qa('.rail a, .drawer a');
+if(links.length){
+  var map={};links.forEach(function(a){var id=a.getAttribute('href').slice(1);(map[id]=map[id]||[]).push(a)});
+  var cur=null;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){
+      if(cur&&map[cur])map[cur].forEach(function(a){a.classList.remove('on')});
+      cur=e.target.id;
+      if(map[cur])map[cur].forEach(function(a){a.classList.add('on')});
+    }});
+  },{rootMargin:'-10% 0px -80% 0px'});
+  qa('section[id]').forEach(function(x){io.observe(x)});
+}
+var ROOT=document.body.getAttribute('data-root')||'';
+var idx=null,inp=qs('.search-box input'),res=qs('.search-res');
+function openS(){document.body.classList.add('search-open');inp.focus();
+  if(!idx){fetch(ROOT+'search-index.json').then(function(r){return r.json()})
+    .then(function(j){idx=j;run()}).catch(function(){res.innerHTML='<div class=empty>index unavailable</div>'});}}
+function closeS(){document.body.classList.remove('search-open')}
+function run(){
+  if(!idx)return;
+  var q=inp.value.trim().toLowerCase();
+  var hits=!q?idx.slice(0,20):idx.filter(function(e){
+    return (e.t+' '+e.s+' '+e.d).toLowerCase().indexOf(q)>=0}).slice(0,30);
+  res.innerHTML=hits.length?hits.map(function(e){
+    return '<a href="'+ROOT+e.u+'"><div class=st>'+e.t+'</div><div class=ss>'+e.d+' · '+e.s+'</div></a>';
+  }).join(''):'<div class=empty>no matches</div>';}
+if(inp){inp.addEventListener('input',run);
+  qs('.sbtn').onclick=openS;qs('.search-bg').onclick=closeS;
+  addEventListener('keydown',function(e){
+    if(e.key==='/'&&!document.body.classList.contains('search-open')&&
+       document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
+    if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+</script></body></html>

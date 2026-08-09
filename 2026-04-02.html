@@ -29,7 +29,7 @@ header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
 .crumb{color:var(--muted);font-size:13px}
 .crumb a{color:var(--muted)}
 /* header action — sits right, stays a 44px tap target on a phone */
-.btn{margin-left:auto;display:inline-flex;align-items:center;gap:2px;
+.btn{display:inline-flex;align-items:center;gap:2px;
      padding:9px 15px;min-height:38px;border:1px solid var(--line);
      border-radius:99px;background:var(--bg);color:var(--ink);
      font-size:13.5px;font-weight:550;white-space:nowrap;line-height:1}
@@ -43,14 +43,6 @@ header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
 .hero .meta{color:var(--muted);font-size:14px}
 .pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
       border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
-
-/* section nav */
-nav.toc{position:sticky;top:52px;background:var(--bg);padding:10px 0 12px;
-        border-bottom:1px solid var(--line);margin-bottom:8px;z-index:10}
-nav.toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0}
-nav.toc a{font-size:12px;padding:4px 10px;border:1px solid var(--line);
-          border-radius:99px;color:var(--muted);background:var(--panel);white-space:nowrap}
-nav.toc a:hover{color:var(--accent);border-color:var(--accent);text-decoration:none}
 
 /* sections */
 section{padding:28px 0 4px;border-top:1px solid var(--line)}
@@ -104,6 +96,96 @@ strong{font-weight:650}
 .days .d{font-family:var(--serif);font-size:17px;font-weight:600}
 .days .s{color:var(--muted);font-size:13px;text-align:right}
 
+
+/* right-side outline rail (desktop) */
+.layout{display:block}
+@media(min-width:1150px){
+  .layout{display:grid;grid-template-columns:minmax(0,820px) 220px;gap:44px;
+          max-width:1120px;margin:0 auto;padding:0 20px}
+  .layout>.wrap{max-width:none;padding:0}
+  .layout .rail{display:block}
+}
+.rail{display:none;position:sticky;top:76px;align-self:start;max-height:calc(100vh - 100px);
+      overflow-y:auto;padding:8px 0 24px;font-size:12.5px}
+.rail .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+          margin-bottom:10px}
+.rail a{display:block;color:var(--muted);padding:4px 10px;border-left:2px solid var(--line);
+        line-height:1.4}
+.rail a:hover{color:var(--accent);text-decoration:none}
+.rail a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+
+/* floating buttons */
+.fab{position:fixed;right:16px;z-index:40;display:flex;align-items:center;justify-content:center;
+     width:44px;height:44px;border-radius:50%;background:var(--panel);color:var(--ink);
+     border:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.18);font-size:18px;
+     cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
+.fab.show{opacity:1;pointer-events:auto}
+.fab:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+#fab-top{bottom:18px}
+#fab-toc{bottom:72px}
+@media(min-width:1150px){#fab-toc{display:none}}
+
+/* outline drawer (mobile) */
+.drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;opacity:0;
+           pointer-events:none;transition:opacity .2s}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:var(--panel);
+        z-index:61;transform:translateX(105%);transition:transform .22s ease;
+        padding:20px 18px;overflow-y:auto;border-left:1px solid var(--line)}
+body.drawer-open .drawer{transform:none}
+body.drawer-open .drawer-bg{opacity:1;pointer-events:auto}
+.drawer .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+            margin:2px 0 12px}
+.drawer a{display:block;padding:9px 10px;border-radius:8px;color:var(--ink);font-size:14.5px}
+.drawer a:hover{background:var(--accent-soft);text-decoration:none}
+.drawer a.on{color:var(--accent);font-weight:600}
+
+/* search */
+.sbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;min-height:36px;
+      border:1px solid var(--line);border-radius:99px;background:var(--bg);color:var(--muted);
+      font-size:13px;cursor:pointer;white-space:nowrap}
+.sbtn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.search-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:70;opacity:0;
+           pointer-events:none;transition:opacity .15s}
+.search-box{position:fixed;top:min(12vh,110px);left:50%;transform:translateX(-50%) scale(.98);
+            width:min(620px,92vw);background:var(--panel);border:1px solid var(--line);
+            border-radius:14px;z-index:71;opacity:0;pointer-events:none;transition:all .15s;
+            box-shadow:0 18px 60px rgba(0,0,0,.35);overflow:hidden}
+body.search-open .search-bg{opacity:1;pointer-events:auto}
+body.search-open .search-box{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.search-box input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+                  font-size:17px;padding:17px 19px;border-bottom:1px solid var(--line);
+                  font-family:var(--sans)}
+.search-res{max-height:52vh;overflow-y:auto;padding:8px}
+.search-res a{display:block;padding:10px 12px;border-radius:9px;color:var(--ink)}
+.search-res a:hover,.search-res a.sel{background:var(--accent-soft);text-decoration:none}
+.search-res .st{font-weight:600;font-size:14.5px}
+.search-res .ss{color:var(--muted);font-size:12.5px;margin-top:1px}
+.search-res .empty{padding:16px;color:var(--muted);font-size:14px;text-align:center}
+
+/* episode cards inside a digest's episode index */
+.eplist{display:grid;gap:10px}
+.eplist a.epc{display:block;background:var(--panel);border:1px solid var(--line);
+              border-radius:var(--radius);padding:13px 16px;color:inherit}
+.eplist a.epc:hover{border-color:var(--accent);text-decoration:none}
+.eplist .epc .es{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.eplist .epc .et{font-family:var(--serif);font-size:16.5px;font-weight:600;margin:2px 0 3px}
+.eplist .epc .em{color:var(--muted);font-size:13px}
+.eplist div.epc{background:var(--panel);border:1px solid var(--line);opacity:.75;
+                border-radius:var(--radius);padding:13px 16px}
+
+/* episode page */
+blockquote.q{margin:14px 0;padding:13px 17px;background:var(--panel);border-left:3px solid var(--accent);
+             border-radius:var(--radius);font-family:var(--serif);font-size:16px;font-style:italic}
+blockquote.q .qw{display:block;margin-top:7px;font-family:var(--sans);font-size:12.5px;
+                 font-style:normal;color:var(--muted)}
+.verdict{background:var(--accent-soft);border:1px solid var(--line);border-left:3px solid var(--accent);
+         border-radius:var(--radius);padding:15px 18px;font-family:var(--serif);font-size:16.5px}
+.ivrow{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);
+       font-size:14.5px;flex-wrap:wrap}
+.ivrow:last-child{border-bottom:0}
+.ivrow .who{font-weight:600;min-width:130px}
+.ivrow .what{color:var(--ink)}
+
 footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
        color:var(--muted);font-size:12.5px}
 .note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
@@ -113,7 +195,7 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Thursday, 2 April 2026</span><a class="btn" href="archive.html">☰&nbsp; Archive</a></div></header><div class="wrap"><div class="hero"><h1>Thursday, 2 April 2026</h1><div class="meta"><span class="pill">20 episodes</span>Commodities Hard Assets, Equities Trading, Investment Analysis Factors, Macroeconomics Strategy, Real Estate Wealth Building</div></div><nav class="toc"><ul><li><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a></li><li><a href="#dominant-theme-s">DOMINANT THEME(S)</a></li><li><a href="#divergent-views">DIVERGENT VIEWS</a></li><li><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a></li><li><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a></li><li><a href="#tickers-assets">TICKERS &amp; ASSETS</a></li><li><a href="#spotlight-isoenergy-update">★ IsoEnergy Update</a></li><li><a href="#spotlight-mining-stock-daily-morning-bri">★ Mining Stock Daily Mor…</a></li><li><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a></li><li><a href="#watch-catalysts">WATCH CATALYSTS</a></li><li><a href="#miscellaneous">MISCELLANEOUS</a></li><li><a href="#data-quality-note">DATA QUALITY NOTE</a></li><li><a href="#episode-index">EPISODE INDEX</a></li></ul></nav><section id="macro-room-temperature"><h2>MACRO ROOM TEMPERATURE</h2><p>The market&#x27;s euphoric rally, driven by President Trump&#x27;s rhetoric on ending the Iran conflict, is clashing with a stark stagflationary reality championed by Larry McDonald — The Julia La Roche Show. While the decline in the VIX suggests a risk-on mood, analysts like Tom Thornton — Maggie Lake Talking Markets and Javier Blas — Odd Lots warn that underlying supply chain disruptions and unprecedented tension in refined product markets are being ignored. The central tension is whether this is a durable bottom built on de-escalation or a speculative melt-up ignoring the persistent inflationary impulse from energy and deficits.</p></section>
+</style></head><body data-root=""><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Thursday, 2 April 2026</span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><h1>Thursday, 2 April 2026</h1><div class="meta"><span class="pill">20 episodes</span>Commodities Hard Assets, Equities Trading, Investment Analysis Factors, Macroeconomics Strategy, Real Estate Wealth Building</div></div><section id="macro-room-temperature"><h2>MACRO ROOM TEMPERATURE</h2><p>The market&#x27;s euphoric rally, driven by President Trump&#x27;s rhetoric on ending the Iran conflict, is clashing with a stark stagflationary reality championed by Larry McDonald — The Julia La Roche Show. While the decline in the VIX suggests a risk-on mood, analysts like Tom Thornton — Maggie Lake Talking Markets and Javier Blas — Odd Lots warn that underlying supply chain disruptions and unprecedented tension in refined product markets are being ignored. The central tension is whether this is a durable bottom built on de-escalation or a speculative melt-up ignoring the persistent inflationary impulse from energy and deficits.</p></section>
 <section id="dominant-theme-s"><h2>DOMINANT THEME(S)</h2><p><strong>The Great Rotation: Fleeing Financials for Hard Assets</strong> (10 shows)</p>
 <p>A powerful cross-show consensus is forming around a &quot;great migration&quot; of capital out of financial assets and into hard assets, a term coined by Larry McDonald — The Julia La Roche Show. He argues this shift is driven by global conflicts, persistent fiscal deficits, and the breakdown of the traditional 60/40 portfolio. This rotation is visible in the market&#x27;s sector performance, with JD — The Macro Dirt Podcast and Josh Brown — The Compound noting the resilience of energy, materials, and gold miners in the face of significant drawdowns in the &quot;Mag 7&quot; tech stocks.</p>
 <p>The bullish case for precious metals is widespread. Lawrence Lepard — Adam Taggart Thoughtful Money, Andrew Sleigh — Sprott Money, and Craig Hemke — Wealth Building Blueprint Vladyslav Grab all advocate for aggressive accumulation of gold and silver, citing unsustainable global debt and inevitable currency debasement as primary drivers. Jonathan Wellum — Wealthion views gold and silver as essential hedges against intractable US debt, while Brent Johnson — The Julia La Roche Show holds them as a core strategic allocation for long-term security.</p>
@@ -166,4 +248,51 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
 <section id="watch-catalysts"><h2>WATCH CATALYSTS</h2><ul><li><strong>Next 6 Months:</strong> A period of significant acceleration in macro trends (oil issues, wars, money printing, de-dollarization) is expected. — Andrew Sleigh — Sprott Money</li><li><strong>Between now and the Midterms:</strong> A period for capital preservation; market likely to move sideways or lower. — Brent Johnson — The Julia La Roche Show</li><li><strong>Upcoming FOMC Meeting:</strong> Governor Miran dissented at the last meeting in favor of a cut; Brent Johnson expects the Fed to hold steady. — Governor Miran — Forward Guidance, Brent Johnson — The Julia La Roche Show</li><li><strong>Q2 2026:</strong> Expected closing of ISO Energy&#x27;s acquisition of Toro Energy. — Phil Williams — Jimmy Connor</li></ul></section>
 <section id="miscellaneous"><h2>MISCELLANEOUS</h2><ul><li>The &quot;law of one price&quot; for commodities is diminishing, meaning investors must now consider origin and geopolitical risk, not just price. — Brent Johnson — The Julia La Roche Show</li><li>The concept of &quot;asset light&quot; is a myth; investment is still occurring but is often expensed on the income statement (e.g., R&amp;D) rather than capitalized, distorting traditional valuation metrics like price-to-book. — Michael Mauboussin — Excess Returns</li><li>The U.S. is transitioning from a republic to an empire, a &quot;fourth turning&quot; that will involve more authoritarian and transactional governance but could lead to periods of significant growth. — Brent Johnson — The Julia La Roche Show</li><li>The U.S. government has effectively &quot;blessed&quot; stablecoins, co-opting them as a powerful geopolitical tool to entrench the dollar globally outside the traditional banking system. — Brent Johnson — The Julia La Roche Show</li><li>The trend towards 24/7 equity trading is a &quot;terrible idea&quot; as it removes the market&#x27;s ability to pause and digest news, but it is likely inevitable due to demand for constant speculation. — Josh Brown, Michael Batnick — The Compound</li><li>The market may implicitly recognize the unsustainability of the &quot;Mag 7&#x27;s&quot; growth, as their one-third share of market cap is &quot;punching below the weight&quot; of their two-thirds share of economic profits. — Michael Mauboussin — Excess Returns</li><li>A significant increase in US households worth $30M+ and the top 0.1%&#x27;s wealth growing 13-fold in 50 years could lead to the election of a socialist president within 12 years. — Michael Batnick — The Compound</li></ul></section>
 <section id="data-quality-note"><h2>DATA QUALITY NOTE</h2><ul><li><strong>Overlapping Episodes (Same Guest, Same Interview):</strong></li><li><strong>Brent Johnson on The Julia La Roche Show:</strong> The two episodes are from the same interview and have been synthesized into a single viewpoint.</li><li><strong>Anna Wong on The Monetary Matters Network:</strong> The two episodes are from the same interview and have been synthesized into a single viewpoint.</li><li><strong>Overlapping Episodes (Same Guest, Different Dates):</strong></li><li><strong>Larry McDonald on The Julia La Roche Show:</strong> Content from today&#x27;s digest (from an episode dated 03-31) and a prior digest (from an episode dated 04-01) was highly consistent. His views on private credit, hard assets, and stagflation have been merged into a coherent thesis.</li><li><strong>Overlapping Episodes (Same Podcast Network):</strong></li><li><strong>The Compound:</strong> Two distinct episodes were processed (&quot;Animal Spirits&quot; and &quot;Ask the Compound&quot;). They feature different formats and have been treated as separate sources.</li><li>All tickers were cross-checked against their named assets for accuracy. No discrepancies were found. All attributions are complete.</li></ul></section>
-<section id="episode-index"><h2>EPISODE INDEX</h2><p>Mining Stock Daily — Morning Briefing Bonterra Resources Update Mineral Resource at Bachelor and Moro | Host: Trevor Hall | Guest: Solo episode. | Commodities Hard Assets Sprott Money — Silver Rally Starting Now Andrew Sleigh Warns Prices Could Move Fast Ask Andrew | Host: Craig Hemke | Guest: Andrew Sleigh, Sprott Money | Commodities Hard Assets Wealthion — Jonathan Wellum Ignore the Headlines Invest In Whats Inevitable | Host: Maggie Lake | Guest: Jonathan Wellum, CEO and CIO of Rocklink | Commodities Hard Assets Jimmy Connor — IsoEnergy Update Phil Williams and James Connor | Host: Jimmy Connor | Guest: Phil Williams, not stated, ISO Energy | Equities Trading The Macro Dirt Podcast — The Quarter-End Dirt | Host: JD | Guest: Solo episode. | Equities Trading Excess Returns — Not Once in 18900 Tries Michael Mauboussin on What History Says About AI Growth | Host: Kai | Guest: Michael Mauboussin, not stated, not stated | Investment Analysis Factors Morgan Stanley — A New Test for Private Credit | Host: Mike Wilson, Vishy Tirupathor | Guest: David Miller, Morgan Stanley Investment Management | Investment Analysis Factors The Compound — Homebuyers Remorse Animal Spirits 458 | Host: Michael Batnick and Ben | Guest: Solo episode. | Investment Analysis Factors The Compound — Which Beaten Down Stocks Are Worth a Closer Look | Host: Josh Brown, Michael Batnick | Guest: Solo episode. | Investment Analysis Factors The Julia La Roche Show — 355 Brent Johnson The Old World Is Over America Is Entering Its Empire Phase and | Host: Julia La Roche | Guest: Brent Johnson, Founder and CEO, Santiago Capital | Investment Analysis Factors The Julia La Roche Show — A Former Lehman Trader Sees the Same Warning Signs Again Larry McDonald | Host: Julia La Roche | Guest: Larry McDonald, Founder, The Bear Traps Report | Investment Analysis Factors The Julia La Roche Show — Brent Johnson The Investing Rules Have Changed Power Now Matters More Than Econo | Host: Julia La Roche | Guest: Brent Johnson, Founder and CEO of Santiago Capital | Investment Analysis Factors Adam Taggart Thoughtful Money — Is The Bottom In For Gold Silver Bitcoin Lawrence Lepard | Host: Adam Taggart | Guest: Lawrence Lepard, Sound Money Advocate | Macroeconomics Strategy Forward Guidance — Fed Governor Miran on Why Inflation Fears Are Overstated | Host: Jack Farley | Guest: Governor Miran, Federal Reserve | Macroeconomics Strategy Maggie Lake Talking Markets — Why Tom Thorntons Not Buying the SpaceX IPO Hype | Host: Maggie Lake | Guest: Tom Thornton, Founder, Hedge Fund Telemetry | Macroeconomics Strategy Odd Lots — Javier Blas on Why Oil Could Go Much Much Higher | Host: Joe Weisenthal, Tracy Alloway | Guest: Javier Blas, Energy and Commodities Columnist, Bloomberg | Macroeconomics Strategy Saxo Market Call — Markets melt up on Trumps seeming urgency to end war but | Host: John J. Hardy, Ole Hansen | Guest: Solo episode. | Macroeconomics Strategy The Monetary Matters Network — Why 200 Oil Wont Spike Inflation to 9 Anna Wong | Host: Jack Farley | Guest: Anna Wong, Chief US Economist, Bloomberg | Macroeconomics Strategy The Monetary Matters Network — Why 200 Oil Wont Spike Inflation to 9 Anna Wong on Recession Probability PCE vs | Host: Jack Farley | Guest: Anna Wong, Chief U.S. Economist, Bloomberg | Macroeconomics Strategy Wealth Building Blueprint Vladyslav Grab — Craig Hemke Gold Correction Over Turkey Selling QE Returning the Hormuz Shock | Host: Vladyslav Grabarskyy | Guest: Craig Hemke, Founder and Editor, TF Metals Report | Real Estate Wealth Building</p></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-08 · <a href="archive.html">All days</a></footer></div></body></html>
+<section id="episode-index"><h2>EPISODE INDEX</h2><p>Mining Stock Daily — Morning Briefing Bonterra Resources Update Mineral Resource at Bachelor and Moro | Host: Trevor Hall | Guest: Solo episode. | Commodities Hard Assets Sprott Money — Silver Rally Starting Now Andrew Sleigh Warns Prices Could Move Fast Ask Andrew | Host: Craig Hemke | Guest: Andrew Sleigh, Sprott Money | Commodities Hard Assets Wealthion — Jonathan Wellum Ignore the Headlines Invest In Whats Inevitable | Host: Maggie Lake | Guest: Jonathan Wellum, CEO and CIO of Rocklink | Commodities Hard Assets Jimmy Connor — IsoEnergy Update Phil Williams and James Connor | Host: Jimmy Connor | Guest: Phil Williams, not stated, ISO Energy | Equities Trading The Macro Dirt Podcast — The Quarter-End Dirt | Host: JD | Guest: Solo episode. | Equities Trading Excess Returns — Not Once in 18900 Tries Michael Mauboussin on What History Says About AI Growth | Host: Kai | Guest: Michael Mauboussin, not stated, not stated | Investment Analysis Factors Morgan Stanley — A New Test for Private Credit | Host: Mike Wilson, Vishy Tirupathor | Guest: David Miller, Morgan Stanley Investment Management | Investment Analysis Factors The Compound — Homebuyers Remorse Animal Spirits 458 | Host: Michael Batnick and Ben | Guest: Solo episode. | Investment Analysis Factors The Compound — Which Beaten Down Stocks Are Worth a Closer Look | Host: Josh Brown, Michael Batnick | Guest: Solo episode. | Investment Analysis Factors The Julia La Roche Show — 355 Brent Johnson The Old World Is Over America Is Entering Its Empire Phase and | Host: Julia La Roche | Guest: Brent Johnson, Founder and CEO, Santiago Capital | Investment Analysis Factors The Julia La Roche Show — A Former Lehman Trader Sees the Same Warning Signs Again Larry McDonald | Host: Julia La Roche | Guest: Larry McDonald, Founder, The Bear Traps Report | Investment Analysis Factors The Julia La Roche Show — Brent Johnson The Investing Rules Have Changed Power Now Matters More Than Econo | Host: Julia La Roche | Guest: Brent Johnson, Founder and CEO of Santiago Capital | Investment Analysis Factors Adam Taggart Thoughtful Money — Is The Bottom In For Gold Silver Bitcoin Lawrence Lepard | Host: Adam Taggart | Guest: Lawrence Lepard, Sound Money Advocate | Macroeconomics Strategy Forward Guidance — Fed Governor Miran on Why Inflation Fears Are Overstated | Host: Jack Farley | Guest: Governor Miran, Federal Reserve | Macroeconomics Strategy Maggie Lake Talking Markets — Why Tom Thorntons Not Buying the SpaceX IPO Hype | Host: Maggie Lake | Guest: Tom Thornton, Founder, Hedge Fund Telemetry | Macroeconomics Strategy Odd Lots — Javier Blas on Why Oil Could Go Much Much Higher | Host: Joe Weisenthal, Tracy Alloway | Guest: Javier Blas, Energy and Commodities Columnist, Bloomberg | Macroeconomics Strategy Saxo Market Call — Markets melt up on Trumps seeming urgency to end war but | Host: John J. Hardy, Ole Hansen | Guest: Solo episode. | Macroeconomics Strategy The Monetary Matters Network — Why 200 Oil Wont Spike Inflation to 9 Anna Wong | Host: Jack Farley | Guest: Anna Wong, Chief US Economist, Bloomberg | Macroeconomics Strategy The Monetary Matters Network — Why 200 Oil Wont Spike Inflation to 9 Anna Wong on Recession Probability PCE vs | Host: Jack Farley | Guest: Anna Wong, Chief U.S. Economist, Bloomberg | Macroeconomics Strategy Wealth Building Blueprint Vladyslav Grab — Craig Hemke Gold Correction Over Turkey Selling QE Returning the Hormuz Shock | Host: Vladyslav Grabarskyy | Guest: Craig Hemke, Founder and Editor, TF Metals Report | Real Estate Wealth Building</p></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-09 · <a href="archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a><a href="#dominant-theme-s">DOMINANT THEME(S)</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-isoenergy-update">★ IsoEnergy Update</a><a href="#spotlight-mining-stock-daily-morning-bri">★ Mining Stock Daily Mor…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a><a href="#dominant-theme-s">DOMINANT THEME(S)</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-isoenergy-update">★ IsoEnergy Update</a><a href="#spotlight-mining-stock-daily-morning-bri">★ Mining Stock Daily Mor…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+(function(){
+var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
+var top=qs('#fab-top');
+if(top){addEventListener('scroll',function(){top.classList.toggle('show',scrollY>600)},{passive:true});
+        top.onclick=function(){scrollTo({top:0,behavior:'smooth'})};}
+var toc=qs('#fab-toc');
+if(toc){toc.classList.add('show');
+        addEventListener('scroll',function(){toc.classList.toggle('show',true)},{passive:true});}
+function closeDrawer(){document.body.classList.remove('drawer-open')}
+if(toc){toc.onclick=function(){document.body.classList.add('drawer-open')};
+        qs('.drawer-bg').onclick=closeDrawer;
+        qa('.drawer a').forEach(function(a){a.addEventListener('click',closeDrawer)});}
+var links=qa('.rail a, .drawer a');
+if(links.length){
+  var map={};links.forEach(function(a){var id=a.getAttribute('href').slice(1);(map[id]=map[id]||[]).push(a)});
+  var cur=null;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){
+      if(cur&&map[cur])map[cur].forEach(function(a){a.classList.remove('on')});
+      cur=e.target.id;
+      if(map[cur])map[cur].forEach(function(a){a.classList.add('on')});
+    }});
+  },{rootMargin:'-10% 0px -80% 0px'});
+  qa('section[id]').forEach(function(x){io.observe(x)});
+}
+var ROOT=document.body.getAttribute('data-root')||'';
+var idx=null,inp=qs('.search-box input'),res=qs('.search-res');
+function openS(){document.body.classList.add('search-open');inp.focus();
+  if(!idx){fetch(ROOT+'search-index.json').then(function(r){return r.json()})
+    .then(function(j){idx=j;run()}).catch(function(){res.innerHTML='<div class=empty>index unavailable</div>'});}}
+function closeS(){document.body.classList.remove('search-open')}
+function run(){
+  if(!idx)return;
+  var q=inp.value.trim().toLowerCase();
+  var hits=!q?idx.slice(0,20):idx.filter(function(e){
+    return (e.t+' '+e.s+' '+e.d).toLowerCase().indexOf(q)>=0}).slice(0,30);
+  res.innerHTML=hits.length?hits.map(function(e){
+    return '<a href="'+ROOT+e.u+'"><div class=st>'+e.t+'</div><div class=ss>'+e.d+' · '+e.s+'</div></a>';
+  }).join(''):'<div class=empty>no matches</div>';}
+if(inp){inp.addEventListener('input',run);
+  qs('.sbtn').onclick=openS;qs('.search-bg').onclick=closeS;
+  addEventListener('keydown',function(e){
+    if(e.key==='/'&&!document.body.classList.contains('search-open')&&
+       document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
+    if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+</script></body></html>

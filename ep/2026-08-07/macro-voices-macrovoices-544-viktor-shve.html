@@ -1,0 +1,251 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#14150f"><title>Macro Voices — MacroVoices 544 Viktor Shvets How Markets Survive Disruption</title><style>
+:root{
+  --bg:#fbfbfa; --panel:#fff; --ink:#1a1a18; --muted:#6b6b66; --line:#e6e4df;
+  --accent:#b4552d; --accent-soft:#fdf3ee;
+  --long:#1a7340; --short:#c0392b; --watch:#2563a8; --reduce:#b8730f;
+  --radius:10px;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#14150f; --panel:#1c1d16; --ink:#eceade; --muted:#a3a094;
+         --line:#2f3126; --accent:#e08a5f; --accent-soft:#241a13;
+         --long:#5cc98a; --short:#ef7d6e; --watch:#7db3e8; --reduce:#e0a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+     line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 96px}
+
+/* masthead */
+header.top{border-bottom:1px solid var(--line);background:var(--panel);
+           position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.4) blur(6px)}
+header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
+                 align-items:baseline;gap:14px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.01em}
+.brand a{color:inherit}
+.crumb{color:var(--muted);font-size:13px}
+.crumb a{color:var(--muted)}
+/* header action — sits right, stays a 44px tap target on a phone */
+.btn{display:inline-flex;align-items:center;gap:2px;
+     padding:9px 15px;min-height:38px;border:1px solid var(--line);
+     border-radius:99px;background:var(--bg);color:var(--ink);
+     font-size:13.5px;font-weight:550;white-space:nowrap;line-height:1}
+.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.btn:active{transform:translateY(1px)}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,42px);line-height:1.12;
+         margin:0 0 10px;letter-spacing:-.02em;font-weight:600}
+.hero .meta{color:var(--muted);font-size:14px}
+.pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
+      border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
+
+/* sections */
+section{padding:28px 0 4px;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+h2{font-family:var(--serif);font-size:13px;font-weight:700;text-transform:uppercase;
+   letter-spacing:.14em;color:var(--accent);margin:0 0 16px}
+h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:28px 0 8px;
+   letter-spacing:-.01em}
+p{margin:0 0 13px}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin:5px 0}
+strong{font-weight:650}
+.tag{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+
+/* TL;DR */
+.tldr{background:var(--accent-soft);border:1px solid var(--line);
+      border-left:3px solid var(--accent);border-radius:var(--radius);
+      padding:18px 20px;margin-bottom:6px}
+.tldr p:last-child,.tldr ul:last-child{margin-bottom:0}
+.tldr ul{list-style:none;padding-left:0}
+.tldr li{padding-left:15px;position:relative}
+.tldr li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+
+/* trade cards */
+.cards{display:grid;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:15px 17px}
+.card .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.card .asset{font-family:var(--serif);font-size:18px;font-weight:600}
+.card .who{color:var(--muted);font-size:13px}
+.card p{margin:6px 0 0;font-size:14.5px}
+.card .label{color:var(--muted);font-size:11px;text-transform:uppercase;
+             letter-spacing:.08em;margin-right:5px}
+.dir-long{color:var(--long)} .dir-short{color:var(--short)}
+.dir-avoid{color:var(--short)} .dir-reduce{color:var(--reduce)}
+.dir-watching{color:var(--watch)} .dir-other{color:var(--muted)}
+.tier{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+      margin:22px 0 10px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+
+/* topics */
+.topic{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--muted);
+       border-radius:var(--radius);padding:15px 17px;margin:12px 0}
+.topic .t{font-weight:650;margin-bottom:9px}
+
+/* index */
+.days{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:9px}
+.days a{display:flex;justify-content:space-between;align-items:center;gap:14px;
+        background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+        padding:14px 17px;color:inherit}
+.days a:hover{border-color:var(--accent);text-decoration:none}
+.days .d{font-family:var(--serif);font-size:17px;font-weight:600}
+.days .s{color:var(--muted);font-size:13px;text-align:right}
+
+
+/* right-side outline rail (desktop) */
+.layout{display:block}
+@media(min-width:1150px){
+  .layout{display:grid;grid-template-columns:minmax(0,820px) 220px;gap:44px;
+          max-width:1120px;margin:0 auto;padding:0 20px}
+  .layout>.wrap{max-width:none;padding:0}
+  .layout .rail{display:block}
+}
+.rail{display:none;position:sticky;top:76px;align-self:start;max-height:calc(100vh - 100px);
+      overflow-y:auto;padding:8px 0 24px;font-size:12.5px}
+.rail .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+          margin-bottom:10px}
+.rail a{display:block;color:var(--muted);padding:4px 10px;border-left:2px solid var(--line);
+        line-height:1.4}
+.rail a:hover{color:var(--accent);text-decoration:none}
+.rail a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+
+/* floating buttons */
+.fab{position:fixed;right:16px;z-index:40;display:flex;align-items:center;justify-content:center;
+     width:44px;height:44px;border-radius:50%;background:var(--panel);color:var(--ink);
+     border:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.18);font-size:18px;
+     cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
+.fab.show{opacity:1;pointer-events:auto}
+.fab:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+#fab-top{bottom:18px}
+#fab-toc{bottom:72px}
+@media(min-width:1150px){#fab-toc{display:none}}
+
+/* outline drawer (mobile) */
+.drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;opacity:0;
+           pointer-events:none;transition:opacity .2s}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:var(--panel);
+        z-index:61;transform:translateX(105%);transition:transform .22s ease;
+        padding:20px 18px;overflow-y:auto;border-left:1px solid var(--line)}
+body.drawer-open .drawer{transform:none}
+body.drawer-open .drawer-bg{opacity:1;pointer-events:auto}
+.drawer .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+            margin:2px 0 12px}
+.drawer a{display:block;padding:9px 10px;border-radius:8px;color:var(--ink);font-size:14.5px}
+.drawer a:hover{background:var(--accent-soft);text-decoration:none}
+.drawer a.on{color:var(--accent);font-weight:600}
+
+/* search */
+.sbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;min-height:36px;
+      border:1px solid var(--line);border-radius:99px;background:var(--bg);color:var(--muted);
+      font-size:13px;cursor:pointer;white-space:nowrap}
+.sbtn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.search-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:70;opacity:0;
+           pointer-events:none;transition:opacity .15s}
+.search-box{position:fixed;top:min(12vh,110px);left:50%;transform:translateX(-50%) scale(.98);
+            width:min(620px,92vw);background:var(--panel);border:1px solid var(--line);
+            border-radius:14px;z-index:71;opacity:0;pointer-events:none;transition:all .15s;
+            box-shadow:0 18px 60px rgba(0,0,0,.35);overflow:hidden}
+body.search-open .search-bg{opacity:1;pointer-events:auto}
+body.search-open .search-box{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.search-box input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+                  font-size:17px;padding:17px 19px;border-bottom:1px solid var(--line);
+                  font-family:var(--sans)}
+.search-res{max-height:52vh;overflow-y:auto;padding:8px}
+.search-res a{display:block;padding:10px 12px;border-radius:9px;color:var(--ink)}
+.search-res a:hover,.search-res a.sel{background:var(--accent-soft);text-decoration:none}
+.search-res .st{font-weight:600;font-size:14.5px}
+.search-res .ss{color:var(--muted);font-size:12.5px;margin-top:1px}
+.search-res .empty{padding:16px;color:var(--muted);font-size:14px;text-align:center}
+
+/* episode cards inside a digest's episode index */
+.eplist{display:grid;gap:10px}
+.eplist a.epc{display:block;background:var(--panel);border:1px solid var(--line);
+              border-radius:var(--radius);padding:13px 16px;color:inherit}
+.eplist a.epc:hover{border-color:var(--accent);text-decoration:none}
+.eplist .epc .es{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.eplist .epc .et{font-family:var(--serif);font-size:16.5px;font-weight:600;margin:2px 0 3px}
+.eplist .epc .em{color:var(--muted);font-size:13px}
+.eplist div.epc{background:var(--panel);border:1px solid var(--line);opacity:.75;
+                border-radius:var(--radius);padding:13px 16px}
+
+/* episode page */
+blockquote.q{margin:14px 0;padding:13px 17px;background:var(--panel);border-left:3px solid var(--accent);
+             border-radius:var(--radius);font-family:var(--serif);font-size:16px;font-style:italic}
+blockquote.q .qw{display:block;margin-top:7px;font-family:var(--sans);font-size:12.5px;
+                 font-style:normal;color:var(--muted)}
+.verdict{background:var(--accent-soft);border:1px solid var(--line);border-left:3px solid var(--accent);
+         border-radius:var(--radius);padding:15px 18px;font-family:var(--serif);font-size:16.5px}
+.ivrow{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);
+       font-size:14.5px;flex-wrap:wrap}
+.ivrow:last-child{border-bottom:0}
+.ivrow .who{font-weight:600;min-width:130px}
+.ivrow .what{color:var(--ink)}
+
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+       color:var(--muted);font-size:12.5px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:12px 15px;font-size:12.5px;color:var(--muted);margin-top:20px}
+@media(max-width:600px){
+  .hero{padding:30px 0 20px}
+  nav.toc{position:static}
+  .card .head{gap:6px}
+}
+</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-07.html">7 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Macro Voices</span><span class="pill">7 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">MacroVoices 544 Viktor Shvets How Markets Survive Disruption</h1><div class="meta">Host: Erik Townsend, Patrick Ceresna, Masil Bagnan · Guest: Viktor Shvets, Global Strategist, Macquarie Capital</div></div><section id="overview"><h2>Overview</h2><p>Viktor Shvets discusses the evolving political landscape, particularly the politicization of the Federal Reserve under Kevin Warsh, and the persistent disinflationary trend punctuated by inflationary spikes from geopolitical and policy actions. He also explores the K-shaped economy, the nature of &quot;rolling bubbles&quot; in the AI revolution, and the increasing polarization of societies globally. Patrick Ceresna and Masil Bagnan provide a post-interview market update, including specific trade ideas and analysis of the Commitment of Traders report.</p></section>
+<section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Viktor Shvets views the new Fed chair, Kevin Warsh, as a politician whose ideas, while laudable, are often impractical and likely to fail the test of time, leading to increased uncertainty and dissent within the Federal Reserve.</li><li>Shvets maintains that the long-term trend is disinflationary, driven by technology, but inflationary spikes are created by human reactions to events like wars, chaotic trade, or immigration policies. He argues that if these disruptive actions ceased, disinflation would prevail.</li><li>Shvets compares the Iran war to Vietnam, noting its lack of clear objectives, exit strategy, or definition of victory, predicting a long conflict with regular flare-ups. He contrasts this with the Russia-Ukraine war, which he views as more akin to the Korean War, brutal but likely to conclude with a DMZ within a year.</li><li>Shvets explains &quot;rolling bubbles&quot; in the context of AI, where bubbles sequentially form in commodities, infrastructure, and then various applications like robotics, biotech, and 3D printing, leading to high concentration of returns in a few stocks but violent rotations within the index.</li><li>Shvets attributes increasing societal polarization and erratic policies to the anxiety caused by declining marginal utility and usefulness for many individuals in the K-shaped economy, where value is transferred from labor to capital. He suggests that without redistribution policies or rapid productivity growth, violence is an unfortunate alternative.</li><li>Shvets believes China is much stronger than perceived, having already surpassed the US in the electrification stack and gaining in robotics, automation, and core science and technology. However, China is a &quot;prisoner&quot; of its high national saving rates, leading to capital misallocation and a need to shift towards consumption, which is hindered by central control, economic philosophy, and geopolitical reasons.</li><li>Patrick Ceresna identifies robotics and automation as the next potential &quot;rolling bubble&quot; in the AI theme, noting that this sector has already undergone a substantial correction.</li><li>Masil Bagnan highlights that large speculators in S&amp;P 500 futures are bullish but not excessively so, suggesting room for further buying in the current breakout.</li><li>Masil Bagnan notes that large speculators are heavily net long the US Dollar, with fresh bullish participation, but the dollar index is at a critical support zone (99.12 Dixie) that will determine if its breakout remains intact.</li><li>Masil Bagnan points out that large speculators in gold remain heavily net long despite recent price action, indicating strong underlying bullish positioning.</li><li>Masil Bagnan emphasizes the extreme one-sided short positioning in the Japanese Yen prior to the coordinated US-Japan intervention, setting the stage for potential short covering and a self-reinforcing move if the yen holds its gains.</li></ul></section>
+<section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"I still think we&#x27;re in a disinflationary world, but we do have back and forth of inflation created through our fiscal, monetary, policy, and military means."<span class="qw">— Viktor Shvets</span></blockquote><blockquote class="q">"So that&#x27;s what I call a a sequence of bubble. Now what it basically means is that concentration of returns for shareholders will always stay high."<span class="qw">— Viktor Shvets</span></blockquote></section>
+<section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Disinflation is a dominant longer-term trend.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Inflationary spikes are transient, caused by reactions to events like COVID, Russia-Ukraine war, Iran war, chaotic trade/immigration policies.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Iran war will be long without conclusive outcomes, similar to Vietnam.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Russia-Ukraine war will be brutal but relatively short, similar to Korean War, leading to a DMZ and Ukraine integrating with EU within a year.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Gold remains the ultimate safety asset in cases of absolute destruction or monetary system meltdown, despite recent underperformance.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Productivity increases to solve societal problems are at least 10 years out.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Violence is an unfortunate likely outcome due to societal polarization and unwillingness to embrace redistribution or regulate technology.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">China has lost the electrification stack (EVs, batteries, solar, wind) to the US and Europe. (Correction: US and Europe lost it to China)</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">China is gaining control over robotics and automation.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">US is relatively falling behind China in science and technology.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Chinese equity is not necessarily the best investment because China is building the world but not deriving return on equity.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">China is misallocating capital at the fastest pace ever due to high national saving rates.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Commodities needed for AI (energy, copper, nickel, cobalt, rare earth, lithium) will have choke points but not last long due to optimization.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Infrastructure for AI (data centers, chips) has not yet peaked and will see continued investment for 2-3 years or longer.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">LLMs are commoditizing and cannibalizing themselves.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">The future of LLMs is open-weight systems, reducing value for most LLMs.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Robotics, humanoid robotics, automation, biotech, metaverse, 3D printing, and quantum computing are future &quot;rolling bubbles&quot; in AI applications.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">High concentration of shareholder returns (10 stocks delivering 50% of performance) will endure.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Investors need to be agile, have no confidence, watch for new breakouts, and minimize exposure to past winners.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Unemployment figures from BLS are &quot;out of kilter&quot; and the real situation is worse, with more people in multiple gigs failing to get ahead.</span></div><div class="ivrow"><span class="who">Patrick Ceresna</span><span class="tag dir-long">LONG</span><span class="what">Global X Robotics &amp; Artificial Intelligence ETF (BOTZ) — currently trading around 37.50.</span></div><div class="ivrow"><span class="who">Patrick Ceresna</span><span class="tag dir-long">LONG</span><span class="what">Global X Robotics &amp; Artificial Intelligence ETF (BOTZ) — paired with August 37 protective put (costing ~60 cents) for 16 days.</span></div><div class="ivrow"><span class="who">Patrick Ceresna</span><span class="tag dir-other">VIEW</span><span class="what">S&amp;P 500 and NASDAQ will not make substantial new highs without mega cap weights participating.</span></div><div class="ivrow"><span class="who">Patrick Ceresna</span><span class="tag dir-other">VIEW</span><span class="what">S&amp;P call option volume eclipsed 4 million contracts on Tuesday, highest ever, indicating a mechanical liquidity event higher.</span></div><div class="ivrow"><span class="who">Patrick Ceresna</span><span class="tag dir-other">VIEW</span><span class="what">Crude oil is giving back geopolitical premium, but physical damage (depleted global inventories) creates a structural floor.</span></div><div class="ivrow"><span class="who">Patrick Ceresna</span><span class="tag dir-other">VIEW</span><span class="what">Gold delivered a decisive 4% breakout from its multi-month trade range, reclaiming 50-day MA and descending trend line.</span></div><div class="ivrow"><span class="who">Patrick Ceresna</span><span class="tag dir-other">VIEW</span><span class="what">Gold&#x27;s breakout is supported by simultaneous strength in silver, platinum, palladium, copper, mining stocks, and uranium equities, suggesting a broader intermarket rotation into hard assets.</span></div><div class="ivrow"><span class="who">Patrick Ceresna</span><span class="tag dir-watching">WATCHING</span><span class="what">Gold&#x27;s first real obstacle is near 4550 (Fibonacci resistance zone); a decisive break above confirms bullish follow-through.</span></div><div class="ivrow"><span class="who">Masil Bagnan</span><span class="tag dir-other">VIEW</span><span class="what">Large speculators in S&amp;P 500 futures are at 100th percentile on 1-year positioning score, 60th percentile on 3-year score, indicating room for additional buying.</span></div><div class="ivrow"><span class="who">Masil Bagnan</span><span class="tag dir-watching">WATCHING</span><span class="what">US Dollar Index (Dixie) at 99.12 support level; a clean break below would damage technical structure and open door for deeper correction.</span></div><div class="ivrow"><span class="who">Masil Bagnan</span><span class="tag dir-other">VIEW</span><span class="what">Large speculators are heavily net long the US Dollar (91st percentile on 3-year measure, 29.5% of open interest), with fresh bullish participation.</span></div><div class="ivrow"><span class="who">Masil Bagnan</span><span class="tag dir-other">VIEW</span><span class="what">Large spec positioning in crude oil remains at multi-year lows despite a 35% rally, indicating a bearish tilt.</span></div><div class="ivrow"><span class="who">Masil Bagnan</span><span class="tag dir-other">VIEW</span><span class="what">Large speculators in gold are scoring 25 on the one-year view but remain heavily net long (47.3% of open interest), indicating strong support for bullish price action.</span></div><div class="ivrow"><span class="who">Masil Bagnan</span><span class="tag dir-other">VIEW</span><span class="what">Japanese Yen short trade was extremely one-sided (0 percentile on 1-year and 3-year scores) before the US-Japan intervention.</span></div><div class="ivrow"><span class="who">Masil Bagnan</span><span class="tag dir-watching">WATCHING</span><span class="what">Next COT report for Japanese Yen to see if short sellers have materially reduced positions, potentially triggering further short covering.</span></div></section>
+<section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Viktor Shvets: The Federal Reserve&#x27;s independence is preserved by the Supreme Court, but its politicization under Kevin Warsh, who is seen as a politician rather than a traditional hawk, introduces uncertainty and dissent, potentially hindering effective crisis response.</li><li>Viktor Shvets: Long-term disinflationary forces are strong, but short-term inflationary spikes are policy-induced. Investors should distinguish between transient and permanent inflation, monitoring consumer/business surveys and inflationary break-even rates.</li><li>Viktor Shvets: Geopolitical conflicts like the Iran war are likely to be protracted and without clear resolution, creating ongoing but transient inflationary pressures, while the Russia-Ukraine war may see a more definitive, albeit brutal, conclusion.</li><li>Viktor Shvets: Gold&#x27;s role as a safety asset is reaffirmed for extreme scenarios, despite recent shifts to USD/Treasuries during the Iran conflict.</li><li>Viktor Shvets: The AI revolution will manifest as &quot;rolling bubbles&quot; across different layers of the technology stack (commodities, infrastructure, applications). Investors should be agile, avoid past winners, and identify new themes, as concentration of returns will remain high.</li><li>Viktor Shvets: Societal polarization and the K-shaped economy, driven by declining marginal utility for many and wealth transfer to capital, pose significant risks, potentially leading to social unrest if not addressed by redistribution or rapid productivity growth.</li><li>Viktor Shvets: China&#x27;s growing technological and economic power, particularly in electrification and robotics, is significant, but its capital misallocation due to high savings rates presents a long-term vulnerability.</li><li>Patrick Ceresna: The next AI investment opportunity may be in robotics and automation (BOTZ ETF) after a recent correction, offering an asymmetric entry point.</li><li>Patrick Ceresna: The S&amp;P 500&#x27;s recent rally was a mechanical liquidity event driven by options market dynamics and mega-cap tech leadership, not just fundamental buying. NASDAQ 100 faces resistance at 30,000 and 31,000.</li><li>Masil Bagnan: S&amp;P 500 futures positioning suggests room for further buying, while the US Dollar is at a critical inflection point (99.12 Dixie) with crowded long positioning.</li><li>Masil Bagnan: Crude oil&#x27;s geopolitical premium is unwinding, but depleted inventories provide a structural floor. Speculative positioning remains bearish despite recent rallies.</li><li>Masil Bagnan: Gold&#x27;s recent breakout is broad-based across hard assets, with strong underlying bullish positioning, suggesting a sustainable new trend if it breaks above 4550.</li><li>Masil Bagnan: The Japanese Yen intervention caught a heavily short speculative crowd off guard, setting up potential for significant short covering and further yen strength if gains hold.</li></ul></section>
+<section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>BOTZ, S&amp;P 500, NASDAQ, NASDAQ 100, US Dollar, Dixie, Crude Oil, Gold, Silver, Platinum, Palladium, Copper, Japanese Yen, USD, Treasuries</p></section>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">Investors should prepare for &quot;rolling bubbles&quot; in AI, focusing on agile rotation from past winners to emerging applications like robotics, while monitoring geopolitical events and central bank policies for transient inflationary spikes against a disinflationary backdrop.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-07.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-07.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+(function(){
+var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
+var top=qs('#fab-top');
+if(top){addEventListener('scroll',function(){top.classList.toggle('show',scrollY>600)},{passive:true});
+        top.onclick=function(){scrollTo({top:0,behavior:'smooth'})};}
+var toc=qs('#fab-toc');
+if(toc){toc.classList.add('show');
+        addEventListener('scroll',function(){toc.classList.toggle('show',true)},{passive:true});}
+function closeDrawer(){document.body.classList.remove('drawer-open')}
+if(toc){toc.onclick=function(){document.body.classList.add('drawer-open')};
+        qs('.drawer-bg').onclick=closeDrawer;
+        qa('.drawer a').forEach(function(a){a.addEventListener('click',closeDrawer)});}
+var links=qa('.rail a, .drawer a');
+if(links.length){
+  var map={};links.forEach(function(a){var id=a.getAttribute('href').slice(1);(map[id]=map[id]||[]).push(a)});
+  var cur=null;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){
+      if(cur&&map[cur])map[cur].forEach(function(a){a.classList.remove('on')});
+      cur=e.target.id;
+      if(map[cur])map[cur].forEach(function(a){a.classList.add('on')});
+    }});
+  },{rootMargin:'-10% 0px -80% 0px'});
+  qa('section[id]').forEach(function(x){io.observe(x)});
+}
+var ROOT=document.body.getAttribute('data-root')||'';
+var idx=null,inp=qs('.search-box input'),res=qs('.search-res');
+function openS(){document.body.classList.add('search-open');inp.focus();
+  if(!idx){fetch(ROOT+'search-index.json').then(function(r){return r.json()})
+    .then(function(j){idx=j;run()}).catch(function(){res.innerHTML='<div class=empty>index unavailable</div>'});}}
+function closeS(){document.body.classList.remove('search-open')}
+function run(){
+  if(!idx)return;
+  var q=inp.value.trim().toLowerCase();
+  var hits=!q?idx.slice(0,20):idx.filter(function(e){
+    return (e.t+' '+e.s+' '+e.d).toLowerCase().indexOf(q)>=0}).slice(0,30);
+  res.innerHTML=hits.length?hits.map(function(e){
+    return '<a href="'+ROOT+e.u+'"><div class=st>'+e.t+'</div><div class=ss>'+e.d+' · '+e.s+'</div></a>';
+  }).join(''):'<div class=empty>no matches</div>';}
+if(inp){inp.addEventListener('input',run);
+  qs('.sbtn').onclick=openS;qs('.search-bg').onclick=closeS;
+  addEventListener('keydown',function(e){
+    if(e.key==='/'&&!document.body.classList.contains('search-open')&&
+       document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
+    if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+</script></body></html>

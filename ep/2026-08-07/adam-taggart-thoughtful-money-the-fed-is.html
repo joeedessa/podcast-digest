@@ -1,0 +1,256 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#14150f"><title>Adam Taggart Thoughtful Money — The Fed Is Facing An Impossible Problem Judy Shelton Thomas Hoenig</title><style>
+:root{
+  --bg:#fbfbfa; --panel:#fff; --ink:#1a1a18; --muted:#6b6b66; --line:#e6e4df;
+  --accent:#b4552d; --accent-soft:#fdf3ee;
+  --long:#1a7340; --short:#c0392b; --watch:#2563a8; --reduce:#b8730f;
+  --radius:10px;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#14150f; --panel:#1c1d16; --ink:#eceade; --muted:#a3a094;
+         --line:#2f3126; --accent:#e08a5f; --accent-soft:#241a13;
+         --long:#5cc98a; --short:#ef7d6e; --watch:#7db3e8; --reduce:#e0a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+     line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 96px}
+
+/* masthead */
+header.top{border-bottom:1px solid var(--line);background:var(--panel);
+           position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.4) blur(6px)}
+header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
+                 align-items:baseline;gap:14px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.01em}
+.brand a{color:inherit}
+.crumb{color:var(--muted);font-size:13px}
+.crumb a{color:var(--muted)}
+/* header action — sits right, stays a 44px tap target on a phone */
+.btn{display:inline-flex;align-items:center;gap:2px;
+     padding:9px 15px;min-height:38px;border:1px solid var(--line);
+     border-radius:99px;background:var(--bg);color:var(--ink);
+     font-size:13.5px;font-weight:550;white-space:nowrap;line-height:1}
+.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.btn:active{transform:translateY(1px)}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,42px);line-height:1.12;
+         margin:0 0 10px;letter-spacing:-.02em;font-weight:600}
+.hero .meta{color:var(--muted);font-size:14px}
+.pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
+      border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
+
+/* sections */
+section{padding:28px 0 4px;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+h2{font-family:var(--serif);font-size:13px;font-weight:700;text-transform:uppercase;
+   letter-spacing:.14em;color:var(--accent);margin:0 0 16px}
+h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:28px 0 8px;
+   letter-spacing:-.01em}
+p{margin:0 0 13px}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin:5px 0}
+strong{font-weight:650}
+.tag{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+
+/* TL;DR */
+.tldr{background:var(--accent-soft);border:1px solid var(--line);
+      border-left:3px solid var(--accent);border-radius:var(--radius);
+      padding:18px 20px;margin-bottom:6px}
+.tldr p:last-child,.tldr ul:last-child{margin-bottom:0}
+.tldr ul{list-style:none;padding-left:0}
+.tldr li{padding-left:15px;position:relative}
+.tldr li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+
+/* trade cards */
+.cards{display:grid;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:15px 17px}
+.card .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.card .asset{font-family:var(--serif);font-size:18px;font-weight:600}
+.card .who{color:var(--muted);font-size:13px}
+.card p{margin:6px 0 0;font-size:14.5px}
+.card .label{color:var(--muted);font-size:11px;text-transform:uppercase;
+             letter-spacing:.08em;margin-right:5px}
+.dir-long{color:var(--long)} .dir-short{color:var(--short)}
+.dir-avoid{color:var(--short)} .dir-reduce{color:var(--reduce)}
+.dir-watching{color:var(--watch)} .dir-other{color:var(--muted)}
+.tier{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+      margin:22px 0 10px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+
+/* topics */
+.topic{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--muted);
+       border-radius:var(--radius);padding:15px 17px;margin:12px 0}
+.topic .t{font-weight:650;margin-bottom:9px}
+
+/* index */
+.days{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:9px}
+.days a{display:flex;justify-content:space-between;align-items:center;gap:14px;
+        background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+        padding:14px 17px;color:inherit}
+.days a:hover{border-color:var(--accent);text-decoration:none}
+.days .d{font-family:var(--serif);font-size:17px;font-weight:600}
+.days .s{color:var(--muted);font-size:13px;text-align:right}
+
+
+/* right-side outline rail (desktop) */
+.layout{display:block}
+@media(min-width:1150px){
+  .layout{display:grid;grid-template-columns:minmax(0,820px) 220px;gap:44px;
+          max-width:1120px;margin:0 auto;padding:0 20px}
+  .layout>.wrap{max-width:none;padding:0}
+  .layout .rail{display:block}
+}
+.rail{display:none;position:sticky;top:76px;align-self:start;max-height:calc(100vh - 100px);
+      overflow-y:auto;padding:8px 0 24px;font-size:12.5px}
+.rail .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+          margin-bottom:10px}
+.rail a{display:block;color:var(--muted);padding:4px 10px;border-left:2px solid var(--line);
+        line-height:1.4}
+.rail a:hover{color:var(--accent);text-decoration:none}
+.rail a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+
+/* floating buttons */
+.fab{position:fixed;right:16px;z-index:40;display:flex;align-items:center;justify-content:center;
+     width:44px;height:44px;border-radius:50%;background:var(--panel);color:var(--ink);
+     border:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.18);font-size:18px;
+     cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
+.fab.show{opacity:1;pointer-events:auto}
+.fab:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+#fab-top{bottom:18px}
+#fab-toc{bottom:72px}
+@media(min-width:1150px){#fab-toc{display:none}}
+
+/* outline drawer (mobile) */
+.drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;opacity:0;
+           pointer-events:none;transition:opacity .2s}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:var(--panel);
+        z-index:61;transform:translateX(105%);transition:transform .22s ease;
+        padding:20px 18px;overflow-y:auto;border-left:1px solid var(--line)}
+body.drawer-open .drawer{transform:none}
+body.drawer-open .drawer-bg{opacity:1;pointer-events:auto}
+.drawer .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+            margin:2px 0 12px}
+.drawer a{display:block;padding:9px 10px;border-radius:8px;color:var(--ink);font-size:14.5px}
+.drawer a:hover{background:var(--accent-soft);text-decoration:none}
+.drawer a.on{color:var(--accent);font-weight:600}
+
+/* search */
+.sbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;min-height:36px;
+      border:1px solid var(--line);border-radius:99px;background:var(--bg);color:var(--muted);
+      font-size:13px;cursor:pointer;white-space:nowrap}
+.sbtn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.search-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:70;opacity:0;
+           pointer-events:none;transition:opacity .15s}
+.search-box{position:fixed;top:min(12vh,110px);left:50%;transform:translateX(-50%) scale(.98);
+            width:min(620px,92vw);background:var(--panel);border:1px solid var(--line);
+            border-radius:14px;z-index:71;opacity:0;pointer-events:none;transition:all .15s;
+            box-shadow:0 18px 60px rgba(0,0,0,.35);overflow:hidden}
+body.search-open .search-bg{opacity:1;pointer-events:auto}
+body.search-open .search-box{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.search-box input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+                  font-size:17px;padding:17px 19px;border-bottom:1px solid var(--line);
+                  font-family:var(--sans)}
+.search-res{max-height:52vh;overflow-y:auto;padding:8px}
+.search-res a{display:block;padding:10px 12px;border-radius:9px;color:var(--ink)}
+.search-res a:hover,.search-res a.sel{background:var(--accent-soft);text-decoration:none}
+.search-res .st{font-weight:600;font-size:14.5px}
+.search-res .ss{color:var(--muted);font-size:12.5px;margin-top:1px}
+.search-res .empty{padding:16px;color:var(--muted);font-size:14px;text-align:center}
+
+/* episode cards inside a digest's episode index */
+.eplist{display:grid;gap:10px}
+.eplist a.epc{display:block;background:var(--panel);border:1px solid var(--line);
+              border-radius:var(--radius);padding:13px 16px;color:inherit}
+.eplist a.epc:hover{border-color:var(--accent);text-decoration:none}
+.eplist .epc .es{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.eplist .epc .et{font-family:var(--serif);font-size:16.5px;font-weight:600;margin:2px 0 3px}
+.eplist .epc .em{color:var(--muted);font-size:13px}
+.eplist div.epc{background:var(--panel);border:1px solid var(--line);opacity:.75;
+                border-radius:var(--radius);padding:13px 16px}
+
+/* episode page */
+blockquote.q{margin:14px 0;padding:13px 17px;background:var(--panel);border-left:3px solid var(--accent);
+             border-radius:var(--radius);font-family:var(--serif);font-size:16px;font-style:italic}
+blockquote.q .qw{display:block;margin-top:7px;font-family:var(--sans);font-size:12.5px;
+                 font-style:normal;color:var(--muted)}
+.verdict{background:var(--accent-soft);border:1px solid var(--line);border-left:3px solid var(--accent);
+         border-radius:var(--radius);padding:15px 18px;font-family:var(--serif);font-size:16.5px}
+.ivrow{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);
+       font-size:14.5px;flex-wrap:wrap}
+.ivrow:last-child{border-bottom:0}
+.ivrow .who{font-weight:600;min-width:130px}
+.ivrow .what{color:var(--ink)}
+
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+       color:var(--muted);font-size:12.5px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:12px 15px;font-size:12.5px;color:var(--muted);margin-top:20px}
+@media(max-width:600px){
+  .hero{padding:30px 0 20px}
+  nav.toc{position:static}
+  .card .head{gap:6px}
+}
+</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-07.html">7 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Adam Taggart Thoughtful Money</span><span class="pill">7 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">The Fed Is Facing An Impossible Problem Judy Shelton Thomas Hoenig</h1><div class="meta">Host: Adam Taggart · Guest: Dr. Judy Shelton, Economist, Author, Senior Fellow at the Independent Institute</div></div><section id="overview"><h2>Overview</h2><p>This episode discusses the Federal Reserve&#x27;s challenges under new Chairman Kevin Warsh, particularly regarding the growing national debt, persistent inflation, and external pressures like rising oil prices and foreign selling of US Treasuries. Judy Shelton and Thomas Hoenig both express concerns about the Fed&#x27;s ability to navigate these issues without addressing underlying fiscal problems, with Hoenig emphasizing the &quot;impossible problem&quot; of the $2 trillion annual debt. Shelton praises Warsh&#x27;s initial hawkish stance and task force approach, while Hoenig highlights the unavoidable conflict between the Fed&#x27;s inflation target and the need to monetize debt.</p></section>
+<section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Kevin Warsh&#x27;s leadership: Judy Shelton is &quot;very favorably impressed&quot; with Kevin Warsh&#x27;s leadership, approving of his task force approach and his aim to let free market forces determine the cost of capital. Thomas Hoenig, who served with Warsh on the FOMC, believes Warsh &quot;knows what to do&quot; but faces difficult circumstances due to the growing national debt.</li><li>Fed independence vs. political considerations: Judy Shelton notes that while Warsh believes in monetary policy independence, political considerations, such as the Treasury&#x27;s encouragement for Japan to use the FEMA facility, complicate the Fed&#x27;s role. She expresses concern about &quot;certain members trying to use say the the voices of of journalists at in at major newspapers to be their own fed whisperer.&quot;</li><li>US debt and foreign buyers: Thomas Hoenig states the US has a &quot;big problem&quot; with its debt, which puts pressure on the Fed to monetize it, otherwise yields will rise. He is &quot;very concerned&quot; about swap arrangements, viewing them as the Treasury looking to the Fed to fund Japan&#x27;s purchases of US debt. Judy Shelton notes Japan is the largest holder of US debt, with &quot;close to 1.2 trillion.&quot;</li><li>Safe haven assets: Thomas Hoenig believes the US dollar is still the safe haven, but questions &quot;how many dollars do you want eventually.&quot; Judy Shelton points out that gold has &quot;displaced the US dollar as the number one reserve asset held by major central banks around the world.&quot;</li><li>Solutions for the debt problem: Thomas Hoenig outlines three choices: continue monetizing debt (unsustainable), the Fed refusing to monetize (a &quot;Volcker moment&quot; with painful rate hikes), or Congress addressing spending and deficits, leading to stronger growth as seen post-WWII and in the mid-90s. Judy Shelton agrees that &quot;productive economic growth&quot; is the only way out, but fiscal overspending by Congress is a major impediment.</li><li>Gold standard and monetary governors: Thomas Hoenig suggests that a return to a gold standard &quot;may by necessity&quot; occur, as &quot;all fiat systems historically have fallen apart.&quot; Judy Shelton, an advocate for tying the dollar to gold, cites Alan Greenspan&#x27;s view that &quot;unless there is some kind of governor on the issuance... there will be a tendency to overissue.&quot;</li><li>Fed&#x27;s role in wealth inequality: Judy Shelton states the Fed &quot;clearly has exacerbated the the wealth and income gap,&quot; leading to people feeling the &quot;system&#x27;s rigged.&quot; Thomas Hoenig agrees, noting that asset inflation, while CPI was low, created &quot;arbitrary kick[s] from inflation from bad monetary policy.&quot;</li><li>Inflation target: Thomas Hoenig states he has &quot;said that for decades&quot; that the correct inflation target for the Fed should be 0%, believing &quot;mild deflation is no no more worse than mild inflation.&quot; Judy Shelton agrees, stating &quot;mild deflation. It&#x27;s not only a good thing, but it&#x27;s a natural order of things as technology increases the the standard of living at a lower price.&quot;</li><li>Fed&#x27;s balance sheet and MBS: Both Judy Shelton and Thomas Hoenig agree that the Fed&#x27;s initial foray into holding mortgage-backed securities (MBS) was a &quot;mistake&quot; and &quot;inexplicable and and inexcusable.&quot; Hoenig thinks they should get rid of them, but slowly due to fear of disruption. Shelton notes the Fed has &quot;800 billion in capital losses on on their treasuries and MBS.&quot;</li></ul></section>
+<section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"I think the Fed I think the US has a big problem. It&#x27;s called the debt. Uh and what what it does is putting a lot of pressure on the Fed to monetize that debt. Otherwise, you&#x27;re going to see yields go up."<span class="qw">— Thomas Hoenig</span></blockquote><blockquote class="q">"I&#x27;ve always thought the Fed was was too prominent, too powerful, and too political."<span class="qw">— Judy Shelton</span></blockquote></section>
+<section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Thomas Hoenig</span><span class="tag dir-other">VIEW</span><span class="what">US national debt — &quot;continues to grow at $2 trillion a year&quot;</span></div><div class="ivrow"><span class="who">Thomas Hoenig</span><span class="tag dir-other">PREDICTION</span><span class="what">Fed will face pressure to monetize debt — &quot;otherwise you&#x27;re going to see yields go up&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">VIEW</span><span class="what">Kevin Warsh&#x27;s leadership — &quot;very, very impressed, very favorably impressed&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">VIEW</span><span class="what">Kevin Warsh&#x27;s approach to interest rates — &quot;let free market forces of demand and supply determine the cost of capital rather than having rates imposed by a committee&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">VIEW</span><span class="what">Fed&#x27;s 2% inflation target — Warsh &quot;believes that it is the Fed&#x27;s job to get inflation down at least to the 2% target&quot;</span></div><div class="ivrow"><span class="who">Thomas Hoenig</span><span class="tag dir-other">VIEW</span><span class="what">Conflict between Fed&#x27;s goals and economic pressures — &quot;unavoidable at some point&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">CONCERN</span><span class="what">Certain Fed members &quot;trying to use say the the voices of of journalists at in at major newspapers to be their own fed whisperer&quot;</span></div><div class="ivrow"><span class="who">Thomas Hoenig</span><span class="tag dir-other">VIEW</span><span class="what">Fed culture — &quot;Traditionally, it has been very strongly that you have the discussion, you might even have a debate internally, but once you go from there, you your your duty is to support the chair.&quot;</span></div><div class="ivrow"><span class="who">Thomas Hoenig</span><span class="tag dir-other">VIEW</span><span class="what">Chris Waller&#x27;s remarks — &quot;there&#x27;s a there is a reaction to Kevin kind of a a we&#x27;re challenge you reaction to Kevin&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">VIEW</span><span class="what">Christopher Waller&#x27;s actions — &quot;seemed a little bit aimed at undercutting the authority judgment of this incoming Fed chairman&quot;</span></div><div class="ivrow"><span class="who">Chris Whan (via Adam Taggart)</span><span class="tag dir-other">QUESTION</span><span class="what">US Treasury compelled to provide repo financing to Bank of Japan — &quot;to prevent involuntary sales of US debt&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">VIEW</span><span class="what">FEMA facility (Foreign and International Monetary Authorities Repo Facility) — &quot;60 billion limit&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">VIEW</span><span class="what">Secretary Bessant&#x27;s actions regarding Japan — &quot;encouraging Japan and and they went ahead and did it to tap that privilege&quot;</span></div><div class="ivrow"><span class="who">Thomas Hoenig</span><span class="tag dir-other">CONCERN</span><span class="what">Repo/swap arrangements — &quot;Treasury is looking to the Fed to really fund Japan&#x27;s purchases of US debt&quot;</span></div><div class="ivrow"><span class="who">Thomas Hoenig</span><span class="tag dir-other">PREDICTION</span><span class="what">If Fed says no to funding debt — &quot;it will be pushing rates higher sooner&quot;</span></div><div class="ivrow"><span class="who">Thomas Hoenig</span><span class="tag dir-other">PREDICTION</span><span class="what">If Fed says yes to funding debt — &quot;it will be continuing in one sense indirectly to fund our national debt&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">VIEW</span><span class="what">Japan&#x27;s US debt holdings — &quot;close to 1.2 trillion&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">VIEW</span><span class="what">US dollar as safe haven — &quot;the US dollar is still the safe haven&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">VIEW</span><span class="what">Gold as reserve asset — &quot;gold has recently displaced the US dollar as the number one reserve asset held by major central banks around the world&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">VIEW</span><span class="what">Japan&#x27;s debt to GDP — &quot;200% of GDP&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">VIEW</span><span class="what">US debt to GDP — &quot;about 100% debt to GDP&quot;</span></div><div class="ivrow"><span class="who">Thomas Hoenig</span><span class="tag dir-other">VIEW</span><span class="what">Post-WWII average growth rate — &quot;closer to 4%&quot;</span></div><div class="ivrow"><span class="who">Thomas Hoenig</span><span class="tag dir-other">VIEW</span><span class="what">Mid-90s to 2000 growth rate — &quot;4% growth, real growth&quot;</span></div><div class="ivrow"><span class="who">Thomas Hoenig</span><span class="tag dir-other">PREDICTION</span><span class="what">Return to gold standard — &quot;may by necessity because all fiat systems historically have fallen apart&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">VIEW</span><span class="what">Alan Greenspan&#x27;s belief — &quot;we did very well under an international gold standard&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">VIEW</span><span class="what">Gold holdings audit — &quot;I&#x27;m very confident&quot; but &quot;it would be a public relations bonanza for the president to walk through Fort Knox&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">VIEW</span><span class="what">US gold reserves — &quot;261 million ounces&quot;</span></div><div class="ivrow"><span class="who">Thomas Hoenig</span><span class="tag dir-other">VIEW</span><span class="what">Gold holdings audit — &quot;low cost reassurance. So there&#x27;s no reason why not to do it&quot;</span></div><div class="ivrow"><span class="who">Tom Mlen (via Adam Taggart)</span><span class="tag dir-other">QUESTION</span><span class="what">Can Fed rate hikes solve inflation from oil market problems?</span></div><div class="ivrow"><span class="who">Thomas Hoenig</span><span class="tag dir-other">VIEW</span><span class="what">Energy prices — &quot;going up on a continuing basis is going to be a huge would be a huge problem&quot;</span></div><div class="ivrow"><span class="who">Thomas Hoenig</span><span class="tag dir-other">VIEW</span><span class="what">Fed&#x27;s ability to solve energy problem — &quot;No. Um it can you know it can adjust its actions in terms of the amount of money it creates around that.&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">VIEW</span><span class="what">Fed&#x27;s mechanism for fighting inflation — &quot;paying commercial banks who are required to keep cash reserves sitting at the Fed doing nothing. We&#x27;re going to pay them more on this riskless investment&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">VIEW</span><span class="what">Interest paid on reserve balances to foreign banks — &quot;over 40% of the interest paid by the Fed on reserve balances is going to foreignowned banks&quot;</span></div><div class="ivrow"><span class="who">Thomas Hoenig</span><span class="tag dir-other">VIEW</span><span class="what">Scarce reserve system — &quot;I&#x27;m a strong believer in going back to scarce reserve system for price recovery reasons&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">VIEW</span><span class="what">Fed&#x27;s holding of MBS — &quot;credit allocation in another form&quot;</span></div><div class="ivrow"><span class="who">Thomas Hoenig</span><span class="tag dir-other">VIEW</span><span class="what">Fed&#x27;s holding of MBS — &quot;inexplicable and and inexcusable&quot;</span></div><div class="ivrow"><span class="who">Thomas Hoenig</span><span class="tag dir-other">VIEW</span><span class="what">Fed should get rid of MBS — &quot;I think they should get rid of them. I think they&#x27;ll be slow doing it just for the fear of disruption.&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">VIEW</span><span class="what">Fed&#x27;s capital losses — &quot;like 800 billion in capital losses on on their treasuries and MBS&quot;</span></div><div class="ivrow"><span class="who">Judy Shelton</span><span class="tag dir-other">VIEW</span><span class="what">Fed policy and wealth gap — &quot;clearly has exacerbated the the wealth and income gap&quot;</span></div><div class="ivrow"><span class="who">Thomas Hoenig</span><span class="tag dir-other">VIEW</span><span class="what">Inflation target — &quot;I&#x27;ve said that for decades&quot; that 0% is correct, &quot;mild deflation is no no more worse than mild inflation.&quot; (stated 2x)</span></div></section>
+<section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Thomas Hoenig: The US national debt, growing at $2 trillion annually, puts immense pressure on the Fed to monetize it, otherwise bond yields will rise. This creates an &quot;impossible problem&quot; for the Fed.</li><li>Judy Shelton: Foreign central banks, particularly Japan (holding $1.2 trillion in US debt), are being encouraged to use the FEMA facility to avoid selling US Treasuries, highlighting the vulnerability of US debt holdings.</li><li>Judy Shelton: Gold has displaced the US dollar as the number one reserve asset held by major central banks, suggesting a shift in safe haven preference.</li><li>Thomas Hoenig: A return to a gold standard may become a necessity for international stability as fiat systems historically fail.</li><li>Thomas Hoenig: The Fed&#x27;s current mechanism of paying interest on reserves exacerbates wealth inequality and is &quot;bad social policy,&quot; not sound monetary policy.</li><li>Thomas Hoenig: The correct inflation target for the Fed should be 0%, as mild deflation is no worse than mild inflation and aligns with technological progress.</li></ul></section>
+<section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>• US Treasuries
+• Japanese Yen
+• US Dollar
+• Gold
+• Mortgage-Backed Securities (MBS)
+• SpaceX (company)</p></section>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">The Fed faces an &quot;impossible problem&quot; of managing inflation and debt without fiscal reform, potentially leading to a forced return to a gold-backed system and necessitating a 0% inflation target.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-07.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-07.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+(function(){
+var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
+var top=qs('#fab-top');
+if(top){addEventListener('scroll',function(){top.classList.toggle('show',scrollY>600)},{passive:true});
+        top.onclick=function(){scrollTo({top:0,behavior:'smooth'})};}
+var toc=qs('#fab-toc');
+if(toc){toc.classList.add('show');
+        addEventListener('scroll',function(){toc.classList.toggle('show',true)},{passive:true});}
+function closeDrawer(){document.body.classList.remove('drawer-open')}
+if(toc){toc.onclick=function(){document.body.classList.add('drawer-open')};
+        qs('.drawer-bg').onclick=closeDrawer;
+        qa('.drawer a').forEach(function(a){a.addEventListener('click',closeDrawer)});}
+var links=qa('.rail a, .drawer a');
+if(links.length){
+  var map={};links.forEach(function(a){var id=a.getAttribute('href').slice(1);(map[id]=map[id]||[]).push(a)});
+  var cur=null;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){
+      if(cur&&map[cur])map[cur].forEach(function(a){a.classList.remove('on')});
+      cur=e.target.id;
+      if(map[cur])map[cur].forEach(function(a){a.classList.add('on')});
+    }});
+  },{rootMargin:'-10% 0px -80% 0px'});
+  qa('section[id]').forEach(function(x){io.observe(x)});
+}
+var ROOT=document.body.getAttribute('data-root')||'';
+var idx=null,inp=qs('.search-box input'),res=qs('.search-res');
+function openS(){document.body.classList.add('search-open');inp.focus();
+  if(!idx){fetch(ROOT+'search-index.json').then(function(r){return r.json()})
+    .then(function(j){idx=j;run()}).catch(function(){res.innerHTML='<div class=empty>index unavailable</div>'});}}
+function closeS(){document.body.classList.remove('search-open')}
+function run(){
+  if(!idx)return;
+  var q=inp.value.trim().toLowerCase();
+  var hits=!q?idx.slice(0,20):idx.filter(function(e){
+    return (e.t+' '+e.s+' '+e.d).toLowerCase().indexOf(q)>=0}).slice(0,30);
+  res.innerHTML=hits.length?hits.map(function(e){
+    return '<a href="'+ROOT+e.u+'"><div class=st>'+e.t+'</div><div class=ss>'+e.d+' · '+e.s+'</div></a>';
+  }).join(''):'<div class=empty>no matches</div>';}
+if(inp){inp.addEventListener('input',run);
+  qs('.sbtn').onclick=openS;qs('.search-bg').onclick=closeS;
+  addEventListener('keydown',function(e){
+    if(e.key==='/'&&!document.body.classList.contains('search-open')&&
+       document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
+    if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+</script></body></html>
