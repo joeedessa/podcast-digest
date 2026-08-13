@@ -1,0 +1,251 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#14150f"><title>Forward Guidance — The Growth Strategy Trapping The Fed Darius Dale</title><style>
+:root{
+  --bg:#fbfbfa; --panel:#fff; --ink:#1a1a18; --muted:#6b6b66; --line:#e6e4df;
+  --accent:#b4552d; --accent-soft:#fdf3ee;
+  --long:#1a7340; --short:#c0392b; --watch:#2563a8; --reduce:#b8730f;
+  --radius:10px;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#14150f; --panel:#1c1d16; --ink:#eceade; --muted:#a3a094;
+         --line:#2f3126; --accent:#e08a5f; --accent-soft:#241a13;
+         --long:#5cc98a; --short:#ef7d6e; --watch:#7db3e8; --reduce:#e0a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+     line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 96px}
+
+/* masthead */
+header.top{border-bottom:1px solid var(--line);background:var(--panel);
+           position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.4) blur(6px)}
+header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
+                 align-items:baseline;gap:14px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.01em}
+.brand a{color:inherit}
+.crumb{color:var(--muted);font-size:13px}
+.crumb a{color:var(--muted)}
+/* header action — sits right, stays a 44px tap target on a phone */
+.btn{display:inline-flex;align-items:center;gap:2px;
+     padding:9px 15px;min-height:38px;border:1px solid var(--line);
+     border-radius:99px;background:var(--bg);color:var(--ink);
+     font-size:13.5px;font-weight:550;white-space:nowrap;line-height:1}
+.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.btn:active{transform:translateY(1px)}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,42px);line-height:1.12;
+         margin:0 0 10px;letter-spacing:-.02em;font-weight:600}
+.hero .meta{color:var(--muted);font-size:14px}
+.pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
+      border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
+
+/* sections */
+section{padding:28px 0 4px;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+h2{font-family:var(--serif);font-size:13px;font-weight:700;text-transform:uppercase;
+   letter-spacing:.14em;color:var(--accent);margin:0 0 16px}
+h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:28px 0 8px;
+   letter-spacing:-.01em}
+p{margin:0 0 13px}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin:5px 0}
+strong{font-weight:650}
+.tag{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+
+/* TL;DR */
+.tldr{background:var(--accent-soft);border:1px solid var(--line);
+      border-left:3px solid var(--accent);border-radius:var(--radius);
+      padding:18px 20px;margin-bottom:6px}
+.tldr p:last-child,.tldr ul:last-child{margin-bottom:0}
+.tldr ul{list-style:none;padding-left:0}
+.tldr li{padding-left:15px;position:relative}
+.tldr li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+
+/* trade cards */
+.cards{display:grid;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:15px 17px}
+.card .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.card .asset{font-family:var(--serif);font-size:18px;font-weight:600}
+.card .who{color:var(--muted);font-size:13px}
+.card p{margin:6px 0 0;font-size:14.5px}
+.card .label{color:var(--muted);font-size:11px;text-transform:uppercase;
+             letter-spacing:.08em;margin-right:5px}
+.dir-long{color:var(--long)} .dir-short{color:var(--short)}
+.dir-avoid{color:var(--short)} .dir-reduce{color:var(--reduce)}
+.dir-watching{color:var(--watch)} .dir-other{color:var(--muted)}
+.tier{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+      margin:22px 0 10px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+
+/* topics */
+.topic{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--muted);
+       border-radius:var(--radius);padding:15px 17px;margin:12px 0}
+.topic .t{font-weight:650;margin-bottom:9px}
+
+/* index */
+.days{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:9px}
+.days a{display:flex;justify-content:space-between;align-items:center;gap:14px;
+        background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+        padding:14px 17px;color:inherit}
+.days a:hover{border-color:var(--accent);text-decoration:none}
+.days .d{font-family:var(--serif);font-size:17px;font-weight:600}
+.days .s{color:var(--muted);font-size:13px;text-align:right}
+
+
+/* right-side outline rail (desktop) */
+.layout{display:block}
+@media(min-width:1150px){
+  .layout{display:grid;grid-template-columns:minmax(0,820px) 220px;gap:44px;
+          max-width:1120px;margin:0 auto;padding:0 20px}
+  .layout>.wrap{max-width:none;padding:0}
+  .layout .rail{display:block}
+}
+.rail{display:none;position:sticky;top:76px;align-self:start;max-height:calc(100vh - 100px);
+      overflow-y:auto;padding:8px 0 24px;font-size:12.5px}
+.rail .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+          margin-bottom:10px}
+.rail a{display:block;color:var(--muted);padding:4px 10px;border-left:2px solid var(--line);
+        line-height:1.4}
+.rail a:hover{color:var(--accent);text-decoration:none}
+.rail a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+
+/* floating buttons */
+.fab{position:fixed;right:16px;z-index:40;display:flex;align-items:center;justify-content:center;
+     width:44px;height:44px;border-radius:50%;background:var(--panel);color:var(--ink);
+     border:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.18);font-size:18px;
+     cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
+.fab.show{opacity:1;pointer-events:auto}
+.fab:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+#fab-top{bottom:18px}
+#fab-toc{bottom:72px}
+@media(min-width:1150px){#fab-toc{display:none}}
+
+/* outline drawer (mobile) */
+.drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;opacity:0;
+           pointer-events:none;transition:opacity .2s}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:var(--panel);
+        z-index:61;transform:translateX(105%);transition:transform .22s ease;
+        padding:20px 18px;overflow-y:auto;border-left:1px solid var(--line)}
+body.drawer-open .drawer{transform:none}
+body.drawer-open .drawer-bg{opacity:1;pointer-events:auto}
+.drawer .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+            margin:2px 0 12px}
+.drawer a{display:block;padding:9px 10px;border-radius:8px;color:var(--ink);font-size:14.5px}
+.drawer a:hover{background:var(--accent-soft);text-decoration:none}
+.drawer a.on{color:var(--accent);font-weight:600}
+
+/* search */
+.sbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;min-height:36px;
+      border:1px solid var(--line);border-radius:99px;background:var(--bg);color:var(--muted);
+      font-size:13px;cursor:pointer;white-space:nowrap}
+.sbtn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.search-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:70;opacity:0;
+           pointer-events:none;transition:opacity .15s}
+.search-box{position:fixed;top:min(12vh,110px);left:50%;transform:translateX(-50%) scale(.98);
+            width:min(620px,92vw);background:var(--panel);border:1px solid var(--line);
+            border-radius:14px;z-index:71;opacity:0;pointer-events:none;transition:all .15s;
+            box-shadow:0 18px 60px rgba(0,0,0,.35);overflow:hidden}
+body.search-open .search-bg{opacity:1;pointer-events:auto}
+body.search-open .search-box{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.search-box input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+                  font-size:17px;padding:17px 19px;border-bottom:1px solid var(--line);
+                  font-family:var(--sans)}
+.search-res{max-height:52vh;overflow-y:auto;padding:8px}
+.search-res a{display:block;padding:10px 12px;border-radius:9px;color:var(--ink)}
+.search-res a:hover,.search-res a.sel{background:var(--accent-soft);text-decoration:none}
+.search-res .st{font-weight:600;font-size:14.5px}
+.search-res .ss{color:var(--muted);font-size:12.5px;margin-top:1px}
+.search-res .empty{padding:16px;color:var(--muted);font-size:14px;text-align:center}
+
+/* episode cards inside a digest's episode index */
+.eplist{display:grid;gap:10px}
+.eplist a.epc{display:block;background:var(--panel);border:1px solid var(--line);
+              border-radius:var(--radius);padding:13px 16px;color:inherit}
+.eplist a.epc:hover{border-color:var(--accent);text-decoration:none}
+.eplist .epc .es{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.eplist .epc .et{font-family:var(--serif);font-size:16.5px;font-weight:600;margin:2px 0 3px}
+.eplist .epc .em{color:var(--muted);font-size:13px}
+.eplist div.epc{background:var(--panel);border:1px solid var(--line);opacity:.75;
+                border-radius:var(--radius);padding:13px 16px}
+
+/* episode page */
+blockquote.q{margin:14px 0;padding:13px 17px;background:var(--panel);border-left:3px solid var(--accent);
+             border-radius:var(--radius);font-family:var(--serif);font-size:16px;font-style:italic}
+blockquote.q .qw{display:block;margin-top:7px;font-family:var(--sans);font-size:12.5px;
+                 font-style:normal;color:var(--muted)}
+.verdict{background:var(--accent-soft);border:1px solid var(--line);border-left:3px solid var(--accent);
+         border-radius:var(--radius);padding:15px 18px;font-family:var(--serif);font-size:16.5px}
+.ivrow{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);
+       font-size:14.5px;flex-wrap:wrap}
+.ivrow:last-child{border-bottom:0}
+.ivrow .who{font-weight:600;min-width:130px}
+.ivrow .what{color:var(--ink)}
+
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+       color:var(--muted);font-size:12.5px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:12px 15px;font-size:12.5px;color:var(--muted);margin-top:20px}
+@media(max-width:600px){
+  .hero{padding:30px 0 20px}
+  nav.toc{position:static}
+  .card .head{gap:6px}
+}
+</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-13.html">13 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Forward Guidance</span><span class="pill">13 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">The Growth Strategy Trapping The Fed Darius Dale</h1><div class="meta">Host: Felix Jauvin · Guest: Darius Dale, Founder of 42 Macro · <a href="https://www.youtube.com/watch?v=vvMTOKRR0SE" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Darius Dale discusses the current macro regime, which he terms &quot;Paradigm C&quot; (running the economy hot) with a &quot;sprinkling of Paradigm D&quot; (printing money to address bond market issues). This environment is leading to bubble-like conditions in equities and challenges in the bond market. Dale argues that while top-down models suggest things are &quot;fine,&quot; the market experiences significant dispersion and volatility, making it a harder environment for beta strategies compared to alpha strategies. He also details the implications of a rising R* and the Federal Reserve&#x27;s policy choices under Chair Kevin Warsh, particularly regarding the bond market and the dollar&#x27;s stability.</p></section>
+<section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Darius Dale identifies the current macro regime as &quot;Paradigm C&quot; (running the economy hot) since April 2025, with a &quot;sprinkling of Paradigm D&quot; (printing to counteract bond market issues) since December 2025, leading to bubble-like equity conditions and bond market challenges.</li><li>Darius Dale&#x27;s global macro risk matrix indicates a &quot;risk-on reflation market regime&quot; with a 71% strength of signal, suggesting a favorable short-to-medium-term outlook for stocks, gold, Bitcoin, and commodities, but not for the dollar and bonds.</li><li>Darius Dale notes that R* (the real neutral policy rate) has risen by 50-75 basis points over the past 3-4 months, now ranging from 1.47% to 1.78% in the US, narrowly above the effective real Fed funds rate of 1.21%. This implies a deteriorating supply-demand balance for global capital, favoring capital providers.</li><li>Darius Dale explains that the market pricing R* above the real effective Fed funds rate signals that the Federal Reserve has not caught up to the economy, suggesting investors should allocate capital to assets yielding more than Treasury bonds.</li><li>Darius Dale&#x27;s Fed decision tree model suggests the Fed should remain on hold, despite some signals (federal deficit spending, public debt monetization, Taylor rule deviation, NU relative to unemployment) that would typically suggest tightening.</li><li>Darius Dale believes there is a &quot;surprisingly dovish outcome heading for financial markets at some point in the next call three to six months&quot; from the Fed&#x27;s five task forces, which is not fully priced into the forward rates curve.</li><li>Darius Dale&#x27;s model indicates a fair value for the 10-year Treasury yield at 5.8% and the 30-year Treasury yield &quot;well north of 6%,&quot; primarily by adding a normal level of term premium (long-run mean prior to GFC was 1.88%).</li><li>Darius Dale attributes Kevin Warsh&#x27;s appointment as Fed Chair to the need for a &quot;credible dove in Hawk&#x27;s clothing&quot; to stabilize the US dollar and the bond market, given the significant rise in gold as a share of global FX reserves and the dollar&#x27;s decline.</li><li>Darius Dale highlights that Federal Reserve policy since Volcker has become progressively easier from both a policy rate and balance sheet standpoint, leading to a bond market that is now competing with AI capex and infrastructure build-out for capital.</li><li>Darius Dale defines success for the US economy as &quot;staying in paradigm C,&quot; which is the &quot;grow phase&quot; of dealing with debt, as cutting (Paradigm B) risks political instability and printing too much (Paradigm D) risks civil war.</li><li>Darius Dale argues that the removal of forward guidance by the Fed, while initially disliked by the market, is ultimately beneficial as it injects volatility into the interest rate curve, reduces capital misallocation, and narrows the distribution of probable economic outcomes.</li><li>Darius Dale emphasizes that 42 Macro&#x27;s systematic investment approach, using the KISS model portfolio and Dr. Mo risk management overlay, aims to create a &quot;positively skewed return distribution&quot; to compound wealth faster by managing risk and avoiding large drawdowns.</li></ul></section>
+<section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"So right now here in 2026, we have paradigm C, which is running the economy hot, with the sprinkling of paradigm D, which is printing to to to kind of counteract the the issues in the in the bond market and and and and address this disequilibrium."<span class="qw">— Darius Dale</span></blockquote><blockquote class="q">"So ultimately, their goal in my opinion should be to keep the economy humming along as possible. But if you keep the economy humming along as possible, you ultimately know that people aren&#x27;t going to want to be long bonds in that situation. They&#x27;re going to want to be long stocks. They&#x27;re going to be long corporate credit. They&#x27;re going to be long spread products. They&#x27;re going to be long everything but a treasury bond."<span class="qw">— Darius Dale</span></blockquote></section>
+<section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">current macro regime is Paradigm C (running economy hot) with a sprinkling of Paradigm D (printing to counteract bond market issues)</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">PREDICTION</span><span class="what">bubble-like conditions in equity markets</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">PREDICTION</span><span class="what">issues in the bond market</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">risk-on reflation market regime</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">great short-to-medium-term outlook for stocks, gold, Bitcoin, and commodities</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">not a great short-to-medium-term outlook for the dollar and bonds</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">high beta tends to outperform low beta in a reflation regime</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">cyclicals tend to outperform defensives in a reflation regime</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">growth tends to outperform value in a reflation regime</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">small and midcaps relative to large caps tend to outperform in a reflation regime (stated 2x)</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">international relative to US tends to outperform in a reflation regime</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">developed markets relative to developed markets tend to outperform in a reflation regime</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">spread products (credit and mortgage rates) tend to outperform Treasuries in a reflation regime</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">short rates tend to outperform the belly, which tends to outperform long rates in a reflation regime</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">high yield tends to outperform investment grade in a reflation regime</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">industrial commodities tend to outperform energy commodities, which tend to outperform agricultural commodities in a reflation regime</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">gold tends to outperform foreign currencies and the dollar in a reflation regime (with caveat: &quot;Not all of this is happening. We obviously don&#x27;t have that signal in gold.&quot;)</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">R* is in a range of 1.47% to 1.78% in the US</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">effective real Fed funds rate is 1.21%</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">Fed should remain on hold based on Fed decision tree model</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">PREDICTION</span><span class="what">surprisingly dovish outcome heading for financial markets at some point in the next 3-6 months from Fed task forces</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">fair value for the 10-year Treasury is 5.8%</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">fair value for the 30-year Treasury is &quot;well north of 6%&quot;</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-long">LONG</span><span class="what">gold since October 2023</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">PIVOT</span><span class="what">entire flagship KISS model portfolio out of the bond market and into the gold market (30% target allocation) in Fall 2024</span></div><div class="ivrow"><span class="who">Darius Dale</span><span class="tag dir-other">VIEW</span><span class="what">KISS strategy (60/30/10 stocks/gold/Bitcoin) has a 16% CAGR since January 2023, compared to +8% for 60/40 and +15% for S&amp;P 500, with max drawdown of -12% (vs. -23% for 60/40, -34% for S&amp;P 500).</span></div></section>
+<section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Darius Dale&#x27;s models indicate a &quot;risk-on reflation market regime&quot; with a positive outlook for stocks, gold, Bitcoin, and commodities, but a negative outlook for the dollar and bonds.</li><li>The rise in R* above the real Fed funds rate suggests that the Fed is behind the curve, implying higher returns from the real economy and a preference for assets yielding more than Treasuries.</li><li>The fair value for the 10-year Treasury is estimated at 5.8% and the 30-year Treasury &quot;well north of 6%,&quot; driven by the addition of a normal term premium.</li><li>The Fed is expected to deliver a &quot;surprisingly dovish outcome&quot; in the next 3-6 months, which is not fully priced into forward rates.</li><li>The removal of forward guidance by the Fed is seen as beneficial for reducing capital misallocation and narrowing economic outcomes, despite initial market negative reactions.</li><li>Alpha strategies are currently outperforming beta strategies due to increased dispersion and a dwindling global supply of capital.</li><li>Investors should focus on systematic risk management to achieve positively skewed return distributions and avoid large drawdowns, as demonstrated by the KISS and Dr. Mo strategies.</li></ul></section>
+<section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>S&amp;P 500, Gold, Bitcoin, Treasury bonds, US Dollar, Corporate credit, Spread products, High yield, Investment grade, Industrial commodities, Energy commodities, Agricultural commodities, Foreign currencies</p></section>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">Systematic risk management and alpha strategies are crucial in the current &quot;risk-on reflation&quot; regime, which favors stocks, gold, Bitcoin, and commodities over bonds and the dollar, as the Fed navigates a rising R* and potential dovish policy shifts.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-13.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-13.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+(function(){
+var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
+var top=qs('#fab-top');
+if(top){addEventListener('scroll',function(){top.classList.toggle('show',scrollY>600)},{passive:true});
+        top.onclick=function(){scrollTo({top:0,behavior:'smooth'})};}
+var toc=qs('#fab-toc');
+if(toc){toc.classList.add('show');
+        addEventListener('scroll',function(){toc.classList.toggle('show',true)},{passive:true});}
+function closeDrawer(){document.body.classList.remove('drawer-open')}
+if(toc){toc.onclick=function(){document.body.classList.add('drawer-open')};
+        qs('.drawer-bg').onclick=closeDrawer;
+        qa('.drawer a').forEach(function(a){a.addEventListener('click',closeDrawer)});}
+var links=qa('.rail a, .drawer a');
+if(links.length){
+  var map={};links.forEach(function(a){var id=a.getAttribute('href').slice(1);(map[id]=map[id]||[]).push(a)});
+  var cur=null;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){
+      if(cur&&map[cur])map[cur].forEach(function(a){a.classList.remove('on')});
+      cur=e.target.id;
+      if(map[cur])map[cur].forEach(function(a){a.classList.add('on')});
+    }});
+  },{rootMargin:'-10% 0px -80% 0px'});
+  qa('section[id]').forEach(function(x){io.observe(x)});
+}
+var ROOT=document.body.getAttribute('data-root')||'';
+var idx=null,inp=qs('.search-box input'),res=qs('.search-res');
+function openS(){document.body.classList.add('search-open');inp.focus();
+  if(!idx){fetch(ROOT+'search-index.json').then(function(r){return r.json()})
+    .then(function(j){idx=j;run()}).catch(function(){res.innerHTML='<div class=empty>index unavailable</div>'});}}
+function closeS(){document.body.classList.remove('search-open')}
+function run(){
+  if(!idx)return;
+  var q=inp.value.trim().toLowerCase();
+  var hits=!q?idx.slice(0,20):idx.filter(function(e){
+    return (e.t+' '+e.s+' '+e.d).toLowerCase().indexOf(q)>=0}).slice(0,30);
+  res.innerHTML=hits.length?hits.map(function(e){
+    return '<a href="'+ROOT+e.u+'"><div class=st>'+e.t+'</div><div class=ss>'+e.d+' · '+e.s+'</div></a>';
+  }).join(''):'<div class=empty>no matches</div>';}
+if(inp){inp.addEventListener('input',run);
+  qs('.sbtn').onclick=openS;qs('.search-bg').onclick=closeS;
+  addEventListener('keydown',function(e){
+    if(e.key==='/'&&!document.body.classList.contains('search-open')&&
+       document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
+    if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+</script></body></html>
