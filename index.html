@@ -411,7 +411,7 @@ if(inp){inp.addEventListener('input',run);
    survives the nightly rebuild (the store is keyed to the origin, not to
    the page). Cross-device is deliberately export/import rather than an
    account: the site is static and has nowhere to put a server. */
-var KEY='plm_thoughts', MIN=12;
+var KEY='plm_thoughts', MIN=12, SYNC=window.PLM_SYNC||null;
 var qs=function(x){return document.querySelector(x)};
 function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
                     return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
@@ -422,7 +422,56 @@ function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
 var toastEl=qs('.toast'),toastT;
 function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
   clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
-window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+/* ── sync ────────────────────────────────────────────────────────────────
+   When an endpoint is configured the browser copy becomes a cache rather
+   than the record: every page pulls the shared set on load and pushes what
+   it has that the server does not. Everything degrades to local-only if the
+   network or the endpoint is unavailable — a thought is never lost because
+   sync failed, it just has not travelled yet. Deletes are tombstoned server
+   side so they propagate instead of resurrecting from another device. */
+function post(payload,cb){
+  if(!SYNC)return cb&&cb(0);
+  payload.k=SYNC.key;
+  /* text/plain keeps this a "simple request": Apps Script cannot answer the
+     CORS preflight that application/json would trigger. */
+  fetch(SYNC.url,{method:'POST',mode:'cors',redirect:'follow',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify(payload)})
+    .then(function(r){return r.json()}).then(function(j){cb&&cb(!j.error)})
+    .catch(function(){cb&&cb(0)});
+}
+function pull(cb){
+  if(!SYNC)return cb&&cb(null);
+  fetch(SYNC.url+'?k='+encodeURIComponent(SYNC.key)+'&_='+Date.now(),
+        {mode:'cors',redirect:'follow'})
+    .then(function(r){return r.json()})
+    .then(function(j){cb&&cb(j&&j.items?j.items:null)})
+    .catch(function(){cb&&cb(null)});
+}
+function merge(remote){
+  /* union by id, newest timestamp wins; anything local the server has not
+     seen is pushed up so a thought written offline still arrives. */
+  var local=load(),seen={},out=[];
+  remote.forEach(function(i){seen[i.id]=i});
+  var missing=local.filter(function(i){return !seen[i.id]});
+  local.forEach(function(i){
+    var r=seen[i.id];
+    if(!r||(i.ts||0)>(r.ts||0))seen[i.id]=i;
+  });
+  for(var k in seen)out.push(seen[k]);
+  out.sort(function(a,b){return (b.ts||0)-(a.ts||0)});
+  put(out);badge();
+  if(missing.length)post({action:'save',items:missing});
+  return out;
+}
+function sync(cb){
+  pull(function(remote){
+    if(remote)merge(remote);
+    cb&&cb(!!remote);
+  });
+}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge,
+                    sync:sync,post:post,enabled:!!SYNC};
 
 /* index.html is a copy of the newest digest, so its own address points at
    whatever is newest — a thought saved there must record the dated page. */
@@ -491,11 +540,17 @@ if(pill&&comp){
   comp.querySelector('.cancel').onclick=close;
   comp.querySelector('.save').onclick=function(){
     if(!pending)return close();
-    var items=load();
-    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+    var items=load(),rec={id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
       q:pending.q,n:ta.value.trim(),s:pending.s||'',
-      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
-    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()};
+    items.unshift(rec);
+    var ok=put(items);
+    toast(ok?(SYNC?'Saved · syncing…':'Saved to Thoughts')
+            :'Could not save — storage is full');
+    if(ok&&SYNC)post({action:'save',items:[rec]},function(sent){
+      if(sent)toast('Saved to all your devices');
+      else toast('Saved here — will sync when reachable');
+    });
     badge();close();mark();
   };
   addEventListener('keydown',function(e){
@@ -530,5 +585,8 @@ if(pill&&comp){
   mark();
 }
 badge();
+/* pull on every page so a thought saved on the phone shows up marked on the
+   laptop; re-mark afterwards in case the pull brought new ones for this page */
+if(SYNC)sync(function(){badge();if(pill&&comp)mark();});
 })();
 </script></body></html>
