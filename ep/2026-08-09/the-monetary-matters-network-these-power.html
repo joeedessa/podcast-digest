@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-09.html">9 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">The Monetary Matters Network</span><span class="pill">9 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">These Power Stocks Not Semis Are The Real AI Beneficiaries Say Investing Brother</h1><div class="meta">Host: Jack Farley · Guest: Dea Perus, Co-Founder, Peros Research · <a href="https://www.youtube.com/watch?v=cUO79k97pJ8" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Jack Farley interviews Dea and Dean Perus of Peros Research, who discuss their investment philosophy and portfolio strategy, which has returned over 1300% gross since 2017. They focus on identifying beneficiaries of the AI buildout beyond semiconductors, particularly in energy infrastructure for data centers, bandwidth solutions, and robotics. The Perus brothers also share their contrarian views on cybersecurity and payments, highlighting specific small and mid-cap companies they believe are undervalued and well-positioned for future growth.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-09/the-monetary-matters-network-these-power.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-09.html">9 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">The Monetary Matters Network</span><span class="pill">9 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">These Power Stocks Not Semis Are The Real AI Beneficiaries Say Investing Brother</h1><div class="meta">Host: Jack Farley · Guest: Dea Perus, Co-Founder, Peros Research · <a href="https://www.youtube.com/watch?v=cUO79k97pJ8" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Jack Farley interviews Dea and Dean Perus of Peros Research, who discuss their investment philosophy and portfolio strategy, which has returned over 1300% gross since 2017. They focus on identifying beneficiaries of the AI buildout beyond semiconductors, particularly in energy infrastructure for data centers, bandwidth solutions, and robotics. The Perus brothers also share their contrarian views on cybersecurity and payments, highlighting specific small and mid-cap companies they believe are undervalued and well-positioned for future growth.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Dean Perus believes open-weight AI models are bullish for the broader AI ecosystem, specifically for cloud providers and GPU manufacturers, as they commoditize frontier models and increase demand for compute.</li><li>Dea Perus argues that hyperscalers are forced into massive capital expenditures with uncertain ROI for AI, creating opportunities for active managers to find beneficiaries trading at more reasonable valuations.</li><li>Dean Perus identifies energy, particularly &quot;bring your own power&quot; solutions, as the strongest theme for the next 3-5 years due to an antiquated US grid and surging AI demand, which is expected to take 20% of US energy grid demand by 2030.</li><li>Dean Perus also highlights data bandwidth between data centers as a key theme, predicting a 15x increase in needs as hyperscalers build smaller, geographically dispersed data centers due to energy constraints and community pushback.</li><li>Dea Perus explains that the cyber security landscape is shifting from identity-based attacks to vulnerability exploitation, driven by AI&#x27;s ability to find code weaknesses, creating a &quot;huge opportunity&quot; for exposure management solutions.</li><li>Dea Perus assesses the &quot;SAS apocalypse&quot; by distinguishing between software companies with defensible moats (unique data, security/compliance, deep integrations, real-world components) and those vulnerable to AI disruption.</li><li>Dea Perus views marketplace businesses like Upwork as special and difficult to build, with strong network effects, and believes the market is wrong to price it for &quot;complete decapitation&quot; due to AI.</li><li>Dean Perus notes that the hit rate for Peros Research&#x27;s investment ideas is roughly 1 in 100, emphasizing their extensive rock-turning and how this informs their portfolio construction and cash weighting.</li><li>Dean Perus explains their past Meta position, stating they sold out last year due to concerns about Meta&#x27;s AI strategy and valuation after its recovery, viewing its current outlook as &quot;definitely negative.&quot;</li><li>Dea Perus identifies cross-border money movement as a key area of interest within payments, citing the high cost of traditional correspondent banking and the efficiency of fintechs like Wise and Remitly.</li><li>Dea Perus dismisses stablecoins as a significant threat to Wise or Remitly, stating that stablecoin usage is overwhelmingly crypto-centric and not yet adopted for everyday payments in local economies.</li><li>Dea Perus notes that in the broader payments space, processing is becoming commoditized, with value accruing to verticalized software solutions that integrate payments, such as Toast.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"At the end of the day, the demand for compute is going to continue to to be unlimited for the foreseeable future. Every actor in the economy right now, every every business is trying to figure out how to use AI. So, you&#x27;re going to need compute and all that is backs stopped by hyperscaler spend."<span class="qw">— Dea Perus</span></blockquote><blockquote class="q">"I think what&#x27;s going on in cyber is really interesting and we were headed ahead of this a little bit and now it&#x27;s just continuing to gain momentum and you see the narrative of this growing uh and really cyber and is is we&#x27;re on the precipice of a of a new chapter in cyber."<span class="qw">— Dea Perus</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Dean Perus</span><span class="tag dir-other">VIEW</span><span class="what">open-weight AI models — bullish for the AI ecosystem (chips, infrastructure, application layers)</span></div><div class="ivrow"><span class="who">Dean Perus</span><span class="tag dir-other">VIEW</span><span class="what">open-weight AI models — not as bullish for Frontier models (e.g., ChatGPT, Anthropic)</span></div><div class="ivrow"><span class="who">Dean Perus</span><span class="tag dir-other">VIEW</span><span class="what">open-weight AI models — accelerate the &quot;bring your own power&quot; theme</span></div><div class="ivrow"><span class="who">Dea Perus</span><span class="tag dir-other">VIEW</span><span class="what">hyperscalers (Oracle, Microsoft, Google, Amazon, Meta) — trading at significantly high valuations (roughly 10x EV to sales average)</span></div><div class="ivrow"><span class="who">Dea Perus</span><span class="tag dir-other">VIEW</span><span class="what">hyperscalers — vulnerable due to step function change in capex and uncertain ROI profiles</span></div><div class="ivrow"><span class="who">Dean Perus</span><span class="tag dir-long">LONG</span><span class="what">Capstone Energy (CAPS) — valuation is much more attractive than Bloom Energy (15-20x revenue for Bloom vs. 3x for Capstone)</span></div><div class="ivrow"><span class="who">Dean Perus</span><span class="tag dir-long">LONG</span><span class="what">Capstone Energy (CAPS) — operating at ~10% capacity, can produce ~1 gigawatt/year running three shifts</span></div><div class="ivrow"><span class="who">Dean Perus</span><span class="tag dir-long">LONG</span><span class="what">Capstone Energy (CAPS) — multiple ways to win: certain data halls (20-30MW), edge data centers (1-4MW), manufacturing facilities</span></div><div class="ivrow"><span class="who">Dean Perus</span><span class="tag dir-long">LONG (speculative holding, 1-3% portfolio weight)</span><span class="what">Stabilis Solutions (SLS) — benefits from portable natural gas demand for data centers without pipeline access</span></div><div class="ivrow"><span class="who">Dean Perus</span><span class="tag dir-long">LONG (speculative holding, 1-3% portfolio weight)</span><span class="what">Stabilis Solutions (SLS) — benefits from large contract with a data center (hundreds of millions over two years)</span></div><div class="ivrow"><span class="who">Dean Perus</span><span class="tag dir-long">LONG (speculative holding, 1-3% portfolio weight)</span><span class="what">Stabilis Solutions (SLS) — benefits from SpaceX&#x27;s increased launches (50 to 20x in 5 years) using LNG as fuel</span></div><div class="ivrow"><span class="who">Dean Perus</span><span class="tag dir-long">LONG</span><span class="what">Smart Optics (SMART.ST) — plays into increasing data bandwidth needs between data centers</span></div><div class="ivrow"><span class="who">Dean Perus</span><span class="tag dir-long">LONG</span><span class="what">Viche Precision Group (VPG) — play on robotics, specifically humanoid robotics, making strain gauges and sensors for robot hands</span></div><div class="ivrow"><span class="who">Dea Perus</span><span class="tag dir-long">LONG</span><span class="what">Tenable (TENB) — leaders in exposure management, well-positioned for the shift in cyber security, opportunity to upsell previous vulnerability scanners</span></div><div class="ivrow"><span class="who">Dea Perus</span><span class="tag dir-other">VIEW</span><span class="what">Tenable (TENB) — trades at 4x EV to sales, significant discount to CrowdStrike and Palo Alto (both &gt;20x EV to sales)</span></div><div class="ivrow"><span class="who">Dea Perus</span><span class="tag dir-other">VIEW</span><span class="what">Tenable (TENB) — growth expected to accelerate</span></div><div class="ivrow"><span class="who">Dea Perus</span><span class="tag dir-long">LONG</span><span class="what">Sprout Social (SMAR) — &quot;easy call to make&quot; when beaten up, up 50-60% since April discussion</span></div><div class="ivrow"><span class="who">Dea Perus</span><span class="tag dir-long">LONG</span><span class="what">Upwork (UPWK) — &quot;unbelievably cheap business that&#x27;s impossible to replicate that&#x27;s growing&quot;</span></div><div class="ivrow"><span class="who">Dea Perus</span><span class="tag dir-other">VIEW</span><span class="what">Upwork (UPWK) — trades at &gt;1x EV to sales, &gt;6x EV to free cash flow (after SBC)</span></div><div class="ivrow"><span class="who">Dea Perus</span><span class="tag dir-other">VIEW</span><span class="what">Upwork (UPWK) — low-value jobs (&lt;$500) seeing weakness due to AI, but higher-value jobs are resilient</span></div><div class="ivrow"><span class="who">Dean Perus</span><span class="tag dir-reduce">REDUCE</span><span class="what">Meta (META) — sold out last year due to AI strategy concerns and valuation (recovered to $700+)</span></div><div class="ivrow"><span class="who">Dean Perus</span><span class="tag dir-other">VIEW</span><span class="what">Meta (META) — outlook is &quot;definitely negative going forward&quot;</span></div><div class="ivrow"><span class="who">Dean Perus</span><span class="tag dir-avoid">AVOID</span><span class="what">semiconductor companies — due to competitive threat from China</span></div><div class="ivrow"><span class="who">Dea Perus</span><span class="tag dir-long">LONG</span><span class="what">Wise (WISE.L) — benefits from cross-border money movement, has best infrastructure, aggressive in lowering rates (loss leader)</span></div><div class="ivrow"><span class="who">Dea Perus</span><span class="tag dir-long">LONG</span><span class="what">Remitly (RELY) — migrant remittance provider, &quot;Western Union killer,&quot; strong mind share with migrants, send volume growing 30-40% annually, revenue growing 25%</span></div><div class="ivrow"><span class="who">Dea Perus</span><span class="tag dir-long">LONG</span><span class="what">Payafe (PSFE) — cheap, oriented in gaming, digital wallet subsidiary makes up 60-70% of enterprise value, high single-digit organic growth</span></div><div class="ivrow"><span class="who">Dea Perus</span><span class="tag dir-avoid">AVOID</span><span class="what">PayPal (PYPL) — did not like branded payments segment due to vulnerability and lack of future growth</span></div><div class="ivrow"><span class="who">Dea Perus</span><span class="tag dir-other">VIEW</span><span class="what">Braintee (owned by PayPal) — liked its processing segment due to growing volumes and scale economics</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Dea Perus: The S&amp;P 500 is a &quot;very top-weighted index,&quot; with the top 10 names making up 30-40% of its weight, creating vulnerability.</li><li>Dea Perus: This is a &quot;special time&quot; for active managers to outperform the S&amp;P 500 by identifying companies that benefit from hyperscaler spending without incurring the same capex.</li><li>Dean Perus: AI is poised to take 20% of the entire US energy grid demand by 2030 (roughly 100 gigawatts), but the existing infrastructure cannot support it.</li><li>Dean Perus: The US natural gas pipeline infrastructure is a significant advantage for &quot;bring your own power&quot; solutions for data centers.</li><li>Dean Perus: The trend of building massive 1-3 gigawatt data centers is topping out due to energy supply constraints and community pushback, leading to more distributed data centers.</li><li>Dea Perus: The cost of finding vulnerabilities in code has &quot;gone down significantly&quot; due to frontier AI models, shifting cyber security focus to exposure management.</li><li>Dea Perus: Stock-based compensation (SBC) should be viewed as a variable expense; if SBC as a percentage of revenue is expected to normalize, it presents an opportunity for enhanced GAAP earnings.</li><li>Dea Perus: The market was correct to assess vulnerability in software due to AI&#x27;s ability to reduce the cost of producing production-ready code by 90-95%.</li><li>Dea Perus: The &quot;moat&quot; for software companies now comes from unique data, security/compliance, enterprise-grade features, deep integrations, and real-world components.</li><li>Dean Perus: China is a significant competitive threat in semiconductors, having achieved monopolies in EVs and drones and now targeting ASML and memory providers.</li><li>Dea Perus: Traditional banking systems are heavily nationalized, making cross-border money movement expensive and clunky, creating an opportunity for fintechs.</li><li>Dea Perus: M2 growth is expected to continue at 5-6% annually, making payment companies with defensible take rates &quot;very very powerful&quot; businesses.</li><li>Dea Perus: In the broader payments world, processing is becoming commoditized, with value accruing to verticalized software solutions that integrate payments.</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>Capstone Energy (CAPS), Stabilis Solutions (SLS), Smart Optics (SMART.ST), Viche Precision Group (VPG), Tenable (TENB), Sprout Social (SMAR), Upwork (UPWK), Wise (WISE.L), Remitly (RELY), Payafe (PSFE), PayPal (PYPL), Visa, Mastercard, Bloom Energy, Constellation Energy, GE Vernova, Oracle, Microsoft, Google, Amazon, Meta, Broadcom, Cisco, RITA, Tesla, Figure, CrowdStrike, Palo Alto, Fiverr, Western Union, Stripe, Adyen, Robinhood, Block, Global Payments, Affirm, Toast, Braintee, ASML, CXML, Tik Tok, Snapchat, Apple Podcast, Spotify</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">Investors should look beyond traditional AI plays like semiconductors and hyperscalers to find undervalued beneficiaries in energy infrastructure, bandwidth, robotics, and specialized software/payments, particularly those with strong moats and accelerating growth profiles.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-09.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-09.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">Investors should look beyond traditional AI plays like semiconductors and hyperscalers to find undervalued beneficiaries in energy infrastructure, bandwidth, robotics, and specialized software/payments, particularly those with strong moats and accelerating growth profiles.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-09.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-09.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

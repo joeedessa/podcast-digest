@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-08.html">8 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Saxo Market Call</span><span class="pill">8 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Polysilicon supply chains may surprise you US jobs data today</h1><div class="meta">Host: John J. Hardy · Solo episode · <a href="https://mcdn.podbean.com/mf/web/xs8qhn7yp56np5fz/2026_08_07_SaxoMarketCall.mp3" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>John J. Hardy discusses the upcoming US non-farm payrolls data, highlighting potential market volatility given recent soft data and prior dollar strength. He also delves into geopolitical risks, particularly Iran&#x27;s actions and potential impacts on crude oil, and the implications of a strong El Niño. A significant portion of the discussion focuses on critical supply chain choke points, specifically in polysilicon for semiconductors, and a review of recent and upcoming earnings reports.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-08/saxo-market-call-polysilicon-supply-chai.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-08.html">8 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Saxo Market Call</span><span class="pill">8 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Polysilicon supply chains may surprise you US jobs data today</h1><div class="meta">Host: John J. Hardy · Solo episode · <a href="https://mcdn.podbean.com/mf/web/xs8qhn7yp56np5fz/2026_08_07_SaxoMarketCall.mp3" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>John J. Hardy discusses the upcoming US non-farm payrolls data, highlighting potential market volatility given recent soft data and prior dollar strength. He also delves into geopolitical risks, particularly Iran&#x27;s actions and potential impacts on crude oil, and the implications of a strong El Niño. A significant portion of the discussion focuses on critical supply chain choke points, specifically in polysilicon for semiconductors, and a review of recent and upcoming earnings reports.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>US Jobs Data and Market Reaction: John J. Hardy notes the market is &quot;a bit trigger happy&quot; ahead of today&#x27;s non-farm payrolls, especially given recent soft data like ADP at 44K and a weak ISM Services Employment Subindex. He expects the unemployment rate to tick up to 4.3% or 4.2% and emphasizes watching revisions, which can be more influential than the headline number if it&#x27;s in line with expectations.</li><li>Geopolitical Risks and Crude Oil: John J. Hardy expresses conviction that Iran will &quot;constantly make itself a nuisance&quot; by threatening the Strait of Hormuz, which could lead to persistent market niggling and flare-ups, impacting crude oil prices.</li><li>El Niño Impact: John J. Hardy highlights a key El Niño indicator showing temperatures in a Pacific sector at 2.3, well above past worst-case levels of 1.5-1.6 for this time of year. He cites Akash Gupta&#x27;s view that a prior severe El Niño cost the global economy trillions of dollars in disruptions, with major agricultural impacts expected in 2027.</li><li>Polysilicon Supply Chain Choke Points: John J. Hardy discusses the Trump administration&#x27;s polysilicon tariff, intended to guarantee a floor for solar panel polysilicon and ensure US supply chain independence. He differentiates between solar panel polysilicon (1.4 million tons/year) and electronics-based polysilicon (tens of thousands of tons/year), noting that China has almost zero control over the high-end electronics segment, which is 75% dominated by Wacker Chemie (Germany) and Hemlock Semiconductor (US).</li><li>Circular Financing in AI: John J. Hardy references Ed Zitron&#x27;s argument that 70% of revenues reported by Microsoft, Google, and Amazon are from &quot;gaping holes&quot; like OpenAI and Anthropic, raising questions about profitability and a potential &quot;AI bailout&quot; baked into the bubble via life insurance company investments in risky AI plays.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"It feels like the market would be a bit trigger happy with September sort of leaning only very slightly in favor of a hike."<span class="qw">— John J. Hardy</span></blockquote><blockquote class="q">"I just feel like this issue is going to be niggling at the markets for quite some time here and certainly into the midterms if Iran gets its way."<span class="qw">— John J. Hardy</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">US non-farm payrolls data — expected unemployment rate 4.3% or 4.2%, previous non-farm payrolls 57K, expected 80K.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">Market reaction to US jobs data — expects &quot;a bit trigger happy&quot; response, especially in Treasuries and FX.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">Iran&#x27;s actions — will &quot;constantly make itself a nuisance&quot; regarding the Hormuz Strait, leading to persistent market niggling.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">El Niño — current indicator at 2.3, well above past worst of 1.5-1.6 for this time of year; major agricultural impacts expected in 2027.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">Polysilicon tariff — Trump administration declaring tariff meant to go into effect in December, likely 15%, to guarantee a floor and US supply chain independence.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">Wacker Chemie (WACKER) — German listed company, 75% control of high-end electronics polysilicon market (with Hemlock Semiconductor).</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">Tokuyama — Japanese company involved in electronics-bound polysilicon.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">Sumco (SUMCO) — Japanese company involved in electronics-bound polysilicon.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">Cloudflare (NET) — up 16% after earnings, &quot;really good job.&quot;</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">Datadog (DDOG) — off 19% after earnings, outlook disappointed.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">AppLovin (APP) — stock hitting 52-week lows after results.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">Airbnb (ABNB) — up 8% on results.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">Rocket Lab (RKLB) — reporting Monday, suffered ~50% drawdown, selling at ~40x next year&#x27;s sales.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">AST SpaceMobile (ASTS) — reporting Monday, suffered ~50% drawdown from all-time highs.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">Lumentum (LITE) — reporting Tuesday, optical interconnect company.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">CoreWeave — reporting Tuesday, building AI data center racks/stacks, down ~50% from 2025 high.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">Supermicro (SMCI) — reporting Tuesday, data center company.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">Cardinal Health (CAH) — reporting Tuesday, &quot;pretty crazy valuation&quot; at 0.2% sales, stellar performance despite low valuation.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">Cisco (CSCO) — reporting Wednesday, reached 2000 high in February, up &gt;50% YTD.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">Coherent (COHR) — reporting Wednesday, optical interconnect company.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">Nebius — reporting Wednesday, mini hyperscaler with software stack, down 13% yesterday.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">Applied Materials (AMAT) — reporting Thursday, foundry equipment maker.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">Yen crosses — &quot;slipping a bit higher into today&#x27;s U.S. data.&quot;</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">Gold and Silver — &quot;pretty significant run-up in the prices here on retreating yields,&quot; expects &quot;trigger happy&quot; reaction to data.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">Copper — hitting &quot;basically all-time highs&quot; in front future contract in US, linked to AI demand.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">Silver — outperformed gold over last 24 hours, up a couple of bucks more and above $63 per ounce.</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>John J. Hardy expects significant volatility in FX, especially USD/JPY, and Treasuries following the US non-farm payrolls report, given the uncertainty around the September FOMC decision.</li><li>He identifies Iran&#x27;s geopolitical actions as a persistent risk factor for crude oil prices and broader market sentiment.</li><li>The severe El Niño conditions are flagged as a diffuse but potentially multi-trillion-dollar global economic disruption, with agricultural impacts expected in 2027.</li><li>The polysilicon market is highlighted as a critical supply chain choke point, particularly the high-end electronics segment where two companies (Wacker Chemie and Hemlock Semiconductor) control 75% of supply, offering a potential investment angle in Wacker Chemie.</li><li>Concerns are raised about &quot;circular financing&quot; in the AI sector, where major tech companies&#x27; revenues are linked to investments in AI startups, and the potential for a public bailout if private equity investments in AI fail.</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>NET, DDOG, APP, ABNB, RKLB, ASTS, LITE, SMCI, CAH, CSCO, COHR, AMAT, WACKER, SUMCO, Gold, Silver, Copper, Crude Oil, US Treasuries, USD/JPY</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">Investors should closely monitor the US jobs report for volatility in FX and Treasuries, while also considering the long-term implications of geopolitical tensions, El Niño, and critical supply chain choke points in polysilicon.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-08.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-08.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">Investors should closely monitor the US jobs report for volatility in FX and Treasuries, while also considering the long-term implications of geopolitical tensions, El Niño, and critical supply chain choke points in polysilicon.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-08.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-08.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

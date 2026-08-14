@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-12.html">12 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Wealth Building Blueprint Vladyslav Grab</span><span class="pill">12 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Rick Rule Preparing for a Stock Market Crash Why Gold Demand Could 4x</h1><div class="meta">Host: Vladyslav Grabarskyy · Guest: Rick Rule, President and CEO of Rule Investment Media · <a href="https://www.youtube.com/watch?v=qb-2dFxfack" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Rick Rule discusses the long-term outlook for gold, precious metals, and energy, emphasizing the potential for a liquidity-driven market crash similar to 2008. He highlights the importance of maintaining liquidity to capitalize on such events and advocates for a contrarian, value-focused approach to investing, particularly in under-loved sectors like gold and uranium. Rule also stresses the significance of patience and thorough research in speculative markets.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-12/wealth-building-blueprint-vladyslav-grab.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-12.html">12 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Wealth Building Blueprint Vladyslav Grab</span><span class="pill">12 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Rick Rule Preparing for a Stock Market Crash Why Gold Demand Could 4x</h1><div class="meta">Host: Vladyslav Grabarskyy · Guest: Rick Rule, President and CEO of Rule Investment Media · <a href="https://www.youtube.com/watch?v=qb-2dFxfack" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Rick Rule discusses the long-term outlook for gold, precious metals, and energy, emphasizing the potential for a liquidity-driven market crash similar to 2008. He highlights the importance of maintaining liquidity to capitalize on such events and advocates for a contrarian, value-focused approach to investing, particularly in under-loved sectors like gold and uranium. Rule also stresses the significance of patience and thorough research in speculative markets.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Rick Rule is &quot;extremely confident in the long-term outlook for gold&quot; over the next 10 years due to declining US dollar purchasing power from debt and deficits, despite potential near-term softness in 2026 due to higher US interest rates.</li><li>Rule believes precious metals bull markets are led by gold, with silver typically outperforming later as generalist investors enter the market due to its lower unit price.</li><li>Rule sees platinum as attractive due to its out-of-mainstream status, critical role in autocatalysts (contrary to the belief that internal combustion engines are obsolete), and potential supply disruptions from major producers like South Africa, Zimbabwe, and Russia.</li><li>Rule advises that investors in mining stocks should choose between market beta (e.g., Franco-Nevada, Wheaton Precious, Agnico) for less work and volatility, or actively seek takeover targets among smaller companies if willing to do the extensive research.</li><li>Rule notes that the oil industry&#x27;s underinvestment of &quot;over a billion U.S. dollars a day&quot; will lead to structural shortages by 2029-2030, making it a good time to be an oil investor, though governments will likely &quot;steal a greater and greater and greater amount of free cash flow&quot; through taxes.</li><li>Rule states that Americans are &quot;stupidly uninvested in gold and silver,&quot; with precious metals comprising less than 0.5% of total savings and assets, down from a four-decade mean of 2%. A reversion to the mean would imply a &quot;fourfold increase in demand.&quot;</li><li>Rule believes the &quot;easy money has been made&quot; in uranium since prices were $20/pound, but &quot;the sure money is ahead of us,&quot; emphasizing that the market trend will take &quot;three years or four years or five years to play out.&quot;</li><li>Rule highlights the importance of maintaining liquidity, viewing the 3.3% negative yield on the US 10-year Treasury (given 8% compounded dollar decline) as an &quot;option premium&quot; for capitalizing on a potential &quot;liquidity-driven crash&quot; similar to 2008, which led to his &quot;best single investment year&quot; in 2009.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"I&#x27;m extremely confident in the long term outlook for gold. What I&#x27;m suggesting is that there is a possibility of a liquidity driven crash. And if that occurs, the return that will accrue to people who have a lot of liquidity will be similar to the recur the returns that accrued in 2009, which was the best single investment year of my career."<span class="qw">— Rick Rule</span></blockquote><blockquote class="q">"If people bought stocks the way they buy tuna fish, more people would make more money."<span class="qw">— Rick Rule</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-other">VIEW</span><span class="what">Gold price — &quot;does very well in the next 10 years&quot;</span></div><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-other">PREDICTION</span><span class="what">Gold price — &quot;may not [do well] in the next 10 weeks&quot;</span></div><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-other">PREDICTION</span><span class="what">Gold price — &quot;wouldn&#x27;t surprise me to see higher U.S. interest rates keep gold soft or even cause it to decline for the balance of 2026&quot;</span></div><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-other">VIEW</span><span class="what">US dollar purchasing power — &quot;declines substantially over 10 years&quot;</span></div><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-other">VIEW</span><span class="what">Silver — &quot;outpaces gold&quot; late in precious metals bull markets</span></div><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-long">LONG</span><span class="what">Platinum — due to out-of-mainstream status, autocatalyst demand, and supply disruption potential</span></div><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-long">LONG</span><span class="what">Carefully chosen portfolio of higher quality silver stocks — &quot;100% certainty in the five to six year time frame that... will do extremely well&quot;</span></div><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-long">LONG</span><span class="what">Low-quality silver stocks — &quot;even more money to be made if you can stomach the risk and the volatility&quot;</span></div><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-other">VIEW</span><span class="what">Oil prices — &quot;lower risk premiums&quot; if peace prevails in the Gulf and Eastern Europe</span></div><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-other">PREDICTION</span><span class="what">Oil prices — &quot;high oil prices that we&#x27;ve seen is a consequence of artificial shortages&quot;</span></div><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-other">PREDICTION</span><span class="what">Oil shortages — &quot;structural&quot; by 2029-2030 due to underinvestment</span></div><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-long">LONG</span><span class="what">Oil investors — &quot;good time... to be an oil investor&quot; when oil is rationed by price</span></div><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-other">PREDICTION</span><span class="what">Governments — &quot;will come to steal a greater and greater and greater amount of free cash flow&quot; from oil industry in 2031-2033</span></div><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-long">LONG</span><span class="what">Energy stocks — &quot;will do very well&quot; over the next five years</span></div><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-long">LONG</span><span class="what">Uranium — &quot;the sure money is ahead of us&quot;</span></div><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-long">LONG</span><span class="what">NextGen (uranium) — &quot;speculators, at least, have to own it&quot;</span></div><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-long">LONG</span><span class="what">Mega Uranium — &quot;cheaper way to buy&quot; NextGen indirectly</span></div><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-other">SPECULATION</span><span class="what">Denison (uranium) — &quot;speculating that a deep in situ recovery method will work&quot;</span></div><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-other">VIEW</span><span class="what">Maintaining liquidity — &quot;option premium&quot; against a &quot;liquidity-driven crash&quot;</span></div><div class="ivrow"><span class="who">Rick Rule</span><span class="tag dir-long">LONG</span><span class="what">Bullion, US dollar, and other currencies — for savings and liquidity</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Rick Rule believes the US dollar&#x27;s purchasing power will decline substantially over the next 10 years due to debt and deficits, supporting a long-term bullish view on gold.</li><li>Rule suggests that higher US interest rates could keep gold soft or cause it to decline through the end of 2026.</li><li>Rule identifies platinum as an attractive, under-discussed asset with strong fundamentals, including its role in autocatalysts and potential supply disruptions from key producing nations.</li><li>Rule anticipates structural oil shortages by 2029-2030 due to sustained underinvestment in the industry, which will lead to higher real oil prices, but also increased government taxation (&quot;theft&quot;) of free cash flow.</li><li>Rule notes that the US market is significantly underinvested in gold and silver relative to historical averages, suggesting a potential &quot;fourfold increase in demand&quot; if market share reverts to the mean.</li><li>Rule views the current negative real yield on US Treasuries as an &quot;option premium&quot; for maintaining liquidity, which could provide significant opportunities during a liquidity-driven market crash.</li><li>Rule emphasizes Pareto&#x27;s Law in investing, suggesting that a small percentage of management teams generate the majority of profits, and investors should concentrate on these &quot;high quality people.&quot;</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>Franco-Nevada, Wheaton Precious, Agnico, Pan American Silver, Fresnelio, Exxon, Freehold Royalty, International Petroleum, Cameco, NextGen, Denison, Mega Uranium, US 10-year Treasury</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">Maintain liquidity as an option premium for a potential market crash, while positioning for long-term structural shortages in gold, platinum, and energy, and focusing on high-quality management in speculative sectors.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-12.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-12.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">Maintain liquidity as an option premium for a potential market crash, while positioning for long-term structural shortages in gold, platinum, and energy, and focusing on high-quality management in speculative sectors.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-12.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-12.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

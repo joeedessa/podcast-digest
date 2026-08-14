@@ -195,7 +195,77 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root=""><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Wednesday, 5 August 2026</span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><h1>Wednesday, 5 August 2026</h1><div class="meta"><span class="pill">23 episodes (27 files — 4 arrived twice from two sources)</span>Commodities &amp; Hard Assets, Equities &amp; Trading, Geopolitics, Investment Analysis &amp; Factors, Macroeconomics &amp; Strategy</div></div><section id="tl-dr-read-this-first"><h2>TL;DR (read this first)</h2><div class="tldr"><p>The AI trade&#x27;s violent unwind dominates the narrative, forcing a stark re-evaluation of market leverage and fundamental viability. Jesse Felder — Wealthion and Ben Hunt — Excess Returns frame the AI CapEx boom as a systemic risk financed by fragile private credit, warning the &quot;beginning of the end&quot; is here as rising yields expose deteriorating earnings quality. In the opposing camp, Jason Shapiro — Markets Unscripted argues the forced liquidation of a single leveraged fund created a &quot;perfect bottom,&quot; a technical event to be bought, not a fundamental crisis. Resolution hinges on whether hyperscalers can secure public market financing for their massive compute commitments, making the potential IPOs of Anthropic and OpenAI the market&#x27;s critical tell.</p>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="" data-canon="2026-08-05.html"><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Wednesday, 5 August 2026</span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><h1>Wednesday, 5 August 2026</h1><div class="meta"><span class="pill">23 episodes (27 files — 4 arrived twice from two sources)</span>Commodities &amp; Hard Assets, Equities &amp; Trading, Geopolitics, Investment Analysis &amp; Factors, Macroeconomics &amp; Strategy</div></div><section id="tl-dr-read-this-first"><h2>TL;DR (read this first)</h2><div class="tldr"><p>The AI trade&#x27;s violent unwind dominates the narrative, forcing a stark re-evaluation of market leverage and fundamental viability. Jesse Felder — Wealthion and Ben Hunt — Excess Returns frame the AI CapEx boom as a systemic risk financed by fragile private credit, warning the &quot;beginning of the end&quot; is here as rising yields expose deteriorating earnings quality. In the opposing camp, Jason Shapiro — Markets Unscripted argues the forced liquidation of a single leveraged fund created a &quot;perfect bottom,&quot; a technical event to be bought, not a fundamental crisis. Resolution hinges on whether hyperscalers can secure public market financing for their massive compute commitments, making the potential IPOs of Anthropic and OpenAI the market&#x27;s critical tell.</p>
 <ul><li>CENTRAL TENSION: The AI trade has either experienced a technical, liquidity-driven &quot;perfect bottom&quot; or is at the &quot;beginning of the end&quot; due to fundamental financing and valuation pressures.</li><li>TOP THEME: The AI Unwind — The market is digesting a massive, leverage-driven liquidation in AI-related stocks, questioning the sustainability of the CapEx boom and its financing.</li><li>DIVERGENT: <strong>AI Stocks:</strong> Jason Shapiro — Markets Unscripted is buying the &quot;perfect bottom&quot; created by forced liquidation vs. Jesse Felder — Wealthion who sees the &quot;beginning of the end&quot; for the AI bubble.</li><li>HIGH-CONVICTION TRADE: <strong>LONG Gold:</strong> Supported by Andrew Sarna — Wealthion, Jesse Felder — Wealthion, Tony Greer — Maggie Lake Talking Markets, Scott North — Mining Stock Daily, Ben Brey — Benny &amp; The Squirrel, and Mickey Mannick — The Julia La Roche Show.</li><li>CALENDAR: September FOMC Meeting, where the market expects a potential rate hike to re-assert Fed credibility.</li></ul></div></section>
 <section id="trade-ideas-positions"><h2>TRADE IDEAS &amp; POSITIONS</h2><div class="cards"><div class="tier">HIGH CONVICTION</div>
 <div class="card"><div class="head"><span class="asset">Gold</span><span class="tag dir-long">LONG</span><span class="who">Andrew Sarna — Wealthion · Jesse Felder — Wealthion · Tony Greer — Maggie Lake Talking Markets · Scott North — Mining Stock Daily · Ben Brey — Benny &amp; The Squirrel · Mickey Mannick — The Julia La Roche Show</span></div><p><span class="label">why</span>Gold is seen as a primary hedge against systemic financial risk, a &quot;slow motion debt crisis,&quot; persistent government deficits and money printing, and escalating geopolitical tensions. Central bank buying provides a strong support level.</p><p><span class="label">context</span>Multiple speakers view this as a core, long-term strategic holding.</p><p><span class="label">voices</span>Andrew Sarna — Wealthion: A core holding due to persistent money printing and geopolitical tension. · Jesse Felder — Wealthion: Overweight position, viewing it as a store of value during a &quot;slow motion debt crisis.&quot; · Tony Greer — Maggie Lake Talking Markets: The fundamental story has not changed and its price will go higher. · Scott North — Mining Stock Daily: Sees a &quot;good base&quot; at $4,000/oz, with central bank buying providing a floor. · Ben Brey — Benny &amp; The Squirrel: Time to start &quot;nibbling on gold again&quot; given the macro backdrop. · Mickey Mannick — The Julia La Roche Show: The &quot;lowest entropy asset&quot; and &quot;cheapest insurance&quot; during a systemic phase transition.</p></div>
@@ -296,7 +366,7 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
 <section id="notable-data-figures"><h2>NOTABLE DATA &amp; FIGURES</h2><ul><li><strong>4-5 Trillion USD:</strong> Ben Hunt&#x27;s estimated size of the AI CapEx buildout. — Excess Returns</li><li><strong>250%:</strong> The current valuation of the US stock market as a percentage of GDP, an unprecedented level. — Liaquat Ahamed — The Meb Faber Show</li><li><strong>50%:</strong> Michael Pento&#x27;s prediction for the potential decline in the US stock market. — Adam Taggart | Thoughtful Money®</li><li><strong>25-30%:</strong> Michael Pento&#x27;s prediction for the potential decline in the US real estate market. — Adam Taggart | Thoughtful Money®</li><li><strong>6 Trillion USD:</strong> Michael Pento&#x27;s forecast for annual US deficits during the next recession. — Adam Taggart | Thoughtful Money®</li><li><strong>500 Billion USD:</strong> Dinny McMahon&#x27;s forecast for an additional allocation of Chinese government borrowing in Q4 2026. — Trivium China</li><li><strong>43%:</strong> Microsoft Azure&#x27;s year-over-year cloud growth, the highest since 2022. — Alex Kantrowitz — The Compound</li><li><strong>36.7%:</strong> Amazon Web Services&#x27; (AWS) year-over-year growth, its fastest in 18 quarters. — Alex Kantrowitz — The Compound</li><li><strong>90%:</strong> The decline in Meta&#x27;s free cash flow from Q1 to Q2 2026 ($12B to $784M) due to AI CapEx. — Alex Kantrowitz — The Compound</li><li><strong>8,000:</strong> Mike Wilson&#x27;s year-end target for the S&amp;P 500. — Morgan Stanley</li><li><strong>6%:</strong> The consensus long-term expected annual return for US equities, which Victor Haghani agrees with. — The Monetary Matters Network</li><li><strong>3%:</strong> The real yield on 30-year TIPS that Ben Brey finds very attractive. — Benny &amp; The Squirrel</li><li><strong>3%:</strong> The percentage of China&#x27;s supply chain investment that Joe Lowry estimates the US has invested. — Mining Stock Daily</li></ul></section>
 <section id="watch-catalysts"><h2>WATCH CATALYSTS</h2><ul><li><strong>September 2026:</strong> FOMC Meeting. Widely watched for a potential rate hike to re-assert Fed credibility after recent communication was perceived as dovish. — Neil Dutta — RenMac</li><li><strong>Upcoming (next week):</strong> JOLTS data release. Watched for signs of stabilization and recovery in labor market churn (hires, quits) as an indicator of labor market health. — Dominique Dwor-Frecaut — Macro Hive</li><li><strong>Upcoming (next week):</strong> US Payrolls data release. A key input for the Fed&#x27;s September decision. — Neil Dutta — RenMac</li><li><strong>Next 2-3 Quarters:</strong> Growth and earnings estimates are expected to start coming down from recent peaks. — Quinn — Forward Guidance</li><li><strong>Next 2 Months:</strong> Potential IPOs for Anthropic and OpenAI. Seen as a critical test of the market&#x27;s willingness to finance the AI CapEx boom. — Jesse Felder — Wealthion</li><li><strong>September 30, 2026:</strong> US Government funding deadline. A potential shutdown could be a catalyst for passing a Republican reconciliation package. — Steve Pavlik — RenMac</li><li><strong>Mid-term Elections (US):</strong> Market returns are historically muted heading into mid-terms but strong post-elections. — Ben Brey — Benny &amp; The Squirrel</li></ul></section>
 <section id="miscellaneous"><h2>MISCELLANEOUS</h2><ul><li><strong>The Biggest Leak in Finance:</strong> People are too negative and bearish all the time. Bearish content gets more engagement, creating a systemic information bias that investors must actively counteract. — Brent Donnelly — Excess Returns</li><li><strong>Value vs. Size:</strong> The perceived outperformance of small-cap value is primarily driven by the &quot;value&quot; factor, not the &quot;size&quot; factor. An equal-weight large-cap portfolio matched for value characteristics can achieve similar returns with far more liquidity. — Wes Gray — Excess Returns</li><li><strong>Physics Framework for Markets:</strong> The global financial system can be viewed through the lens of physics as a system requiring energy (trust, capital) to maintain equilibrium. It is currently in a high-entropy &quot;phase transition&quot; between control and fracture. — Mickey Mannick — The Julia La Roche Show</li><li><strong>Passive Asset Allocation is the Problem:</strong> &quot;Passive stock picking&quot; (i.e., buying market-cap-weighted index funds) is fine, but &quot;passive asset allocation&quot; (sticking to a fixed 60/40 mix regardless of valuations) is a primary driver of market booms and busts. — Victor Haghani — The Monetary Matters Network</li><li><strong>Price Drives Narrative:</strong> The market&#x27;s narrative follows price action, not the other way around. This was reinforced by the AI unwind, where the story soured only after prices broke. — Quinn — Forward Guidance</li><li><strong>Human Capital Bottleneck:</strong> A critical and under-discussed constraint for the re-industrialization and mining booms is the lack of skilled labor, as universities are closing relevant programs like geology. — Scott North — Mining Stock Daily</li></ul></section>
-<section id="data-quality-note"><h2>DATA QUALITY NOTE</h2><ul><li><strong>Overlapping Episodes:</strong> Several speakers appeared on the same show on consecutive days or within the same week.</li><li><strong>Tony Greer</strong> on *Maggie Lake Talking Markets* (today and 08-04): Content was consistent, reiterating short semiconductor/long broad market themes.</li><li><strong>Dinny McMahon</strong> on *Trivium China* (today and 08-03): Today&#x27;s episode was a deeper dive into the Politburo meeting discussed previously, providing more specific policy predictions.</li><li><strong>Ben Hunt</strong> on *Excess Returns* (today, 08-03, 08-02, 08-01): Consistent theme development around the AI CapEx buildout as a systemic risk.</li><li><strong>Joe Lowry</strong> on *Mining Stock Daily* (today and 08-01): The content appears to be from the same recording, split into multiple parts. Synthesized as a single viewpoint.</li><li><strong>Scott North</strong> on *Mining Stock Daily* (today and 08-01): The content appears to be from the same recording. Synthesized as a single viewpoint.</li><li><strong>Marvin Barth</strong> on *Macro Hive* (today and 08-01): The content appears to be from the same recording. Synthesized as a single viewpoint.</li><li><strong>Attribution Gaps:</strong> The guest on *Less Noise More Signal* (&quot;Where to Hide if the AI Boom Cracks&quot;) was not clearly identified in the summary and is attributed as &quot;(speaker unclear)&quot;.</li><li><strong>Duplicate Summaries:</strong> Summaries for *Adam Taggart | Thoughtful Money* with Michael Pento, *Excess Returns* with Brent Donnelly, *The Monetary Matters Network* with Victor Haghani, and *RenMac* were provided twice from different sources but contained identical content. They were de-duplicated and treated as single episodes.</li></ul></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-09 · <a href="archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-the-return-of-mr-lithium">★ The Return of Mr. Lith…</a><a href="#spotlight-why-the-best-mining-projects-s">★ Why the Best Mining Pr…</a><a href="#spotlight-china-s-patient-economic-suppo">★ China&#x27;s Patient Econom…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-the-return-of-mr-lithium">★ The Return of Mr. Lith…</a><a href="#spotlight-why-the-best-mining-projects-s">★ Why the Best Mining Pr…</a><a href="#spotlight-china-s-patient-economic-suppo">★ China&#x27;s Patient Econom…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="data-quality-note"><h2>DATA QUALITY NOTE</h2><ul><li><strong>Overlapping Episodes:</strong> Several speakers appeared on the same show on consecutive days or within the same week.</li><li><strong>Tony Greer</strong> on *Maggie Lake Talking Markets* (today and 08-04): Content was consistent, reiterating short semiconductor/long broad market themes.</li><li><strong>Dinny McMahon</strong> on *Trivium China* (today and 08-03): Today&#x27;s episode was a deeper dive into the Politburo meeting discussed previously, providing more specific policy predictions.</li><li><strong>Ben Hunt</strong> on *Excess Returns* (today, 08-03, 08-02, 08-01): Consistent theme development around the AI CapEx buildout as a systemic risk.</li><li><strong>Joe Lowry</strong> on *Mining Stock Daily* (today and 08-01): The content appears to be from the same recording, split into multiple parts. Synthesized as a single viewpoint.</li><li><strong>Scott North</strong> on *Mining Stock Daily* (today and 08-01): The content appears to be from the same recording. Synthesized as a single viewpoint.</li><li><strong>Marvin Barth</strong> on *Macro Hive* (today and 08-01): The content appears to be from the same recording. Synthesized as a single viewpoint.</li><li><strong>Attribution Gaps:</strong> The guest on *Less Noise More Signal* (&quot;Where to Hide if the AI Boom Cracks&quot;) was not clearly identified in the summary and is attributed as &quot;(speaker unclear)&quot;.</li><li><strong>Duplicate Summaries:</strong> Summaries for *Adam Taggart | Thoughtful Money* with Michael Pento, *Excess Returns* with Brent Donnelly, *The Monetary Matters Network* with Victor Haghani, and *RenMac* were provided twice from different sources but contained identical content. They were de-duplicated and treated as single episodes.</li></ul></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-14 · <a href="archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-the-return-of-mr-lithium">★ The Return of Mr. Lith…</a><a href="#spotlight-why-the-best-mining-projects-s">★ Why the Best Mining Pr…</a><a href="#spotlight-china-s-patient-economic-suppo">★ China&#x27;s Patient Econom…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-the-return-of-mr-lithium">★ The Return of Mr. Lith…</a><a href="#spotlight-why-the-best-mining-projects-s">★ Why the Best Mining Pr…</a><a href="#spotlight-china-s-patient-economic-suppo">★ China&#x27;s Patient Econom…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -342,5 +412,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

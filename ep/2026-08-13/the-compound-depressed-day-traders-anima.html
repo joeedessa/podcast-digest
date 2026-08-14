@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-13.html">13 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">The Compound</span><span class="pill">13 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Depressed Day Traders Animal Spirits 477</h1><div class="meta">Host: Michael Batnick, Ben Carlson · Solo episode · <a href="https://www.youtube.com/watch?v=BFZitoZky5M" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Michael Batnick and Ben Carlson discuss the current market environment, noting the S&amp;P 500&#x27;s numerous all-time highs despite various global concerns, largely attributing this resilience to the AI trade and significant capital expenditure by hyperscalers. They also delve into the changing landscape of emerging markets, the psychology of retail trading and gambling, and the ongoing housing market dynamics.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-13/the-compound-depressed-day-traders-anima.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-13.html">13 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">The Compound</span><span class="pill">13 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Depressed Day Traders Animal Spirits 477</h1><div class="meta">Host: Michael Batnick, Ben Carlson · Solo episode · <a href="https://www.youtube.com/watch?v=BFZitoZky5M" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Michael Batnick and Ben Carlson discuss the current market environment, noting the S&amp;P 500&#x27;s numerous all-time highs despite various global concerns, largely attributing this resilience to the AI trade and significant capital expenditure by hyperscalers. They also delve into the changing landscape of emerging markets, the psychology of retail trading and gambling, and the ongoing housing market dynamics.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>The S&amp;P 500 has hit 26 new all-time highs this year, exceeding the average of 21 since 1990, which Michael Batnick finds surprising given global headlines like war and higher gas prices.</li><li>Michael Batnick attributes the market&#x27;s &quot;Teflon&quot; nature and continued ascent primarily to the AI trade and the massive capital expenditure by hyperscalers (Amazon, Google, Meta, Oracle, Microsoft), which has surpassed $3 trillion on a rolling three-year forward basis.</li><li>Ben Carlson highlights that despite the S&amp;P 500&#x27;s strong performance, only 45% of companies are outperforming the index year-to-date, suggesting a challenging environment for stock pickers, though sectors like energy, materials, and industrials are seeing high outperformance rates.</li><li>Emerging markets are trading at a record discount to the S&amp;P 500 (9.9x vs. 20x forward earnings), with Taiwan and South Korea now making up 45-46% of the EM index, and technology comprising 41%, making EM a &quot;pure AI play&quot; according to Ben Carlson.</li><li>Retail participation in South Korean equity markets has more than doubled to 28% since 2020, but 77% of household assets are in real estate, 9% in cash, and only 3.6% in equities and bonds, indicating a significant runway for stock market interest from younger generations in other countries.</li><li>Michael Burry&#x27;s recent crash call, predicting a possible 1987-type fall, is discussed, with Ben Carlson agreeing that an &quot;air pocket situation&quot; (down 7-12% day) is more probable due to market speed, but not a 1987-style crash.</li><li>A study found that one-quarter of men aged 18-29 trade stocks daily, with two-thirds reporting feeling like failures, which Michael Batnick and Ben Carlson attribute to the negative-sum nature of daily trading and gambling.</li><li>The US housing recession, which began in Q1 2022, is believed to be over by Connor Sen, despite the industry experiencing brutal conditions, as the Case-Shiller National Home Price Index is up almost 12% since Q1 2022.</li><li>Elon Musk&#x27;s ambitious predictions for SpaceX, such as scaling the economy of the Earth a thousand or even a million times through lunar mass accelerators, are noted for their blend of visionary thinking and frequent non-fulfillment.</li><li>Disney&#x27;s Toy Story franchise has generated $16 billion in income, with $1 billion in annual global retail sales, yet Michael Batnick notes the stock has &quot;stunk&quot; despite the company&#x27;s strong brand reach and accelerating theme park revenue growth.</li><li>The labor force participation rate for those 55 and older is dropping significantly, which Bank of America interprets as a positive sign of early retirement due to increased wealth from housing and stock portfolios, rather than people giving up on the workforce.</li><li>A Columbia School of Business professor estimates AI infrastructure investment at 2.8% of GDP, suggesting the US economy would be in a recession without AI, a view Michael Batnick and Ben Carlson largely agree with, though they note the money would have gone elsewhere.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"I mean, I don&#x27;t think I&#x27;m going out on a limb there. So, look at this chart. Uh well actually you know what the consumer part of it is also a a big part of the story. The fact that the consumer has been able to be resilient through all of this is remarkable. But through the lens of the stock market what matters obviously is is uh is the AI trade and the continued expansion of capex numbers."<span class="qw">— Michael Batnick</span></blockquote><blockquote class="q">"I think the the recession piece and people losing their jobs is what&#x27;s going to really tip True, true, true. Yeah."<span class="qw">— Ben Carlson</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-long">LONG</span><span class="what">SpaceX — (bought on Wednesday, sold three days later after 20% gain)</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-long">LONG</span><span class="what">Microsoft — (bought three weeks ago, up 40% in two weeks)</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-other">VIEW</span><span class="what">Airbnb — (bought at IPO, &quot;way way early&quot;)</span></div><div class="ivrow"><span class="who">Michael Batnick</span><span class="tag dir-other">VIEW</span><span class="what">Michael Burry&#x27;s crash calls — (wrong, market has doubled since his January 2023 &quot;sell&quot; tweet)</span></div><div class="ivrow"><span class="who">Michael Batnick</span><span class="tag dir-other">VIEW</span><span class="what">Daily stock trading — (a &quot;losers game,&quot; &quot;not fun&quot;)</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-other">VIEW</span><span class="what">Daily stock trading — (a &quot;losers game,&quot; &quot;not fun&quot;)</span></div><div class="ivrow"><span class="who">Michael Batnick</span><span class="tag dir-other">VIEW</span><span class="what">Gambling — (negative sum outcome, loses 7 cents on the dollar on FanDuel)</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-other">VIEW</span><span class="what">Housing recession — (over, based on Connor Sen&#x27;s Substack)</span></div><div class="ivrow"><span class="who">Michael Batnick</span><span class="tag dir-other">VIEW</span><span class="what">AI — (likely reason for the next recession, &quot;80% favorites&quot;)</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Michael Batnick views the current market as &quot;Teflon,&quot; resilient to negative headlines, primarily driven by the AI trade and massive capital expenditure by hyperscalers.</li><li>Ben Carlson notes that while the S&amp;P 500 is performing strongly, market breadth is narrow, with only 45% of companies outperforming, making it challenging for active stock pickers.</li><li>Ben Carlson suggests emerging markets, particularly Taiwan and South Korea, are becoming a &quot;pure AI play&quot; and offer a compelling valuation at a record discount (9.9x forward PE) compared to the S&amp;P 500 (20x forward PE).</li><li>Michael Batnick and Ben Carlson agree that an &quot;air pocket situation&quot; (a swift, large single-day market drop of 7-12%) is a higher probability event now due to market speed, but a 1987-style crash is unlikely.</li><li>Michael Batnick and Ben Carlson view AI as a significant macroeconomic stimulus, with a better than 50/50 chance the US economy would be in recession without it.</li><li>Ben Carlson highlights that housing prices have continued to rise (up almost 12% since Q1 2022) even during a &quot;housing recession,&quot; challenging the assumption that housing prices always fall during such periods.</li><li>Michael Batnick notes that the dropping labor force participation rate for those 55+ is a positive sign of early retirement due to increased wealth from asset appreciation.</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>S&amp;P 500, Amazon, Google, Meta, Oracle, Microsoft, Russell 2000, MSCI Emerging Markets Index, Samsung, SK Hynix, Taiwan Semi, Anthropic, OpenAI, SpaceX, Airbnb, Disney, ESPN, ESPN2, ESPN on ABC, Hulu, Netflix, IMAX</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">The market&#x27;s resilience and all-time highs are largely driven by the AI trade and hyperscaler capex, making emerging markets with high tech exposure a potentially undervalued &quot;pure AI play&quot; despite broader market concentration.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-13.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-13.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">The market&#x27;s resilience and all-time highs are largely driven by the AI trade and hyperscaler capex, making emerging markets with high tech exposure a potentially undervalued &quot;pure AI play&quot; despite broader market concentration.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-13.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-13.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

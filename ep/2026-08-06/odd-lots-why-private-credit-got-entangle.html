@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-06.html">6 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Odd Lots</span><span class="pill">6 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Why Private Credit Got Entangled With Insurance</h1><div class="meta">Host: Tracy Alloway, Joe Weisenthal · Guest: Andrew Granato, Assistant Professor of Law at UT Austin; Pranjal Dral, JD, PhD Candidate in Financial Economics at Yale University · <a href="https://podtrac.com/pts/redirect.mp3/tracking.swap.fm/track/UVBrz8bN8aM2Xe47PEPu/traffic.omny.fm/d/clips/e73c998e-6e60-432f-8610-ae210140c5b1/8a94442e-5a74-4fa2-8b8d-ae27003a8d6b/f004446b-a024-4773-bd04-b497017ec344/audio.mp3?utm_source=Podcast&amp;in_playlist=982f5071-765c-403d-969d-ae27003a8d83" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This episode discusses the growing entanglement of private credit and private equity with the insurance industry. Tracy Alloway and Joe Weisenthal frame the discussion around the principle that investors should bear their own losses, a principle challenged by the 2008 financial crisis and now potentially by the insurance sector&#x27;s public backstops. Andrew Granato and Pranjal Dral explain how private equity firms leverage insurers&#x27; long-dated liabilities to fund illiquid private credit assets, raising concerns about risk socialization and the adequacy of state-level insurance regulation.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-06/odd-lots-why-private-credit-got-entangle.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-06.html">6 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Odd Lots</span><span class="pill">6 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Why Private Credit Got Entangled With Insurance</h1><div class="meta">Host: Tracy Alloway, Joe Weisenthal · Guest: Andrew Granato, Assistant Professor of Law at UT Austin; Pranjal Dral, JD, PhD Candidate in Financial Economics at Yale University · <a href="https://podtrac.com/pts/redirect.mp3/tracking.swap.fm/track/UVBrz8bN8aM2Xe47PEPu/traffic.omny.fm/d/clips/e73c998e-6e60-432f-8610-ae210140c5b1/8a94442e-5a74-4fa2-8b8d-ae27003a8d6b/f004446b-a024-4773-bd04-b497017ec344/audio.mp3?utm_source=Podcast&amp;in_playlist=982f5071-765c-403d-969d-ae27003a8d83" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This episode discusses the growing entanglement of private credit and private equity with the insurance industry. Tracy Alloway and Joe Weisenthal frame the discussion around the principle that investors should bear their own losses, a principle challenged by the 2008 financial crisis and now potentially by the insurance sector&#x27;s public backstops. Andrew Granato and Pranjal Dral explain how private equity firms leverage insurers&#x27; long-dated liabilities to fund illiquid private credit assets, raising concerns about risk socialization and the adequacy of state-level insurance regulation.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Post-2008, policymakers aimed to shift risk from regulated banks to investment vehicles where losses would be borne by investors. However, this risk is now migrating into the regulated insurance industry, which has its own public backstops, as noted by Tracy Alloway and Joe Weisenthal.</li><li>Andrew Granato and Pranjal Dral describe a &quot;flywheel&quot; synergy where private equity firms own buyout subsidiaries, private credit funds, and life insurance entities. The life insurer provides &quot;permanent capital&quot; for illiquid private credit loans, often issued to other portfolio companies within the PE firm.</li><li>The authors highlight that while the concept of insurers providing patient capital is not new (e.g., Warren Buffett), the recent trend involves private equity aggressively ramping up investment strategies by purchasing life insurers and shifting their portfolios from &quot;stodgy, AAA rated AT&amp;T bond portfolios&quot; to more illiquid, higher-yielding private credit assets.</li><li>Pranjal Dral explains that the relationship between PE-owned insurers and their asset managers varies, from insurers having little discretion over their balance sheets to competitive third-party agreements. Insurers often pay management fees and fees for other affiliated services (e.g., accounting, valuation) to the PE sponsor.</li><li>Andrew Granato and Pranjal Dral discuss the opacity of private credit valuations on insurer balance sheets. Regulators (NAIC) rely on third-party rating agencies, which issue &quot;private letter ratings&quot; that are not publicly visible, leading to concerns about overvaluation and skewed incentives, similar to issues seen in 2008.</li><li>The paper&#x27;s core subject is the &quot;insurance guarantee fund&quot; system, which acts as a public backstop for policyholders. Unlike federal deposit insurance (FDIC), these are state-level, post-funded systems where surviving insurers are assessed after an insolvency, and these assessments are largely offset by tax credits, making it a &quot;stealth taxpayer bailout&quot; without direct legislative vote.</li><li>Pranjal Dral points out that the statutory cap for life insurance policies (roughly $300K) covers only about the 40th percentile of policies, meaning many policyholders would not be fully protected in a failure. The state-level, uncoordinated resolution process for a large national insurer is also &quot;completely untested.&quot;</li><li>The guarantee fund regime encourages risk-taking by distressed insurers because they do not pre-fund the backstop and can offer better terms to policyholders without paying for the increased risk. This penalizes conservative asset managers who invest in genuinely high-quality private credit.</li><li>Andrew Granato suggests that private equity&#x27;s interest in insurance stems from the &quot;permanent capital&quot; angle and the reduced scrutiny from a widely dispersed retail policyholder base, many of whom are fully insured by the guarantee funds.</li><li>Pranjal Dral notes that correlated asset exposure is more possible in insurance than banking due to weaker monitoring by the NAIC compared to federal banking regulators. Andrew Granato adds that certain life insurance policies with cash value reserves and withdrawal rights could be susceptible to &quot;runs.&quot;</li><li>The concept of &quot;shadow reinsurance&quot; is discussed, where insurers transfer risk to captive subsidiary reinsurers, often in jurisdictions like Bermuda, Iowa, or Vermont, which offer lower tax rates and, crucially, no balance sheet visibility into the reinsurer&#x27;s holdings.</li><li>Andrew Granato and Pranjal Dral propose regulatory solutions, including valuation-based reforms (e.g., a &quot;Pigouvian tax on opacity&quot; for hard-to-value assets), ending tax credits for guarantee fund assessments, moving to pre-funding, and adopting a &quot;Source of Strength Doctrine&quot; to hold affiliates of a failed insurer responsible for payouts.</li><li>Tracy Alloway highlights a recent investigation into Guggenheim&#x27;s affiliated insurers, Delaware Life and Clear Spring, which initially reported 3-5% affiliated assets but revised this to 40% under scrutiny, illustrating the opacity and potential for misrepresentation.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"It is the idea that you can invest in pretty much anything. The world&#x27;s most stupid thing. I don&#x27;t care. Dogecoin, whatever. But the key thing is, if you do that and the investment doesn&#x27;t work out and it goes belly up, you should bear that loss."<span class="qw">— Tracy Alloway</span></blockquote><blockquote class="q">"So if you can hold these private credit loans that are highly liquid on the balance of the life insurer that you&#x27;re issuing to other firms in your portfolio, you can imagine that this is like a scenario in which you kind of theoretically get the best of all three worlds."<span class="qw">— Andrew Granato</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Pranjal Dral</span><span class="tag dir-other">VIEW</span><span class="what">Annuities are theoretically the perfect investment, but society as a whole underbuys them.</span></div><div class="ivrow"><span class="who">Pranjal Dral</span><span class="tag dir-other">VIEW</span><span class="what">The annuity market isn&#x27;t very competitive, and consumers often don&#x27;t get a great deal.</span></div><div class="ivrow"><span class="who">Pranjal Dral</span><span class="tag dir-other">VIEW</span><span class="what">PE-owned insurance companies might offer better terms to policyholders in the short run due to other revenue streams (fees from private credit).</span></div><div class="ivrow"><span class="who">Andrew Granato</span><span class="tag dir-other">VIEW</span><span class="what">It is very difficult for retail policyholders to meaningfully grasp the degree of solvency risk of their annuity or life insurance provider.</span></div><div class="ivrow"><span class="who">Pranjal Dral</span><span class="tag dir-other">VIEW</span><span class="what">There is a concern that private credit valuations are not &quot;kosher&quot; or are overvalued, as seen in BDCs.</span></div><div class="ivrow"><span class="who">Pranjal Dral</span><span class="tag dir-other">VIEW</span><span class="what">The incentives for private letter ratings in life insurance are &quot;particularly skewed,&quot; making it difficult to investigate or compare ratings.</span></div><div class="ivrow"><span class="who">Pranjal Dral</span><span class="tag dir-other">VIEW</span><span class="what">New empirical literature consistently finds overvaluation in many private credit assets.</span></div><div class="ivrow"><span class="who">Pranjal Dral</span><span class="tag dir-other">VIEW</span><span class="what">The coverage of the insurance guarantee fund bailout (roughly $300K) is lower than bank failure coverage and only covers about the 40th percentile of life insurer policies.</span></div><div class="ivrow"><span class="who">Pranjal Dral</span><span class="tag dir-other">VIEW</span><span class="what">The state-level, uncoordinated resolution of a large national insurer failure is &quot;completely untested.&quot;</span></div><div class="ivrow"><span class="who">Pranjal Dral</span><span class="tag dir-other">VIEW</span><span class="what">The insurance guarantee fund regime encourages distressed insurers to take on more risk because they don&#x27;t pre-pay for the backstop.</span></div><div class="ivrow"><span class="who">Andrew Granato</span><span class="tag dir-other">VIEW</span><span class="what">Not having people yell at you is a &quot;very underrated incentive&quot; for running private credit through a life insurer balance sheet.</span></div><div class="ivrow"><span class="who">Pranjal Dral</span><span class="tag dir-other">VIEW</span><span class="what">The design of guarantee funds, which are purely premium volume-weighted, amplifies the problem of ratings inflation and implicitly subsidizes risky insurers.</span></div><div class="ivrow"><span class="who">Pranjal Dral</span><span class="tag dir-other">VIEW</span><span class="what">It is &quot;almost hard to imagine&quot; politicians not bailing out policyholders beyond the statutory cap in a major insurer failure.</span></div><div class="ivrow"><span class="who">Pranjal Dral</span><span class="tag dir-other">VIEW</span><span class="what">A bad macroeconomic environment could create a &quot;very vicious cycle&quot; where insurer failures lead to assessments on already hurting insurers.</span></div><div class="ivrow"><span class="who">Pranjal Dral</span><span class="tag dir-other">VIEW</span><span class="what">Monitoring of asset-side risk in insurance is &quot;much worse&quot; than in banking, leading to more possibility of correlated exposure.</span></div><div class="ivrow"><span class="who">Andrew Granato</span><span class="tag dir-other">VIEW</span><span class="what">Insurers are structurally less vulnerable to runs on average, but it depends on policy nuances (e.g., cash value policies with withdrawal rights).</span></div><div class="ivrow"><span class="who">Andrew Granato</span><span class="tag dir-other">VIEW</span><span class="what">&quot;Shadow reinsurance&quot; to captive subsidiaries in jurisdictions like Bermuda leads to a loss of visibility into the reinsurer&#x27;s balance sheet.</span></div><div class="ivrow"><span class="who">Andrew Granato</span><span class="tag dir-other">VIEW</span><span class="what">Valuation-based reforms, such as a &quot;Pigouvian tax on opacity&quot; for hard-to-value assets, could help align downside risk with controllers.</span></div><div class="ivrow"><span class="who">Andrew Granato</span><span class="tag dir-other">VIEW</span><span class="what">Ending tax credits for guarantee fund assessments or moving to pre-funding could transform the system into an FDIC-like model.</span></div><div class="ivrow"><span class="who">Andrew Granato</span><span class="tag dir-other">VIEW</span><span class="what">Applying a &quot;Source of Strength Doctrine&quot; to insurance holding groups could align incentives by holding affiliates responsible for guarantee fund payouts.</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Tracy Alloway and Joe Weisenthal — VIEW — The migration of risk from regulated banking to private credit, and now into regulated insurance, raises concerns about who ultimately bears losses and the effectiveness of public backstops.</li><li>Andrew Granato and Pranjal Dral — VIEW — The &quot;illiquidity premium&quot; from holding long-dated, illiquid private credit assets is a key driver for insurers and private equity.</li><li>Pranjal Dral — VIEW — The opacity and potential overvaluation of private credit assets on insurer balance sheets pose a systemic risk, as regulators lack full visibility into true riskiness.</li><li>Pranjal Dral — VIEW — The current state-level insurance guarantee fund system is &quot;structurally worse&quot; than federal deposit insurance, creating an implicit taxpayer bailout and encouraging risk-taking.</li><li>Pranjal Dral — VIEW — The lack of risk-weighted assessments in guarantee funds implicitly subsidizes risky insurers and penalizes conservative ones.</li><li>Pranjal Dral — VIEW — The potential for correlated asset exposure in private credit, particularly in specific industries like software, could lead to widespread insurer distress.</li><li>Andrew Granato — VIEW — The use of &quot;shadow reinsurance&quot; obscures risk and reduces regulatory oversight, potentially masking significant exposures.</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>Dogecoin, synthetic CDOs, AT&amp;T bonds, PIMCO, BDCs, City Group, TARP, SVB, Delaware Life, Clear Spring</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">The increasing integration of private credit and private equity with the insurance sector, driven by the allure of patient capital, introduces significant systemic risks due to opaque valuations, an untested and suboptimal state-level guarantee fund system, and the potential for stealth taxpayer bailouts.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-06.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-06.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">The increasing integration of private credit and private equity with the insurance sector, driven by the allure of patient capital, introduces significant systemic risks due to opaque valuations, an untested and suboptimal state-level guarantee fund system, and the potential for stealth taxpayer bailouts.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-06.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-06.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

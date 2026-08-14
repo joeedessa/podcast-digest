@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-14.html">14 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Excess Returns</span><span class="pill">14 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Jim Paulsen Sees a Growth Scare Coming The 34 Charts That Make Him Cautious</h1><div class="meta">Host: Justin Carbonneau, Jack Forehand · Guest: Jim Paulsen, Chief Investment Strategist, The Leuthold Group (Paulsen Perspectives Substack) · <a href="https://www.youtube.com/watch?v=FrOod1EWphk" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Jim Paulsen argues that the economy is heading for a &quot;growth scare&quot; rather than continued inflation concerns, leading to a potential sentiment shift among investors. He highlights weakening labor force data, declining real personal income, and low consumer savings as indicators of underlying economic fragility. Paulsen anticipates a full-fledged correction in the S&amp;P 500, particularly in &quot;new era&quot; technology and communications stocks, while the &quot;old era&quot; sectors may hold up better. He also suggests that the Federal Reserve will likely ease rates before the end of the year, contrary to current market expectations for further tightening.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-14/excess-returns-jim-paulsen-sees-a-growth.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-14.html">14 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Excess Returns</span><span class="pill">14 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Jim Paulsen Sees a Growth Scare Coming The 34 Charts That Make Him Cautious</h1><div class="meta">Host: Justin Carbonneau, Jack Forehand · Guest: Jim Paulsen, Chief Investment Strategist, The Leuthold Group (Paulsen Perspectives Substack) · <a href="https://www.youtube.com/watch?v=FrOod1EWphk" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Jim Paulsen argues that the economy is heading for a &quot;growth scare&quot; rather than continued inflation concerns, leading to a potential sentiment shift among investors. He highlights weakening labor force data, declining real personal income, and low consumer savings as indicators of underlying economic fragility. Paulsen anticipates a full-fledged correction in the S&amp;P 500, particularly in &quot;new era&quot; technology and communications stocks, while the &quot;old era&quot; sectors may hold up better. He also suggests that the Federal Reserve will likely ease rates before the end of the year, contrary to current market expectations for further tightening.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Jim Paulsen believes the biggest news since last month&#x27;s discussion is the weak jobs numbers and benign inflation data, which have caused a 180-degree shift in Fed tightening expectations and a decline in bond yields.</li><li>Paulsen expects economic growth to slow more than currently appreciated, with inflation not being the primary issue, but rather concerns about growth, particularly on the consumer side.</li><li>He anticipates a sentiment shift from &quot;inflation fear&quot; to &quot;growth fear&quot; or &quot;recession fear,&quot; which has been absent this year.</li><li>Paulsen notes significant weakness in the labor market, including a rolled-over U.S. labor force, a decline in the participation rate (including core 25-54 year olds), a negative payroll report, and stalling non-farm payroll growth.</li><li>He highlights that real personal income growth, excluding government subsidies, is down almost 4% year-on-year, which he describes as &quot;a recession by any other name on purchasing power.&quot;</li><li>Paulsen observes that the Citigroup U.S. Economic Surprise Index is rolling over rapidly, suggesting that economic reports will increasingly come in below expectations.</li><li>He points out that the Bloomberg hard data economic surprise index has been leading 10-year Treasury yields, and its recent drop suggests a potential return to a &quot;three-handle&quot; on the 10-year yield.</li><li>Paulsen argues that the current negative correlation between stocks and bond yields (yields rise, stocks fall; yields fall, stocks rise) indicates inflation fear, but a shift to positive correlation (yields fall, stocks fall) would signal a move to growth fear, which historically precedes stock market turbulence.</li><li>He is skeptical of a sustained &quot;productivity boom&quot; from AI, arguing that current measured productivity gains are often associated with economic sluggishness and cost-cutting during recessions, rather than true, broad-based expansion.</li><li>Paulsen notes that core capital goods orders, a strong correlate with the S&amp;P 500, may be vulnerable to policy tightening, and the recent underperformance of AI stocks could be a leading indicator of slowing capital spending.</li><li>He suggests that bond yields are currently mispriced relative to historical relationships with real GDP growth and CPI inflation, which are now similar to pre-pandemic levels, implying yields should be lower.</li><li>Paulsen observes an &quot;utter divide&quot; in GDP growth, with investment in information processing equipment and intellectual property products (new era) growing explosively, while the rest of the economy (old era) is barely subsisting, making the current environment more vulnerable than the dot-com era.</li><li>He highlights a record-low correlation between &quot;new era&quot; (tech and communications) and &quot;old era&quot; (other nine sectors) stocks, which historically has been a bad sign for overall S&amp;P 500 returns.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"I&#x27;m still kind of, I guess, in the camp that economic growth is going to slow more than people appreciate at the moment. And inflation is not going to be the issue. And it&#x27;s going to be more of a concern about growth, particularly on the consumer side of the equation."<span class="qw">— Jim Paulsen</span></blockquote><blockquote class="q">"I think we&#x27;re shifting sentiment in the rest of this year from being worried about inflation to worried about growth. We&#x27;re going to have that blue line head south towards positive correlation. Yields are going to go down. Right now, when they go down, it&#x27;s pushing stocks up. But if sentiment shifts, we&#x27;re going to start finding a week where yields fall and so do stock prices."<span class="qw">— Jim Paulsen</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Jim Paulsen</span><span class="tag dir-other">PREDICTION</span><span class="what">Fed will be easing rates — before the year&#x27;s out</span></div><div class="ivrow"><span class="who">Jim Paulsen</span><span class="tag dir-other">PREDICTION</span><span class="what">Full-fledged correction in the S&amp;P 500 — beyond 10%</span></div><div class="ivrow"><span class="who">Jim Paulsen</span><span class="tag dir-other">PREDICTION</span><span class="what">Full bear market (20% decline) — in new era plays (communications and technology sectors)</span></div><div class="ivrow"><span class="who">Jim Paulsen</span><span class="tag dir-other">PREDICTION</span><span class="what">Rest of the market (outside new era plays) — holds up better</span></div><div class="ivrow"><span class="who">Jim Paulsen</span><span class="tag dir-other">PREDICTION</span><span class="what">10-year Treasury yield — could see a &quot;three-handle&quot; again</span></div><div class="ivrow"><span class="who">Jim Paulsen</span><span class="tag dir-other">PREDICTION</span><span class="what">Inflation — &quot;down for the count&quot;</span></div><div class="ivrow"><span class="who">Jim Paulsen</span><span class="tag dir-other">PREDICTION</span><span class="what">Fed will not hike rates</span></div><div class="ivrow"><span class="who">Jim Paulsen</span><span class="tag dir-other">PREDICTION</span><span class="what">Fed will be cutting rates — before the year&#x27;s out</span></div><div class="ivrow"><span class="who">Jim Paulsen</span><span class="tag dir-other">PREDICTION</span><span class="what">S&amp;P 500 six-month growth rate — significant downdraft over the coming three months (policy-induced)</span></div><div class="ivrow"><span class="who">Jim Paulsen</span><span class="tag dir-other">PREDICTION</span><span class="what">Economy — much more pressure downside by the end of this year</span></div><div class="ivrow"><span class="who">Jim Paulsen</span><span class="tag dir-other">PREDICTION</span><span class="what">Avoid recession</span></div><div class="ivrow"><span class="who">Jim Paulsen</span><span class="tag dir-other">PREDICTION</span><span class="what">Gold price — could see &quot;a lot more downside&quot; if it reconnects with global money supply, suggesting $2,000 gold</span></div><div class="ivrow"><span class="who">Jim Paulsen</span><span class="tag dir-other">VIEW</span><span class="what">Not to cash out of the stock market</span></div><div class="ivrow"><span class="who">Jim Paulsen</span><span class="tag dir-other">SUGGESTION</span><span class="what">Attain some allocation to bonds</span></div><div class="ivrow"><span class="who">Jim Paulsen</span><span class="tag dir-other">SUGGESTION</span><span class="what">Move a little out of some new era stocks (favorites, best performers)</span></div><div class="ivrow"><span class="who">Jim Paulsen</span><span class="tag dir-other">SUGGESTION</span><span class="what">Move towards a broader array of old era stocks</span></div><div class="ivrow"><span class="who">Jim Paulsen</span><span class="tag dir-other">SUGGESTION</span><span class="what">Make some allocations towards more defensive posture</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Jim Paulsen expects a shift from inflation fear to growth fear, leading to lower bond yields and potential stock market turbulence.</li><li>He predicts a significant correction in &quot;new era&quot; tech and communications stocks (potentially a 20% bear market) while &quot;old era&quot; sectors may be more resilient.</li><li>Paulsen believes the Fed will cut rates before year-end, driven by slowing growth and moderating inflation.</li><li>He sees bond yields as mispriced and likely to fall, potentially returning the 10-year Treasury to a &quot;three-handle.&quot;</li><li>Paulsen is cautious on gold, suggesting significant downside if it reverts to its historical relationship with global money supply, implying a target of $2,000.</li><li>He advises investors to consider lightening up on &quot;new era&quot; stocks and increasing exposure to &quot;old era&quot; stocks and bonds for a more defensive posture.</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>S&amp;P 500, NVIDIA, Russell 1000 Large Cap Growth Index, Gold, 10-year Treasury yield, Crude oil</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">Investors should prepare for a sentiment shift from inflation fear to growth fear, potentially leading to a significant correction in &quot;new era&quot; stocks and a more dovish Fed, by reallocating towards &quot;old era&quot; stocks and bonds.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-14.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-14.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">Investors should prepare for a sentiment shift from inflation fear to growth fear, potentially leading to a significant correction in &quot;new era&quot; stocks and a more dovish Fed, by reallocating towards &quot;old era&quot; stocks and bonds.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-14.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-14.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

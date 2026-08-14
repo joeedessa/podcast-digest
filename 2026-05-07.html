@@ -195,7 +195,77 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root=""><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Thursday, 7 May 2026</span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><h1>Thursday, 7 May 2026</h1><div class="meta"><span class="pill">35 episodes</span>[Commodities Hard Assets, Equities Trading, Investment Analysis Factors, Macroeconomics Strategy, Real Estate Wealth Building]</div></div><section id="macro-room-temperature"><h2>MACRO ROOM TEMPERATURE</h2><p>A profound capital allocation conflict defines the market, pitting Jesse Felder&#x27;s secular inflation thesis against the AI-driven productivity boom championed by Matt Caruso and Mike Wilson. The escalating Strait of Hormuz crisis, which Rick Rule and Josh Young see as an imminent supply shock, provides fuel for the &quot;real assets&quot; camp, arguing for a rotation out of overvalued financial assets and into commodities. This creates a central tension for investors: position for a sustained inflationary regime driven by geopolitics and underinvestment, or ride the powerful earnings growth and technological transformation of the AI supercycle.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="" data-canon="2026-05-07.html"><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Thursday, 7 May 2026</span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><h1>Thursday, 7 May 2026</h1><div class="meta"><span class="pill">35 episodes</span>[Commodities Hard Assets, Equities Trading, Investment Analysis Factors, Macroeconomics Strategy, Real Estate Wealth Building]</div></div><section id="macro-room-temperature"><h2>MACRO ROOM TEMPERATURE</h2><p>A profound capital allocation conflict defines the market, pitting Jesse Felder&#x27;s secular inflation thesis against the AI-driven productivity boom championed by Matt Caruso and Mike Wilson. The escalating Strait of Hormuz crisis, which Rick Rule and Josh Young see as an imminent supply shock, provides fuel for the &quot;real assets&quot; camp, arguing for a rotation out of overvalued financial assets and into commodities. This creates a central tension for investors: position for a sustained inflationary regime driven by geopolitics and underinvestment, or ride the powerful earnings growth and technological transformation of the AI supercycle.</p></section>
 <section id="dominant-theme-s"><h2>DOMINANT THEME(S)</h2><p><strong>AI: Transformative Boom or Speculative Bubble?</strong> (12 shows)</p>
 <p>The debate over the AI-driven market rally has intensified, splitting analysts between a bubble thesis and a fundamental transformation narrative. Jesse Felder — Wealthion argues forcefully for a bubble, pointing to deteriorating earnings quality in hyperscalers where free cash flow is nearing zero despite rising reported earnings, a dynamic he compares to the dot-com era&#x27;s capex cycle. Michael Oliver — Adam Taggart Thoughtful Money echoes this sentiment, viewing the NASDAQ as being in a massive topping process.</p>
 <p>In direct opposition, Matt Caruso — Markets Unscripted cites Google&#x27;s recent earnings as a &quot;game-changer&quot; that refutes the bubble argument by demonstrating clear monetization, accelerated cloud demand, and improving unit economics. This view is supported by Mike Wilson — Morgan Stanley, who contends that strong and, crucially, *broadening* earnings growth is the primary market driver, powerful enough to offset monetary policy headwinds. Josh Brown — The Compound describes the current earnings season as &quot;one of the most miraculous ever,&quot; with S&amp;P 500 profits up 24% YoY, far exceeding estimates, driven by a 10.4% jump in business investment he attributes to the &quot;AI economy.&quot;</p>
@@ -326,7 +396,7 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
 <ul><li><strong>The Monetary Matters Network</strong> — Finding the Markets Most Overlooked Macro Themes and Profiting from Global Volat</li></ul>
 <p>Host: Jack Farley | Guest: Harris Kupperman, CIO, Praetorian Capital | Macroeconomics Strategy</p>
 <ul><li><strong>Wealth Building Blueprint Vladyslav Grab</strong> — Very Dangerous Chris Vermeulens Targets for Stocks Gold Silver Oil Uranium</li></ul>
-<p>Host: Vladyslav Grabarskyy | Guest: Chris Vermeulen, Founder, thetechnicaltraders.com | Real Estate Wealth Building</p></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-09 · <a href="archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a><a href="#dominant-theme-s">DOMINANT THEME(S)</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-the-molecular-war-has-begun-th">★ The Molecular War Has …</a><a href="#spotlight-australia-s-once-in-a-generati">★ Australia&#x27;s Once-in-a-…</a><a href="#spotlight-5-million-ounces-and-growing-m">★ 5 Million Ounces and G…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a><a href="#dominant-theme-s">DOMINANT THEME(S)</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-the-molecular-war-has-begun-th">★ The Molecular War Has …</a><a href="#spotlight-australia-s-once-in-a-generati">★ Australia&#x27;s Once-in-a-…</a><a href="#spotlight-5-million-ounces-and-growing-m">★ 5 Million Ounces and G…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<p>Host: Vladyslav Grabarskyy | Guest: Chris Vermeulen, Founder, thetechnicaltraders.com | Real Estate Wealth Building</p></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-14 · <a href="archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a><a href="#dominant-theme-s">DOMINANT THEME(S)</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-the-molecular-war-has-begun-th">★ The Molecular War Has …</a><a href="#spotlight-australia-s-once-in-a-generati">★ Australia&#x27;s Once-in-a-…</a><a href="#spotlight-5-million-ounces-and-growing-m">★ 5 Million Ounces and G…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#macro-room-temperature">MACRO ROOM TEMPERATURE</a><a href="#dominant-theme-s">DOMINANT THEME(S)</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-the-molecular-war-has-begun-th">★ The Molecular War Has …</a><a href="#spotlight-australia-s-once-in-a-generati">★ Australia&#x27;s Once-in-a-…</a><a href="#spotlight-5-million-ounces-and-growing-m">★ 5 Million Ounces and G…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -372,5 +442,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

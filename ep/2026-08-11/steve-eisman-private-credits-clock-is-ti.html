@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-11.html">11 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Steve Eisman</span><span class="pill">11 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Private Credits Clock is Ticking w Glenn Schorr Ken Worthington The Real Eisman</h1><div class="meta">Host: Steve Eisman · Guest: Glenn Schorr, Sell Side Equity Analyst, Evercore · <a href="https://www.youtube.com/watch?v=ekn2WneOEBA" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Steve Eisman, Glenn Schorr, and Ken Worthington discuss current market dynamics, focusing on the health of private credit and private equity, the business models of retail brokers, and the evolving cryptocurrency ecosystem. Eisman expresses skepticism about private credit valuations and the long-term viability of business models dependent on customer &quot;laziness,&quot; while Schorr and Worthington offer more nuanced views on these sectors and the potential for AI and blockchain technology.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-11/steve-eisman-private-credits-clock-is-ti.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-11.html">11 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Steve Eisman</span><span class="pill">11 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Private Credits Clock is Ticking w Glenn Schorr Ken Worthington The Real Eisman</h1><div class="meta">Host: Steve Eisman · Guest: Glenn Schorr, Sell Side Equity Analyst, Evercore · <a href="https://www.youtube.com/watch?v=ekn2WneOEBA" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Steve Eisman, Glenn Schorr, and Ken Worthington discuss current market dynamics, focusing on the health of private credit and private equity, the business models of retail brokers, and the evolving cryptocurrency ecosystem. Eisman expresses skepticism about private credit valuations and the long-term viability of business models dependent on customer &quot;laziness,&quot; while Schorr and Worthington offer more nuanced views on these sectors and the potential for AI and blockchain technology.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Ken Worthington covers brokers, asset managers, exchanges, and crypto, specifically Coinbase, Bullish, and Circle.</li><li>Glenn Schorr covers big banks, big brokers, traditional asset managers, trust banks, and alternative asset managers.</li><li>Retail brokers like Charles Schwab and LPL generate significant profits from the &quot;free float of customer cash,&quot; which is uninvested cash on which the broker earns a spread.</li><li>The potential for agentic AI to optimize customer cash could reduce profitability for retail brokers, though Ken Worthington believes firms like Schwab will adapt.</li><li>Glenn Schorr prefers large, diversified banks and wealth managers (e.g., JP Morgan, Morgan Stanley) as more flexible models against cash optimization, due to their broad service offerings.</li><li>Private credit demand in the wealth channel has significantly dried up, with inflows being &quot;infinitesimal,&quot; and redemption requests still exceeding the 5% per quarter limit in most places.</li><li>Private equity performance has underperformed public markets for the first time since 2008 or 2009, and monetizations are mixed, with some firms like KKR reporting record monetizations while others struggle to sell assets.</li><li>Steve Eisman predicts that the private credit software situation will reach fruition in early 2027, with a larger impact in 2028, as loans need refinancing and valuations are significantly lower.</li><li>Ken Worthington views the cryptocurrency ecosystem as an asset class driven by blockchain technology and use cases, rather than solely a hedge against fiat currency debasement.</li><li>Ken Worthington believes Bitcoin is a &quot;single-use case technology&quot; as a store of value, and is less interesting than other chains like Ethereum and Solana that support more use cases.</li><li>Steve Eisman suggests Circle should sell due to the difficulty of breaking into the payment system against incumbents like Visa and Mastercard, who are actively developing their own stablecoin solutions.</li><li>Glenn Schorr reports &quot;stunning&quot; Q2 results for big banks, with investment banking up 38%, trading up 47%, and asset and wealth management showing 7% organic growth, though deposit competition is increasing.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"My problem with Schwab and you know, we were at Oppenheimer together, we covered it together. So, that&#x27;s a long time ago, but um what doesn&#x27;t hit me right is that it this is a great company whose most of its revenue is from the idea that its customers aren&#x27;t maximizing their own benefits."<span class="qw">— Steve Eisman</span></blockquote><blockquote class="q">"So, Bitcoin is different, right? Because Bitcoin, I&#x27;ll say, is a single-use case technology. And the single-use case is a store of value."<span class="qw">— Ken Worthington</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Ken Worthington</span><span class="tag dir-long">LONG</span><span class="what">Charles Schwab (SCHW) — &quot;We&#x27;re recommending with a buy.&quot;</span></div><div class="ivrow"><span class="who">Steve Eisman</span><span class="tag dir-other">VIEW</span><span class="what">Private credit software situation — &quot;We are a year away from finding out what we&#x27;re going to really need to find out because you&#x27;ve got companies whose valuation given what&#x27;s happened in the public SAS apocalypse... The big issue is going to be starting in 2027, but it&#x27;s bigger in 2028. These loans are going to get refinanced.&quot;</span></div><div class="ivrow"><span class="who">Ken Worthington</span><span class="tag dir-other">VIEW</span><span class="what">AI agents managing money — &quot;the agents are wrong the majority of the time... the machines are going to have to be right not just the majority of the time, not even the vast majority of the time, but it&#x27;s got to be like 99.99% for people who have money to turn over the the management of their money to machines.&quot;</span></div><div class="ivrow"><span class="who">Steve Eisman</span><span class="tag dir-other">VIEW</span><span class="what">Circle (USDC) — &quot;I think Circle should sell.&quot;</span></div><div class="ivrow"><span class="who">Steve Eisman</span><span class="tag dir-other">VIEW</span><span class="what">Bitcoin (BTC) — &quot;Bitcoin is for boomers.&quot;</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Steve Eisman notes Microsoft (MSFT) stock was up 10%+ after reporting &quot;great numbers,&quot; while Meta (META) was down 10% after reporting &quot;hilarious numbers&quot; with negative earnings growth and 55% expense growth.</li><li>Steve Eisman highlights the liquidation of a large, highly levered hedge fund run by a former OpenAI employee.</li><li>Ken Worthington identifies M&amp;A outlook for middle market, private credit, and selling alternative asset management products to wealth management clients as key concerns for alternative asset managers.</li><li>Ken Worthington notes that the growth algorithm for retail/wealth distribution of alternative assets has shifted from private real estate to private credit, and now to private equity and infrastructure, but full substitution of flows has not yet occurred.</li><li>Glenn Schorr reports &quot;stunning&quot; Q2 results for big banks, with investment banking revenue up 38%, trading revenue up 47%, and asset and wealth management showing 7% organic growth. He notes strong positive operating leverage, margin improvement, and high ROEs.</li><li>Glenn Schorr observes increased competition on the deposit side, leading to higher costs of funds for banks.</li><li>Glenn Schorr states that trading revenue is historically down 17% in the second half compared to the first half.</li><li>Glenn Schorr notes that equity trading revenues were up 68% this quarter, with volume up 9-10% and margin balances up 50%.</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>Microsoft, Meta, OpenAI, Bullish, Coinbase, Circle, USDC, Charles Schwab, LPL, Ally Bank, KKR, ServiceNow, Ethereum, Solana, Robinhood, Tether, Visa, Mastercard, JP Morgan, Morgan Stanley, Blue Owl</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">While big banks are currently &quot;humming&quot; with strong Q2 results, investors should closely monitor the ticking clock on private credit refinancings, particularly in software, and the evolving competitive landscape for retail brokers and crypto payment systems.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-11.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-11.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">While big banks are currently &quot;humming&quot; with strong Q2 results, investors should closely monitor the ticking clock on private credit refinancings, particularly in software, and the evolving competitive landscape for retail brokers and crypto payment systems.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-11.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-11.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

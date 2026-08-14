@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-07.html">7 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Macro Voices</span><span class="pill">7 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">MacroVoices 544 Viktor Shvets How Markets Survive Disruption</h1><div class="meta">Host: Erik Townsend, Patrick Ceresna, Masil Bagnan · Guest: Viktor Shvets, Global Strategist, Macquarie Capital · <a href="https://www.youtube.com/watch?v=Ne85LFkW-XE" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Viktor Shvets discusses the evolving political landscape, particularly the politicization of the Federal Reserve under Kevin Warsh, and the persistent disinflationary trend punctuated by inflationary spikes from geopolitical and policy actions. He also explores the K-shaped economy, the nature of &quot;rolling bubbles&quot; in the AI revolution, and the increasing polarization of societies globally. Patrick Ceresna and Masil Bagnan provide a post-interview market update, including specific trade ideas and analysis of the Commitment of Traders report.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-07/macro-voices-macrovoices-544-viktor-shve.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-07.html">7 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Macro Voices</span><span class="pill">7 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">MacroVoices 544 Viktor Shvets How Markets Survive Disruption</h1><div class="meta">Host: Erik Townsend, Patrick Ceresna, Masil Bagnan · Guest: Viktor Shvets, Global Strategist, Macquarie Capital · <a href="https://www.youtube.com/watch?v=Ne85LFkW-XE" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Viktor Shvets discusses the evolving political landscape, particularly the politicization of the Federal Reserve under Kevin Warsh, and the persistent disinflationary trend punctuated by inflationary spikes from geopolitical and policy actions. He also explores the K-shaped economy, the nature of &quot;rolling bubbles&quot; in the AI revolution, and the increasing polarization of societies globally. Patrick Ceresna and Masil Bagnan provide a post-interview market update, including specific trade ideas and analysis of the Commitment of Traders report.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Viktor Shvets views the new Fed chair, Kevin Warsh, as a politician whose ideas, while laudable, are often impractical and likely to fail the test of time, leading to increased uncertainty and dissent within the Federal Reserve.</li><li>Shvets maintains that the long-term trend is disinflationary, driven by technology, but inflationary spikes are created by human reactions to events like wars, chaotic trade, or immigration policies. He argues that if these disruptive actions ceased, disinflation would prevail.</li><li>Shvets compares the Iran war to Vietnam, noting its lack of clear objectives, exit strategy, or definition of victory, predicting a long conflict with regular flare-ups. He contrasts this with the Russia-Ukraine war, which he views as more akin to the Korean War, brutal but likely to conclude with a DMZ within a year.</li><li>Shvets explains &quot;rolling bubbles&quot; in the context of AI, where bubbles sequentially form in commodities, infrastructure, and then various applications like robotics, biotech, and 3D printing, leading to high concentration of returns in a few stocks but violent rotations within the index.</li><li>Shvets attributes increasing societal polarization and erratic policies to the anxiety caused by declining marginal utility and usefulness for many individuals in the K-shaped economy, where value is transferred from labor to capital. He suggests that without redistribution policies or rapid productivity growth, violence is an unfortunate alternative.</li><li>Shvets believes China is much stronger than perceived, having already surpassed the US in the electrification stack and gaining in robotics, automation, and core science and technology. However, China is a &quot;prisoner&quot; of its high national saving rates, leading to capital misallocation and a need to shift towards consumption, which is hindered by central control, economic philosophy, and geopolitical reasons.</li><li>Patrick Ceresna identifies robotics and automation as the next potential &quot;rolling bubble&quot; in the AI theme, noting that this sector has already undergone a substantial correction.</li><li>Masil Bagnan highlights that large speculators in S&amp;P 500 futures are bullish but not excessively so, suggesting room for further buying in the current breakout.</li><li>Masil Bagnan notes that large speculators are heavily net long the US Dollar, with fresh bullish participation, but the dollar index is at a critical support zone (99.12 Dixie) that will determine if its breakout remains intact.</li><li>Masil Bagnan points out that large speculators in gold remain heavily net long despite recent price action, indicating strong underlying bullish positioning.</li><li>Masil Bagnan emphasizes the extreme one-sided short positioning in the Japanese Yen prior to the coordinated US-Japan intervention, setting the stage for potential short covering and a self-reinforcing move if the yen holds its gains.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"I still think we&#x27;re in a disinflationary world, but we do have back and forth of inflation created through our fiscal, monetary, policy, and military means."<span class="qw">— Viktor Shvets</span></blockquote><blockquote class="q">"So that&#x27;s what I call a a sequence of bubble. Now what it basically means is that concentration of returns for shareholders will always stay high."<span class="qw">— Viktor Shvets</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Disinflation is a dominant longer-term trend.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Inflationary spikes are transient, caused by reactions to events like COVID, Russia-Ukraine war, Iran war, chaotic trade/immigration policies.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Iran war will be long without conclusive outcomes, similar to Vietnam.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Russia-Ukraine war will be brutal but relatively short, similar to Korean War, leading to a DMZ and Ukraine integrating with EU within a year.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Gold remains the ultimate safety asset in cases of absolute destruction or monetary system meltdown, despite recent underperformance.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Productivity increases to solve societal problems are at least 10 years out.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Violence is an unfortunate likely outcome due to societal polarization and unwillingness to embrace redistribution or regulate technology.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">China has lost the electrification stack (EVs, batteries, solar, wind) to the US and Europe. (Correction: US and Europe lost it to China)</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">China is gaining control over robotics and automation.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">US is relatively falling behind China in science and technology.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Chinese equity is not necessarily the best investment because China is building the world but not deriving return on equity.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">China is misallocating capital at the fastest pace ever due to high national saving rates.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Commodities needed for AI (energy, copper, nickel, cobalt, rare earth, lithium) will have choke points but not last long due to optimization.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Infrastructure for AI (data centers, chips) has not yet peaked and will see continued investment for 2-3 years or longer.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">LLMs are commoditizing and cannibalizing themselves.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">The future of LLMs is open-weight systems, reducing value for most LLMs.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Robotics, humanoid robotics, automation, biotech, metaverse, 3D printing, and quantum computing are future &quot;rolling bubbles&quot; in AI applications.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">High concentration of shareholder returns (10 stocks delivering 50% of performance) will endure.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Investors need to be agile, have no confidence, watch for new breakouts, and minimize exposure to past winners.</span></div><div class="ivrow"><span class="who">Viktor Shvets</span><span class="tag dir-other">VIEW</span><span class="what">Unemployment figures from BLS are &quot;out of kilter&quot; and the real situation is worse, with more people in multiple gigs failing to get ahead.</span></div><div class="ivrow"><span class="who">Patrick Ceresna</span><span class="tag dir-long">LONG</span><span class="what">Global X Robotics &amp; Artificial Intelligence ETF (BOTZ) — currently trading around 37.50.</span></div><div class="ivrow"><span class="who">Patrick Ceresna</span><span class="tag dir-long">LONG</span><span class="what">Global X Robotics &amp; Artificial Intelligence ETF (BOTZ) — paired with August 37 protective put (costing ~60 cents) for 16 days.</span></div><div class="ivrow"><span class="who">Patrick Ceresna</span><span class="tag dir-other">VIEW</span><span class="what">S&amp;P 500 and NASDAQ will not make substantial new highs without mega cap weights participating.</span></div><div class="ivrow"><span class="who">Patrick Ceresna</span><span class="tag dir-other">VIEW</span><span class="what">S&amp;P call option volume eclipsed 4 million contracts on Tuesday, highest ever, indicating a mechanical liquidity event higher.</span></div><div class="ivrow"><span class="who">Patrick Ceresna</span><span class="tag dir-other">VIEW</span><span class="what">Crude oil is giving back geopolitical premium, but physical damage (depleted global inventories) creates a structural floor.</span></div><div class="ivrow"><span class="who">Patrick Ceresna</span><span class="tag dir-other">VIEW</span><span class="what">Gold delivered a decisive 4% breakout from its multi-month trade range, reclaiming 50-day MA and descending trend line.</span></div><div class="ivrow"><span class="who">Patrick Ceresna</span><span class="tag dir-other">VIEW</span><span class="what">Gold&#x27;s breakout is supported by simultaneous strength in silver, platinum, palladium, copper, mining stocks, and uranium equities, suggesting a broader intermarket rotation into hard assets.</span></div><div class="ivrow"><span class="who">Patrick Ceresna</span><span class="tag dir-watching">WATCHING</span><span class="what">Gold&#x27;s first real obstacle is near 4550 (Fibonacci resistance zone); a decisive break above confirms bullish follow-through.</span></div><div class="ivrow"><span class="who">Masil Bagnan</span><span class="tag dir-other">VIEW</span><span class="what">Large speculators in S&amp;P 500 futures are at 100th percentile on 1-year positioning score, 60th percentile on 3-year score, indicating room for additional buying.</span></div><div class="ivrow"><span class="who">Masil Bagnan</span><span class="tag dir-watching">WATCHING</span><span class="what">US Dollar Index (Dixie) at 99.12 support level; a clean break below would damage technical structure and open door for deeper correction.</span></div><div class="ivrow"><span class="who">Masil Bagnan</span><span class="tag dir-other">VIEW</span><span class="what">Large speculators are heavily net long the US Dollar (91st percentile on 3-year measure, 29.5% of open interest), with fresh bullish participation.</span></div><div class="ivrow"><span class="who">Masil Bagnan</span><span class="tag dir-other">VIEW</span><span class="what">Large spec positioning in crude oil remains at multi-year lows despite a 35% rally, indicating a bearish tilt.</span></div><div class="ivrow"><span class="who">Masil Bagnan</span><span class="tag dir-other">VIEW</span><span class="what">Large speculators in gold are scoring 25 on the one-year view but remain heavily net long (47.3% of open interest), indicating strong support for bullish price action.</span></div><div class="ivrow"><span class="who">Masil Bagnan</span><span class="tag dir-other">VIEW</span><span class="what">Japanese Yen short trade was extremely one-sided (0 percentile on 1-year and 3-year scores) before the US-Japan intervention.</span></div><div class="ivrow"><span class="who">Masil Bagnan</span><span class="tag dir-watching">WATCHING</span><span class="what">Next COT report for Japanese Yen to see if short sellers have materially reduced positions, potentially triggering further short covering.</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Viktor Shvets: The Federal Reserve&#x27;s independence is preserved by the Supreme Court, but its politicization under Kevin Warsh, who is seen as a politician rather than a traditional hawk, introduces uncertainty and dissent, potentially hindering effective crisis response.</li><li>Viktor Shvets: Long-term disinflationary forces are strong, but short-term inflationary spikes are policy-induced. Investors should distinguish between transient and permanent inflation, monitoring consumer/business surveys and inflationary break-even rates.</li><li>Viktor Shvets: Geopolitical conflicts like the Iran war are likely to be protracted and without clear resolution, creating ongoing but transient inflationary pressures, while the Russia-Ukraine war may see a more definitive, albeit brutal, conclusion.</li><li>Viktor Shvets: Gold&#x27;s role as a safety asset is reaffirmed for extreme scenarios, despite recent shifts to USD/Treasuries during the Iran conflict.</li><li>Viktor Shvets: The AI revolution will manifest as &quot;rolling bubbles&quot; across different layers of the technology stack (commodities, infrastructure, applications). Investors should be agile, avoid past winners, and identify new themes, as concentration of returns will remain high.</li><li>Viktor Shvets: Societal polarization and the K-shaped economy, driven by declining marginal utility for many and wealth transfer to capital, pose significant risks, potentially leading to social unrest if not addressed by redistribution or rapid productivity growth.</li><li>Viktor Shvets: China&#x27;s growing technological and economic power, particularly in electrification and robotics, is significant, but its capital misallocation due to high savings rates presents a long-term vulnerability.</li><li>Patrick Ceresna: The next AI investment opportunity may be in robotics and automation (BOTZ ETF) after a recent correction, offering an asymmetric entry point.</li><li>Patrick Ceresna: The S&amp;P 500&#x27;s recent rally was a mechanical liquidity event driven by options market dynamics and mega-cap tech leadership, not just fundamental buying. NASDAQ 100 faces resistance at 30,000 and 31,000.</li><li>Masil Bagnan: S&amp;P 500 futures positioning suggests room for further buying, while the US Dollar is at a critical inflection point (99.12 Dixie) with crowded long positioning.</li><li>Masil Bagnan: Crude oil&#x27;s geopolitical premium is unwinding, but depleted inventories provide a structural floor. Speculative positioning remains bearish despite recent rallies.</li><li>Masil Bagnan: Gold&#x27;s recent breakout is broad-based across hard assets, with strong underlying bullish positioning, suggesting a sustainable new trend if it breaks above 4550.</li><li>Masil Bagnan: The Japanese Yen intervention caught a heavily short speculative crowd off guard, setting up potential for significant short covering and further yen strength if gains hold.</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>BOTZ, S&amp;P 500, NASDAQ, NASDAQ 100, US Dollar, Dixie, Crude Oil, Gold, Silver, Platinum, Palladium, Copper, Japanese Yen, USD, Treasuries</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">Investors should prepare for &quot;rolling bubbles&quot; in AI, focusing on agile rotation from past winners to emerging applications like robotics, while monitoring geopolitical events and central bank policies for transient inflationary spikes against a disinflationary backdrop.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-07.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-07.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">Investors should prepare for &quot;rolling bubbles&quot; in AI, focusing on agile rotation from past winners to emerging applications like robotics, while monitoring geopolitical events and central bank policies for transient inflationary spikes against a disinflationary backdrop.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-07.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-07.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

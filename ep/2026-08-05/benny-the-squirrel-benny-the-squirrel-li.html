@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-05.html">5 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Benny The Squirrel</span><span class="pill">5 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Benny The Squirrel LIVE - Ask us Anything</h1><div class="meta">Host: Rupert Mitchell, Ben Brey · Solo episode · <a href="https://www.youtube.com/watch?v=3ohNqmkPaEc" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Ben Brey and Rupert Mitchell discuss the market&#x27;s reaction to recent events, including a hedge fund cleanup and big tech earnings. Ben Brey emphasizes the SOFR market, volatility, and beta as his top daily checks. They also cover the Japanese Yen intervention, the long bond, real yields, and the outlook for gold and FX volatility.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-05/benny-the-squirrel-benny-the-squirrel-li.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-05.html">5 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Benny The Squirrel</span><span class="pill">5 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Benny The Squirrel LIVE - Ask us Anything</h1><div class="meta">Host: Rupert Mitchell, Ben Brey · Solo episode · <a href="https://www.youtube.com/watch?v=3ohNqmkPaEc" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Ben Brey and Rupert Mitchell discuss the market&#x27;s reaction to recent events, including a hedge fund cleanup and big tech earnings. Ben Brey emphasizes the SOFR market, volatility, and beta as his top daily checks. They also cover the Japanese Yen intervention, the long bond, real yields, and the outlook for gold and FX volatility.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Ben Brey&#x27;s top three daily market checks are the SOFR market, volatility, and a beta tab (NVIDIA, Amazon, Microsoft).</li><li>Rupert Mitchell and Ben Brey discuss the &quot;cleanup trade&quot; following a large hedge fund blow-up, comparing it to Bill Hwang&#x27;s situation, and question if it marks an interim low for certain names.</li><li>Ben Brey views the steepener as the dominant trade, stating &quot;the steepener is the play now.&quot;</li><li>Rupert Mitchell notes a high-profile capitulation from Lacy Hunt on Treasuries and Kevin Muir &quot;sniffing around fixed income duration.&quot;</li><li>Ben Brey endorses 30-year TIPS at a 3% real yield, especially for older investors, as protection against potential large government deficits.</li><li>Ben Brey believes the Japanese Yen intervention is a &quot;wait and see situation&quot; and requires follow-through from the Ministry of Finance.</li><li>Rupert Mitchell questions the market&#x27;s excitement over Amazon&#x27;s record profits, noting that 85% is a markup on their Anthropic stake.</li><li>Ben Brey and Rupert Mitchell discuss the impact of hyperscaler capex on stock prices, noting that less capex is currently a driver of stock prices.</li><li>Ben Brey is publishing an S4 essay on capital misallocation, comparing historical bubbles to the current &quot;compute standard&quot; and the potential implications of a yen reversal.</li><li>Rupert Mitchell and Ben Brey discuss the choking supply of IG credit paper and its impact on the Treasury market, with banks hedging exposure and CFOs swapping floating to fixed rates.</li><li>Ben Brey and Rupert Mitchell discuss the midterms, noting that returns into midterms are usually &quot;kind of&quot; and post-midterms are &quot;pretty good,&quot; with oil shocks being the main historical disruptors.</li><li>Ben Brey and Rupert Mitchell discuss gold, with Ben Brey suggesting &quot;nibbling on gold again&quot; and Rupert Mitchell considering selling cash-covered puts on GLD.</li><li>Ben Brey and Rupert Mitchell agree that FX volatility could return this summer, with Ben Brey highlighting the sterling versus euro pair for a non-directional butterfly trade.</li><li>Rupert Mitchell discusses his recent trades in uranium, having sold uranium miners and spot in February, bought call options on U.UN, and went short UACL, but views the chart as &quot;death.&quot;</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"I always look at the sofa market first. Like I want to know what&#x27;s going on in the rates market cuz it&#x27;s the underlying anchor of everything."<span class="qw">— Ben Brey</span></blockquote><blockquote class="q">"I think the steepener&#x27;s the dominant trade now. Like like any way you look at it like if my AI cap ex thing rolls over well 86% of incremental growth of GDP in the United States AI cap ex related. It&#x27;s enormous. It&#x27;s like all the growth. So that is going to roll. You if you have the kind of thing that we have right now, we saw yesterday, oh, you&#x27;re not going to take inflation seriously? Bear steepener. Like you can win multiple ways here and like I think that&#x27;s where my head&#x27;s at is the steepener is the play now."<span class="qw">— Ben Brey</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Ben Brey</span><span class="tag dir-other">VIEW</span><span class="what">SOFR market — first thing he looks at daily</span></div><div class="ivrow"><span class="who">Ben Brey</span><span class="tag dir-other">VIEW</span><span class="what">Volatility — second thing he looks at daily</span></div><div class="ivrow"><span class="who">Ben Brey</span><span class="tag dir-other">VIEW</span><span class="what">Beta tab (NVIDIA, Amazon, Microsoft) — third thing he looks at daily</span></div><div class="ivrow"><span class="who">Ben Brey</span><span class="tag dir-avoid">AVOID</span><span class="what">Shorting oversold names (e.g., CoreWeave, Oracle, SpaceX) — last week or last couple days</span></div><div class="ivrow"><span class="who">Ben Brey</span><span class="tag dir-other">VIEW</span><span class="what">Bear market rally — expects a &quot;vicious bear market rally&quot;</span></div><div class="ivrow"><span class="who">Ben Brey</span><span class="tag dir-other">VIEW</span><span class="what">Fade bear market rallies — &quot;Bear market rallies where we move from buy the dip to sell the rip.&quot;</span></div><div class="ivrow"><span class="who">Ben Brey</span><span class="tag dir-other">VIEW</span><span class="what">Steepener trade — &quot;the steepener is the play now&quot; (stated 2x)</span></div><div class="ivrow"><span class="who">Ben Brey</span><span class="tag dir-long">LONG</span><span class="what">30-year TIPS — at 3% real yield, especially for older investors</span></div><div class="ivrow"><span class="who">Ben Brey</span><span class="tag dir-watching">WATCHING</span><span class="what">Japanese Yen intervention — &quot;wait and see situation&quot;</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-other">VIEW</span><span class="what">Less capex — a driver of stock prices for hyperscalers</span></div><div class="ivrow"><span class="who">Ben Brey</span><span class="tag dir-other">VIEW</span><span class="what">Gold — &quot;might be time to start like nibbling on gold again&quot;</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-long">LONG</span><span class="what">Gold — has a &quot;permanent permanent position&quot;</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-other">VIEW</span><span class="what">Selling cash covered puts on GLD — &quot;may not be the dumbest trade from here&quot;</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-other">PREDICTION</span><span class="what">Gold will not see 3,500 again</span></div><div class="ivrow"><span class="who">Ben Brey</span><span class="tag dir-other">VIEW</span><span class="what">FX volatility — &quot;FX vol is cheap&quot;</span></div><div class="ivrow"><span class="who">Ben Brey</span><span class="tag dir-long">LONG</span><span class="what">FX volatility — butterfly trade on Sterling vs. Euro</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-long">LONG</span><span class="what">Yen — against the Euro and Swissy</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-avoid">AVOID</span><span class="what">Uranium exposure — sold all in February</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-long">LONG</span><span class="what">Call options on U.UN (Canadian line of spot uranium)</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-short">SHORT</span><span class="what">UACL (uranium stock)</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-other">VIEW</span><span class="what">Uranium chart — &quot;looks like death&quot;</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-other">VIEW</span><span class="what">Cameco (CCJ) — &quot;the only institutional actionable stock&quot; for uranium</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Ben Brey believes the SOFR market is the &quot;underlying anchor of everything&quot; and is the first thing to check daily.</li><li>Ben Brey suggests that the current market environment, following a hedge fund cleanup, could lead to &quot;vicious bear market rallies&quot; that should be faded.</li><li>Ben Brey identifies the steepener as the dominant trade, citing both AI capex rollover and inflation concerns as potential drivers.</li><li>Ben Brey sees 30-year TIPS at 3% real as a very tempting long-term investment, especially given low personal savings rates and large government deficits.</li><li>Ben Brey views the Japanese Yen intervention as a &quot;wait and see&quot; situation, requiring follow-through from the BOJ to be a sustained trend.</li><li>Rupert Mitchell suggests that less capex is currently a driver of stock prices for hyperscalers.</li><li>Ben Brey&#x27;s upcoming S4 essay will connect historical bubbles to the current &quot;compute standard&quot; and discuss the implications of a potential yen reversal.</li><li>Rupert Mitchell and Ben Brey highlight the significant supply of IG credit paper and its impact on the Treasury market, creating competition for duration.</li><li>Ben Brey and Rupert Mitchell note that market returns into midterms are typically &quot;kind of&quot; and post-midterms are &quot;pretty good,&quot; with oil shocks being the main historical disruptors.</li><li>Ben Brey suggests &quot;nibbling on gold again&quot; due to the combination of potential dovish Fed action, an all-time capex boom, low personal savings, and large government deficits. Rupert Mitchell considers selling cash-covered puts on GLD.</li><li>Ben Brey and Rupert Mitchell anticipate a return of FX volatility this summer, with Ben Brey suggesting a non-directional butterfly trade on Sterling vs. Euro.</li><li>Rupert Mitchell is currently fading uranium, having sold miners and spot, and bought call options on U.UN while shorting UACL, but notes the chart still &quot;looks like death.&quot;</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>SOFR, NVIDIA, Amazon, Microsoft, CoreWeave, Oracle, SpaceX, SMH, EWI, TIPS, GLD, U.UN, UACL, CCJ, BRL, MXN, COP</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">The steepener is the dominant trade, 30-year TIPS at 3% real are tempting, and FX volatility is cheap, while gold is worth &quot;nibbling on&quot; and uranium remains a &quot;knife catching zone.&quot;</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-05.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-05.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">The steepener is the dominant trade, 30-year TIPS at 3% real are tempting, and FX volatility is cheap, while gold is worth &quot;nibbling on&quot; and uranium remains a &quot;knife catching zone.&quot;</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-05.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-05.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

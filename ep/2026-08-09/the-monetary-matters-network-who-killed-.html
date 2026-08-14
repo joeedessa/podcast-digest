@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-09.html">9 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">The Monetary Matters Network</span><span class="pill">9 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Who Killed The Random Walk Victor Haghani on Momentum Passive Investing and LTCM</h1><div class="meta">Host: Jack Farley · Guest: Victor Haghani, Founding Partner of Long-Term Capital Management and Elm Wealth · <a href="https://www.youtube.com/watch?v=Kg6rRfvGqdY" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Victor Haghani discusses his paper &quot;Who Killed The Random Walk,&quot; which challenges the efficient market hypothesis by explaining stock market puzzles through a multi-agent model. He argues that market dynamics are primarily driven by &quot;extrapolators&quot; (return chasers), &quot;static asset allocators,&quot; and corporate supply/demand, rather than fundamental earnings. Haghani also differentiates between passive stock investing (which he supports) and passive asset allocation (which he views as problematic).</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-09/the-monetary-matters-network-who-killed-.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-09.html">9 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">The Monetary Matters Network</span><span class="pill">9 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Who Killed The Random Walk Victor Haghani on Momentum Passive Investing and LTCM</h1><div class="meta">Host: Jack Farley · Guest: Victor Haghani, Founding Partner of Long-Term Capital Management and Elm Wealth · <a href="https://www.youtube.com/watch?v=Kg6rRfvGqdY" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Victor Haghani discusses his paper &quot;Who Killed The Random Walk,&quot; which challenges the efficient market hypothesis by explaining stock market puzzles through a multi-agent model. He argues that market dynamics are primarily driven by &quot;extrapolators&quot; (return chasers), &quot;static asset allocators,&quot; and corporate supply/demand, rather than fundamental earnings. Haghani also differentiates between passive stock investing (which he supports) and passive asset allocation (which he views as problematic).</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>LTCM Lessons: Victor Haghani identifies key lessons from Long-Term Capital Management&#x27;s failure, including the importance of personal risk-taking, skin in the game, and the potential pitfalls of running a leveraged pool of standalone capital. He suggests relative value trading might be better within larger institutions and highlights the need for tight stop losses, which LTCM lacked.</li><li>Challenging the Random Walk: Haghani&#x27;s paper, &quot;Who Killed The Random Walk,&quot; argues that the stock market does not follow a classical random walk. It aims to explain puzzles like excess volatility, clustered volatility, trends (momentum), and booms and busts through a heterogeneous belief model.</li><li>Investor Types: The model includes three main investor types: &quot;value investors&quot; who focus on long-term earnings and dividends, &quot;static investors&quot; (passive asset allocators) who maintain fixed allocations (e.g., 60/40), and &quot;extrapolators&quot; (return chasers) who base future return expectations on recent history.</li><li>Passive Asset Allocation vs. Passive Stock Investing: Haghani distinguishes between passive asset allocation (e.g., sticking to 60/40 regardless of market conditions), which he finds problematic and illogical, and passive stock investing (e.g., investing in market-cap-weighted index funds), which he supports as a valid way to gain stock exposure.</li><li>Momentum vs. Extrapolation: Haghani explains that momentum investing, characterized by binary, fixed-amount exposure changes based on positive or negative momentum, has historically performed well. In contrast, extrapolators (return chasers) make continuous, slow-moving adjustments to their allocations based on past returns, which tends to perform poorly.</li><li>Market Inelasticity: Haghani believes the stock market is not perfectly elastic, meaning large supply/demand changes (like corporate buybacks or IPOs) can significantly move prices. He estimates a trillion dollars in buybacks could move the market up by 3-4%.</li><li>US Equity Outlook: Haghani and other market observers forecast a long-term expected return for US equities of around 6%, only 1% more than 30-year Treasuries. He attributes this low risk premium to static asset allocators, extrapolators, and corporate buybacks, rather than strong fundamental earnings growth.</li><li>Earnings Growth and Valuation: Haghani argues that current high earnings growth rates (e.g., 24% for S&amp;P operating earnings) are not sustainable long-term and should be viewed through cyclically adjusted earnings. He believes that if 25% earnings growth continued for 3-4 years, corporate earnings would become an unrealistic 50% of GDP.</li><li>Drivers of Aggregate Market Level: Haghani contends that the overall market level is less determined by fundamental investors and earnings, and more by extrapolators, static asset allocators, and corporate supply/demand (issuance, buybacks), as well as changes in savings flows into the market.</li><li>Elm Wealth&#x27;s Investment Approach: Elm Wealth employs a dynamic asset allocation strategy based on a &quot;five-star screen&quot; for risky assets, focusing on assets with a verifiable risk premium, broad diversification, liquidity, transparency, low fees, and tax efficiency. This leads them to low-cost, broad-market index funds and real estate investment trusts.</li><li>Current Allocation at Elm Wealth: Elm Wealth is currently underweight US equities (less than 30% vs. a 40% baseline) due to low expected long-term returns (around 1% risk premium) despite positive momentum. They are overweight non-US equities due to better expected returns and positive momentum. Overall, they are slightly underweight equities and overweight fixed income (mostly Treasury bills).</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"Passive asset allocation is really problematic. It doesn&#x27;t make sense. Passive asset allocation. It doesn&#x27;t make sense."<span class="qw">— Victor Haghani</span></blockquote><blockquote class="q">"I think that the bitter lesson in finance is that you don&#x27;t need to think that much about earnings and stuff like that and fundamentals because the market isn&#x27;t driven by fundamentals. It&#x27;s just driven by these static asset allocators, these extrapolators and corporate supply and demand and other shocks and other supply demand shocks to the system."<span class="qw">— Victor Haghani</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Jack Farley</span><span class="tag dir-long">LONG</span><span class="what">semiconductors — (stated in late July, July 21st)</span></div><div class="ivrow"><span class="who">Victor Haghani</span><span class="tag dir-other">VIEW</span><span class="what">long-term expected return for US equities — 6% (consensus view, Haghani agrees it&#x27;s realistic but low)</span></div><div class="ivrow"><span class="who">Victor Haghani</span><span class="tag dir-other">VIEW</span><span class="what">US equities risk premium relative to safe assets (TIPS) — around 1%</span></div><div class="ivrow"><span class="who">Victor Haghani</span><span class="tag dir-reduce">UNDERWEIGHT</span><span class="what">US equities — less than 30% (vs. 40% baseline in Elm ETF)</span></div><div class="ivrow"><span class="who">Victor Haghani</span><span class="tag dir-long">OVERWEIGHT</span><span class="what">non-US equities</span></div><div class="ivrow"><span class="who">Victor Haghani</span><span class="tag dir-reduce">UNDERWEIGHT</span><span class="what">equities (net net, by about 10%)</span></div><div class="ivrow"><span class="who">Victor Haghani</span><span class="tag dir-long">OVERWEIGHT</span><span class="what">fixed income (net net, by about 10%)</span></div><div class="ivrow"><span class="who">Victor Haghani</span><span class="tag dir-other">POSITION</span><span class="what">fixed income bucket — mostly in Treasury bills</span></div><div class="ivrow"><span class="who">Victor Haghani</span><span class="tag dir-reduce">UNDERWEIGHT</span><span class="what">TIPS and nominal bonds (within fixed income bucket) — due to negative momentum</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Victor Haghani views the long-term expected return for US equities at 6%, which he considers &quot;voluntary financial repression&quot; and &quot;unfortunate&quot; for wealth growth, given 30-year Treasuries are around 5%.</li><li>Victor Haghani believes current US equity valuations are &quot;very elevated&quot; and the overall market level &quot;looks kind of ridiculous right now.&quot;</li><li>Victor Haghani suggests non-US equities offer &quot;healthier long-term returns relative to safe assets&quot; compared to US equities.</li><li>Victor Haghani attributes high US stock prices to corporate buybacks (trillion dollars annually, estimated 3-4% market uplift), low IPO calendar, capital-light businesses, extrapolators, and static asset allocators.</li><li>Victor Haghani predicts that if IPO issuance, secondary issuance, insider sales (e.g., SpaceX), and a reduction in buybacks create a &quot;delta of 1 to two trillion dollars,&quot; it will &quot;weigh on the market.&quot;</li><li>Victor Haghani states that Elm Wealth is currently underweight US equities and overweight non-US equities, and slightly underweight equities overall, with a preference for Treasury bills within fixed income.</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>S&amp;P 500, Nvidia, Tesla, Pfizer, SanDisk, Micron, IBM, Hilton, SpaceX, Lamb Research, TIPS, Elm (ETF)</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">Investors should be wary of elevated US equity valuations and consider dynamic asset allocation based on expected risk premiums and momentum, favoring non-US equities over US equities due to better long-term return prospects.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-09.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-09.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">Investors should be wary of elevated US equity valuations and consider dynamic asset allocation based on expected risk premiums and momentum, favoring non-US equities over US equities due to better long-term return prospects.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-09.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-09.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

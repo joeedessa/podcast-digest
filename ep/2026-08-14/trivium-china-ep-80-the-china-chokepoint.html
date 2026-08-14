@@ -195,12 +195,82 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-14.html">14 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Trivium China</span><span class="pill">14 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Ep 80 - The China chokepoints nobodys watching</h1><div class="meta">Host: Andrew Polk · Guest: Gerard DePippa, Director of Global Macro, Eurasia Group · <a href="https://www.buzzsprout.com/2408047/episodes/19643469-ep-80-the-china-chokepoints-nobody-s-watching.mp3" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This episode discusses China&#x27;s evolving economic coercion playbook, moving beyond critical minerals to intermediate goods. Gerard DePippa argues that China&#x27;s industrial policy is expanding its market share in intermediate goods, creating new choke points that Western governments are not adequately planning for. Dinny McMahon and Corey Combs add that while China&#x27;s initial focus on intermediate goods was defensive, its success has created weaponization opportunities, and the West&#x27;s reactive industrial policy struggles to keep pace.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-14/trivium-china-ep-80-the-china-chokepoint.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-14.html">14 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Trivium China</span><span class="pill">14 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Ep 80 - The China chokepoints nobodys watching</h1><div class="meta">Host: Andrew Polk · Guest: Gerard DePippa, Director of Global Macro, Eurasia Group · <a href="https://www.buzzsprout.com/2408047/episodes/19643469-ep-80-the-china-chokepoints-nobody-s-watching.mp3" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This episode discusses China&#x27;s evolving economic coercion playbook, moving beyond critical minerals to intermediate goods. Gerard DePippa argues that China&#x27;s industrial policy is expanding its market share in intermediate goods, creating new choke points that Western governments are not adequately planning for. Dinny McMahon and Corey Combs add that while China&#x27;s initial focus on intermediate goods was defensive, its success has created weaponization opportunities, and the West&#x27;s reactive industrial policy struggles to keep pace.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Gerard DePippa states that while critical minerals remain Beijing&#x27;s preferred retaliatory tool, other choke points are developing, particularly in intermediate goods, implying China&#x27;s coercive leverage is growing in ways Western governments are not planning for.</li><li>Gerard DePippa explains that Beijing leans on licensing for export controls rather than outright bans to collect supply chain information, detect stockpiling, and maintain a short leash on companies, allowing for quick pressure escalation.</li><li>Corey Combs highlights that there is a systematic effort in China, from city council level to central planners, to map and understand China&#x27;s vulnerabilities, driving both state and private sector investment in overseas mining and processing to ensure mineral resiliency.</li><li>Dinny McMahon notes that China&#x27;s focus on overseas investments for securing critical materials is not new, but its use of export controls to protect technology, particularly for magnets, is a more recent development.</li><li>Gerard DePippa discusses China&#x27;s version of the foreign direct product rule, shelved as part of the Busan truce, which could allow China to restrict goods containing any non-negligible amount of Chinese rare earth content, even if processed elsewhere.</li><li>Corey Combs distinguishes between the non-negotiable existence of a licensing requirement for export controls and the flexible escalation options, such as prohibitions or extraterritorial application, which Beijing can deploy or retract.</li><li>Gerard DePippa argues that intermediate goods are better weapons than final goods because they can disrupt production in a target economy, potentially across multiple industries, with less political pushback and lower economic cost to Chinese firms.</li><li>Dinny McMahon suggests that China&#x27;s aggressive expansion into intermediate goods, such as chemicals and pharmaceutical precursors, poses a threat to developed economies by hollowing out their own industries, making China the &quot;OPEC of intermediate goods.&quot;</li><li>Gerard DePippa identifies five broad criteria Beijing uses to assess a good&#x27;s weaponization potential: harm to target economy, replaceability, cost to Chinese industry, enforcement capacity, and reputational risk (e.g., pharmaceutical APIs are politically suboptimal).</li><li>Corey Combs suggests that proximate risks include expanding existing controls further down the production chain for materials like super hard materials (e.g., tungsten carbide, carbon boron nitride, diamond windows) and certain types of silicon carbide.</li><li>Gerard DePippa states that the U.S. industrial policy apparatus is less intricate and developed than China&#x27;s, making it more reactive and less capable of front-running Chinese industrial policy, especially for lower-value-added intermediate goods.</li><li>Dinny McMahon posits that China&#x27;s overreach might be at a macro level, specifically its full-throated defense of its trade surplus and the current free trade regime, which increasingly leaves other countries feeling they are not benefiting as intended.</li><li>Gerard DePippa concludes that China is trying to teach the West that it does not have unilateral freedom of action in imposing offensive measures, leading to a new equilibrium where both sides have demonstrated weapons and must be more careful in policy.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"I&#x27;m happy to be here, although it&#x27;s funny because just before we recorded this, I was talking to my co-author from that piece, Amanda Schell, and she was saying how she loves this podcast but actually doesn&#x27;t like the vibe check. It&#x27;s always controversial. So shout out to her and shout out to the vibe check."<span class="qw">— Gerard DePippa</span></blockquote><blockquote class="q">"I would say that China&#x27;s focus on overseas investments as a means of securing its own critical materials or other resources is not new. That&#x27;s been going on pretty much for decades, at least in a concerted way, at least 20 years. I think what is more new is China imposing export controls not only as a means of having coercive leverage against countries, which you&#x27;ve already mentioned, but also to control the technology that it knows those countries want, including for things like magnets, so they can indigenize their own technology."<span class="qw">— Gerard DePippa</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">Critical minerals — Beijing knows it can weaponize for at least years.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">PREDICTION</span><span class="what">China will have other choke points — Even if the West secures critical mineral supply at some point.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s coercive leverage — Is growing in ways Western governments are not planning for.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s export control licensing — Allows collection of supply chain information, detection of transshipment/stockpiling, and keeps companies on a short leash to prevent stockpiling and allow quick pressure escalation.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s systematic effort to map vulnerabilities — Drives investment by state actors (XM, development banks, policy banks) and private sector (CATL, BYD) in overseas mineral security and processing.</span></div><div class="ivrow"><span class="who">Dinny McMahon</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s export controls — Are also used to control technology that other countries want, particularly for things like magnets.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s extraterritorial controls (foreign direct product rule) — Shelved as part of the Busan truce, but not dead; China is collecting data to implement it more effectively in the future.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">VIEW</span><span class="what">Licensing requirement for export controls — One direction of travel, not coming back from that point.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">VIEW</span><span class="what">Escalation of export controls (prohibition, new compounds, extraterritorial route) — Negotiable, can be deployed or pulled back.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">Intermediate goods as a weapon — Better than final goods due to ability to disrupt production, potentially multiple industries, with less political pushback and lower economic cost to Chinese firms.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s rare earth industry — Optimal upstream weapon due to low dollar value, control of processing, and ability to gain visibility without disrupting its own exports much.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s rare earth industry total value — On the order of $1 to $2 billion.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s battery exports last year — Over $60 billion.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">PREDICTION</span><span class="what">China will have a lot of leverage with critical minerals — Conservatively for at least five years.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">PREDICTION</span><span class="what">China will have other choke points — By 2030, if Western self-reliance on critical minerals is achieved.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s global market share in intermediate goods (HS6 level) — 50% in value and volume for 300 goods, grown rapidly since 2022, on track to be 400 goods by end of decade.</span></div><div class="ivrow"><span class="who">Dinny McMahon</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s aggressive expansion into intermediate goods — Threatens developed economies by hollowing out their industries.</span></div><div class="ivrow"><span class="who">Dinny McMahon</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s initial investment in intermediate goods (around 2019) — Defensive measure to embed itself in global supply chains and make decoupling difficult.</span></div><div class="ivrow"><span class="who">Dinny McMahon</span><span class="tag dir-other">VIEW</span><span class="what">Success of China&#x27;s intermediate goods policy — Created weaponization opportunities over time.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s focus on supply chain security (14th five-year plan) — Born out of insecurity from U.S. actions (Huawei, ZTE, trade war), but evolving to more confident use of export controls.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s best choke points — Are precisely those things that aren&#x27;t worth much from an overall developmental perspective.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s export controls on rare earths — Did not backfire in terms of provoking a massive industrial policy response in the West, due to limited Western industrial policy capacity.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">VIEW</span><span class="what">Companies cannot replicate critical mineral production chains — Without state support, even the biggest companies find it not economically viable.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">VIEW</span><span class="what">U.S. industrial policy — Able to focus on a couple of things (e.g., rare earths), but struggles to erode leverage in other critical minerals or future intermediate goods.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">U.S. institutional/legal bias — Towards executive-level discretion for banning (export controls, ICTS rule, FCC actions), not fiscal empowerment of industrial policy.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">U.S. industrial policy on critical minerals — Mostly running through executive discretion (Defense, Energy), no sweeping congressional legislation or comprehensive plan with significant funding.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">U.S. is not disposed to industrial policy with real fiscal outlays — Except for rare exceptions like IRA or CHIPS.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">VIEW</span><span class="what">More productive for battery industry development — Supporting demand for batteries (EV policy) rather than just feedstock supply.</span></div><div class="ivrow"><span class="who">Dinny McMahon</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s overreach — More at the macro level, specifically its full-throated defense of its trade surplus and the current trade regime, which may undermine the system&#x27;s sustainability.</span></div><div class="ivrow"><span class="who">Andrew Polk</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s current approach — Weaponizing its surplus by deluging economies with goods, except for high-value or military-application items where it&#x27;s dominant and restricts sales.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s power — Is on the producer side, not the demand side.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s diplomatic overreach (e.g., denying overcapacity, IMF exchange rate claims) — Enables an environment for serious discussion in Brussels but doesn&#x27;t necessarily trigger specific policy responses due to high threshold for meaningful action.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">VIEW</span><span class="what">Beijing&#x27;s objective — To hit a &quot;sweet spot&quot; where dynamics are uncomfortable for other countries but not so extreme as to spur major pushback.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s rare earth export controls — Caused more fear in Europe than intended, leading to calibration (whitelisting, green channels) to maintain the &quot;awkward but not major action&quot; sweet spot.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">VIEW</span><span class="what">Chinese bureaucrats&#x27; understanding of supply chain/industrial security — Much deeper than in the U.S., but diplomatic capabilities are not comparable.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s view of Japan rare earth cutoff — As a bilateral issue, but it&#x27;s not bilateral to the rest of the world.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">Upcoming coercive choke points — Related to batteries, super hard materials, power electronics, chemical intermediaries (e.g., fluorine chemicals), and pharmaceutical starting materials.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">PREDICTION</span><span class="what">Chemicals or certain materials — Likely obvious future choke points due to their upstream nature.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">Pharmaceutical APIs as a weapon — Technically possible but politically suboptimal due to reputational risk of &quot;killing people.&quot;</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">PREDICTION</span><span class="what">Most approximate risks for export controls — Expansion of existing controls further down the production chain for materials like super hard materials (tungsten carbide, carbon boron nitride, diamond windows) and certain types of silicon carbide.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">VIEW</span><span class="what">Lithium export ban by China — Very difficult and risky due to upstream dependence on Latin America and Australia.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">VIEW</span><span class="what">Cathode active materials (CAM) and precursor cathode active materials (PCAM) — China has a lot of control over these markets and could &quot;mess with&quot; them.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">Threshold for China&#x27;s economic coercion measures — Falling, with China responding tit-for-tat to U.S./European actions with parallel legal architecture.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">China&#x27;s goal with tit-for-tat responses — To signal that for everything the West does, China has a response, which is becoming more powerful.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">Geopolitical implication — China is teaching the West that it doesn&#x27;t have unilateral freedom of action in imposing offensive measures on China.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">New equilibrium — Like an arms race where both sides have demonstrated weapons, potentially stabilizing but with risk of misreading each other.</span></div><div class="ivrow"><span class="who">Gerard DePippa</span><span class="tag dir-other">VIEW</span><span class="what">U.S. policy going forward — Has to be more careful, rely less on export controls/tariffs, and more on domestic industrial policy, which is not the West&#x27;s comparative advantage, tilting the field towards China.</span></div><div class="ivrow"><span class="who">Andrew Polk</span><span class="tag dir-other">VIEW</span><span class="what">U.S. approach to China — Should focus on competing by investing at home and building world-leading companies and supply chains, rather than solely complaining or trying to hold China back.</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Gerard DePippa: China&#x27;s coercive leverage is growing in ways that Western governments are not planning for, particularly in intermediate goods, which could disrupt target economies.</li><li>Corey Combs: The cost of imposing export controls on high-value intermediate goods like batteries is significantly higher for China ($60 billion in exports) compared to rare earths ($1-2 billion industry), making broad restrictions less likely for the former.</li><li>Gerard DePippa: Western industrial policy is reactive and less intricate than China&#x27;s, making it difficult to front-run Chinese choke point development, especially for lower-value-added intermediate goods.</li><li>Dinny McMahon: China&#x27;s aggressive expansion into intermediate goods poses a risk of &quot;hollowing out&quot; industries in developed economies, leading to increased dependency.</li><li>Gerard DePippa: The U.S. institutional and legal bias favors executive-level discretion for banning actions over fiscal empowerment of industrial policy, limiting its ability to fund comprehensive responses to supply chain vulnerabilities.</li><li>Gerard DePippa: China&#x27;s tit-for-tat responses to Western actions are creating a new equilibrium where both sides have demonstrated weapons, implying that Western policy needs to be more cautious and rely less on export controls.</li></ul></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">China&#x27;s economic coercion playbook is expanding beyond critical minerals to intermediate goods, creating new, less visible choke points that Western industrial policy is ill-equipped to counter, necessitating a shift towards proactive domestic investment rather than reactive controls.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-14.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-14.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">China&#x27;s economic coercion playbook is expanding beyond critical minerals to intermediate goods, creating new, less visible choke points that Western industrial policy is ill-equipped to counter, necessitating a shift towards proactive domestic investment rather than reactive controls.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-14.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-14.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -246,5 +316,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

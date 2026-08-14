@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-08.html">8 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Saxo Market Call</span><span class="pill">8 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Coordinated JPY intervention and a cleaner AI hardware slate</h1><div class="meta">Host: John J. Hardy · Solo episode · <a href="https://mcdn.podbean.com/mf/web/hiv2wdab2p9i77b3/2026_08_03_SaxoMarketCall.mp3" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>John J. Hardy discusses the coordinated JPY intervention by Japan&#x27;s Ministry of Finance and US authorities, noting the US sold EUR/JPY to avoid broad dollar statements. He also covers the impact of the Leopold Ashenbrenner hedge fund blow-up and its transfer to Citadel, suggesting a potential &quot;clearing of the boards&quot; for AI hardware stocks. Hardy highlights upcoming earnings reports and the ongoing debate around AI&#x27;s impact on economic growth and labor.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-08/saxo-market-call-coordinated-jpy-interve.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-08.html">8 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Saxo Market Call</span><span class="pill">8 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Coordinated JPY intervention and a cleaner AI hardware slate</h1><div class="meta">Host: John J. Hardy · Solo episode · <a href="https://mcdn.podbean.com/mf/web/hiv2wdab2p9i77b3/2026_08_03_SaxoMarketCall.mp3" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>John J. Hardy discusses the coordinated JPY intervention by Japan&#x27;s Ministry of Finance and US authorities, noting the US sold EUR/JPY to avoid broad dollar statements. He also covers the impact of the Leopold Ashenbrenner hedge fund blow-up and its transfer to Citadel, suggesting a potential &quot;clearing of the boards&quot; for AI hardware stocks. Hardy highlights upcoming earnings reports and the ongoing debate around AI&#x27;s impact on economic growth and labor.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Coordinated JPY Intervention: John J. Hardy notes that Japan&#x27;s Ministry of Finance intervened in JPY, confirmed to be coordinated with US authorities, who sold EUR/JPY. This action aims to support the yen without making a broad statement on the dollar&#x27;s valuation, with US Treasury Secretary Besant confirming Japan&#x27;s access to a repo facility to avoid dumping US treasuries.</li><li>AI Hardware Market Reset: John J. Hardy discusses the blow-up of Leopold Ashenbrenner&#x27;s &quot;situational awareness&quot; hedge fund and the transfer of its portfolio to Citadel, suggesting this event could be a &quot;clearing of the boards&quot; for the AI hardware space after significant volatility and leveraged positions in Korean memory names.</li><li>AI&#x27;s Economic Impact Debate: John J. Hardy contrasts the &quot;endless growth&quot; paradigm of AI super-intelligence, as espoused by Ashenbrenner, with Cory Doctorow&#x27;s &quot;reverse centaur framework,&quot; which posits AI could be used to concentrate power, de-skill labor, and cut wages, rather than enhance productivity.</li><li>US Dollar and Treasury Yields: John J. Hardy observes that US treasury yields are at &quot;touchy area&quot; cycle highs, and the US intervention strategy (selling EUR/JPY) was designed to avoid further pressure on US treasuries. He notes a &quot;bit of a positioning concern&quot; with a significant dollar long in the market.</li><li>Upcoming Earnings and Macro Data: John J. Hardy highlights key earnings reports this week, including Palantir (Monday), AMD (Tuesday), and Western Digital/SanDisk (Wednesday), which will provide insights into the AI hardware space. He also points to key US macro calendar data as important for market direction.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">John J. Hardy – &quot;So do we have sort of a clearing of the boards here, a cleaning of the slate, and the market can get back to, you know, wherever we are now after this traumatic deleveraging?&quot;</blockquote><blockquote class="q">John J. Hardy – &quot;I still think this is massively overvalued in the bigger picture. You could take the U.S. signal by having intervened there as one way to support that notion.&quot;</blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">EUR/JPY — US intervention by selling EUR/JPY signals support for JPY without making a broad statement on the dollar.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">JPY — &quot;massively overvalued in the bigger picture.&quot;</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">PREDICTION</span><span class="what">JPY — &quot;something like 155 to 160 would look more reasonable.&quot;</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">USD/JPY short — more expensive from a carry point of view than EUR/JPY short.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">EUR/JPY short — cheaper from a carry point of view than USD/JPY short.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">CHF/JPY short — &quot;entirely lacking the carry problem&quot; compared to other yen shorts.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">JPY — &quot;how much is it really isolated into the Japanese yen?&quot;</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">US Dollar — &quot;I don&#x27;t have a strong conviction on the direction of the broader U.S. dollar here.&quot;</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">US Dollar — &quot;quite a bit of a dollar long out there.&quot;</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">Palantir (PLTR) — &quot;really key report for them today.&quot;</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">AMD (AMD) — reporting Tuesday.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">Western Digital (WDC) and SanDisk — reporting Wednesday.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-watching">WATCHING</span><span class="what">SpaceX — reporting after the close tomorrow.</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">NVIDIA CDS prices — doubled from ~40 in June to over 80 recently, &quot;still quite low odds of a default.&quot;</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">US Treasury yields — &quot;at a touchy area about trading at cycle highs when you look at the sort of 10-year and beyond yield levels.&quot;</span></div><div class="ivrow"><span class="who">John J. Hardy</span><span class="tag dir-other">VIEW</span><span class="what">Lacy Hunt — &quot;finally thrown in the towel and sees that we are headed towards inflation now.&quot;</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>John J. Hardy views the coordinated JPY intervention as a significant macro event, with the US selling EUR/JPY to support the yen without broadly weakening the dollar.</li><li>John J. Hardy suggests the blow-up of the Leopold Ashenbrenner hedge fund and its transfer to Citadel could &quot;clear the boards&quot; for the AI hardware sector, potentially reducing volatility.</li><li>John J. Hardy believes the JPY is &quot;massively overvalued&quot; and that a level of &quot;155 to 160 would look more reasonable&quot; against other currencies.</li><li>John J. Hardy notes that shorting CHF/JPY offers a carry advantage compared to shorting USD/JPY or EUR/JPY.</li><li>John J. Hardy highlights upcoming earnings from Palantir, AMD, Western Digital, SanDisk, and SpaceX as key drivers for the AI and tech sectors.</li><li>John J. Hardy points to rising NVIDIA CDS prices as an indicator to track, despite still low default odds.</li><li>John J. Hardy observes US Treasury yields are at &quot;cycle highs,&quot; making the US intervention strategy (avoiding direct dollar sales) important.</li><li>John J. Hardy notes a significant &quot;dollar long&quot; positioning in the market, which could influence its direction.</li><li>John J. Hardy highlights Lacy Hunt&#x27;s shift to an inflationary view as a notable change from his long-standing disinflationary stance.</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>JPY, EUR, USD, CHF, JGBs, NVIDIA, PLTR, AMD, WDC, SanDisk, S&amp;P 500, NASDAQ 100, Russell 2000, Amazon</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">Coordinated JPY intervention and the deleveraging of a major AI-focused hedge fund are creating significant volatility and potential resets in FX and AI hardware markets, warranting close attention to yen crosses, upcoming tech earnings, and US macro data.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-08.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-08.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">Coordinated JPY intervention and the deleveraging of a major AI-focused hedge fund are creating significant volatility and potential resets in FX and AI hardware markets, warranting close attention to yen crosses, upcoming tech earnings, and US macro data.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-08.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-08.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

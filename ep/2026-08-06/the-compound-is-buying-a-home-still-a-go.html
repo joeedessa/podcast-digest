@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-06.html">6 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">The Compound</span><span class="pill">6 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Is Buying a Home Still a Good Investment</h1><div class="meta">Host: Ben Carlson, Duncan Hill · Guest: Jack Reins, Author of Young Money: A Field Guide to Wealth and Purpose in Your 20s · <a href="https://www.youtube.com/watch?v=PEkWpDY1zxE" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This episode of Ask the Compound features Ben Carlson and Duncan Hill interviewing Jack Reins, author of &quot;Young Money.&quot; The discussion focuses on financial and career advice for young people, particularly those in their 20s, addressing topics such as early career spending, homeownership in high-cost-of-living cities, the impact of AI on career paths, and the risks of using margin in investing. Reins shares personal anecdotes and practical advice, emphasizing flexibility, continuous learning, and understanding the fundamental building blocks of one&#x27;s profession.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-06/the-compound-is-buying-a-home-still-a-go.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-06.html">6 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">The Compound</span><span class="pill">6 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Is Buying a Home Still a Good Investment</h1><div class="meta">Host: Ben Carlson, Duncan Hill · Guest: Jack Reins, Author of Young Money: A Field Guide to Wealth and Purpose in Your 20s · <a href="https://www.youtube.com/watch?v=PEkWpDY1zxE" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This episode of Ask the Compound features Ben Carlson and Duncan Hill interviewing Jack Reins, author of &quot;Young Money.&quot; The discussion focuses on financial and career advice for young people, particularly those in their 20s, addressing topics such as early career spending, homeownership in high-cost-of-living cities, the impact of AI on career paths, and the risks of using margin in investing. Reins shares personal anecdotes and practical advice, emphasizing flexibility, continuous learning, and understanding the fundamental building blocks of one&#x27;s profession.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Jack Reins advises his younger self to have sold all SPACs in February 2021 after being up 6,000% and turning $6,000 into $400,000 in his Roth, instead of continuing to trade and blowing half of it.</li><li>Reins suggests that young people in their early to mid-20s, especially those on high-slope career paths in high-cost-of-living cities, can afford to spend a little more on experiences with people they care about, rather than solely focusing on maxing out retirement savings, provided they don&#x27;t have high-interest debt.</li><li>Ben Carlson recommends that young people not feel guilty about investing small amounts, even $10 a week, to build a habit and do enough to get their 401k match, then have fun with the rest.</li><li>Jack Reins believes that for young people in high-cost-of-living cities who do not plan to raise children there, it is acceptable to rent and not stress about homeownership, maintaining flexibility to move later.</li><li>Regarding AI, Jack Reins advises young people to learn the fundamental building blocks of their field manually before layering AI on top, and to also tinker with AI coding tools for data collection and synthesis.</li><li>Ben Carlson emphasizes that people skills, such as selling, effective communication, creativity, and providing context and perspective, will become more important than ever in an AI-driven world.</li><li>Jack Reins, reflecting on his past SPAC trading, cautions against using margin, stating that while it feels good on the way up, investors will eventually get margin called, leading to regret and potential significant losses.</li><li>Ben Carlson and Jack Reins agree that increasing one&#x27;s income and contributions to a portfolio is a more effective way to build wealth over time than using margin, as it compounds and provides more resilience.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"You should sell all the spaxs that you were yoloing in February 2021. When you send your data screenshot of your portfolio that you&#x27;re up 6,000% and you&#x27;ve turned six grand and 400 grand in your Roth, you should just sell and put in the S&amp;P and it&#x27; be a million dollars right now instead of continuing to trade and then blowing half of it."<span class="qw">— Jack Reins</span></blockquote><blockquote class="q">"My my actual take is unless you&#x27;re really really committed to living in like New York, SF, Chicago, whatever your high cost of living city is, if you don&#x27;t want to raise kids there, I actually just don&#x27;t think you should stress too much about whether or not you can afford a home and just like focus on your career, focus on your personal life, and once you get married and you&#x27;re thinking about having kids, you might have spent all of your 20s or early 30s in Manhattan, but then you end up moving to Jersey, Long Island, Connecticut, upstate New York, where it&#x27;s just cheaper."<span class="qw">— Jack Reins</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Sell all SPACs — when portfolio was up 6,000% from $6,000 to $400,000 in Roth in February 2021</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Put money in S&amp;P — after selling SPACs in February 2021</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">It&#x27;s okay to spend a little more than comfortable with at a really young age — if on a career path where income will scale quickly, and not in high-interest debt.</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-other">VIEW</span><span class="what">Travel as much as possible before having kids — (stated 2x)</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-other">VIEW</span><span class="what">Move to a big city when young — (stated 2x)</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-other">VIEW</span><span class="what">Not feel guilty about investing when you don&#x27;t have a lot of money</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-other">VIEW</span><span class="what">Build a habit of investing — by putting $10 a week into the market</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-other">VIEW</span><span class="what">Do enough to get your 401k match</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Keep renting — if in a high-cost-of-living city and do not plan to raise kids there</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Focus on career and personal life — if in a high-cost-of-living city and do not plan to raise kids there</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Broad index ETFs like VOO, SPY — for grandparents funding an UGMA for grandkids</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">S&amp;P ETFs — for most of his money</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-avoid">AVOID</span><span class="what">Triple levered ETFs like TQQQ — outside of specific market conditions (e.g., right before AI boom)</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Figure out the fundamental building blocks of your thing and know how to do those manually — before layering AI on top</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Use AI for data collection and data synthesis</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Go in the office — especially when young, even if remote option is available</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-avoid">AVOID</span><span class="what">Using 5x margin — (stated 2x)</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">It&#x27;s probably good to lose a little bit of money when you&#x27;re like 23 — if using margin in a play account with a couple grand</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-other">VIEW</span><span class="what">Survival is a big key in investing</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Focus on making more money — as the actual way to increase returns over time</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Upskill yourself to 5x your contributions to your portfolio — as a better move than using 5x margin</span></div><div class="ivrow"><span class="who">Jack Reins</span><span class="tag dir-other">VIEW</span><span class="what">Take some of the money ($700,000) and spend 3-4 months learning about other things and experimenting — for a 36-year-old living in a van in the desert</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Jack Reins views broad index ETFs like VOO and SPY as the simplest way to achieve market rate of return.</li><li>Jack Reins believes money will historically compound faster in stocks than other asset classes.</li><li>Ben Carlson notes that people under 40 are the least likely to see a home as a good investment, according to a Pew Research Center study.</li><li>Ben Carlson highlights that stock market ownership by people under 40 is up three times this decade alone, suggesting a trade-off where money saved for a house is going into the stock market.</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>VOO, SPY, QQQ, TQQQ, Tesla, Nikolai Motors, Ford, Lucid, Fisker, Rivian</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">For young investors, prioritize career growth and experiences over early homeownership in high-cost areas, invest consistently in broad market ETFs, and avoid margin, while embracing AI as a tool after mastering fundamental skills.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-06.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-06.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">For young investors, prioritize career growth and experiences over early homeownership in high-cost areas, invest consistently in broad market ETFs, and avoid margin, while embracing AI as a tool after mastering fundamental skills.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-06.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-06.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

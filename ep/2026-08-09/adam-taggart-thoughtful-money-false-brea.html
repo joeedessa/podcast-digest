@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-09.html">9 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Adam Taggart Thoughtful Money</span><span class="pill">9 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">False Breakout Or Is A Wave Of New Market Highs Ahead Michael Lebowitz</h1><div class="meta">Host: Adam Taggart · Guest: Michael Lebowitz, Portfolio Manager, Real Investment Advice · <a href="https://www.youtube.com/watch?v=SLVt0YyQ6UY" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Michael Lebowitz discusses the July payrolls report, noting a &quot;crappy number&quot; with downward revisions and a problematic drop in the unemployment rate due to falling participation. He believes the Fed is unlikely to hike rates given disinflationary pressures, despite bond market concerns. Lebowitz also analyzes the equity market&#x27;s recent breakout, suggesting it could be a false breakout or a return to consolidation, and emphasizes the importance of diversification and rotation analysis in the current volatile market.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-09/adam-taggart-thoughtful-money-false-brea.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-09.html">9 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Adam Taggart Thoughtful Money</span><span class="pill">9 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">False Breakout Or Is A Wave Of New Market Highs Ahead Michael Lebowitz</h1><div class="meta">Host: Adam Taggart · Guest: Michael Lebowitz, Portfolio Manager, Real Investment Advice · <a href="https://www.youtube.com/watch?v=SLVt0YyQ6UY" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Michael Lebowitz discusses the July payrolls report, noting a &quot;crappy number&quot; with downward revisions and a problematic drop in the unemployment rate due to falling participation. He believes the Fed is unlikely to hike rates given disinflationary pressures, despite bond market concerns. Lebowitz also analyzes the equity market&#x27;s recent breakout, suggesting it could be a false breakout or a return to consolidation, and emphasizes the importance of diversification and rotation analysis in the current volatile market.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>The July payrolls report was a &quot;pretty crappy number&quot; with downward revisions, indicating a less robust labor market than perceived, and a problematic drop in the unemployment rate due to falling participation.</li><li>Michael Lebowitz believes the Fed is unlikely to hike rates, especially if upcoming CPI and PPI reports show disinflation, though he acknowledges they might hike to &quot;satisfy the bond market.&quot;</li><li>Lacy Hunt&#x27;s recent shift from deflationary concerns to secular inflation is noted, with Lebowitz working on an analysis of Hunt&#x27;s macroeconomic regime change thesis, questioning the evidence for immediate deglobalization.</li><li>Lebowitz views oil price inflation as &quot;event driven&quot; and potentially transitory, arguing that structural issues might keep prices higher but won&#x27;t necessarily drive continuous inflation if prices stabilize.</li><li>The bond market is experiencing higher yields due to increased supply from government debt and hyperscaler borrowing, but Lebowitz suggests Japan&#x27;s yen intervention is likely using Fed repo facilities rather than selling Treasuries, mitigating direct impact on the US bond market.</li><li>Real yields are &quot;very high,&quot; with 30-year TIPS offering a 3% real yield, making them attractive compared to equity expected returns, and suggesting bond yields are stretched versus fundamental anchors.</li><li>The correlation between bonds and oil is at a multi-year high, and Lebowitz expects bond yields to reassert themselves once oil market volatility calms down.</li><li>Crowding out from corporate bond issuance may abate as high yields make equity issuance or reduced spending more attractive for companies like Google, Microsoft, and Meta.</li><li>The equity market recently broke out of a 2-3 month consolidation, with improved market breadth and a MACD buy signal, but the RSI is becoming overbought, suggesting a potential mean reversion.</li><li>The &quot;situational awareness fund&quot; collapse, leveraged 4:1 in AI tech stocks, highlights the perennial lessons that &quot;leverage kills&quot; and &quot;the market knows more than you.&quot;</li><li>Call option volume is &quot;off the charts,&quot; yet implied volatility is falling, indicating the options market is increasingly &quot;the tail wagging the dog&quot; and contributing to market volatility.</li><li>Rotation analysis, particularly using Simplevisor.ai, has been effective this year in identifying opportunities between growth and value sectors, with RAA actively rebalancing portfolios based on these insights.</li><li>Precious metals have seen a strong rally, driven by the market&#x27;s perception of lower real yields if the Fed doesn&#x27;t hike, with gold and silver breaking out of downward trends.</li><li>Adam Taggart emphasizes the importance of disconnecting from digital demands and reconnecting with nature and real-world relationships for mental well-being and proactive thinking.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"It&#x27;s a pretty crappy number and and it&#x27;s not necessarily bad. It&#x27;s just the labor there&#x27;s there&#x27;s nothing happening in the labor market and that&#x27;s not good considering that more people in theory because the participation rate fell but more people in theory are entering the workforce every day."<span class="qw">— Michael Lebowitz</span></blockquote><blockquote class="q">"Leverage kills. You know, it&#x27;s I know everyone wants to use leverage. It just boosts your return. But time and time again, leverage is great until it&#x27;s not great."<span class="qw">— Michael Lebowitz</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Michael Lebowitz</span><span class="tag dir-other">PREDICTION</span><span class="what">Fed will not hike rates in September — if CPI/PPI come in at +0.1% or lower</span></div><div class="ivrow"><span class="who">Michael Lebowitz</span><span class="tag dir-other">VIEW</span><span class="what">Oil price inflation — will lessen significantly once the Iran conflict is behind us</span></div><div class="ivrow"><span class="who">Michael Lebowitz</span><span class="tag dir-other">VIEW</span><span class="what">Real yields — are very high, with 30-year TIPS at 3% real yield</span></div><div class="ivrow"><span class="who">Michael Lebowitz</span><span class="tag dir-other">VIEW</span><span class="what">Bond yields — will decline durably when sentiment changes and oil prices calm down</span></div><div class="ivrow"><span class="who">Michael Lebowitz</span><span class="tag dir-other">VIEW</span><span class="what">Crowding out from corporate debt issuance — may lessen as companies turn to equity or reduce spending due to high yields</span></div><div class="ivrow"><span class="who">Michael Lebowitz</span><span class="tag dir-other">VIEW</span><span class="what">S&amp;P 500 — may fall a little more to test the old resistance line, then either rally or return to consolidation (false breakout)</span></div><div class="ivrow"><span class="who">Michael Lebowitz</span><span class="tag dir-other">VIEW</span><span class="what">Realized volatility vs. implied volatility — jump in realized volatility while implied volatility has fallen is a warning sign</span></div><div class="ivrow"><span class="who">Michael Lebowitz</span><span class="tag dir-other">VIEW</span><span class="what">Options market — is increasingly &quot;the tail wagging the dog&quot;</span></div><div class="ivrow"><span class="who">Michael Lebowitz</span><span class="tag dir-other">VIEW</span><span class="what">Diversification — is important in the current volatile market</span></div><div class="ivrow"><span class="who">Michael Lebowitz</span><span class="tag dir-other">VIEW</span><span class="what">Rotation analysis — is working &quot;really well&quot; in the current market</span></div><div class="ivrow"><span class="who">Michael Lebowitz</span><span class="tag dir-other">REBALANCE</span><span class="what">Thematic portfolios — rebalanced this morning to bring weights back to target</span></div><div class="ivrow"><span class="who">Michael Lebowitz</span><span class="tag dir-watching">WATCHING</span><span class="what">Core models (Equity and Sector) — may rebalance next week due to stretched positions (e.g., Microsoft from 4.5% to 6%)</span></div><div class="ivrow"><span class="who">Michael Lebowitz</span><span class="tag dir-other">VIEW</span><span class="what">Precious metals (gold, silver, GDX) — have broken out of downward trends, driven by lower real yields</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Michael Lebowitz: The labor market is &quot;meh&quot; and has been for the better part of the last year, with wage growth steadily declining, posing a problem for personal consumption.</li><li>Michael Lebowitz: Disinflationary pressures (negative CPI/PPI last report) suggest the Fed is less likely to hike rates, despite some market expectations.</li><li>Michael Lebowitz: Real yields are historically high, making 30-year TIPS attractive with a 3% real yield, especially compared to flat to negative real equity returns.</li><li>Michael Lebowitz: The bond market&#x27;s current upward yield pressure is driven by concerns over deficits and extra supply, rather than inflation expectations, which have remained flat.</li><li>Michael Lebowitz: The equity market&#x27;s recent breakout from consolidation is positive, but the overbought RSI suggests potential mean reversion.</li><li>Michael Lebowitz: The collapse of a highly leveraged AI tech fund underscores the risks of leverage and the market&#x27;s ability to signal underlying issues before they are widely understood.</li><li>Michael Lebowitz: Increased call option volume coupled with falling implied volatility indicates the options market&#x27;s growing influence on overall market volatility.</li><li>Michael Lebowitz: Active rotation analysis between growth and value sectors is crucial in the current market, as capital sloshes between different style factors.</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>VTV, MGK, GDX, GLD, S&amp;P 500, Micron, SanDisk, AMD, Intel, Microsoft, Apple, Google, Meta, Amazon, Broadcom, Coca-Cola, XLK</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">In a market characterized by underlying volatility and sector rotations, investors should prioritize diversification, utilize rotation analysis tools, and be mindful of high real yields in bonds and the risks of leverage.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-09.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-09.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">In a market characterized by underlying volatility and sector rotations, investors should prioritize diversification, utilize rotation analysis tools, and be mindful of high real yields in bonds and the risks of leverage.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-09.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-09.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

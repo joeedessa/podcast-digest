@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-06.html">6 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">The Compound</span><span class="pill">6 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">When Genius Failed Again Animal Spirits 476</h1><div class="meta">Host: Michael Batnick, Ben Carlson · Solo episode · <a href="https://www.youtube.com/watch?v=BeG1DECnFXE" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Michael Batnick and Ben Carlson discuss the recent market volatility, including the blowup of Leopold Aschenbrenner&#x27;s hedge fund, Situational Awareness, and its impact on semiconductor stocks. They analyze the resilience of the broader market despite these events and persistent macro concerns, with Ben Carlson highlighting the &quot;behavior gap&quot; in retail investing and Michael Batnick questioning the Fed&#x27;s influence outside of crises. The hosts also touch on the ongoing bull market in nostalgia and the societal implications of AI.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-06/the-compound-when-genius-failed-again-an.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-06.html">6 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">The Compound</span><span class="pill">6 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">When Genius Failed Again Animal Spirits 476</h1><div class="meta">Host: Michael Batnick, Ben Carlson · Solo episode · <a href="https://www.youtube.com/watch?v=BeG1DECnFXE" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Michael Batnick and Ben Carlson discuss the recent market volatility, including the blowup of Leopold Aschenbrenner&#x27;s hedge fund, Situational Awareness, and its impact on semiconductor stocks. They analyze the resilience of the broader market despite these events and persistent macro concerns, with Ben Carlson highlighting the &quot;behavior gap&quot; in retail investing and Michael Batnick questioning the Fed&#x27;s influence outside of crises. The hosts also touch on the ongoing bull market in nostalgia and the societal implications of AI.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Michael Batnick and Ben Carlson discuss the hedge fund Situational Awareness, run by Leopold Aschenbrenner, which blew up due to excessive leverage despite correctly identifying the AI boom. They note the fund&#x27;s assets surged from $9.3 billion in March 2026 to $45 billion by July 2026 before its public levered book was sold to Citadel at a 10% discount.</li><li>Ben Carlson highlights the &quot;behavior gap&quot; in retail investing, citing the DRAM ETF, which saw $26 billion in net inflows but resulted in investors losing $1.6 billion on average because they invested after significant gains and before a crash.</li><li>Michael Batnick argues that the Fed&#x27;s influence is often overstated, stating, &quot;I think it&#x27;s basically astrology for middle-aged men that talk about the Fed&#x27;s forecasts. I think the Fed really honestly besides in a crisis doesn&#x27;t do much.&quot; He believes the Fed only truly matters as a lender of last resort during crises.</li><li>The hosts observe that despite two wars, gas price spikes, sticky inflation, rising long bond yields, hedge fund blowups, and crashes in software and semiconductors, the S&amp;P 500 is at all-time highs, indicating the market&#x27;s resilience.</li><li>Ben Carlson notes the increasing weight of technology equities in the market, now above tech bubble levels, but argues this is logical given technology&#x27;s growing role in the economy and the superior quality of current tech companies compared to past bubbles.</li><li>Michael Batnick points out that &quot;degenerate behavior&quot; in the market, such as meme stock speculation and leveraged semiconductor trades, is being punished, while the &quot;legitimate bull market is reaching new all-time highs.&quot;</li><li>The discussion covers the collapse of the South Korean KOSPI index, which dropped 40% in five weeks due to semiconductor-related liquidations, affecting 3.5% of the population with margin calls, while foreign investors bought the dip.</li><li>Michael Batnick and Ben Carlson discuss the &quot;bull market in nostalgia,&quot; citing Google Trends data for live events, vinyl, boomboxes, and 1990s culture, and the success of movies like &quot;The Odyssey&quot; and the potential for a &quot;Home Alone&quot; reboot with Macaulay Culkin.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"I think it&#x27;s basically astrology for middle-aged men that talk about the Fed&#x27;s forecasts. I think the Fed really honestly besides in a crisis doesn&#x27;t do much."<span class="qw">— Michael Batnick</span></blockquote><blockquote class="q">"The market is like an ocean and eventually washes everybody away."<span class="qw">— Ben Carlson</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Michael Batnick</span><span class="tag dir-other">VIEW</span><span class="what">stock market — &quot;not worried&quot; despite rising bond yields and government debt crises, as corporations are still making money.</span></div><div class="ivrow"><span class="who">Michael Batnick</span><span class="tag dir-other">VIEW</span><span class="what">Fed&#x27;s influence — &quot;only matters like 5% of the time&quot; during crises as a lender of last resort; otherwise, &quot;basically astrology for middle-aged men.&quot;</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-other">VIEW</span><span class="what">60/40 portfolio — &quot;not going to die&quot; as diversification works, citing strong returns (12-14% per year) over the last 3 years despite bonds &quot;stunk.&quot;</span></div><div class="ivrow"><span class="who">Michael Batnick</span><span class="tag dir-other">VIEW</span><span class="what">Bitcoin — &quot;feels dead&quot; but &quot;bought a little bit yesterday.&quot;</span></div><div class="ivrow"><span class="who">Michael Batnick</span><span class="tag dir-other">VIEW</span><span class="what">GLP-1 sales — Morgan Stanley raised 2035 prediction from $150 billion to $190 billion, with 30% penetration among obese Americans.</span></div><div class="ivrow"><span class="who">Michael Batnick</span><span class="tag dir-other">VIEW</span><span class="what">taking GLP-1s — &quot;I want to micro dose.&quot;</span></div><div class="ivrow"><span class="who">Michael Batnick</span><span class="tag dir-other">VIEW</span><span class="what">economy — &quot;not fake&quot; despite social media narratives; evidence includes full planes, restaurants, and theme parks.</span></div><div class="ivrow"><span class="who">Michael Batnick</span><span class="tag dir-other">VIEW</span><span class="what">movies — &quot;Spider-Man is the biggest movie ever&quot; is a negative sign for cinema, as it&#x27;s the 11th iteration.</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-other">VIEW</span><span class="what">&quot;The Odyssey&quot; movie — &quot;all-timer&quot; with a &quot;mind blown&quot; experience, especially the Trojan horse scene.</span></div><div class="ivrow"><span class="who">Michael Batnick</span><span class="tag dir-other">VIEW</span><span class="what">&quot;Shrinking&quot; Season 2 and 3 — &quot;absolutely loved it,&quot; improved significantly from Season 1.</span></div><div class="ivrow"><span class="who">Michael Batnick</span><span class="tag dir-other">VIEW</span><span class="what">&quot;Masters of the Universe&quot; — &quot;great kids movie.&quot;</span></div><div class="ivrow"><span class="who">Michael Batnick</span><span class="tag dir-other">VIEW</span><span class="what">&quot;House of the Dragon&quot; Season 2 — &quot;tailed off a little this season.&quot;</span></div><div class="ivrow"><span class="who">Michael Batnick</span><span class="tag dir-other">VIEW</span><span class="what">&quot;Home Alone&quot; reboot with Macaulay Culkin — &quot;it&#x27;s going to do $2 billion. It&#x27;s going to be that could be the biggest movie of all time.&quot;</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-other">VIEW</span><span class="what">&quot;Home Alone&quot; reboot with Macaulay Culkin — &quot;not going to be any good, but I&#x27;ll watch it.&quot;</span></div><div class="ivrow"><span class="who">Michael Batnick</span><span class="tag dir-other">VIEW</span><span class="what">&quot;Thomas Crown Affair&quot; reboot with Michael B. Jordan — &quot;I&#x27;ll be around for that.&quot;</span></div><div class="ivrow"><span class="who">Ben Carlson</span><span class="tag dir-other">VIEW</span><span class="what">&quot;Clueless&quot; sequel series — &quot;No one wants that.&quot;</span></div><div class="ivrow"><span class="who">Michael Batnick</span><span class="tag dir-other">VIEW</span><span class="what">&quot;Hitch&quot; movie — &quot;I love Hitch.&quot;</span></div><div class="ivrow"><span class="who">Michael Batnick</span><span class="tag dir-other">PREDICTION</span><span class="what">&quot;Sometime in the next 30 years we&#x27;ll have a recession again.&quot;</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Michael Batnick: The stock market&#x27;s resilience to various macro headwinds (wars, inflation, rising yields, hedge fund blowups) suggests that corporate earnings remain strong, making him less concerned about these risks.</li><li>Ben Carlson: The increasing weight of technology equities in the S&amp;P 500 is a natural evolution, not a bubble indicator, given the fundamental strength and innovation of current tech companies.</li><li>Ben Carlson: The 60/40 portfolio remains effective for diversification, delivering strong returns even when one component (bonds) underperforms, as stocks have compensated.</li><li>Ben Carlson: Retail investor behavior, particularly late inflows into high-performing ETFs like DRAM, often leads to underperformance for the average dollar invested, highlighting the &quot;behavior gap.&quot;</li><li>Michael Batnick: The punishment of speculative &quot;degenerate behavior&quot; (meme stocks, leveraged trades) while the broader market reaches new highs is a healthy sign for the bull market.</li><li>Michael Batnick: The Fed&#x27;s impact on markets is often overemphasized; its primary utility is during crises as a lender of last resort, with its forecasts often being inaccurate.</li><li>Michael Batnick: Bitcoin&#x27;s lack of participation in the recent software stock bounce suggests it&#x27;s being treated as a software stock but is currently &quot;dead money&quot; with &quot;apathy&quot; from investors.</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>Apple, Amazon, Microsoft, Facebook, Adobe, SanDisk, Palantir, Anthropic, GameStop, AMC, DRAM ETF, SMH, Bitcoin, Ethereum, GLP-1s, UBS, Blue Owl, TWWG Global, Guggenheim Investments, Truth Social, Trump Media and Technology Group</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">Despite significant market volatility and macro concerns, the broader stock market remains resilient, punishing speculative behavior while legitimate growth continues, though retail investors often miss out on gains due to poor timing.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-06.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-06.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">Despite significant market volatility and macro concerns, the broader stock market remains resilient, punishing speculative behavior while legitimate growth continues, though retail investors often miss out on gains due to poor timing.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-06.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-06.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

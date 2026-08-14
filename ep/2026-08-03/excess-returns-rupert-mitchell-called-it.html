@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-03.html">3 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Excess Returns</span><span class="pill">3 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Rupert Mitchell Called It the Worst Chart Imaginable Then He Bought It Inside Hi</h1><div class="meta">Host: Jack Forehand, Justin Carbonneau · Guest: Rupert Mitchell, Blind Squirrel Macro · <a href="https://www.youtube.com/watch?v=4Ow-sQzII_Q" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Rupert Mitchell discusses his &quot;Bushy&#x27;s&quot; portfolio, designed as an antidote to the 60-40, which has outperformed the S&amp;P with less than 50% of the volatility since the beginning of last year. He outlines his current positioning, including an underweight in U.S. equities, a long RSP/short QQQ pair trade, and significant allocations to energy equities, physical commodities, and precious metals. Mitchell also highlights investment opportunities in UK small and mid-caps and the emerging market of Uzbekistan, while expressing caution about overall market risk.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-03/excess-returns-rupert-mitchell-called-it.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-03.html">3 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Excess Returns</span><span class="pill">3 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Rupert Mitchell Called It the Worst Chart Imaginable Then He Bought It Inside Hi</h1><div class="meta">Host: Jack Forehand, Justin Carbonneau · Guest: Rupert Mitchell, Blind Squirrel Macro · <a href="https://www.youtube.com/watch?v=4Ow-sQzII_Q" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Rupert Mitchell discusses his &quot;Bushy&#x27;s&quot; portfolio, designed as an antidote to the 60-40, which has outperformed the S&amp;P with less than 50% of the volatility since the beginning of last year. He outlines his current positioning, including an underweight in U.S. equities, a long RSP/short QQQ pair trade, and significant allocations to energy equities, physical commodities, and precious metals. Mitchell also highlights investment opportunities in UK small and mid-caps and the emerging market of Uzbekistan, while expressing caution about overall market risk.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Rupert Mitchell&#x27;s &quot;Bushy&#x27;s&quot; portfolio aims to outperform the 60-40 with less than 50% volatility, and as of late July, it has achieved this since the beginning of last year. The portfolio has undergone significant changes, including reallocating from 35-40% cash and hedges in March/April to current positions in energy equities, physical commodities (crude, wheat, cotton), and precious metals (gold, platinum, palladium).</li><li>Mitchell is underweight U.S. equities due to concerns about increased equity issuance, which he believes could remove the de-equitization effect that has supported U.S. equities for the past 10-15 years. He specifically highlights the &quot;Chart of Truth&quot; (S&amp;P vs. rest of world) and the potential for a massive tailwind to turn into a huge headwind if buybacks and 401k flows diminish and AI impacts employment.</li><li>Mitchell identifies the &quot;China collar&quot; as a key factor in energy markets, where China&#x27;s strategic crude storage effectively puts a floor on crude prices around the high $60s a barrel but also limits upside spikes to triple digits from being sustained. This creates a &quot;very friendly environment for energy equities&quot; by underwriting capital expenditure and removing the risk of $30-$40 a barrel crude.</li><li>Mitchell sees compelling opportunities in UK equities, which are universally disliked and trading at a wider discount to US equities than at any point since the 1970s. He favors UK investment trusts focused on small and mid-caps, noting that these companies are battle-hardened, sitting on 40% net cash, and are subject to significant M&amp;A activity.</li><li>Mitchell is excited about Uzbekistan as a rare frontier market opportunity, accessible via GDRs in the Uzbek National Privatization Fund (UZNIF) trading on London. He describes it as a &quot;set and forget&quot; allocation, with the fund units up 30% since their May IPO and still trading at low single-digit earnings multiples for core infrastructure assets.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">None recorded.</blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-long">LONG</span><span class="what">energy equities — in thematic equities basket</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-long">LONG</span><span class="what">physical commodities (crude, wheat, cotton) — crude position is &quot;big position&quot;</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-long">LONG</span><span class="what">precious metals (predominantly gold, some platinum and palladium) — current allocation 6%, 30-40% shy of target</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-other">PREDICTION</span><span class="what">oil price higher by year-end</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-other">PREDICTION</span><span class="what">more pain in precious metal complex if unpriced hike occurs tomorrow, then &quot;quite close to being able to strap it back on again&quot;</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-reduce">UNDERWEIGHT</span><span class="what">U.S. equities generally</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-long">LONG</span><span class="what">S&amp;P equal weight (RSP ETF) — versus NASDAQ 100 (QQQ)</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-short">SHORT</span><span class="what">NASDAQ 100 (QQQ) — versus S&amp;P equal weight (RSP ETF)</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-long">LONG</span><span class="what">global super majors (energy)</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-reduce">REDUCE</span><span class="what">some refiners (energy) — this week, expects to return to full size</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-long">LONG</span><span class="what">Canadian E&amp;Ps (energy) — particularly those with long reserve lives</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-long">LONG</span><span class="what">UK investment trusts (London-listed closed-end funds) — actively managed portfolios of UK small and mid-caps</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-long">LONG</span><span class="what">GDRs in the Uzbek National Privatization Fund (UZNIF) — averaged into it over the first month post-IPO</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-watching">WATCHING</span><span class="what">Turkish equities — risk-managed against the 200-day moving average on the daily chart</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-other">PREDICTION</span><span class="what">Fed chair doesn&#x27;t have many hikes in him</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-other">PREDICTION</span><span class="what">Fed chair could be in cutting mode quite soon, possibly by late this year</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-long">LONG</span><span class="what">a few vol positions — in hedge book</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-avoid">AVOID</span><span class="what">being locked into a three to five-year view on inflation or disinflation</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Rupert Mitchell believes the &quot;Chart of Truth&quot; (S&amp;P vs. rest of world) has remained flat since November, despite a &quot;punchy dollar&quot; (DXY above 100 and trending stronger) which typically hurts rest-of-world equities.</li><li>Mitchell sees a momentum trade that &quot;sucked all of the oxygen out of the tent&quot; now &quot;rolling over quite painfully.&quot;</li><li>Mitchell is &quot;red teaming my antipathy towards bonds,&quot; noting that long-duration fixed income no longer offers diversification benefits as total returns in stocks and bonds appear positively correlated again.</li><li>Mitchell is concerned about equity issuance, particularly from cap-weighted giants, which he believes could remove the de-equitization effect that has been a linchpin of U.S. equities for the last 10-15 years.</li><li>Mitchell argues that equal-weighted indices generally outperform cap-weighted indices over time, suggesting that individuals should invest in them.</li><li>Mitchell believes China has become a monopsony in energy markets, acting as a &quot;China collar&quot; that puts a floor on crude prices around the high $60s a barrel but also limits sustained triple-digit spikes. This creates a favorable environment for energy equities.</li><li>Mitchell anticipates a future where capital and savings are considered strategic for sovereign nations, leading to increased state capitalism and &quot;mandation&quot; for pension industries to repatriate capital.</li><li>Mitchell believes UK equities are universally disliked and trading at a discount to US equities wider than at any point since the 1970s, presenting an interesting risk-reward setup. He notes a &quot;cover bid&quot; from take-privates preventing a significant further decline.</li><li>Mitchell sees Uzbekistan as a rare opportunity to get in on the ground floor of a frontier market emerging onto the mainstream, with its ambitious privatization scheme and macro normalization.</li><li>Mitchell suggests ignoring inflation noise in Turkey, as the economy and people have learned to operate within these constraints. He views Turkey as a significant middle power with a low reliance on the US consumer (2%) and growing importance as a logistics hub.</li><li>Mitchell expresses nervousness about risk over the summer, citing &quot;an awful lot of dry brush on the forest floor,&quot; &quot;all of this leverage in equities,&quot; &quot;record low dispersion,&quot; and &quot;record low implied correlation in equities,&quot; which could lead to a &quot;rerun of the leverage unwind that we saw two summers ago.&quot;</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>S&amp;P, DXY, RSP, QQQ, Costco, Walmart, FTSE 100, UZNIF</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">Investors should consider diversifying into undervalued international and frontier markets, particularly equal-weighted indices, UK small/mid-caps, and Uzbekistan, while exercising caution on U.S. equities and overall market leverage.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-03.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-03.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">Investors should consider diversifying into undervalued international and frontier markets, particularly equal-weighted indices, UK small/mid-caps, and Uzbekistan, while exercising caution on U.S. equities and overall market leverage.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-03.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-03.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

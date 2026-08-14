@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-05.html">5 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Adam Taggart Thoughtful Money</span><span class="pill">5 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Real Estate To Drop 30 Stocks To Fall 50 Michael Pento</h1><div class="meta">Host: Adam Taggart · Guest: Michael Pento, Founder and CEO of Pento Portfolio Strategies · <a href="https://www.youtube.com/watch?v=EVsopx4mb7Q" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Michael Pento believes the current economic environment, characterized by concurrent equity, credit, and real estate bubbles, is unsustainable. He anticipates a deflationary depression, followed by a period of hyper-stagflation driven by government and central bank responses. Pento advises investors to adopt an active management approach to navigate the extreme volatility and potential &quot;lost decade&quot; for stock investing.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-05/adam-taggart-thoughtful-money-real-estat.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-05.html">5 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Adam Taggart Thoughtful Money</span><span class="pill">5 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Real Estate To Drop 30 Stocks To Fall 50 Michael Pento</h1><div class="meta">Host: Adam Taggart · Guest: Michael Pento, Founder and CEO of Pento Portfolio Strategies · <a href="https://www.youtube.com/watch?v=EVsopx4mb7Q" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Michael Pento believes the current economic environment, characterized by concurrent equity, credit, and real estate bubbles, is unsustainable. He anticipates a deflationary depression, followed by a period of hyper-stagflation driven by government and central bank responses. Pento advises investors to adopt an active management approach to navigate the extreme volatility and potential &quot;lost decade&quot; for stock investing.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Michael Pento&#x27;s proprietary 20-point model currently places the market in &quot;sector three,&quot; a neutral stance, due to compressed and volatile cycles influenced by geopolitical events, particularly the conflict with Iran.</li><li>Pento argues that Federal Reserve Chair Kevin Worsh, despite his stated commitment to reducing inflation to 2%, has overseen a balance sheet expansion of $38 billion since taking office, indicating a form of quantitative easing.</li><li>Pento predicts that the next recession will lead to annual deficits of $6 trillion, which the Fed will be compelled to monetize, resulting in hyper-stagflation and further devastation for the middle and lower classes.</li><li>Pento believes that the bond market is &quot;revolting&quot; against fiscal and monetary profligacy, with 30-year bond yields at their highest since 2007, driven by factors like the crowding out effect from AI and national debt, and the Bank of Japan selling treasuries to support the yen.</li><li>Pento expresses concern about the AI mania, citing the rapid decline in the cost of AI compute and the South Korean stock market&#x27;s 40% drop in a handful of trading days, suggesting that profit forecasts for major AI players may be significantly overvalued.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"I do believe the next iteration is going to be a deflationary depression after how however long this this sojourn into chaos lasts and reflation and disinflation that that carnival ride whenever it ends I think it ends in disinflation then deflation and depression and I said D and I meant it it&#x27;s depression not recession and I and I think I can prove that in this interview."<span class="qw">— Michael Pento</span></blockquote><blockquote class="q">"It&#x27;s the first time in history concurrently you have an equity bubble, a credit bubble and a real estate bubble."<span class="qw">— Michael Pento</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Michael Pento</span><span class="tag dir-other">VIEW</span><span class="what">current portfolio position — &quot;mostly heavy in equal weight S&amp;P 500. I have some inflationary components to the model to to the portfolio. I have some disinflationary no not deflation but disinflationary components. We have some gold. I have some hedges.&quot;</span></div><div class="ivrow"><span class="who">Michael Pento</span><span class="tag dir-other">VIEW</span><span class="what">current portfolio position — &quot;sit in sector three and ride this out. just collecting a lot a ton of dividends with some hedges in the portfolio as well.&quot;</span></div><div class="ivrow"><span class="who">Michael Pento</span><span class="tag dir-other">PREDICTION</span><span class="what">next iteration of the market cycle — &quot;deflationary depression&quot; – after the current &quot;sojourn into chaos lasts and reflation and disinflation&quot;</span></div><div class="ivrow"><span class="who">Michael Pento</span><span class="tag dir-other">PREDICTION</span><span class="what">real estate market correction — &quot;around 30%&quot; – to bring home price to income ratio closer to where it should be.</span></div><div class="ivrow"><span class="who">Michael Pento</span><span class="tag dir-other">PREDICTION</span><span class="what">stock market correction — &quot;north of 50%&quot; – to bring it back to historical metrics.</span></div><div class="ivrow"><span class="who">Michael Pento</span><span class="tag dir-other">PREDICTION</span><span class="what">next recession — &quot;annual deficits go to $6 trillion&quot;</span></div><div class="ivrow"><span class="who">Michael Pento</span><span class="tag dir-other">PREDICTION</span><span class="what">next recession — &quot;another lost decade or perhaps longer&quot; – for stock market returns.</span></div><div class="ivrow"><span class="who">Michael Pento</span><span class="tag dir-other">PREDICTION</span><span class="what">inflation — &quot;higher than it&#x27;s ever been before, higher than 20%&quot; – in the future.</span></div><div class="ivrow"><span class="who">Michael Pento</span><span class="tag dir-other">PREDICTION</span><span class="what">unemployment rate — &quot;well into double digits&quot; – in the future.</span></div><div class="ivrow"><span class="who">Michael Pento</span><span class="tag dir-other">PREDICTION</span><span class="what">future economic environment — &quot;hyper stagflation like we have never seen before&quot; – as a result of fiscal and monetary policy necessitated by asset bubble crashes.</span></div><div class="ivrow"><span class="who">Michael Pento</span><span class="tag dir-other">VIEW</span><span class="what">gold allocation — &quot;not overweight gold because gold does not like rising interest rates and interest rates have been rising especially in real terms.&quot;</span></div><div class="ivrow"><span class="who">Michael Pento</span><span class="tag dir-other">PREDICTION</span><span class="what">gold and miners allocation — &quot;greatly increase looking forward to greatly increasing our allocation to gold and the miners once we start seeing the manifestation of a slowering economy which I think is right on the right on the heels here coming down the pike.&quot;</span></div><div class="ivrow"><span class="who">Michael Pento</span><span class="tag dir-other">VIEW</span><span class="what">near-term market direction — &quot;leaning slightly on the disinflation heading towards deflation and recession path.&quot; – caveat: &quot;if we go all in in Iraq and oil goes, then all bets are off.&quot;</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Michael Pento views the current market as being in &quot;sector three&quot; (stasis) of his model, characterized by neutrality and dividend collection, with hedges.</li><li>Pento predicts a deflationary depression (sector one) as the next major market phase, with real estate dropping 25-30% and stocks falling over 50%.</li><li>Pento expects a subsequent period of &quot;hyper stagflation&quot; driven by massive government and Fed intervention, where hard assets would be preferred.</li><li>Pento believes the economy is already slowing significantly into the second half of 2026, citing a loss of 1.7 million jobs in the household survey year-to-date.</li><li>Pento anticipates a &quot;lost decade&quot; for stock investing, with average annual returns similar to historical periods of market stagnation (e.g., 0.6% after the Great Depression, 0.5% during stagflation from 1969-1984, 0.8% from 2000-2012).</li><li>Pento advocates for active management over passive strategies, especially given the expected increased volatility and compressed cycles between inflation and deflation.</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>S&amp;P 500, gold, SMH (semiconductor ETF), SpaceX, GPT 5.6, Claude Fable 5</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">Investors should prepare for a potential deflationary depression and subsequent hyper-stagflation by adopting an active, defensive portfolio strategy focused on capital preservation and adapting to rapidly changing economic conditions.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-05.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-05.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">Investors should prepare for a potential deflationary depression and subsequent hyper-stagflation by adopting an active, defensive portfolio strategy focused on capital preservation and adapting to rapidly changing economic conditions.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-05.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-05.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

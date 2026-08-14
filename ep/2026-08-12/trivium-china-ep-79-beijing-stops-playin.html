@@ -195,7 +195,77 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-12.html">12 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Trivium China</span><span class="pill">12 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Ep 79 - Beijing stops playing coy</h1><div class="meta">Host: Andrew Polk · Guest: Corey Combs, Head of Supply Chain and Critical Minerals Research, Trivium · <a href="https://www.buzzsprout.com/2408047/episodes/19632117-ep-79-beijing-stops-playing-coy.mp3" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Andrew Polk and Corey Combs discuss China&#x27;s recent economic coercion measures, announced on August 5th, which target various U.S. entities and activities. Combs explains these actions are direct retaliations to recent U.S. measures, particularly from the FCC and DHS, and represent Beijing&#x27;s more direct messaging strategy. Both agree that while these actions are serious, they are not intended to escalate the situation or fully abrogate the Busan Agreement, but rather to signal Beijing&#x27;s frustration and compel a change in U.S. behavior.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-12/trivium-china-ep-79-beijing-stops-playin.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-12.html">12 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Trivium China</span><span class="pill">12 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Ep 79 - Beijing stops playing coy</h1><div class="meta">Host: Andrew Polk · Guest: Corey Combs, Head of Supply Chain and Critical Minerals Research, Trivium · <a href="https://www.buzzsprout.com/2408047/episodes/19632117-ep-79-beijing-stops-playing-coy.mp3" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Andrew Polk and Corey Combs discuss China&#x27;s recent economic coercion measures, announced on August 5th, which target various U.S. entities and activities. Combs explains these actions are direct retaliations to recent U.S. measures, particularly from the FCC and DHS, and represent Beijing&#x27;s more direct messaging strategy. Both agree that while these actions are serious, they are not intended to escalate the situation or fully abrogate the Busan Agreement, but rather to signal Beijing&#x27;s frustration and compel a change in U.S. behavior.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>China&#x27;s August 5th retaliatory measures included two orders and two announcements. Order No. 2 imposed six counter-sanctions on entities like Applied Sciences, DNA, Stratum Reservoir, Altana, Responsible Business Alliance, Verite Group, and Human Rights in China, in response to the UFLPA. Order No. 3 sanctioned US Compliance Testing LLC under the anti-foreign sanctions law, accusing it of assisting FCC actions that harm China&#x27;s interests.</li><li>Announcement 33 of 2026 initiated China&#x27;s first-ever foreign trade national security investigation into imported printing, copying, and office equipment, specifically targeting foreign-developed software used in these products. Announcement 34 strengthened export controls on dual-use items related to drones, requiring strict review for all affected exports to the U.S.</li><li>Corey Combs states that the U.S. FCC&#x27;s July 28th ban on imports of Chinese humanoid robots, quadruped robots, and power inverters, and the DHS&#x27;s July 31st expansion of the UFLPA entity list by 43 companies (including those in minerals, biopharma, and biochemicals), were the primary triggers for China&#x27;s retaliatory actions.</li><li>Andrew Polk notes that some U.S. government entities might have pursued these actions, believing they were &quot;outside the eye of Sauron&quot; (the White House), to continue pressing China without disrupting the Busan Agreement. China, however, viewed these actions as provocative.</li><li>Corey Combs highlights that the counter-sanctions on compliance entities effectively undermine the ability of foreign companies to comply with American law, making compliance itself a potential battleground. He is concerned about the medium-term implications if this becomes a central point of US-China lawfare.</li><li>Corey Combs believes Beijing&#x27;s intent is to demonstrate seriousness without escalating the situation or destroying the Busan detente. He notes that Beijing is not trying to hit back with full force, but rather to show a willingness to be serious and creative in its responses.</li><li>Andrew Polk suggests that Beijing&#x27;s use of asymmetric impacts on companies, rather than broad tariffs, was initially an attempt to leverage the U.S. business community, but this has proven ineffective in changing White House policy.</li><li>Corey Combs emphasizes that Beijing&#x27;s messaging has become more direct, explicitly stating that its countermeasures are restrained responses to U.S. actions that &quot;ignored strong opposition from China&quot; and &quot;continuously broadening the concept of national security.&quot;</li><li>Andrew Polk and Corey Combs agree that both the U.S. and China have structural strategic interests in maintaining the Busan detente and preventing further fraying of the relationship, despite the recent tensions.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"I think the thinking was basically the FCC is a little bit more ancillary. It&#x27;s not a big legislative move. It&#x27;s not a tariff. It&#x27;s not an export control. So maybe we can get away with this, right? Both get away with this by effectively end running the White House&#x27;s desire or command for more stability."<span class="qw">— Andrew Polk</span></blockquote><blockquote class="q">"I want to emphasize that China&#x27;s countermeasures have generally been restrained. China values the hard one stability of China, US economic and trade relations, referring to Brussels on that list."<span class="qw">— Corey Combs</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">VIEW</span><span class="what">Medium-term risk: compliance itself becomes a battleground between the US and China.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">PREDICTION</span><span class="what">Beijing is not trying to systematically target compliance or testing, but if it becomes a center point of US-China lawfare, it becomes dangerous.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">PREDICTION</span><span class="what">The national security investigation into foreign trade regarding imported printing, copying, and office equipment will likely be used as leverage and may be rolled back if things don&#x27;t get worse.</span></div><div class="ivrow"><span class="who">Andrew Polk</span><span class="tag dir-other">PREDICTION</span><span class="what">Beijing is highly unlikely to continue ratcheting up without further provocation from the U.S.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">VIEW</span><span class="what">Beijing genuinely views U.S. &quot;ancillary&quot; actions as directly violating the spirit of stability formed by the U.S. and China and as direct attacks on China&#x27;s economy.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">VIEW</span><span class="what">Beijing is very broadly committed to maintaining stability and wants an agreement to postpone export controls further by November.</span></div><div class="ivrow"><span class="who">Andrew Polk</span><span class="tag dir-other">PREDICTION</span><span class="what">The White House may put the FCC and DHS on a tighter leash following China&#x27;s response.</span></div><div class="ivrow"><span class="who">Andrew Polk</span><span class="tag dir-other">VIEW</span><span class="what">If China wanted to blow up the Busan deal, it would reinstitute export controls directly, rather than taking these nuanced actions.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">VIEW</span><span class="what">The cybersecurity review of Palo Alto Networks products is likely separate from the August 5th retaliatory measures.</span></div><div class="ivrow"><span class="who">Corey Combs</span><span class="tag dir-other">VIEW</span><span class="what">Biotech is a strategic industry for Beijing, and it will &quot;hit back very hard&quot; against tight restrictions that undermine its development or prevent exports of key products.</span></div><div class="ivrow"><span class="who">Andrew Polk</span><span class="tag dir-other">VIEW</span><span class="what">China may be trying to head off a broader ban on data center components from the FCC by taking action now.</span></div><div class="ivrow"><span class="who">Andrew Polk</span><span class="tag dir-other">PREDICTION</span><span class="what">Both sides still have a strategic interest in maintaining and extending the Busan deal.</span></div></section>
@@ -217,7 +287,7 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
 • Konica
 • Palo Alto Networks
 • Micron</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">China&#x27;s recent retaliatory measures signal serious frustration with U.S. actions, particularly in tech and biotech, but both sides still aim to preserve the broader stability of the Busan Agreement.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-12.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-12.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">China&#x27;s recent retaliatory measures signal serious frustration with U.S. actions, particularly in tech and biotech, but both sides still aim to preserve the broader stability of the Busan Agreement.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-12.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-12.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -263,5 +333,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

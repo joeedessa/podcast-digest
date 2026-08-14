@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-08.html">8 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Macro Hive</span><span class="pill">8 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">The Week Ahead Dovish Data Drops Incoming</h1><div class="meta">Host: (host unclear) · Guest: Dominique Dwor-Frecaut, Macro Hive · <a href="https://www.youtube.com/watch?v=CdvWQ9hxOmE" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This episode discusses the latest US labor market data, focusing on the NFP report and its implications for the Federal Reserve&#x27;s monetary policy. Dominique Dwor-Frecaut argues that despite some mixed signals, the labor market exhibits underlying fragilities, and low wage growth supports the Fed staying on hold. The conversation also covers the upcoming CPI release and retail sales data, highlighting their potential impact on FOMC members&#x27; views and the broader economic outlook.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-08/macro-hive-the-week-ahead-dovish-data-dr.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-08.html">8 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Macro Hive</span><span class="pill">8 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">The Week Ahead Dovish Data Drops Incoming</h1><div class="meta">Host: (host unclear) · Guest: Dominique Dwor-Frecaut, Macro Hive · <a href="https://www.youtube.com/watch?v=CdvWQ9hxOmE" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This episode discusses the latest US labor market data, focusing on the NFP report and its implications for the Federal Reserve&#x27;s monetary policy. Dominique Dwor-Frecaut argues that despite some mixed signals, the labor market exhibits underlying fragilities, and low wage growth supports the Fed staying on hold. The conversation also covers the upcoming CPI release and retail sales data, highlighting their potential impact on FOMC members&#x27; views and the broader economic outlook.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Dominique Dwor-Frecaut views the establishment survey as more reliable than the household survey for assessing the labor market, citing issues with migrant worker participation in the latter.</li><li>Dominique Dwor-Frecaut suggests that the drop in the participation rate is likely due to older workers, possibly linked to increased mortality/morbidity and disability claims post-COVID.</li><li>Dominique Dwor-Frecaut describes the labor market as &quot;brittle,&quot; characterized by a low job-finding rate typical of recessions, making it vulnerable to negative demand shocks.</li><li>Dominique Dwor-Frecaut expects a continued slowdown in services inflation, particularly non-shelter services (super core inflation), and stabilization in goods inflation for chip-intensive products.</li><li>Dominique Dwor-Frecaut believes that a string of low inflation prints would be necessary to sway hawkish FOMC members like Beth Hammack, while doves and swing voters like Lisa Cook and Neel Kashkari would be more immediately influenced.</li><li>Dominique Dwor-Frecaut highlights that US consumption has been sustained by a decline in savings rather than real income growth, making the economy vulnerable if the savings rate snaps back up.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"So we have labor market balance but in reality we have what I call a brittle labor market one that could break easily."<span class="qw">— Dominique Dwor-Frecaut</span></blockquote><blockquote class="q">"So I think the hawks are so set in their honkish way they will say they probably need more than data point but the the doves who are the majority in the FOMC among FOMC voters. Uh they just argue that it means the Fed should wait until the October meeting to decide whether to hike."<span class="qw">— Dominique Dwor-Frecaut</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">VIEW</span><span class="what">establishment survey is more reliable than household survey for labor market data.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">VIEW</span><span class="what">low wage growth (10 basis points) points to a weak labor market.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">VIEW</span><span class="what">drop in participation rate is likely due to older workers, possibly linked to increased mortality/morbidity and disability claims.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">VIEW</span><span class="what">the labor market is &quot;brittle&quot; and could break easily due to a low job-finding rate.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">VIEW</span><span class="what">wage growth is slowing, and real wages year-on-year are contracting.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">PREDICTION</span><span class="what">continued slowdown in services inflation, particularly non-shelter services (super core inflation).</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">PREDICTION</span><span class="what">stabilization of inflation in goods that are chips-intensive.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">PREDICTION</span><span class="what">a low CPI print (e.g., core 0.1% MoM vs. consensus 0.2% MoM) would cause the probability of a September hike to fall further.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">VIEW</span><span class="what">Neel Kashkari is top of the list among voters who could be swayed by a low PCE print.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">VIEW</span><span class="what">Beth Hammack would likely need a string of low inflation prints to change her mind from her hawkish stance.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">VIEW</span><span class="what">US consumption has been doing okay because people are saving less, not because income is growing.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">PREDICTION</span><span class="what">likely another month of low real income based on NFP and average weekly payroll data.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">PREDICTION</span><span class="what">retail sales control group at 0.1% in real terms (0.3% MoM nominal minus 0.2% inflation) suggests weakening consumption.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">PREDICTION</span><span class="what">the recovery in real income is ending, and consumption is weakening.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">VIEW</span><span class="what">a significant increase in the unemployment rate would be needed to shift the Fed conversation towards employment risk and cuts.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">PREDICTION</span><span class="what">probability for the Fed to stay on hold is closer to 60% (up from 55% two weeks ago).</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">VIEW</span><span class="what">sees a stronger risk of a hike than cuts, given the current unemployment rate.</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Dominique Dwor-Frecaut: The US labor market, despite low unemployment, is &quot;brittle&quot; and vulnerable to negative shocks, suggesting a fragile economic foundation.</li><li>Dominique Dwor-Frecaut: Continued disinflation in services, particularly non-shelter services, and stabilization in goods inflation (especially chip-intensive products) are key indicators for the Fed&#x27;s policy path.</li><li>Dominique Dwor-Frecaut: A weaker-than-expected CPI print could significantly reduce the probability of a September Fed hike, influencing swing voters and potentially even some hawks like Kashkari.</li><li>Dominique Dwor-Frecaut: US consumption is currently supported by declining savings rather than income growth, posing a risk to future economic growth if the savings rate normalizes.</li><li>Dominique Dwor-Frecaut: The Fed is likely to remain on hold, with a higher probability of a hike than cuts, due to workers&#x27; limited bargaining power absorbing supply shocks through real income decreases.</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>None mentioned.</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">The US economy faces underlying fragilities in the labor market and consumption, with disinflationary pressures likely to keep the Fed on hold, though a hike remains a stronger risk than cuts.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-08.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-08.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">The US economy faces underlying fragilities in the labor market and consumption, with disinflationary pressures likely to keep the Fed on hold, though a hike remains a stronger risk than cuts.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-08.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-08.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

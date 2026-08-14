@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-06.html">6 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Maggie Lake Talking Markets</span><span class="pill">6 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Rotation Inflation Whats Next with Tony Greer</h1><div class="meta">Host: Maggie Lake · Guest: Tony Greer, Editor of The Sailor&#x27;s Edge · <a href="https://www.youtube.com/watch?v=JClSZqqZYXc" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Tony Greer observes a &quot;bull market green light go&quot; signal in equities, driven by the removal of uncertainties such as the Iran war&#x27;s diminishing market impact, a significant dollar-yen intervention, and a clear stance from the Federal Reserve under Kevin Walsh. He highlights a rotation within technology, with internet stocks breaking out, while maintaining a cautious view on semiconductors. Greer also discusses the long-term bullish thesis for gold and the improving outlook for financials, despite current high valuations.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-06/maggie-lake-talking-markets-rotation-inf.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-06.html">6 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Maggie Lake Talking Markets</span><span class="pill">6 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Rotation Inflation Whats Next with Tony Greer</h1><div class="meta">Host: Maggie Lake · Guest: Tony Greer, Editor of The Sailor&#x27;s Edge · <a href="https://www.youtube.com/watch?v=JClSZqqZYXc" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Tony Greer observes a &quot;bull market green light go&quot; signal in equities, driven by the removal of uncertainties such as the Iran war&#x27;s diminishing market impact, a significant dollar-yen intervention, and a clear stance from the Federal Reserve under Kevin Walsh. He highlights a rotation within technology, with internet stocks breaking out, while maintaining a cautious view on semiconductors. Greer also discusses the long-term bullish thesis for gold and the improving outlook for financials, despite current high valuations.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Tony Greer notes a &quot;big breakout day&quot; in the S&amp;P 500 to 76.25, attributing it to the market&#x27;s removal of uncertainties, including the Iran war&#x27;s reduced impact, the dollar-yen intervention, and the Fed&#x27;s clear communication.</li><li>Greer identifies a rotation within the technology sector, with internet stocks showing a &quot;huge breakout&quot; and two-sigma rallies in airlines and software, while semiconductors, after a previous breakout, are now in a &quot;little bit of a decline.&quot;</li><li>He expresses respect for Fed Chairman Kevin Walsh&#x27;s communication style, particularly his directive to &quot;play the ball, not the referee,&quot; which Greer interprets as letting inflation data guide market expectations and potential Fed action.</li><li>Greer maintains a long-term bullish view on gold, stating that its fundamental story of &quot;lower rates, more money printing, higher M2, yield curve control&quot; remains intact, and its price will eventually go higher, regardless of short-term fluctuations around $4,000.</li><li>He discusses the fragility of the bond market, particularly concerning the Bank of Japan&#x27;s interventions and potential treasury sales, but notes the market is &quot;learning to keep pace with it.&quot;</li><li>Greer highlights the &quot;crossfire in 2026,&quot; describing a series of rolling macro breakouts across different sectors, including metals, oil services, semiconductors, and oil, making it a challenging environment for traders.</li><li>He expresses a bullish view on the financials sector (XLF), noting that stocks &quot;look great&quot; and are benefiting from higher interest rates and AI, but he is waiting for a better entry point.</li><li>Greer views Bitcoin as a &quot;slow bleed lower,&quot; suggesting it will likely settle in a $25,000 to $75,000 range, and notes that MicroStrategy becoming a net seller is a significant bearish signal.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"Play the ball. Don&#x27;t play me. Play the ball. Look at the ball. Play the inflation data. Don&#x27;t sit here and expect me to do [ __ ] Right. Like, I really gained a lot of respect for him after that."<span class="qw">— Tony Greer</span></blockquote><blockquote class="q">"You don&#x27;t get what you want in markets. You get what you get. And if gold is going to sit here and preserve its value at much higher prices than I bought it, then who am I gonna complain to, right?"<span class="qw">— Tony Greer</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">VIEW</span><span class="what">S&amp;P 500 — &quot;big breakout day today&quot; up to 76.25.</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">VIEW</span><span class="what">Internet stocks — &quot;huge breakout&quot; and &quot;two sigma rallies.&quot;</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">VIEW</span><span class="what">Mag 7 stocks — &quot;scoots above all the moving averages today on the upside.&quot;</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">VIEW</span><span class="what">Airlines and software — &quot;two sigma rallies.&quot;</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">VIEW</span><span class="what">Oil — $80 a barrel, &quot;trading flat to a vacation spot right now,&quot; technically still in a breakout.</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">VIEW</span><span class="what">Dollar-yen — &quot;huge move,&quot; intervention relocated it from 164 to 156.</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">VIEW</span><span class="what">Trump trades (Bitcoin, Coinbase, uranium, rare earths, solar) — &quot;shot all of the Trump trades right in the back,&quot; backed off as Trump&#x27;s approval rating approaches zero.</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">BEARISH</span><span class="what">SpaceX — &quot;bearish recommendation,&quot; anticipated a &quot;witch hat&quot; pattern, traded from 190 to 160.</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-short">SHORT</span><span class="what">Semiconductor position — &quot;in the money,&quot; trying to ride it down, will not hold much longer.</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">VIEW</span><span class="what">Gold — &quot;not going to sell their gold,&quot; &quot;price of it is going to go higher,&quot; &quot;just a matter of when, not if.&quot;</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-watching">WATCHING</span><span class="what">Grain markets (wheat) — as speedometers for commodity complex, not trading.</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">BIDDING FOR</span><span class="what">XLF (Financials sector) — &quot;below the market,&quot; &quot;sector looks great,&quot; &quot;need to be long that I&#x27;m not in it.&quot;</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">VIEW</span><span class="what">Stocks and yields — &quot;can go up together as long as the economy can bear it.&quot;</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">UPWARD BIAS</span><span class="what">Yields — due to persistent inflation pressures from oil, gold, groceries, natural gas.</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">VIEW</span><span class="what">Gold seasonality — August is usually a &quot;shitty month,&quot; but &quot;usually performs better into the end of the year.&quot;</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">SLOW-MOVING BULLISHNESS</span><span class="what">Copper — &quot;price is agreeing with the story,&quot; good supply-demand, will try to get exposure.</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">VIEW</span><span class="what">Bitcoin — &quot;slow bleed lower,&quot; &quot;probably settles out in like a 25k to 75k range.&quot;</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Tony Greer believes the market is currently in a &quot;bull market green light go&quot; phase, driven by the perceived removal of geopolitical and monetary policy uncertainties.</li><li>He highlights a rotation within equities, with internet stocks, airlines, and software showing strong breakouts, while the semiconductor rally is showing signs of decline.</li><li>Greer views the new Fed Chairman, Kevin Walsh, as effective in managing market expectations by directing focus to inflation data rather than Fed actions, which he believes has stabilized the bond market for now.</li><li>Despite the bond market&#x27;s fragility, particularly concerning the Bank of Japan&#x27;s interventions, Greer notes the market is adapting.</li><li>He maintains a strong long-term bullish conviction on gold, seeing current price action as a temporary pullback within an intact fundamental thesis of ongoing money printing and deficits.</li><li>Greer is bullish on the financials sector (XLF), seeing benefits from higher interest rates and AI, but is waiting for a more favorable entry point.</li><li>He is cautious on Bitcoin, viewing it as a &quot;slow bleed lower&quot; and citing MicroStrategy&#x27;s selling as a significant bearish indicator.</li><li>Greer emphasizes the importance of active trading and sector-specific analysis in the current environment, characterized by &quot;rolling, excessive macro breakouts&quot; across different themes.</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>S&amp;P, NASDAQ, Bitcoin, Coinbase, uranium, rare earths, solar, SpaceX, Google, XLF, Goldman Sachs, SanDisk, Micron, gold, oil, diesel fuel, jet fuel, heating oil, natural gas, wheat, copper, dollar-yen</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">The market is signaling a &quot;bull market green light go&quot; with sector rotation into internet, airlines, and software, while long-term gold remains a buy and financials are attractive on pullbacks, despite a cautious outlook on semiconductors and Bitcoin.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-06.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-06.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">The market is signaling a &quot;bull market green light go&quot; with sector rotation into internet, airlines, and software, while long-term gold remains a buy and financials are attractive on pullbacks, despite a cautious outlook on semiconductors and Bitcoin.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-06.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-06.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

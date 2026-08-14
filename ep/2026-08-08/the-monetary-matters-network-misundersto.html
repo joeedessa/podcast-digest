@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-08.html">8 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">The Monetary Matters Network</span><span class="pill">8 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Misunderstood Stocks in Data Center Power Cybersecurity and Payments Dean Deiya</h1><div class="meta">Host: Jack Farley · Guest: Deya Pernas, Co-Founder, Pernas Research · <a href="https://traffic.megaphone.fm/EWWMN2243487855.mp3" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Jack Farley interviews Deya and Dean Pernas of Pernas Research about their investment philosophy and current market views. The Pernas brothers discuss their approach to identifying misunderstood stocks in themes such as data center power, cybersecurity, and payments, emphasizing fundamental analysis and a contrarian perspective. They highlight the impact of AI on various sectors, particularly the energy demands of data centers and the evolving landscape of cybersecurity threats.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-08/the-monetary-matters-network-misundersto.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-08.html">8 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">The Monetary Matters Network</span><span class="pill">8 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Misunderstood Stocks in Data Center Power Cybersecurity and Payments Dean Deiya</h1><div class="meta">Host: Jack Farley · Guest: Deya Pernas, Co-Founder, Pernas Research · <a href="https://traffic.megaphone.fm/EWWMN2243487855.mp3" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Jack Farley interviews Deya and Dean Pernas of Pernas Research about their investment philosophy and current market views. The Pernas brothers discuss their approach to identifying misunderstood stocks in themes such as data center power, cybersecurity, and payments, emphasizing fundamental analysis and a contrarian perspective. They highlight the impact of AI on various sectors, particularly the energy demands of data centers and the evolving landscape of cybersecurity threats.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Dean Pernas believes open-weight AI models are bullish for the broader AI ecosystem (chips, infrastructure, application layers) because they commoditize frontier models, increasing demand for other layers as enterprise AI use becomes cheaper.</li><li>Deya Pernas argues that hyperscalers are existentially forced to make massive capital outlays for AI with uncertain ROI, creating vulnerability in the top-weighted S&amp;P 500 and opportunities for active managers in companies that benefit from this spend without similar CapEx.</li><li>Dean Pernas identifies &quot;bring your own power&quot; as the largest theme in data centers for the next three to five years, driven by an antiquated US energy grid and AI&#x27;s projected 20% share of US energy demand by 2030.</li><li>Dean Pernas also highlights increasing data bandwidth needs between data centers as a key theme, due to hyperscalers building smaller, geographically dispersed data centers that require extensive communication.</li><li>Deya Pernas explains that cybersecurity is entering a new chapter where AI enables bad actors to find and exploit code vulnerabilities more easily, shifting the focus from identity-based attacks to exposure management.</li><li>Deya Pernas views the market&#x27;s sell-off in software stocks as partially warranted due to decelerating growth rates and high stock-based compensation, but sees opportunities in companies with unique data, strong security/compliance features, deep integrations, or real-world components.</li><li>Deya Pernas is bullish on cross-border money movement companies like Wise and Remitly, citing their ability to drive down costs compared to traditional correspondent banking and benefit from continuous M2 growth and the electronification of cash.</li><li>Dean Pernas expresses concern about the semiconductor industry due to China&#x27;s increasing competitiveness and ability to produce components at lower costs, leading Pernas Research to largely avoid the sector.</li><li>Deya Pernas is skeptical of stablecoins disrupting cross-border payments for consumers and small businesses, noting their primary use in crypto functions and lack of adoption in local economies for goods and services.</li><li>Dean Pernas notes that Meta&#x27;s AI strategy has become &quot;murky,&quot; moving from an open-source approach to potentially becoming a cloud provider, and expresses a negative outlook on the stock due to perceived floundering and ineffective capital allocation in AI.</li><li>Deya Pernas emphasizes that Pernas Research&#x27;s investment process involves turning over &quot;a ton of rocks,&quot; with a hit rate of roughly one in a hundred for companies that involve significant research, which also informs their cash weighting.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"If you think about the AI ecosystem, it&#x27;s roughly about four different layers. So you have the chips layer, the infrastructure layer, who are the cloud providers. And then you have the frontier models, who are like ChatGPT and Anthropic. And then you have the application layer."<span class="qw">— Dean Pernas</span></blockquote><blockquote class="q">"I think that, um, it&#x27;s a special time if you are an active manager and you are, you know, let&#x27;s say you&#x27;re bogey&#x27;s ESP and you&#x27;re trying to help for an ESP. So it&#x27;s, it&#x27;s a very top weighted index. Obviously, uh, you have, you know, uh, top 10 names make up, uh, close to 30, 40% of the index weight. And a lot of these names that are hyperscalers that you mentioned are have it, there&#x27;s a step function change in capital spend. And for the foreseeable future, they&#x27;re essentially existentially forced to, uh, to make these outlays with uncertain ROI profiles."<span class="qw">— Deya Pernas</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Dean Pernas</span><span class="tag dir-other">VIEW</span><span class="what">Open-weight AI models — bullish for AI ecosystem (chips, infrastructure, application layers), not as bullish for frontier models.</span></div><div class="ivrow"><span class="who">Dean Pernas</span><span class="tag dir-other">VIEW</span><span class="what">GPU rental prices — going to increase.</span></div><div class="ivrow"><span class="who">Deya Pernas</span><span class="tag dir-other">VIEW</span><span class="what">Hyperscalers (Oracle, Microsoft, Google, Amazon, Meta) — trading at significantly high valuations (roughly 10x EV to sales average), vulnerable due to step function CapEx.</span></div><div class="ivrow"><span class="who">Dean Pernas</span><span class="tag dir-long">LONG</span><span class="what">Capstone Energy (CAPS) — valuation is much more attractive than Bloom Energy (BE), trading at 3x revenue vs. 15-20x for BE. Operates at 10% capacity, can produce 1 gigawatt/year running three shifts. Multiple ways to win: certain data halls (20-30MW), edge data centers (1-4MW, thousands in US), manufacturing facilities.</span></div><div class="ivrow"><span class="who">Dean Pernas</span><span class="tag dir-long">LONG (speculative holding)</span><span class="what">Established Solutions — small company ($75M market cap), provides portable natural gas (virtual pipeline) to data centers without pipeline access and to SpaceX. Signed large data center contract (hundreds of millions over two years). SpaceX launches to increase 20x in five years.</span></div><div class="ivrow"><span class="who">Dean Pernas</span><span class="tag dir-long">LONG</span><span class="what">Smart Optics — plays into data bandwidth needs between data centers, which will expand 15x. Hardware and software are best-in-class for bridging geographically dispersed data centers.</span></div><div class="ivrow"><span class="who">Dean Pernas</span><span class="tag dir-long">LONG</span><span class="what">VShay Precision Group (VPG) — play on robotics, makes strain gauges and sensors for humanoid robotics. Has three largest customers in space (Tesla, Figure).</span></div><div class="ivrow"><span class="who">Deya Pernas</span><span class="tag dir-long">LONG</span><span class="what">Tenable (TENB) — leaders in exposure management, which is where cybersecurity is heading. Opportunity to upsell previous vulnerability scanners to new platform. Trades at 4x EV to sales vs. CrowdStrike (CRWD) and Palo Alto (PANW) north of 20x. Expects growth to accelerate.</span></div><div class="ivrow"><span class="who">Deya Pernas</span><span class="tag dir-long">LONG</span><span class="what">Sprout Social (SPT) — screens poorly on GAAP basis due to high stock-based compensation (SBC), but SBC as a percentage of revenue should come down rapidly, enhancing GAAP earnings.</span></div><div class="ivrow"><span class="who">Deya Pernas</span><span class="tag dir-long">LONG</span><span class="what">Upwork (UPWK) — special marketplace business, impossible to replicate, network effects. Trades at just over 1x EV to sales, 6x EV to free cash flow. Lower value jobs (&lt;$500) seeing weakness due to AI, but higher value jobs are durable.</span></div><div class="ivrow"><span class="who">Dean Pernas</span><span class="tag dir-reduce">REDUCE</span><span class="what">Meta (META) — sold out of position last year.</span></div><div class="ivrow"><span class="who">Dean Pernas</span><span class="tag dir-other">VIEW</span><span class="what">Meta (META) — outlook is negative going forward.</span></div><div class="ivrow"><span class="who">Dean Pernas</span><span class="tag dir-avoid">AVOID</span><span class="what">Semiconductor companies — due to China&#x27;s competitiveness and ability to produce at lower cost.</span></div><div class="ivrow"><span class="who">Deya Pernas</span><span class="tag dir-long">LONG</span><span class="what">Wise (WISE) — money movement cross-border, created infrastructure to circumnavigate correspondent banking, lower costs (2% vs. 5%), better experience. Strong infrastructure, aggressive in taking down rates (leader, not interrupted).</span></div><div class="ivrow"><span class="who">Deya Pernas</span><span class="tag dir-long">LONG</span><span class="what">Remitly (RELY) — migrant remittance provider, digital-native Western Union killer. Built mind share with migrants (trust, branding important). Take rate will come down slowly, but send volumes growing 30-40% annually.</span></div><div class="ivrow"><span class="who">Deya Pernas</span><span class="tag dir-long">LONG</span><span class="what">Paysafe (PSFE) — competitor to PayPal, processing for payment needs, orientation in gaming. Digital wallets subsidiary makes up 60-70% of enterprise value. Overleveraged but paying down debt, high single-digit organic growth.</span></div><div class="ivrow"><span class="who">Deya Pernas</span><span class="tag dir-avoid">AVOID</span><span class="what">PayPal (PYPL) — did not like branded payments segment due to vulnerability and lack of future growth, despite liking Braintree processing segment.</span></div><div class="ivrow"><span class="who">Deya Pernas</span><span class="tag dir-other">VIEW</span><span class="what">Stablecoins — not a threat to Wise or Remitly&#x27;s consumer/small business use cases; primarily used in crypto functions, not local economies.</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Deya Pernas: The S&amp;P 500 is vulnerable due to hyperscalers&#x27; massive, uncertain CapEx spending on AI, creating opportunities for active managers to find companies benefiting from this spend at reasonable valuations.</li><li>Dean Pernas: The US energy grid is antiquated and cannot meet the projected 20% of US energy demand by AI by 2030, leading to a sustained &quot;bring your own power&quot; theme for data centers for the next 3-5 years.</li><li>Deya Pernas: The cybersecurity landscape is undergoing a structural shift, with AI enabling more sophisticated attacks on code vulnerabilities, making exposure management a critical and growing area.</li><li>Deya Pernas: M2 growth is expected to continue at 5-6% annually, making payment companies that can defend their take rates and benefit from this growth very powerful.</li><li>Dean Pernas: China&#x27;s increasing competitiveness in semiconductors (EVs, drones, memory, lithography machines) poses a significant threat to the industry, making it a difficult sector to play.</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>Capstone Energy, Bloom Energy, Established Solutions, Smart Optics, VShay Precision Group (VPG), Tenable (TENB), CrowdStrike (CRWD), Palo Alto (PANW), Sprout Social (SPT), Upwork (UPWK), Meta (META), Wise (WISE), Remitly (RELY), Paysafe (PSFE), PayPal (PYPL), Visa, MasterCard, Robinhood, Block, Fiserv, Global Payments, Affirm, Toast, Fiverr, Western Union, SpaceX, Tesla, Figure, Broadcom, Cisco, Arista, ASML, CXML</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">Pernas Research identifies opportunities in overlooked companies benefiting from AI-driven infrastructure demands, evolving cybersecurity threats, and cross-border payment trends, while remaining selective on software and avoiding semiconductors due to competitive pressures.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-08.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-08.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">Pernas Research identifies opportunities in overlooked companies benefiting from AI-driven infrastructure demands, evolving cybersecurity threats, and cross-border payment trends, while remaining selective on software and avoiding semiconductors due to competitive pressures.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-08.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-08.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

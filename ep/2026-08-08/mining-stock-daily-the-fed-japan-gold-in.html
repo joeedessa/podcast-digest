@@ -195,13 +195,83 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root="../../"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-08.html">8 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Mining Stock Daily</span><span class="pill">8 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">The Fed Japan Gold Intervention Changes Everything</h1><div class="meta">Host: Trevor Hall · Guest: Peter Boockvar, Chief Investment Officer, 1. BFG, Author of The Book Report · <a href="https://www.youtube.com/watch?v=KoU-CDYfLks" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Trevor Hall hosts Peter Boockvar to discuss the unprecedented yen intervention by the US Treasury and Federal Reserve, its implications for the Treasury market, and the broader US economy. Frank Cappelleri then provides technical analysis on market breadth, the S&amp;P 500, semiconductors, gold, silver, and the US dollar, offering specific price targets and trade ideas.</p></section>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="../../" data-canon="ep/2026-08-08/mining-stock-daily-the-fed-japan-gold-in.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-08.html">8 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Mining Stock Daily</span><span class="pill">8 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">The Fed Japan Gold Intervention Changes Everything</h1><div class="meta">Host: Trevor Hall · Guest: Peter Boockvar, Chief Investment Officer, 1. BFG, Author of The Book Report · <a href="https://www.youtube.com/watch?v=KoU-CDYfLks" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Trevor Hall hosts Peter Boockvar to discuss the unprecedented yen intervention by the US Treasury and Federal Reserve, its implications for the Treasury market, and the broader US economy. Frank Cappelleri then provides technical analysis on market breadth, the S&amp;P 500, semiconductors, gold, silver, and the US dollar, offering specific price targets and trade ideas.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Peter Boockvar believes the recent gold rally could be a reaction to the US Treasury&#x27;s intervention with Japan to defend the yen, noting the Fed facility allowing Japan to borrow against Treasuries suggests Treasuries are no longer just a &quot;buy and hold thing&quot; for foreigners.</li><li>Boockvar argues that the Bank of Japan (BOJ) &quot;has to follow through with a rate hike in September&quot; and &quot;in December&quot; to make the yen intervention sustainable, otherwise it will be &quot;all for naught.&quot;</li><li>Boockvar highlights that the ISM manufacturing index rebound is happening globally and is partly driven by inventory restocking and pre-ordering to get ahead of price increases, questioning its sustainability without improved end demand.</li><li>Boockvar notes that cost pressures are &quot;rampant&quot; for companies, with PPI running &quot;about 200 basis points above CPI,&quot; indicating that inflation is higher than consumer prices suggest.</li><li>Frank Cappelleri observes that the S&amp;P 500&#x27;s recent strong 4-day move was supported by technology, and that &quot;pristine breadth&quot; has allowed the S&amp;P to break out to new all-time highs despite semiconductors being &quot;off 20% basically from the highs.&quot;</li><li>Cappelleri identifies a bullish flag pattern in the S&amp;P 500, projecting an upside target of 7,680, and a bullish cup and handle pattern targeting 7,925, with an overall trading box projection just above 8,000.</li><li>Cappelleri views the semiconductor (SMH) chart as a &quot;classic bearish head and shoulders pattern&quot; targeting 460, and has recommended a short position to clients, noting it&#x27;s &quot;the first short that we recommended at all of them since mid-April.&quot;</li><li>Cappelleri points out that the cumulative S&amp;P advanced decline line and the RSP equal weight S&amp;P 500 ETF have been moving higher, indicating broad market participation even when the S&amp;P itself was struggling.</li><li>Cappelleri states that gold&#x27;s recent 4% move, breaking through a triangle pattern and aggressively above its 50-day moving average, is the &quot;only time we can really actually ask that question so far really going back to March&quot; about whether the move is real.</li><li>Cappelleri suggests that a pullback in gold to retest the 50-day moving average, followed by a close above it, could be a &quot;potential buying opportunity.&quot;</li><li>Cappelleri notes that gold miners (GDX) have shown a &quot;very good first step,&quot; pushing through their 50-day moving average and above a long-term downtrend line, with lower lows in price but higher lows in RSI, indicating decelerated selling.</li><li>Cappelleri describes silver&#x27;s long-term quarterly chart as a &quot;big multi-decade cup and handle pattern&quot; still in play, with a pullback occurring above 50, and suggests a potential inverse head and shoulders pattern could lead to a rally to 70.</li><li>Cappelleri highlights the US dollar&#x27;s (Dixie) significance at the 100 level, noting that its rally in June/July coincided with the S&amp;P losing footing, and that holding below 100 is &quot;very important&quot; for equities.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"I&#x27;m beginning to think that this could be a reaction to what Scott Dessen in the US Treasury is doing with the Japanese. And that here you have Treasury secretary that says we want a stronger yen and a weaker dollar on that cross rate."<span class="qw">— Peter Boockvar</span></blockquote><blockquote class="q">"If you told me that semiconductors would be off 20% basically from the highs, and the S&amp;P wouldn&#x27;t budge, and now you&#x27;re breaking out to new all-time highs, I said, &#x27;Well, you would need pristine breadth to occur, which of course is happening.&#x27;"<span class="qw">— Frank Cappelleri</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Peter Boockvar</span><span class="tag dir-other">VIEW</span><span class="what">US Treasuries — &quot;no longer just a buy and hold thing in the eyes of foreigners&quot;</span></div><div class="ivrow"><span class="who">Peter Boockvar</span><span class="tag dir-other">PREDICTION</span><span class="what">BOJ rate hike — &quot;in September&quot; and &quot;in December&quot; (stated 2x)</span></div><div class="ivrow"><span class="who">Peter Boockvar</span><span class="tag dir-other">VIEW</span><span class="what">Housing market — &quot;still in a recession&quot;</span></div><div class="ivrow"><span class="who">Frank Cappelleri</span><span class="tag dir-other">PREDICTION</span><span class="what">S&amp;P 500 — upside target 7,680 (from bullish flag pattern)</span></div><div class="ivrow"><span class="who">Frank Cappelleri</span><span class="tag dir-other">PREDICTION</span><span class="what">S&amp;P 500 — upside target 7,925 (from bullish cup and handle pattern)</span></div><div class="ivrow"><span class="who">Frank Cappelleri</span><span class="tag dir-other">PREDICTION</span><span class="what">S&amp;P 500 — upside target just above 8,000 (from trading box projection)</span></div><div class="ivrow"><span class="who">Frank Cappelleri</span><span class="tag dir-short">SHORT</span><span class="what">Semiconductor ETF (SMH) — target 460 (from bearish head and shoulders pattern) — &quot;still in play for now&quot;</span></div><div class="ivrow"><span class="who">Frank Cappelleri</span><span class="tag dir-watching">WATCHING</span><span class="what">Gold — potential buying opportunity on pullback to retest 50-day moving average and close above it</span></div><div class="ivrow"><span class="who">Frank Cappelleri</span><span class="tag dir-watching">WATCHING</span><span class="what">Gold miners (GDX) — potential for another higher low to develop into a base</span></div><div class="ivrow"><span class="who">Frank Cappelleri</span><span class="tag dir-watching">WATCHING</span><span class="what">Silver — potential inverse head and shoulders pattern, rally to 70</span></div><div class="ivrow"><span class="who">Frank Cappelleri</span><span class="tag dir-other">VIEW</span><span class="what">US Dollar (Dixie) — &quot;very important that it holds underneath&quot; 100 level</span></div></section>
 <section id="market-macro-takeaways"><h2>Market &amp; macro takeaways</h2><ul><li>Peter Boockvar believes the US Treasury&#x27;s intervention in the yen market, using a Fed facility, signals fragility in the US Treasury market, as foreign entities may view Treasuries as a source of funds rather than just a long-term hold. He suggests this could lead to a global aversion to long-term paper outside of institutional buyers.</li><li>Boockvar highlights that global manufacturing is rebounding, but questions its sustainability due to potential inventory restocking and the commoditization of AI/data center products, where the US may become a &quot;price taker.&quot; He also notes rampant cost pressures for companies, with PPI significantly outpacing CPI.</li><li>Frank Cappelleri indicates that the S&amp;P 500&#x27;s recent rally is confirmed by strong market breadth, with financials and industrials breaking out to new highs. He warns that the semiconductor sector (SMH) is showing a bearish head and shoulders pattern, and its continued underperformance or decline could eventually pull the broader market down.</li><li>Cappelleri sees gold&#x27;s recent breakout above its 50-day moving average and a triangle pattern as a significant positive shift, suggesting a potential buying opportunity on a retest of the 50-day. He notes similar constructive signs in gold miners (GDX).</li><li>Cappelleri views silver as still &quot;pretty ugly&quot; but with potential for a bullish formation (inverse head and shoulders) if it can stabilize and break above its 50-day moving average.</li><li>Cappelleri emphasizes the critical importance of the US dollar (Dixie) holding below the 100 level for equity market stability, noting that a significant dollar rally could negatively impact the S&amp;P 500.</li></ul></section>
 <section id="tickers-assets"><h2>Tickers &amp; assets</h2><p>S&amp;P 500, Gold, Yen, US Dollar (Dixie), US Treasuries, JGB, Semiconductor ETF (SMH), RSP equal weight S&amp;P 500 ETF, Gold miners (GDX), Silver, GLD</p></section>
-<section id="verdict"><h2>Verdict</h2><div class="verdict">The yen intervention highlights US Treasury market fragility, while technical analysis suggests a broad-based S&amp;P 500 rally with specific upside targets, but warns of semiconductor weakness and identifies a potential buying opportunity in gold on a pullback.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-08.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-08.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="verdict"><h2>Verdict</h2><div class="verdict">The yen intervention highlights US Treasury market fragility, while technical analysis suggests a broad-based S&amp;P 500 rally with specific upside targets, but warns of semiconductor weakness and identifies a potential buying opportunity in gold on a pullback.</div></section><div class="note">Machine-generated episode summary, published without human review — attributions are inferred and carry a measured error rate. Not investment advice. <a href="../../2026-08-08.html">Back to the day's digest</a>.</div><footer><a href="../../2026-08-08.html">Day digest</a> · <a href="../../archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#overview">Overview</a><a href="#key-discussion-points">Key discussion points</a><a href="#notable-quotes">Notable quotes</a><a href="#calls-positions">Calls &amp; positions</a><a href="#market-macro-takeaways">Market &amp; macro takeaways</a><a href="#tickers-assets">Tickers &amp; assets</a><a href="#verdict">Verdict</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -247,5 +317,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>

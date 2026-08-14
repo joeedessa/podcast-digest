@@ -195,7 +195,77 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
   nav.toc{position:static}
   .card .head{gap:6px}
 }
-</style></head><body data-root=""><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Wednesday, 12 August 2026</span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><h1>Wednesday, 12 August 2026</h1><div class="meta"><span class="pill">16 episodes</span>Commodities &amp; Hard Assets, Equities &amp; Trading, Geopolitics, Investment Analysis &amp; Factors, Macroeconomics &amp; Strategy, Real Estate &amp; Wealth Building</div></div><section id="tl-dr-read-this-first"><h2>TL;DR (read this first)</h2><div class="tldr"><p>The AI investment narrative is fracturing into two violently opposing camps, with Dom Rizzle — Excess Returns arguing the capital cycle is only halfway through a durable productivity boom, while Ed Zitron — Adam Taggart | Thoughtful Money® contends it&#x27;s a speculative bubble fueled by circular financing that is destined to collapse. This core debate overshadows concerns about rising long-term yields and the upcoming US CPI report, which will test the Fed&#x27;s credibility and the market&#x27;s resilience. The key tension is whether AI&#x27;s massive capital expenditure is generating real economic returns or simply inflating a handful of tech balance sheets ahead of a major correction.</p>
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style></head><body data-root="" data-canon="2026-08-12.html"><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Wednesday, 12 August 2026</span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><h1>Wednesday, 12 August 2026</h1><div class="meta"><span class="pill">16 episodes</span>Commodities &amp; Hard Assets, Equities &amp; Trading, Geopolitics, Investment Analysis &amp; Factors, Macroeconomics &amp; Strategy, Real Estate &amp; Wealth Building</div></div><section id="tl-dr-read-this-first"><h2>TL;DR (read this first)</h2><div class="tldr"><p>The AI investment narrative is fracturing into two violently opposing camps, with Dom Rizzle — Excess Returns arguing the capital cycle is only halfway through a durable productivity boom, while Ed Zitron — Adam Taggart | Thoughtful Money® contends it&#x27;s a speculative bubble fueled by circular financing that is destined to collapse. This core debate overshadows concerns about rising long-term yields and the upcoming US CPI report, which will test the Fed&#x27;s credibility and the market&#x27;s resilience. The key tension is whether AI&#x27;s massive capital expenditure is generating real economic returns or simply inflating a handful of tech balance sheets ahead of a major correction.</p>
 <ul><li>CENTRAL TENSION: The AI productivity boom thesis (strong ROICs, accelerating capex) versus the AI bubble thesis (circular financing, no real ROI).</li><li>TOP THEME: AI Investment Cycle: Is the massive capex spend a durable productivity driver or a speculative bubble poised to burst?</li><li>DIVERGENT: Gold &amp; Silver: Michael Howell/Rick Rule are long-term bulls on currency debasement vs. Chris Vermeulen who sees a bear market rally before a crash.</li><li>HIGH-CONVICTION TRADE: Long Gold &amp; Silver on weakness (Michael Howell, Rick Rule).</li><li>CALENDAR: US CPI release tomorrow, which is seen as a major macro catalyst.</li></ul></div></section>
 <section id="trade-ideas-positions"><h2>TRADE IDEAS &amp; POSITIONS</h2><div class="cards"><div class="tier">HIGH CONVICTION</div>
 <div class="card"><div class="head"><span class="asset">Gold &amp; Silver</span><span class="tag dir-long">LONG (on weakness)</span><span class="who">Michael Howell — The Julia La Roche Show · Rick Rule — Wealth Building Blueprint – Vladyslav Grabarskyy</span></div><p><span class="label">why</span>The core thesis is that long-term currency debasement, driven by Western debt/deficits and Chinese internal liquidity injections, makes precious metals an essential holding. This structural trend is expected to overwhelm any near-term softness from higher interest rates.</p><p><span class="label">context</span>Both speakers frame this as a long-term position. Rule specifies a 5-10 year timeframe.</p><p><span class="label">voices</span>Michael Howell — The Julia La Roche Show: Advocates buying on weakness as a necessary monetary inflation hedge, driven by Chinese liquidity. · Rick Rule — Wealth Building Blueprint – Vladyslav Grabarskyy: Extremely confident in the long-term outlook due to the inevitable decline in US dollar purchasing power.</p></div>
@@ -278,7 +348,7 @@ footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
 <section id="watch-catalysts"><h2>WATCH CATALYSTS</h2><ul><li><strong>Tomorrow (Aug 13):</strong> US CPI Release. Considered a major macro event that will influence Fed policy, Treasury yields, and risk sentiment across all asset classes. — John J. Hardy — Saxo Market Call, Jason Shapiro — Markets Unscripted</li><li><strong>September 2026:</strong> Potential 25 bps interest rate hike by the Federal Reserve. — Ed Yardeni — Wealthion</li><li><strong>Q4 2026:</strong> Montage Gold&#x27;s Kate Mine is scheduled for its first gold pour from the oxide circuit. — Trevor Hall — Mining Stock Daily</li><li><strong>H2 2026:</strong> Visa Silver is expected to make a construction decision for its Panuko project. — Trevor Hall — Mining Stock Daily</li><li><strong>End of 2026:</strong> Potential peak for the stock market, according to Chris Vermeulen&#x27;s cycle analysis. — Chris Vermeulen — Competent Man Podcast - Tom Bodrovics</li><li><strong>2029-2030:</strong> Expected timeframe for structural shortages to emerge in the oil market due to underinvestment. — Rick Rule — Wealth Building Blueprint – Vladyslav Grabarskyy</li></ul></section>
 <section id="miscellaneous"><h2>MISCELLANEOUS</h2><ul><li><strong>AI &amp; Mortgages:</strong> AI agents could dramatically increase mortgage refinancing rates by simplifying the process for borrowers, which would lead to wider mortgage spreads and shorter durations for investors. — Jay Bacow — Morgan Stanley</li><li><strong>China&#x27;s Retaliation:</strong> China&#x27;s recent sanctions against US compliance and testing firms are a new form of &quot;lawfare,&quot; making the act of complying with US law a potential battleground. — Corey Combs — Trivium China</li><li><strong>NVIDIA&#x27;s Financing Deal:</strong> NVIDIA&#x27;s partnership with major private equity and investment banks to finance AI infrastructure is seen as a &quot;checkmate&quot; move to lock in future chip demand, but also raises concerns about &quot;hidden leverage&quot; in the system. — Josh Brown — The Compound, John J. Hardy — Saxo Market Call</li><li><strong>The &quot;G-Shaped&quot; Economy:</strong> The US economy is being driven by wealthy baby boomers, who hold ~$100 trillion in net worth and benefit from higher rates, while younger generations face affordability issues and a large debt burden. — Ed Yardeni — Wealthion</li><li><strong>The Recovery Trap:</strong> Investors can lose 15 years just getting back to breakeven by holding assets through prolonged bear markets, highlighting the importance of active &quot;asset revesting&quot; into uptrending assets. — Chris Vermeulen — Competent Man Podcast - Tom Bodrovics</li><li><strong>Intellectual Property Precedent:</strong> The New York Times lawsuit against OpenAI/Anthropic is viewed as a landmark case that will establish the principle that data providers must be compensated for IP used in training large language models. — Josh Brown — The Compound</li><li><strong>Refined Products Squeeze:</strong> The market for refined oil products (like gasoline and diesel) is under the most distress due to locked-in refinery capacity and geopolitical disruptions, leading to high margins for oil majors with refining assets. — Ole Hansen — Saxo Market Call</li></ul></section>
 <section id="data-quality-note"><h2>DATA QUALITY NOTE</h2><ul><li><strong>Same-Show Repeat:</strong> Corey Combs appeared on Trivium China today and on 2026-08-07. Only today&#x27;s episode summary (Ep 79) was provided and processed.</li><li><strong>Cross-Show Appearances:</strong> Ed Yardeni (Wealthion today, The Compound on 08-08), and Chris Vermeulen (Competent Man Podcast today, Sprott Money on 08-06, Wealth Building Blueprint on 07-29) appeared on multiple shows recently. Today&#x27;s digest reflects only the content from the episodes provided for 2026-08-12. This is noted for context and tracking speaker consistency.</li><li><strong>No Ticker Discrepancies:</strong> All tickers mentioned in the summaries appeared to match their corresponding asset names.</li><li><strong>No Attribution Gaps:</strong> All speakers and shows were clearly identified in the source material.</li></ul></section>
-<section id="episode-index"><h2>EPISODE INDEX</h2><div class="eplist"><a class="epc" href="ep/2026-08-12/mining-stock-daily-blue-moon-metals-expa.html"><span class="es">Mining Stock Daily</span><div class="et">Blue Moon Metals Expands US Critical Minerals Strategy with Tungsten and Antimon</div><div class="em">Host: Ian Wagner · Guest: Christian Cargill Simard, CEO, Blue Moon Metals</div></a><a class="epc" href="ep/2026-08-12/mining-stock-daily-giant-deposits-dont-h.html"><span class="es">Mining Stock Daily</span><div class="et">Giant Deposits Dont Hide Very Well Sterling Metals CEO on Scaling the Soo Copper</div><div class="em">Host: Michael McCrae · Guest: Matt Wilson, CEO, Sterling Metals</div></a><a class="epc" href="ep/2026-08-12/mining-stock-daily-heliostar-metals-reco.html"><span class="es">Mining Stock Daily</span><div class="et">Heliostar Metals Record Production Growing Cash the Path to a Billion-Dollar Val</div><div class="em">Host: Trevor Hall · Guest: Charles Funk, CEO, Heliostar Metals</div></a><a class="epc" href="ep/2026-08-12/mining-stock-daily-morning-briefing-1911.html"><span class="es">Mining Stock Daily</span><div class="et">Morning Briefing 1911 Gold Publish Maiden Mineral Resource for the Ogama-Rocklan</div><div class="em">Host: Trevor Hall · Solo episode</div></a><a class="epc" href="ep/2026-08-12/wealthion-the-feds-credibility-is-on-the.html"><span class="es">Wealthion</span><div class="et">The Feds Credibility Is on the Line Ed Yardeni Warns</div><div class="em">Host: Maggie Lake · Guest: Ed Yardeni, President, Yardeni Research</div></a><a class="epc" href="ep/2026-08-12/markets-unscripted-bears-sound-smart-bul.html"><span class="es">Markets Unscripted</span><div class="et">Bears Sound Smart Bulls Make Money</div><div class="em">Host: Matt Caruso, Jason Shapiro · Solo episode</div></a><a class="epc" href="ep/2026-08-12/trivium-china-ep-79-beijing-stops-playin.html"><span class="es">Trivium China</span><div class="et">Ep 79 - Beijing stops playing coy</div><div class="em">Host: Andrew Polk · Guest: Corey Combs, Head of Supply Chain and Critical Minerals Research, Trivium</div></a><a class="epc" href="ep/2026-08-12/excess-returns-we-asked-t-rowes-8-billio.html"><span class="es">Excess Returns</span><div class="et">We Asked T Rowes 8 Billion Tech Manager Why We Are in 1998 And Why Software Is i</div><div class="em">Host: Jack Forehand, Kai Woo · Guest: Dom Rizzle, Portfolio Manager, T. Rowe Price Global Technology Equity Strategy and Technology ETF</div></a><a class="epc" href="ep/2026-08-12/morgan-stanley-how-ai-could-simplify-the.html"><span class="es">Morgan Stanley</span><div class="et">How AI Could Simplify the Mortgage Market</div><div class="em">Host: Jeff Adelson · Solo episode</div></a><a class="epc" href="ep/2026-08-12/the-compound-is-imax-a-screaming-buy-lft.html"><span class="es">The Compound</span><div class="et">Is IMAX a Screaming Buy LFTC</div><div class="em">Host: Josh Brown, Michael Batnick · Guest: Rich Gelfand, CEO, IMAX Corporation</div></a><a class="epc" href="ep/2026-08-12/the-compound-six-big-stocks-at-a-tradeab.html"><span class="es">The Compound</span><div class="et">Six Big Stocks at a Tradeable Low WAYT</div><div class="em">Host: Josh Brown, Michael Batnick · Solo episode</div></a><a class="epc" href="ep/2026-08-12/the-julia-la-roche-show-michael-howell-l.html"><span class="es">The Julia La Roche Show</span><div class="et">Michael Howell Liquidity Has Turned Low Quality Returns Ahead for Stocks and Rea</div><div class="em">Host: Julia La Roche · Guest: Michael Howell, CEO of CrossBorderCapital and author of Capital Wars on Substack</div></a><a class="epc" href="ep/2026-08-12/adam-taggart-thoughtful-money-is-ai-a-ma.html"><span class="es">Adam Taggart Thoughtful Money</span><div class="et">Is AI A Massive Lie Ed Zitron</div><div class="em">Host: Adam Taggart · Guest: Ed Zitron, Host of the Better Offline podcast</div></a><a class="epc" href="ep/2026-08-12/competent-man-podcast-tom-bodrovics-chri.html"><span class="es">Competent Man Podcast - Tom Bodrovics</span><div class="et">Chris Vermeulen Higher Oil Dollar and Interest Rates mean Coming Chaos for the M</div><div class="em">Host: Tom Bodrovics · Guest: Chris Vermeulen, Founder and Chief Market Strategist for the Technical Traders</div></a><a class="epc" href="ep/2026-08-12/saxo-market-call-pressures-from-macro-ba.html"><span class="es">Saxo Market Call</span><div class="et">Pressures from macro backdrop building ahead of US CPI</div><div class="em">Host: John J. Hardy · Solo episode</div></a><a class="epc" href="ep/2026-08-12/wealth-building-blueprint-vladyslav-grab.html"><span class="es">Wealth Building Blueprint Vladyslav Grab</span><div class="et">Rick Rule Preparing for a Stock Market Crash Why Gold Demand Could 4x</div><div class="em">Host: Vladyslav Grabarskyy · Guest: Rick Rule, President and CEO of Rule Investment Media</div></a></div></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-12 · <a href="archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-blue-moon-metals-expands-us-cr">★ Blue Moon Metals Expan…</a><a href="#spotlight-sterling-metals-soo-copper-dis">★ Sterling Metals&#x27; Soo C…</a><a href="#spotlight-heliostar-metals-aims-for-bill">★ Heliostar Metals Aims …</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-blue-moon-metals-expands-us-cr">★ Blue Moon Metals Expan…</a><a href="#spotlight-sterling-metals-soo-copper-dis">★ Sterling Metals&#x27; Soo C…</a><a href="#spotlight-heliostar-metals-aims-for-bill">★ Heliostar Metals Aims …</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><script>
+<section id="episode-index"><h2>EPISODE INDEX</h2><div class="eplist"><a class="epc" href="ep/2026-08-12/mining-stock-daily-blue-moon-metals-expa.html"><span class="es">Mining Stock Daily</span><div class="et">Blue Moon Metals Expands US Critical Minerals Strategy with Tungsten and Antimon</div><div class="em">Host: Ian Wagner · Guest: Christian Cargill Simard, CEO, Blue Moon Metals</div></a><a class="epc" href="ep/2026-08-12/mining-stock-daily-giant-deposits-dont-h.html"><span class="es">Mining Stock Daily</span><div class="et">Giant Deposits Dont Hide Very Well Sterling Metals CEO on Scaling the Soo Copper</div><div class="em">Host: Michael McCrae · Guest: Matt Wilson, CEO, Sterling Metals</div></a><a class="epc" href="ep/2026-08-12/mining-stock-daily-heliostar-metals-reco.html"><span class="es">Mining Stock Daily</span><div class="et">Heliostar Metals Record Production Growing Cash the Path to a Billion-Dollar Val</div><div class="em">Host: Trevor Hall · Guest: Charles Funk, CEO, Heliostar Metals</div></a><a class="epc" href="ep/2026-08-12/mining-stock-daily-morning-briefing-1911.html"><span class="es">Mining Stock Daily</span><div class="et">Morning Briefing 1911 Gold Publish Maiden Mineral Resource for the Ogama-Rocklan</div><div class="em">Host: Trevor Hall · Solo episode</div></a><a class="epc" href="ep/2026-08-12/wealthion-the-feds-credibility-is-on-the.html"><span class="es">Wealthion</span><div class="et">The Feds Credibility Is on the Line Ed Yardeni Warns</div><div class="em">Host: Maggie Lake · Guest: Ed Yardeni, President, Yardeni Research</div></a><a class="epc" href="ep/2026-08-12/markets-unscripted-bears-sound-smart-bul.html"><span class="es">Markets Unscripted</span><div class="et">Bears Sound Smart Bulls Make Money</div><div class="em">Host: Matt Caruso, Jason Shapiro · Solo episode</div></a><a class="epc" href="ep/2026-08-12/trivium-china-ep-79-beijing-stops-playin.html"><span class="es">Trivium China</span><div class="et">Ep 79 - Beijing stops playing coy</div><div class="em">Host: Andrew Polk · Guest: Corey Combs, Head of Supply Chain and Critical Minerals Research, Trivium</div></a><a class="epc" href="ep/2026-08-12/excess-returns-we-asked-t-rowes-8-billio.html"><span class="es">Excess Returns</span><div class="et">We Asked T Rowes 8 Billion Tech Manager Why We Are in 1998 And Why Software Is i</div><div class="em">Host: Jack Forehand, Kai Woo · Guest: Dom Rizzle, Portfolio Manager, T. Rowe Price Global Technology Equity Strategy and Technology ETF</div></a><a class="epc" href="ep/2026-08-12/morgan-stanley-how-ai-could-simplify-the.html"><span class="es">Morgan Stanley</span><div class="et">How AI Could Simplify the Mortgage Market</div><div class="em">Host: Jeff Adelson · Solo episode</div></a><a class="epc" href="ep/2026-08-12/the-compound-is-imax-a-screaming-buy-lft.html"><span class="es">The Compound</span><div class="et">Is IMAX a Screaming Buy LFTC</div><div class="em">Host: Josh Brown, Michael Batnick · Guest: Rich Gelfand, CEO, IMAX Corporation</div></a><a class="epc" href="ep/2026-08-12/the-compound-six-big-stocks-at-a-tradeab.html"><span class="es">The Compound</span><div class="et">Six Big Stocks at a Tradeable Low WAYT</div><div class="em">Host: Josh Brown, Michael Batnick · Solo episode</div></a><a class="epc" href="ep/2026-08-12/the-julia-la-roche-show-michael-howell-l.html"><span class="es">The Julia La Roche Show</span><div class="et">Michael Howell Liquidity Has Turned Low Quality Returns Ahead for Stocks and Rea</div><div class="em">Host: Julia La Roche · Guest: Michael Howell, CEO of CrossBorderCapital and author of Capital Wars on Substack</div></a><a class="epc" href="ep/2026-08-12/adam-taggart-thoughtful-money-is-ai-a-ma.html"><span class="es">Adam Taggart Thoughtful Money</span><div class="et">Is AI A Massive Lie Ed Zitron</div><div class="em">Host: Adam Taggart · Guest: Ed Zitron, Host of the Better Offline podcast</div></a><a class="epc" href="ep/2026-08-12/competent-man-podcast-tom-bodrovics-chri.html"><span class="es">Competent Man Podcast - Tom Bodrovics</span><div class="et">Chris Vermeulen Higher Oil Dollar and Interest Rates mean Coming Chaos for the M</div><div class="em">Host: Tom Bodrovics · Guest: Chris Vermeulen, Founder and Chief Market Strategist for the Technical Traders</div></a><a class="epc" href="ep/2026-08-12/saxo-market-call-pressures-from-macro-ba.html"><span class="es">Saxo Market Call</span><div class="et">Pressures from macro backdrop building ahead of US CPI</div><div class="em">Host: John J. Hardy · Solo episode</div></a><a class="epc" href="ep/2026-08-12/wealth-building-blueprint-vladyslav-grab.html"><span class="es">Wealth Building Blueprint Vladyslav Grab</span><div class="et">Rick Rule Preparing for a Stock Market Crash Why Gold Demand Could 4x</div><div class="em">Host: Vladyslav Grabarskyy · Guest: Rick Rule, President and CEO of Rule Investment Media</div></a></div></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-08-14 · <a href="archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-blue-moon-metals-expands-us-cr">★ Blue Moon Metals Expan…</a><a href="#spotlight-sterling-metals-soo-copper-dis">★ Sterling Metals&#x27; Soo C…</a><a href="#spotlight-heliostar-metals-aims-for-bill">★ Heliostar Metals Aims …</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-blue-moon-metals-expands-us-cr">★ Blue Moon Metals Expan…</a><a href="#spotlight-sterling-metals-soo-copper-dis">★ Sterling Metals&#x27; Soo C…</a><a href="#spotlight-heliostar-metals-aims-for-bill">★ Heliostar Metals Aims …</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
 (function(){
 var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
 var top=qs('#fab-top');
@@ -324,5 +394,133 @@ if(inp){inp.addEventListener('input',run);
     if(e.key==='/'&&!document.body.classList.contains('search-open')&&
        document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
     if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load();
+    items.unshift({id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()});
+    toast(put(items)?'Saved to Thoughts':'Could not save — storage is full');
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
 })();
 </script></body></html>
