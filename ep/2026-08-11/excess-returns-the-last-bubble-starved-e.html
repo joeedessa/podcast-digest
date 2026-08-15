@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-11/excess-returns-the-last-bubble-starved-e.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-11.html">11 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Excess Returns</span><span class="pill">11 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">The Last Bubble Starved Energy This One Starves Housing Is the Opportunity Where</h1><div class="meta">Host: Jack Forehand, Matt Zeigler · Guest: Rich Bernstein, Founder, Rich Bernstein Advisors · <a href="https://www.youtube.com/watch?v=g1yueS-M9v4" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This episode features a joint interview with Rich Bernstein and David Rosenberg, discussing capital misallocation in the economy, particularly the shift from housing to AI-related capex. Chongyang from Varia Perceptions elaborates on the collective levy framework and the downstream ROI of AI investments. Brent Donnelly provides insights into trading psychology, emphasizing rationality over intelligence and the importance of flexibility and Bayesian thinking.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-11/excess-returns-the-last-bubble-starved-e.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-11.html">11 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Excess Returns</span><span class="pill">11 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">The Last Bubble Starved Energy This One Starves Housing Is the Opportunity Where</h1><div class="meta">Host: Jack Forehand, Matt Zeigler · Guest: Rich Bernstein, Founder, Rich Bernstein Advisors · <a href="https://www.youtube.com/watch?v=g1yueS-M9v4" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This episode features a joint interview with Rich Bernstein and David Rosenberg, discussing capital misallocation in the economy, particularly the shift from housing to AI-related capex. Chongyang from Varia Perceptions elaborates on the collective levy framework and the downstream ROI of AI investments. Brent Donnelly provides insights into trading psychology, emphasizing rationality over intelligence and the importance of flexibility and Bayesian thinking.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Rich Bernstein argues that the current AI bubble is inherently inflationary due to gross misallocation of capital, similar to the dot-com bubble starving the energy sector. He highlights the disproportionate construction spending on data centers versus residential housing, leading to housing unaffordability.</li><li>David Rosenberg agrees with Bernstein on capital misallocation, noting that approximately 50% of business capex is now AI-related, growing at 18% in real terms, while non-AI capex is negative year-over-year. However, Rosenberg distinguishes the current inflation from the late 1990s, stating that the entire economy was booming then, unlike today&#x27;s K-shaped economy.</li><li>Chongyang explains the collective levy framework, where one person&#x27;s spending is another&#x27;s income, contributing to economic resilience when corporates and households desave and spend. He suggests the current phase of AI investment is moving from bottleneck hardware to AI adopters benefiting from lower costs, similar to the mid-2000s diffusion of the dot-com bubble.</li><li>Brent Donnelly emphasizes that intelligence is table stakes in trading, but rationality, flexibility, and Bayesian thinking are more critical for success. He notes that being overly bearish is a &quot;massive leak in finance&quot; and highlights the importance of &quot;strong opinions, weakly held.&quot;</li><li>Matt Zeigler and Jack Forehand discuss the nuance between GDP growth driven by AI capex and AI&#x27;s total contribution to GDP, noting that while AI drives a significant portion of growth, it&#x27;s not a huge portion of total GDP. They also highlight the K-shaped economy and lack of wage inflation as key differences from past bubbles.</li><li>Jack Forehand points out that deficit spending and inflation below 3.5% are generally bullish for equities, contrasting with the &quot;smart&quot; but often unprofitable bearish view.</li><li>Matt Zeigler suggests that the ROI from AI might first appear in non-correlated sectors like healthcare, insurance, and consumer staples, which could help the market tread water if the AI bubble unwinds.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"the Fed does not appreciate I don&#x27;t think the Fed has ever appreciated that that abnormal real pricing abnormal pricing in the real economy which we would call inflation all of us would call inflation that abnormal pricing in the financial economy which we would call a bull market when taken to an extreme is just as damaging to the economy as is real inflation because you get this this misallocation of capital within the economy and distorts the economy."<span class="qw">— Rich Bernstein</span></blockquote><blockquote class="q">"there&#x27;s a sort of this cliche of like do you want to be smart or make money and You know, it&#x27;s it&#x27;s true. Sometimes I can feel myself trying to do this like smart thing like, you know, find the bottom in semis or pick the top in semis or whatever, you know, at different times of the cycle instead of just like, okay, everyone hates semis, probably going to sell off straight from the open."<span class="qw">— Brent Donnelly</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Rich Bernstein</span><span class="tag dir-other">VIEW</span><span class="what">Energy sector — starved for capital, good investment opportunity (stated 2x)</span></div><div class="ivrow"><span class="who">Rich Bernstein</span><span class="tag dir-avoid">AVOID</span><span class="what">Dotcoms and technology and fiber optics</span></div><div class="ivrow"><span class="who">Brent Donnelly</span><span class="tag dir-other">VIEW</span><span class="what">Being bearish on equities — &quot;biggest leak in finance&quot;</span></div><div class="ivrow"><span class="who">Brent Donnelly</span><span class="tag dir-other">VIEW</span><span class="what">Deficit spending and inflation below 3.5% — bullish equities</span></div></section>

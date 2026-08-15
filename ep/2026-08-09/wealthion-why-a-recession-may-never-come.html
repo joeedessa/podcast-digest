@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-09/wealthion-why-a-recession-may-never-come.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-09.html">9 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Wealthion</span><span class="pill">9 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Why a Recession May Never Come and Why Gold Still Wins</h1><div class="meta">Host: Maggie Lake · Guest: Andrew Sarna, Portfolio Manager at Fourth Lane Partners · <a href="https://www.podtrac.com/pts/redirect.mp3/pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/796/prfx.byspotify.com/e/claritaspod.com/measure/traffic.megaphone.fm/GEMINIMEDIA3943758515.mp3" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Andrew Sarna discusses the current economic landscape, characterized by a large U.S. deficit making a recession unlikely, despite underlying economic weaknesses. He highlights the implicit cap on Treasury yields due to government insolvency concerns and the concentration of the S&amp;P 500 in a few AI-related names. Sarna advocates for a core holding in real assets like energy and precious metals, particularly gold, as a hedge against money printing and geopolitical tensions.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-09/wealthion-why-a-recession-may-never-come.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-09.html">9 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Wealthion</span><span class="pill">9 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Why a Recession May Never Come and Why Gold Still Wins</h1><div class="meta">Host: Maggie Lake · Guest: Andrew Sarna, Portfolio Manager at Fourth Lane Partners · <a href="https://www.podtrac.com/pts/redirect.mp3/pdst.fm/e/pscrb.fm/rss/p/mgln.ai/e/796/prfx.byspotify.com/e/claritaspod.com/measure/traffic.megaphone.fm/GEMINIMEDIA3943758515.mp3" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Andrew Sarna discusses the current economic landscape, characterized by a large U.S. deficit making a recession unlikely, despite underlying economic weaknesses. He highlights the implicit cap on Treasury yields due to government insolvency concerns and the concentration of the S&amp;P 500 in a few AI-related names. Sarna advocates for a core holding in real assets like energy and precious metals, particularly gold, as a hedge against money printing and geopolitical tensions.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Andrew Sarna views a U.S. recession as unlikely given the 6% to 7% deficit, despite bearish signs like negative leading economic indicators and rising delinquency rates among lower-end consumers.</li><li>Sarna believes there is an implicit cap on Treasury yields, even without formal yield curve control, because higher yields would render the U.S. government budget insolvent.</li><li>Sarna notes that 40% of the U.S. S&amp;P 500 is concentrated in 10 names, mostly indexed to the AI trade, which he sees as potentially rolling over, leading to anemic economic growth driven by government spending rather than private sector activity.</li><li>Sarna suggests that the U.S. stock market might benefit from a slowdown in AI CapEx, as evidenced by Google&#x27;s stock price falling after announcing increased CapEx, indicating the market is asking large companies to pull back.</li><li>Sarna maintains a long-term constructive view on gold, citing persistent money printing and fracturing global order, despite short-term pressures from rising real rates and initial selling during conflicts.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"If the U.S. is running a 6% to 7% deficit, I just don&#x27;t even know how a recession is possible."<span class="qw">— Andrew Sarna</span></blockquote><blockquote class="q">"There&#x27;s no way the U.S. or the rest of the G7 are going to balance their books. That&#x27;s just another bold case for gold."<span class="qw">— Andrew Sarna</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Andrew Sarna</span><span class="tag dir-avoid">AVOID</span><span class="what">bonds — no longer a core holding, only a trade</span></div><div class="ivrow"><span class="who">Andrew Sarna</span><span class="tag dir-long">LONG</span><span class="what">real assets — core holding</span></div><div class="ivrow"><span class="who">Andrew Sarna</span><span class="tag dir-long">LONG</span><span class="what">energy and oil markets — long term, confident five years from now, will be higher</span></div><div class="ivrow"><span class="who">Andrew Sarna</span><span class="tag dir-long">LONG</span><span class="what">precious metals (gold) — long term, confident five years from now, will be higher</span></div><div class="ivrow"><span class="who">Andrew Sarna</span><span class="tag dir-watching">WATCHING</span><span class="what">gold — at the 4,000 level, waiting to see if support holds</span></div><div class="ivrow"><span class="who">Andrew Sarna</span><span class="tag dir-other">VIEW</span><span class="what">U.S. economy — nominally can do well due to cash injection, despite underlying weakness</span></div><div class="ivrow"><span class="who">Andrew Sarna</span><span class="tag dir-other">VIEW</span><span class="what">AI complex — rolling over now, second derivative of growth rates of CapEx investment beginning to slow</span></div><div class="ivrow"><span class="who">Andrew Sarna</span><span class="tag dir-other">VIEW</span><span class="what">energy sector — a place to wait, underinvestment in the sector, eventually will get through any supply glut, higher oil prices over the longer term</span></div><div class="ivrow"><span class="who">Andrew Sarna</span><span class="tag dir-other">VIEW</span><span class="what">domestic stocks (non-AI) — finding pockets of value, don&#x27;t look insanely expensive, overshadowed by AI theme</span></div></section>

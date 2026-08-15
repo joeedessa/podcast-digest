@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-15/macro-hive-the-week-ahead-fomc-minutes-t.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-15.html">15 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Macro Hive</span><span class="pill">15 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">The Week Ahead FOMC Minutes to Spill Feds Beans</h1><div class="meta">Host: Ben Ford · Guest: Dominique Dwor-Frecaut, Macro Strategist, Macro Hive · <a href="https://www.youtube.com/watch?v=j7oa0srxmfw" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This episode of Macro Hive&#x27;s &quot;The Week Ahead&quot; features Ben Ford and Dominique Dwor-Frecaut discussing recent US economic data, including CPI, PPI, and retail sales, and their implications for the Federal Reserve&#x27;s monetary policy. Dwor-Frecaut argues that recent data points do not signal a broad-based inflation problem, with supply shocks remaining limited to specific domains, and that the Fed will look beyond single data points and technical changes when assessing inflation. The upcoming FOMC minutes are highlighted as a key event for insights into internal Fed debates and potential policy changes.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-15/macro-hive-the-week-ahead-fomc-minutes-t.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-15.html">15 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Macro Hive</span><span class="pill">15 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">The Week Ahead FOMC Minutes to Spill Feds Beans</h1><div class="meta">Host: Ben Ford · Guest: Dominique Dwor-Frecaut, Macro Strategist, Macro Hive · <a href="https://www.youtube.com/watch?v=j7oa0srxmfw" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This episode of Macro Hive&#x27;s &quot;The Week Ahead&quot; features Ben Ford and Dominique Dwor-Frecaut discussing recent US economic data, including CPI, PPI, and retail sales, and their implications for the Federal Reserve&#x27;s monetary policy. Dwor-Frecaut argues that recent data points do not signal a broad-based inflation problem, with supply shocks remaining limited to specific domains, and that the Fed will look beyond single data points and technical changes when assessing inflation. The upcoming FOMC minutes are highlighted as a key event for insights into internal Fed debates and potential policy changes.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Dominique Dwor-Frecaut views the recent pickup in core goods CPI, driven by used cars, as noisy and not a cause for alarm, noting that the increase follows a prior contraction.</li><li>Dwor-Frecaut explains that the Fed takes a holistic view of indicators, including various PCE indices and wage pressures, rather than reacting to single data points like Super Core CPI.</li><li>Dwor-Frecaut suggests that the recent weak retail sales print, following NFP disappointments, could indicate slowing employment growth and consumer income, but does not necessarily mean the Fed will stay on hold as long as the unemployment rate remains low.</li><li>Dwor-Frecaut anticipates the FOMC minutes will reveal how many non-voters favored hikes and provide more color on the motivations of hawks and doves, aiding in monitoring data.</li><li>Dwor-Frecaut discusses the potential debate on reducing the number of FOMC meetings, expressing a personal preference for six meetings a year, arguing that economic data is low frequency and drastic changes in the macro picture are infrequent between current meetings.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"I don&#x27;t think you know the Fed they are human beings they think they don&#x27;t they are not AI they don&#x27;t react to a single data point they look at the broad picture they look at the trend a technical change is not going to sway them one way or another."<span class="qw">— Dominique Dwor-Frecaut</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">VIEW</span><span class="what">Core PCE month-on-month at 22 basis points — not in the danger zone for the Fed.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">VIEW</span><span class="what">Two good disinflationary data points are not enough for the Fed to precommit to staying on hold or to convince hawks.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">PREDICTION</span><span class="what">Atlanta Fed nowcast for Q3 consumption growth (currently 4.1%) will be revised down following weak retail sales.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">VIEW</span><span class="what">Hawks on the FOMC believe policy is not tight enough and see a need for a &quot;risk management hike&quot; in the short term.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">VIEW</span><span class="what">Doves on the FOMC want to see actual disinflationary trends to support staying on hold.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">PREDICTION</span><span class="what">FOMC minutes will reveal the number of non-voters in favor of hikes.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">PREDICTION</span><span class="what">FOMC minutes will provide more color on hawk and dove motivations.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">VIEW</span><span class="what">Reducing the number of FOMC meetings to six per year &quot;might not be such a bad thing.&quot;</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">PREDICTION</span><span class="what">Walsh will not change his policy of saying nothing about short-term economic issues at Jackson Hole.</span></div><div class="ivrow"><span class="who">Dominique Dwor-Frecaut</span><span class="tag dir-other">VIEW</span><span class="what">Moving to six FOMC meetings would be &quot;more a signal of intent than a changing the Fed reaction function.&quot;</span></div></section>

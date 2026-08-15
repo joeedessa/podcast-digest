@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-05/trivium-china-ep-76-chinas-economy-is-hu.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-05.html">5 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Trivium China</span><span class="pill">5 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Ep 76 - Chinas economy is hurting Beijings answer is patience</h1><div class="meta">Host: Andrew Polk · Guest: Dinny McMahon, Head of Markets Research, Trivium · <a href="https://www.buzzsprout.com/2408047/episodes/19580642-ep-76-china-s-economy-is-hurting-beijing-s-answer-is-patience.mp3" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Andrew Polk and Dinny McMahon discuss the July Politburo meeting in China, focusing on its implications for the economy. McMahon explains that while the readout signals more fiscal and some monetary support, Beijing&#x27;s approach prioritizes deleveraging and productivity gains over large-scale stimulus. Polk adds that policymakers are not panicking despite domestic weakness, viewing it as a necessary consequence of real estate realignment.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-05/trivium-china-ep-76-chinas-economy-is-hu.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-05.html">5 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Trivium China</span><span class="pill">5 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Ep 76 - Chinas economy is hurting Beijings answer is patience</h1><div class="meta">Host: Andrew Polk · Guest: Dinny McMahon, Head of Markets Research, Trivium · <a href="https://www.buzzsprout.com/2408047/episodes/19580642-ep-76-china-s-economy-is-hurting-beijing-s-answer-is-patience.mp3" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Andrew Polk and Dinny McMahon discuss the July Politburo meeting in China, focusing on its implications for the economy. McMahon explains that while the readout signals more fiscal and some monetary support, Beijing&#x27;s approach prioritizes deleveraging and productivity gains over large-scale stimulus. Polk adds that policymakers are not panicking despite domestic weakness, viewing it as a necessary consequence of real estate realignment.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>The July Politburo meeting is particularly important as it takes stock of the first half GDP data and sets the economic agenda for the back half of the year.</li><li>China&#x27;s economy is in the doldrums, with weak domestic demand, though the export sector (energy, AI-related) is strong. Expectations were high for stimulus given the poor data.</li><li>The Politburo readout signals clear intent for more support, using phrases like &quot;more active fiscal policy,&quot; &quot;fully leverage the effectiveness of existing policies,&quot; &quot;introduce incremental policies,&quot; and &quot;intensify efforts to expand domestic demand.&quot;</li><li>Monetary policy support is expected to be through structural tools or relending quotas, rather than interest rate or reserve requirement cuts. Fiscal-financial cooperation is likely code for interest rate subsidies.</li><li>Fiscal policy will involve accelerating the issuance of special purpose bonds by local governments, with a greater focus on infrastructure and less on land buybacks or hidden debt. An additional allocation of debt, potentially $500 billion, is expected in Q4.</li><li>The expected policy measures are not a &quot;silver bullet&quot; for domestic demand but will lead to a more robust second half of the year compared to the first, helping Beijing achieve its 4.5% to 5% GDP growth target.</li><li>Policymakers are not panicking about domestic weakness, which Andrew Polk attributes to the ongoing real estate realignment and the economy weaning itself off property.</li><li>The Central Committee&#x27;s fifth plenum will be held in October, setting the stage for leadership turnover in 2027 and focusing on internal party governance and anti-corruption efforts.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"So you put all that together and there is no ambiguity there whatsoever. There&#x27;s a sense that clearly more needs to be done to support the economy and specifically domestic demand. And that support is going to be fiscal and probably around the edges is going to be a little bit monetary as well."<span class="qw">— Dinny McMahon</span></blockquote><blockquote class="q">"And everyone&#x27;s talking about how terrible the Chinese economy is. And it&#x27;s true. Well, it&#x27;s bifurcated, right? It&#x27;s the K-shaped economy that Joe P has written about and others have written about. Exports doing great. High tech part of the economy, anything linked to AI doing great. Everything else doing terrible, right?"<span class="qw">— Andrew Polk</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Dinny McMahon</span><span class="tag dir-other">PREDICTION</span><span class="what">more robust domestic demand in the second half of the year</span></div><div class="ivrow"><span class="who">Dinny McMahon</span><span class="tag dir-other">PREDICTION</span><span class="what">more central government spending in the second half of the year</span></div><div class="ivrow"><span class="who">Dinny McMahon</span><span class="tag dir-other">PREDICTION</span><span class="what">State Grid investment will pick up in the second half of the year</span></div><div class="ivrow"><span class="who">Dinny McMahon</span><span class="tag dir-other">PREDICTION</span><span class="what">China will achieve its GDP target of 4.5% to 5% growth for the year</span></div><div class="ivrow"><span class="who">Dinny McMahon</span><span class="tag dir-other">PREDICTION</span><span class="what">issuance of special purpose bonds will accelerate in H2 2026</span></div><div class="ivrow"><span class="who">Dinny McMahon</span><span class="tag dir-other">PREDICTION</span><span class="what">funds from special purpose bonds will focus more on infrastructure, less on land buybacks/hidden debt</span></div><div class="ivrow"><span class="who">Dinny McMahon</span><span class="tag dir-other">PREDICTION</span><span class="what">an additional allocation of debt, likely $500 billion worth of borrowing, in Q4 2026</span></div></section>

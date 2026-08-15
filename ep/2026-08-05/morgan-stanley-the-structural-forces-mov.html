@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-05/morgan-stanley-the-structural-forces-mov.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-05.html">5 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Morgan Stanley</span><span class="pill">5 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">The Structural Forces Moving Capital</h1><div class="meta">Host: Michelle Weaver · Guest: Michael Zezus, Co-Director of the Morgan Stanley Institute and Deputy Global Head of Morgan Stanley Research · <a href="https://pdst.fm/e/pscrb.fm/rss/p/rss.art19.com/episodes/32d37e00-7cd4-421b-a961-521d79deac59.mp3?rss_browser=BAhJIgxNb3ppbGxhBjoGRVQ%3D--4f04cd103bfdd3e94cbbb356ead53321a4d63e94" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This episode discusses how major investment cycles in AI, energy infrastructure, manufacturing, and defense are simultaneously competing for scarce resources like power, skilled labor, equipment, and capital. Michael Zezus highlights the need for investors to look beyond isolated themes to identify constraints, while Jessica Allsford emphasizes the interconnectedness of AI, energy resilience, and geopolitics as a single story driving the need to scale the global energy system. The discussion explores how these structural forces are reshaping corporate investment strategies and creating new opportunities for investors.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-05/morgan-stanley-the-structural-forces-mov.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-05.html">5 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Morgan Stanley</span><span class="pill">5 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">The Structural Forces Moving Capital</h1><div class="meta">Host: Michelle Weaver · Guest: Michael Zezus, Co-Director of the Morgan Stanley Institute and Deputy Global Head of Morgan Stanley Research · <a href="https://pdst.fm/e/pscrb.fm/rss/p/rss.art19.com/episodes/32d37e00-7cd4-421b-a961-521d79deac59.mp3?rss_browser=BAhJIgxNb3ppbGxhBjoGRVQ%3D--4f04cd103bfdd3e94cbbb356ead53321a4d63e94" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This episode discusses how major investment cycles in AI, energy infrastructure, manufacturing, and defense are simultaneously competing for scarce resources like power, skilled labor, equipment, and capital. Michael Zezus highlights the need for investors to look beyond isolated themes to identify constraints, while Jessica Allsford emphasizes the interconnectedness of AI, energy resilience, and geopolitics as a single story driving the need to scale the global energy system. The discussion explores how these structural forces are reshaping corporate investment strategies and creating new opportunities for investors.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Michael Zezus identifies the biggest question for investors as how multiple major investment cycles (AI, energy infrastructure, manufacturing, defense) can occur simultaneously, competing for the same resources and potentially delaying projects, raising costs, or redirecting spending.</li><li>Jessica Allsford states that AI, energy resilience, and geopolitics have become &quot;one story,&quot; with the AI build-out depending on reliable power, and geopolitical shocks demonstrating the need for energy security, all contributing to a huge need to scale the global energy system using all power types.</li><li>Michael Zezus explains that geopolitical shocks are now the norm, leading companies and governments to shift from optimizing for globalization to prioritizing supply chain security and national competitive advantages through industrial policy, resulting in higher trade barriers and a need for more regional supply chains and redundancy.</li><li>Jessica Allsford notes that power is becoming a strategic constraint for the AI build-out, with grid connections taking years to set up, making access to power a determinant of facility location and speed to online.</li><li>Michael Zezus advises watching whether capital spending plans are being delayed, resized, or redirected, and the reasons why, to distinguish between temporary setbacks and structural shifts that could signal overcapacity or a real headwind to the economic outlook.</li><li>Jessica Allsford highlights that founders&#x27; decisions provide an early read on risk appetite and financing conditions, with many currently adapting by extending fundraising timelines, broadening investor conversations, and considering private credit, structured equity, or tender offers.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"It&#x27;s difficult to pick one because to be honest, for me, it&#x27;s really the way that AI, energy resilience and geopolitics have all really become one story."<span class="qw">— Jessica Allsford</span></blockquote><blockquote class="q">"So for investors, it&#x27;s less about whether to be bullish or bearish on the outlook for the markets and the economy. And it&#x27;s more about looking for companies that are durable beneficiaries of these trends."<span class="qw">— Michael Zezus</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Michael Zezus</span><span class="tag dir-other">VIEW</span><span class="what">demand for AI/manufacturing — not flagging anytime soon</span></div><div class="ivrow"><span class="who">Michael Zezus</span><span class="tag dir-watching">WATCHING</span><span class="what">capital spending plans — whether delayed, resized, or redirected, and the reasons why (power, labor, equipment, permitting, financing constraints)</span></div><div class="ivrow"><span class="who">Michael Zezus</span><span class="tag dir-other">VIEW</span><span class="what">companies that are durable beneficiaries of current trends — those with secure inputs, flexible balance sheets, and realistic return thresholds</span></div><div class="ivrow"><span class="who">Jessica Allsford</span><span class="tag dir-other">VIEW</span><span class="what">demand for AI — not slowing</span></div><div class="ivrow"><span class="who">Jessica Allsford</span><span class="tag dir-other">VIEW</span><span class="what">AI adoption diffusion story — will continue to grow</span></div></section>

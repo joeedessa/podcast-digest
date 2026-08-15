@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-05/maggie-lake-talking-markets-dont-ignore-.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-05.html">5 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Maggie Lake Talking Markets</span><span class="pill">5 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Dont Ignore This Break Out With Tony Greer</h1><div class="meta">Host: Maggie Lake · Guest: Tony Greer, editor of The Salar&#x27;s Edge · <a href="https://anchor.fm/s/fab7af70/podcast/play/123722520/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-7-3%2F429155635-44100-2-f9df1933b2bc2.mp3" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Tony Greer discusses the current market environment, highlighting a bullish outlook for the stock market due to the removal of several uncertainties, including the Iran war, the Federal Reserve&#x27;s stance, and the dollar-yen intervention. He identifies specific sector breakouts in technology while maintaining a cautious view on semiconductors and Bitcoin. Greer also shares his long-term bullish conviction on gold and his interest in the financials sector.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-05/maggie-lake-talking-markets-dont-ignore-.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-05.html">5 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Maggie Lake Talking Markets</span><span class="pill">5 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Dont Ignore This Break Out With Tony Greer</h1><div class="meta">Host: Maggie Lake · Guest: Tony Greer, editor of The Salar&#x27;s Edge · <a href="https://anchor.fm/s/fab7af70/podcast/play/123722520/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-7-3%2F429155635-44100-2-f9df1933b2bc2.mp3" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Tony Greer discusses the current market environment, highlighting a bullish outlook for the stock market due to the removal of several uncertainties, including the Iran war, the Federal Reserve&#x27;s stance, and the dollar-yen intervention. He identifies specific sector breakouts in technology while maintaining a cautious view on semiconductors and Bitcoin. Greer also shares his long-term bullish conviction on gold and his interest in the financials sector.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Tony Greer notes a &quot;big breakout day&quot; in the S&amp;P, with the index trading up to 76 and a quarter, attributing it to the removal of uncertainties such as the Iran war, the Fed&#x27;s communication, and the dollar-yen intervention.</li><li>Greer identifies two-sigma rallies in Internet stocks, airlines, and software, and MAG7 stocks moving above all moving averages, signaling a bullish day for the stock market.</li><li>Greer maintains a short position in semiconductors, believing there is still downside in the sector until SpaceX finds a bottom, despite the overall tech rally.</li><li>Greer expresses a long-term bullish view on gold, stating that the fundamental story has not changed and its price will go higher, regardless of short-term fluctuations around $4,000.</li><li>Greer is bidding for the XLF (financials sector ETF) below the market, believing the sector looks great due to higher interest rates and benefits from AI.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"Tell this gentleman that I got incrementally bullish 15 minutes ago when it became clear that these sectors were going to close with two sigma rallies today."<span class="qw">— Tony Greer</span></blockquote><blockquote class="q">"I don&#x27;t really care what the S&amp;P does because the S&amp;P is kind of mag 7."<span class="qw">— Tony Greer</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-short">SHORT</span><span class="what">semiconductor position — trying to capture a profit before it gets away</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">VIEW</span><span class="what">SpaceX — anticipated a &quot;witch hat&quot; pattern, trading up with excitement then fading towards 100</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-short">SHORT</span><span class="what">SpaceX — from 190 to 160 or so, stayed short from there</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-long">LONG</span><span class="what">oil stocks</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-long">LONG</span><span class="what">gold</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">BIDDING FOR</span><span class="what">XLF (financials sector ETF) — below the market</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">VIEW</span><span class="what">Bitcoin — &quot;slow bleed lower,&quot; probably settles out in a 25K to 75K range</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">VIEW</span><span class="what">copper — slow moving bullishness for me on a six-month time frame</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-avoid">AVOID</span><span class="what">soft commodities — due to volatility and illiquidity</span></div><div class="ivrow"><span class="who">Tony Greer</span><span class="tag dir-other">VIEW</span><span class="what">gold — long-term support, price will go higher, thesis intact</span></div></section>

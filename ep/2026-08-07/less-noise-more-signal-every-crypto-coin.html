@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-07/less-noise-more-signal-every-crypto-coin.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-07.html">7 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Less Noise More Signal</span><span class="pill">7 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Every Crypto Coin Is a Memecoin With Extra Steps</h1><div class="meta">Host: Pascal Hügli · Solo episode · <a href="https://www.youtube.com/watch?v=Y7OYtYNNrkY" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This episode explores the phenomenon of pump.fun, a platform for creating and trading &quot;human-generated content&quot; in the form of tokens. The speaker argues that pump.fun offers a fairer and more transparent alternative to traditional venture capital-backed crypto projects, which are often &quot;all smoke and mirrors.&quot; The discussion highlights pump.fun&#x27;s monetization model for content creators and its potential to expand beyond the crypto &quot;mini bubble&quot; through a mobile app.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-07/less-noise-more-signal-every-crypto-coin.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-07.html">7 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Less Noise More Signal</span><span class="pill">7 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Every Crypto Coin Is a Memecoin With Extra Steps</h1><div class="meta">Host: Pascal Hügli · Solo episode · <a href="https://www.youtube.com/watch?v=Y7OYtYNNrkY" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This episode explores the phenomenon of pump.fun, a platform for creating and trading &quot;human-generated content&quot; in the form of tokens. The speaker argues that pump.fun offers a fairer and more transparent alternative to traditional venture capital-backed crypto projects, which are often &quot;all smoke and mirrors.&quot; The discussion highlights pump.fun&#x27;s monetization model for content creators and its potential to expand beyond the crypto &quot;mini bubble&quot; through a mobile app.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>The speaker argues that pump.fun facilitates a &quot;financialized sort of layer of traditional social media,&quot; allowing users to invest in content creators&#x27; work and providing a direct monetization angle for creators through a portion of trading fees.</li><li>The speaker contends that many VC-backed crypto projects from previous cycles, such as Celestia, are &quot;straight scam[s]&quot; that provide &quot;zero value&quot; and dump on users, whereas pump.fun is successful because &quot;it doesn&#x27;t pretend something which is not.&quot;</li><li>The speaker believes that all crypto, including Bitcoin, is fundamentally &quot;mimemetics,&quot; driven by social belief and word-of-mouth, and that meme coins on pump.fun are &quot;a thousand times fairer&quot; because retail investors &quot;know what they&#x27;re getting into.&quot;</li><li>The speaker&#x27;s company, Baton Corporation, is focusing on a mobile app for pump.fun to reach &quot;100 million users, 500 million users, a billion users,&quot; aiming to escape the &quot;crypto mini bubble&quot; and create an ecosystem for sharing token ideas among a broad user base.</li><li>The speaker notes that pump.fun&#x27;s user base consists of &quot;millions of people&quot; who are &quot;normal guys who just go to work&quot; and trade on their mobile devices, a &quot;very very different user cohort&quot; from the typical &quot;CT bubble&quot; crypto users.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">(speaker unclear) — &quot;I I asked myself is are these is that a meme coin or is that like an actual project coin with utility? Like what what&#x27;s sort of going on here? And the the the truth is they&#x27;re the same and they&#x27;re completely the same.&quot;</blockquote><blockquote class="q">(speaker unclear) — &quot;Because the thing is like the truth is not a single thing except Bitcoin and maybe Ethereum has actually escaped the sort of crypto like slot bubble of just like not many use.&quot;</blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">(speaker unclear)</span><span class="tag dir-other">VIEW</span><span class="what">pump.fun — &quot;is really trying to become a a content creation factory and like a social trading venue&quot;</span></div><div class="ivrow"><span class="who">(speaker unclear)</span><span class="tag dir-other">VIEW</span><span class="what">pump.fun — &quot;has kind of managed to break through but nowhere near to the size of what what is needed to really control and take over the world&quot;</span></div></section>

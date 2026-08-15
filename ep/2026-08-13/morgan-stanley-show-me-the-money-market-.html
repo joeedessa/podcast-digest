@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-13/morgan-stanley-show-me-the-money-market-.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-13.html">13 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Morgan Stanley</span><span class="pill">13 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Show Me the Money Market Tells Companies</h1><div class="meta">Host: Mike Wilson · Solo episode · <a href="https://pdst.fm/e/pscrb.fm/rss/p/rss.art19.com/episodes/d1706818-f994-4feb-9f96-520ab7f324be.mp3?rss_browser=BAhJIgxNb3ppbGxhBjoGRVQ%3D--4f04cd103bfdd3e94cbbb356ead53321a4d63e94" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Mike Wilson discusses a shift in market demand from early-cycle beta to mid-cycle quality. He argues that while earnings broadening is still occurring, the market now requires companies to demonstrate durable earnings, strong margins, and free cash flow for outperformance. This transition also impacts AI adoption, with the market rewarding demonstrable efficiency gains over abstract promises.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-13/morgan-stanley-show-me-the-money-market-.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-13.html">13 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Morgan Stanley</span><span class="pill">13 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Show Me the Money Market Tells Companies</h1><div class="meta">Host: Mike Wilson · Solo episode · <a href="https://pdst.fm/e/pscrb.fm/rss/p/rss.art19.com/episodes/d1706818-f994-4feb-9f96-520ab7f324be.mp3?rss_browser=BAhJIgxNb3ppbGxhBjoGRVQ%3D--4f04cd103bfdd3e94cbbb356ead53321a4d63e94" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Mike Wilson discusses a shift in market demand from early-cycle beta to mid-cycle quality. He argues that while earnings broadening is still occurring, the market now requires companies to demonstrate durable earnings, strong margins, and free cash flow for outperformance. This transition also impacts AI adoption, with the market rewarding demonstrable efficiency gains over abstract promises.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Mike Wilson notes that the market is moving from an early-cycle broadening, which rewarded economically sensitive areas, to a mid-cycle quality rotation.</li><li>Mike Wilson highlights that headline earnings are no longer sufficient for stock outperformance; investors now demand &quot;cash conversion,&quot; rewarding companies that raise both earnings and free cash flow estimates.</li><li>Mike Wilson states that AI adoption remains an important theme, but the market is increasingly rewarding companies that can demonstrate real efficiency gains and translate AI into better margins, productivity, and free cash flow, rather than just discussing open-ended opportunities.</li><li>Mike Wilson identifies remaining market risks for the year as interest rates and oil, noting that a gradual rise in nominal yields with strong economic and earnings data is historically positive for equities, but a rapid rise in yields would be a headwind for valuations.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"The market is saying, show me the money."<span class="qw">— Mike Wilson</span></blockquote><blockquote class="q">"AI is becoming less about the promise and more about the evidence."<span class="qw">— Mike Wilson</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Mike Wilson</span><span class="tag dir-other">FAVOR</span><span class="what">quality in AI adopters</span></div><div class="ivrow"><span class="who">Mike Wilson</span><span class="tag dir-other">PREFER</span><span class="what">large financial services, particularly insurance and capital markets exposed businesses (within financials)</span></div><div class="ivrow"><span class="who">Mike Wilson</span><span class="tag dir-other">LIKE</span><span class="what">discretionary goods (within cyclicals)</span></div><div class="ivrow"><span class="who">Mike Wilson</span><span class="tag dir-other">PREFER</span><span class="what">hyperscalers over semis (within tech)</span></div><div class="ivrow"><span class="who">Mike Wilson</span><span class="tag dir-watching">WATCHING</span><span class="what">interest rates very closely</span></div><div class="ivrow"><span class="who">Mike Wilson</span><span class="tag dir-watching">WATCHING</span><span class="what">oil very closely</span></div></section>

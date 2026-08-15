@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-04/wealthion-jim-bianco-there-are-now-two-s.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-04.html">4 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Wealthion</span><span class="pill">4 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Jim Bianco There Are Now Two Stock Markets</h1><div class="meta">Host: (not stated) · Guest: Jim Bianco · <a href="https://www.youtube.com/watch?v=jbka15YTcQw" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Jim Bianco discusses the emergence of two distinct stock markets: AI-related stocks and non-AI stocks. He argues that AI represents the biggest technological innovation ever, but also that all technologies eventually end in a bubble. Bianco suggests that the AI bubble is still a couple of years away, as current conditions do not yet indicate overcapacity.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-04/wealthion-jim-bianco-there-are-now-two-s.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-04.html">4 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Wealthion</span><span class="pill">4 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Jim Bianco There Are Now Two Stock Markets</h1><div class="meta">Host: (not stated) · Guest: Jim Bianco · <a href="https://www.youtube.com/watch?v=jbka15YTcQw" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Jim Bianco discusses the emergence of two distinct stock markets: AI-related stocks and non-AI stocks. He argues that AI represents the biggest technological innovation ever, but also that all technologies eventually end in a bubble. Bianco suggests that the AI bubble is still a couple of years away, as current conditions do not yet indicate overcapacity.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Jim Bianco states that AI and AI-related stocks, including the &quot;Mag 7,&quot; semiconductors, equipment manufacturers, and some energy pure plays, comprise approximately 41 stocks, representing 45% of the S&amp;P 500 as of a couple of days prior to the recording. This figure peaked at 49% in early June. The remaining 459 non-AI stocks account for 55% of the S&amp;P 500.</li><li>Jim Bianco observes that the correlation between AI and non-AI stocks is falling and is currently below zero, indicating two distinct markets. He cites an example where on a recent Monday, the overall market was down significantly, but the 459 non-AI stocks were up almost 1%.</li><li>Jim Bianco suggests that for higher expected returns and potential for greater profit, AI stocks are the choice, despite a risk of losing half or a third of one&#x27;s money. He notes AI stocks are likely down 15% from their June high. For a more predictable, &quot;sleep at night&quot; kind of life, non-AI stocks are preferable.</li><li>Jim Bianco believes that every technology ends in a bubble, and AI will be no different. However, he anticipates this bubble is &quot;a couple of years off in the future&quot; because a bubble typically ends with massive overbuild and excess capacity, which he does not see in AI currently.</li><li>Jim Bianco highlights the current narrative of being &quot;compute constrained,&quot; with only 2% of knowledge workers using AI productively and &quot;tokens being too expensive.&quot; He acknowledges the risk that technological advancements could suddenly turn perceived compute constraint into massive overcapacity, but does not believe this is the current situation.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">None recorded.</blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Jim Bianco</span><span class="tag dir-other">PREDICTION</span><span class="what">AI bubble — a couple of years off in the future</span></div><div class="ivrow"><span class="who">Jim Bianco</span><span class="tag dir-watching">WATCHING</span><span class="what">AI stocks — risk of losing half or a third of one&#x27;s money; probably down 15% from their June high</span></div><div class="ivrow"><span class="who">Jim Bianco</span><span class="tag dir-watching">WATCHING</span><span class="what">Non-AI stocks — preferable for a more predictable, &quot;sleep at night&quot; kind of life</span></div></section>

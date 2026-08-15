@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-04/odd-lots-the-tungsten-market-is-warning-.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-04.html">4 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Odd Lots</span><span class="pill">4 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">The Tungsten Market Is Warning of an Upcoming War</h1><div class="meta">Host: Joe Weisenthal, Tracy Alloway · Guest: David Fickling, Bloomberg Opinion Columnist · <a href="https://podtrac.com/pts/redirect.mp3/tracking.swap.fm/track/UVBrz8bN8aM2Xe47PEPu/traffic.omny.fm/d/clips/e73c998e-6e60-432f-8610-ae210140c5b1/8a94442e-5a74-4fa2-8b8d-ae27003a8d6b/6ea24954-06b5-4daa-a250-b4980120947f/audio.mp3?utm_source=Podcast&amp;in_playlist=982f5071-765c-403d-969d-ae27003a8d83" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This episode explores the critical role of tungsten, a strategic asset often overlooked during peacetime but essential during war. David Fickling argues that the tungsten market acts as a &quot;century old missing prediction market for war,&quot; with investments spiking when geopolitical tensions rise. The discussion highlights the challenges of securing tungsten supply outside of China, which dominates 80% of the global market, and the implications for global security and industrial applications.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-04/odd-lots-the-tungsten-market-is-warning-.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-04.html">4 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Odd Lots</span><span class="pill">4 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">The Tungsten Market Is Warning of an Upcoming War</h1><div class="meta">Host: Joe Weisenthal, Tracy Alloway · Guest: David Fickling, Bloomberg Opinion Columnist · <a href="https://podtrac.com/pts/redirect.mp3/tracking.swap.fm/track/UVBrz8bN8aM2Xe47PEPu/traffic.omny.fm/d/clips/e73c998e-6e60-432f-8610-ae210140c5b1/8a94442e-5a74-4fa2-8b8d-ae27003a8d6b/6ea24954-06b5-4daa-a250-b4980120947f/audio.mp3?utm_source=Podcast&amp;in_playlist=982f5071-765c-403d-969d-ae27003a8d83" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This episode explores the critical role of tungsten, a strategic asset often overlooked during peacetime but essential during war. David Fickling argues that the tungsten market acts as a &quot;century old missing prediction market for war,&quot; with investments spiking when geopolitical tensions rise. The discussion highlights the challenges of securing tungsten supply outside of China, which dominates 80% of the global market, and the implications for global security and industrial applications.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Joe Weisenthal shared his personal experience of misplacing his tungsten cube, noting the &quot;negative interest rate&quot; of hard asset investing due to storage costs or loss risk.</li><li>David Fickling explained that tungsten&#x27;s importance in military materiel stems from its extreme density and high melting point, making it ideal for armor-piercing rounds and drone shrapnel.</li><li>(speaker unclear) highlighted that 80% of tungsten is used in &quot;carbide tooling&quot; for industrial drilling, making it a &quot;fairly boring element&quot; in peacetime but critical for manufacturing.</li><li>David Fickling discussed the Dolphin Mine in Tasmania, which is reopening after decades, noting its unusual shareholder register and the investors&#x27; ambition to counter China&#x27;s 80% market dominance.</li><li>(speaker unclear) pointed out the lack of a forward curve for tungsten, making it difficult for mines outside China to secure financing due to price volatility, which can range from $300 to over $3,000 per dry metric ton unit.</li><li>David Fickling explained that the U.S. is inviting proposals to boost tungsten supply, and a floor price is needed to encourage production outside China, despite debates about its efficacy.</li><li>(speaker unclear) noted that the U.S. Project Vault, a $12 billion critical minerals reserve, risks becoming a hedge for common commodities rather than securing truly strategic minerals like tungsten.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"negative interest rate"<span class="qw">— Joe Weisenthal</span></blockquote><blockquote class="q">"century old missing prediction market for war."<span class="qw">— David Fickling</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">(speaker unclear)</span><span class="tag dir-avoid">AVOID</span><span class="what">investing in tungsten — &quot;especially if I can&#x27;t find this thing&quot;</span></div><div class="ivrow"><span class="who">(speaker unclear)</span><span class="tag dir-other">PREDICTION</span><span class="what">tungsten prices — can fluctuate wildly, from $300 to $3,000 per dry metric ton unit, depending on supply and demand.</span></div><div class="ivrow"><span class="who">(speaker unclear)</span><span class="tag dir-other">PREDICTION</span><span class="what">price of ammonium paratungstate (a tradable compound of tungsten) — approximately $300 per ton in 2022, rising to over $3,000 per dry metric ton unit.</span></div><div class="ivrow"><span class="who">(speaker unclear)</span><span class="tag dir-other">PREDICTION</span><span class="what">if the Tasmanian mine becomes operational — supply about 2.5% of the global market, or about one-sixth of the &quot;free world market.&quot;</span></div></section>

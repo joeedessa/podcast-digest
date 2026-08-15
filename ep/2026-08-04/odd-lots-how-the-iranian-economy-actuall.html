@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-04/odd-lots-how-the-iranian-economy-actuall.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-04.html">4 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Odd Lots</span><span class="pill">4 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">How the Iranian Economy Actually Works</h1><div class="meta">Host: Joe Weisenthal, Tracy Alloway · Guest: Yegana Torbadi, Iran correspondent for The New York Times · <a href="https://podtrac.com/pts/redirect.mp3/tracking.swap.fm/track/UVBrz8bN8aM2Xe47PEPu/traffic.omny.fm/d/clips/e73c998e-6e60-432f-8610-ae210140c5b1/8a94442e-5a74-4fa2-8b8d-ae27003a8d6b/519b7338-f6ec-4d99-a8a2-b496012a0db1/audio.mp3?utm_source=Podcast&amp;in_playlist=982f5071-765c-403d-969d-ae27003a8d83" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This Odd Lots episode explores the intricate and often chaotic nature of the Iranian economy, which guests Yegana Torbadi and Buzorghmer Sharafarin describe as having evolved into a &quot;mafia-like state.&quot; They argue that the Islamic Republic, despite initial promises of social justice and resource redistribution, operates on a system of loyalty-based rewards, where powerful security forces and cleric-controlled entities extract value from the private sector. This unique blend of authoritarianism, corruption, and ideological commitment creates a challenging and unpredictable environment for businesses and foreign engagement.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-04/odd-lots-how-the-iranian-economy-actuall.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-04.html">4 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Odd Lots</span><span class="pill">4 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">How the Iranian Economy Actually Works</h1><div class="meta">Host: Joe Weisenthal, Tracy Alloway · Guest: Yegana Torbadi, Iran correspondent for The New York Times · <a href="https://podtrac.com/pts/redirect.mp3/tracking.swap.fm/track/UVBrz8bN8aM2Xe47PEPu/traffic.omny.fm/d/clips/e73c998e-6e60-432f-8610-ae210140c5b1/8a94442e-5a74-4fa2-8b8d-ae27003a8d6b/519b7338-f6ec-4d99-a8a2-b496012a0db1/audio.mp3?utm_source=Podcast&amp;in_playlist=982f5071-765c-403d-969d-ae27003a8d83" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>This Odd Lots episode explores the intricate and often chaotic nature of the Iranian economy, which guests Yegana Torbadi and Buzorghmer Sharafarin describe as having evolved into a &quot;mafia-like state.&quot; They argue that the Islamic Republic, despite initial promises of social justice and resource redistribution, operates on a system of loyalty-based rewards, where powerful security forces and cleric-controlled entities extract value from the private sector. This unique blend of authoritarianism, corruption, and ideological commitment creates a challenging and unpredictable environment for businesses and foreign engagement.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Torbadi and Sharafarin define a &quot;mafia state&quot; as a layered society where citizens are rewarded based on their loyalty to the system, contrasting it with a normal society where all citizens benefit equally from national wealth. This structure has been present in the Islamic Republic since its inception, with revolutionary guards and religious foundations taking over large portions of the economy.</li><li>The guests explain that while Iran has a diversified industrial base (including car manufacturing, steel, and agriculture) and a surprisingly vibrant tech startup scene, these sectors are heavily influenced by a &quot;shadow state.&quot; This shadow state, linked to security forces and cleric-controlled entities, operates without accountability, often demanding shares from successful private businesses or repurposing industrial facilities for their own benefit.</li><li>Torbadi and Sharafarin highlight the chaotic nature of Iran&#x27;s economic landscape, where multiple competing factions, rather than a single authority, vie for control and resources. This instability, coupled with an ideological component that prioritizes self-sufficiency and spiritual goals over economic prosperity, makes it difficult for Western societies to engage with Iran, as evidenced by the rejection of significant economic incentives in favor of military development and ideological strength.</li><li>The guests note that the Iranian government&#x27;s increasing debt has led to police and military forces, particularly the Revolutionary Guards, gaining access to oil sales. Estimates suggest the Revolutionary Guards now handle half of Iran&#x27;s oil exports, reflecting the ongoing struggle among factions for economic control.</li><li>Torbadi and Sharafarin discuss the unique challenge of Iran&#x27;s government, where institutions report to a figure seen as holy, making it difficult to question authority or establish accountability. This, combined with the competition between factions, creates an environment where businesses face an &quot;odyssey&quot; of navigating conflicting demands and threats.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">None recorded.</blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">(speaker unclear)</span><span class="tag dir-other">PREDICTION</span><span class="what">US administration may not continue the war due to its long-term economic impacts.</span></div><div class="ivrow"><span class="who">(speaker unclear)</span><span class="tag dir-other">PREDICTION</span><span class="what">Trump is trying to keep the price of oil under $100 per barrel, and talks for negotiations and positive social posts emerge whenever it touches $100. While this can be managed for a bit, it is unlikely to continue long-term.</span></div><div class="ivrow"><span class="who">(speaker unclear)</span><span class="tag dir-other">PREDICTION</span><span class="what">Unless there is a drastic change, the Islamic Republic&#x27;s pattern of prioritizing ideology over economic goals is not expected to shift without significant evidence.</span></div></section>

@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-15/mining-stock-daily-scorpio-gold-expands-.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-15.html">15 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Mining Stock Daily</span><span class="pill">15 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Scorpio Gold Expands Manhattan as Caldera Targets Continue to Deliver</h1><div class="meta">Host: Ian Wagner · Guest: Zane Callinan, CEO of Scorpio Gold · <a href="https://www.youtube.com/watch?v=6ICHtcVgyl0" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Ian Wagner interviews Zane Callinan, CEO of Scorpio Gold, about the company&#x27;s ongoing 50,000-meter drill program in Nevada&#x27;s Manhattan Gold District. Callinan discusses recent drill results, particularly the significance of mineralization found in the Manhattan Caldera volcanics, which he believes could indicate a much larger gold system. He also provides updates on the company&#x27;s progress towards a 2 million ounce gold target, metallurgical studies, and plans for a NASDAQ listing via American Depository Shares.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-15/mining-stock-daily-scorpio-gold-expands-.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-15.html">15 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Mining Stock Daily</span><span class="pill">15 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Scorpio Gold Expands Manhattan as Caldera Targets Continue to Deliver</h1><div class="meta">Host: Ian Wagner · Guest: Zane Callinan, CEO of Scorpio Gold · <a href="https://www.youtube.com/watch?v=6ICHtcVgyl0" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Ian Wagner interviews Zane Callinan, CEO of Scorpio Gold, about the company&#x27;s ongoing 50,000-meter drill program in Nevada&#x27;s Manhattan Gold District. Callinan discusses recent drill results, particularly the significance of mineralization found in the Manhattan Caldera volcanics, which he believes could indicate a much larger gold system. He also provides updates on the company&#x27;s progress towards a 2 million ounce gold target, metallurgical studies, and plans for a NASDAQ listing via American Depository Shares.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Zane Callinan highlighted that Scorpio Gold is currently operating three diamond drills on site, focusing on the Gold Wedge area, Zanzibar trend, and Black Mammoth, with plans to move a drill to Keystone Jumbo imminently.</li><li>Callinan explained that recent drill results from the Manhattan Caldera volcanics, including hole 109 at Gold Wedge (2.83 g/t gold over 11.89 m and 9.46 g/t gold over 8.72 m) and hole 114 along the Zanzibar Trend (15.28 g/t gold over 2.5 m and 0.98 g/t gold over 23 m), are significant because previous operators considered these volcanic units barren.</li><li>Callinan stated that the &quot;caldera opportunity&quot; represents a 4.37 square kilometer land package with the potential for a much larger scale system, akin to Kinross&#x27;s Round Mountain, if further mineralization is defined.</li><li>Callinan confirmed that Scorpio Gold is still on track for an early 2027 resource update, targeting a total of 50,000 meters of drilling by the end of 2026, and remains confident in achieving a &quot;2 million oz target&quot; at &quot;1 g per ton plus&quot; grade.</li><li>Callinan discussed the company&#x27;s pursuit of a NASDAQ listing through American Depository Shares to gain better exposure to the US institutional and retail investor base, believing their US asset status will differentiate them from Canadian-listed peers.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"Today, the our our car all our package of caldera caldera um what we would is um structurally mapped as caldera is 4.37 square kilometers. So, it&#x27;s fairly significant. It has the potential to be very, very additive."<span class="qw">— Zane Callinan</span></blockquote><blockquote class="q">"I think we&#x27;re still very confident in call it that that 2 million oz target. Um and we just have to continue to perform and um continue to deliver additive drill holes and additive ounces to the ultimate uh goal of expanding that resource."<span class="qw">— Zane Callinan</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Zane Callinan</span><span class="tag dir-other">PREDICTION</span><span class="what">2 million oz gold target — early 2027 resource update</span></div><div class="ivrow"><span class="who">Zane Callinan</span><span class="tag dir-other">VIEW</span><span class="what">1 g per ton plus grade — core differentiator for the deposit</span></div><div class="ivrow"><span class="who">Zane Callinan</span><span class="tag dir-other">VIEW</span><span class="what">Metallurgy — not a fatal flaw, but needs re-evaluation for consolidated district</span></div><div class="ivrow"><span class="who">Zane Callinan</span><span class="tag dir-other">VIEW</span><span class="what">NASDAQ listing via American Depository Shares — will attract US domestic audience</span></div><div class="ivrow"><span class="who">Zane Callinan</span><span class="tag dir-other">VIEW</span><span class="what">Gold price — recent uptick may lead to broader upward market momentum</span></div></section>

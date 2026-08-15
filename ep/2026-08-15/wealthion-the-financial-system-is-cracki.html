@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-15/wealthion-the-financial-system-is-cracki.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-15.html">15 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Wealthion</span><span class="pill">15 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">The Financial System Is Cracking - Why Gold Commodities Could Surge</h1><div class="meta">Host: Maggie Lake · Guest: Jonathan Wellum, CEO and CIO of RockLink · <a href="https://www.youtube.com/watch?v=txM45XZrs84" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Jonathan Wellum argues that the financial system is under stress due to massive debt, unfunded liabilities, and geopolitical tensions, creating a compelling long-term opportunity in commodities, particularly gold and silver. He highlights the underinvestment in the commodity space despite increasing demand from digitization, data centers, and reshoring efforts. Wellum also cautions against the unproven economics of the AI boom, suggesting investors should seek companies with strong free cash flow and established moats, even in adjacent industries.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-15/wealthion-the-financial-system-is-cracki.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-15.html">15 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Wealthion</span><span class="pill">15 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">The Financial System Is Cracking - Why Gold Commodities Could Surge</h1><div class="meta">Host: Maggie Lake · Guest: Jonathan Wellum, CEO and CIO of RockLink · <a href="https://www.youtube.com/watch?v=txM45XZrs84" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Jonathan Wellum argues that the financial system is under stress due to massive debt, unfunded liabilities, and geopolitical tensions, creating a compelling long-term opportunity in commodities, particularly gold and silver. He highlights the underinvestment in the commodity space despite increasing demand from digitization, data centers, and reshoring efforts. Wellum also cautions against the unproven economics of the AI boom, suggesting investors should seek companies with strong free cash flow and established moats, even in adjacent industries.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Jonathan Wellum notes that President Trump&#x27;s roundtable with mining executives signals a return to prioritizing domestic mining for national security and technological development, driven by deglobalization and a desire to reduce dependence on nations like China for critical metals and rare earths.</li><li>Wellum observes a significant divergence between strong underlying fundamentals in commodity companies (high free cash flow, excellent growth) and their current equity valuations, which he believes do not reflect current commodity prices or future demand.</li><li>Wellum identifies the global financial system&#x27;s unsustainability, citing 350% debt-to-GDP in the US, a $2 trillion deficit, and central banks increasing gold reserves, as key drivers for long-term demand for gold and silver as hedges against purchasing power debasement.</li><li>Wellum expresses skepticism about the profitability of the AI boom, noting the massive capital expenditure (trillions of dollars) without clear returns on equity, and suggests that many companies in this space may face fallout and bankruptcy.</li><li>Wellum highlights opportunities in adjacent industries benefiting from reshoring and data center build-outs, such as facilities management and logistics, exemplified by Dexterra, which offers high organic growth and strong free cash flow yields.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"The story&#x27;s not going to make you money. The silver coming out of the mine is going to make you the money."<span class="qw">— Jonathan Wellum</span></blockquote><blockquote class="q">"Ultimately, when you have 350% debt to GDP and you&#x27;ve got $2 trillion deficit in the US plus plus plus, that doesn&#x27;t even include the unfunded liabilities, and you&#x27;ve got the Western world trying to spend more money in military that they don&#x27;t have, and you get demographic challenges, aging populations, and all of these things... This is really stressing the global financial system."<span class="qw">— Jonathan Wellum</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Jonathan Wellum</span><span class="tag dir-other">VIEW</span><span class="what">Commodity space — Good opportunities going forward.</span></div><div class="ivrow"><span class="who">Jonathan Wellum</span><span class="tag dir-other">VIEW</span><span class="what">Gold and silver trade — Will come back into vogue and do quite well if patient.</span></div><div class="ivrow"><span class="who">Jonathan Wellum</span><span class="tag dir-other">VIEW</span><span class="what">Agnico Eagle, Wheaton Precious Metals, Franco-Nevada — Making a lot of money, tremendous free cash flow, fantastic year-over-year growth.</span></div><div class="ivrow"><span class="who">Jonathan Wellum</span><span class="tag dir-other">VIEW</span><span class="what">Agnico Eagle — Margin running over $3,000 an ounce when gold is trading around $4,300.</span></div><div class="ivrow"><span class="who">Jonathan Wellum</span><span class="tag dir-watching">WATCHING</span><span class="what">Dexterra (Canadian-based company) — Example of a business benefiting from reshoring and data centers, with 10% organic growth in the US and a 9% free cash flow yield.</span></div><div class="ivrow"><span class="who">Jonathan Wellum</span><span class="tag dir-avoid">AVOID</span><span class="what">Companies whose growth is completely dependent on the AI trade.</span></div><div class="ivrow"><span class="who">Jonathan Wellum</span><span class="tag dir-other">VIEW</span><span class="what">AI build-out — Will have fallout, many companies will disappear and go bankrupt.</span></div><div class="ivrow"><span class="who">Jonathan Wellum</span><span class="tag dir-other">VIEW</span><span class="what">Apple — Has done quite well by waiting and seeing on AI, participating indirectly without massive direct spending.</span></div></section>

@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-05/the-monetary-matters-network-who-killed-.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-05.html">5 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">The Monetary Matters Network</span><span class="pill">5 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Who Killed The Random Walk Victor Haghani on Momentum Passive Investing and LTCM</h1><div class="meta">Host: Jack Farley · Guest: Victor Haghani, Founding Partner of Long-Term Capital Management and Elm Wealth · <a href="https://www.youtube.com/watch?v=Kg6rRfvGqdY" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Victor Haghani discusses his paper &quot;Who Killed The Random Walk,&quot; which challenges the random walk theory of asset prices by introducing a multi-agent model with different investor types, including &quot;extrapolators&quot; and &quot;static asset allocators.&quot; He argues that these investor behaviors, combined with corporate supply and demand, explain market puzzles like excess volatility, trends, and booms and busts, rather than solely fundamental earnings. Haghani also outlines Elm Wealth&#x27;s dynamic asset allocation strategy, which combines value and momentum principles.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-05/the-monetary-matters-network-who-killed-.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-05.html">5 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">The Monetary Matters Network</span><span class="pill">5 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Who Killed The Random Walk Victor Haghani on Momentum Passive Investing and LTCM</h1><div class="meta">Host: Jack Farley · Guest: Victor Haghani, Founding Partner of Long-Term Capital Management and Elm Wealth · <a href="https://www.youtube.com/watch?v=Kg6rRfvGqdY" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Victor Haghani discusses his paper &quot;Who Killed The Random Walk,&quot; which challenges the random walk theory of asset prices by introducing a multi-agent model with different investor types, including &quot;extrapolators&quot; and &quot;static asset allocators.&quot; He argues that these investor behaviors, combined with corporate supply and demand, explain market puzzles like excess volatility, trends, and booms and busts, rather than solely fundamental earnings. Haghani also outlines Elm Wealth&#x27;s dynamic asset allocation strategy, which combines value and momentum principles.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Haghani&#x27;s paper &quot;Who Killed The Random Walk&quot; proposes a multi-agent model where investor types (value investors, static investors, extrapolators/return chasers) interact to explain stock market puzzles such as excess volatility, stochastic volatility, trends, and booms and busts.</li><li>He distinguishes between &quot;passive investing&quot; (market cap-weighted index funds for stock picking, which he views as generally positive) and &quot;passive asset allocation&quot; (static allocation like 60/40, which he views as problematic and a cause of market booms and busts).</li><li>Haghani argues that the overall level of the market is currently &quot;ridiculous&quot; and not primarily driven by fundamental earnings, but rather by extrapolators, static asset allocators, and corporate supply/demand (e.g., buybacks, IPOs).</li><li>He differentiates between &quot;momentum investors&quot; (who make binary, chunky allocation changes based on momentum signals) and &quot;extrapolators&quot; or &quot;return chasers&quot; (who make continuous, slow-moving allocation changes based on past returns), noting that momentum strategies have historically performed well, while return chasing has performed poorly.</li><li>Elm Wealth&#x27;s investment approach uses a &quot;five-star screen&quot; for risky assets, focusing on systematic risk, estimable risk premiums, broad diversification, liquidity, transparency, low fees, and tax efficiency, leading to a dynamic asset allocation based on long-term expected risk premiums and risk metrics (using momentum as a proxy).</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"Passive asset allocation is really problematic. It doesn&#x27;t make sense. Passive asset allocation. It doesn&#x27;t make sense."<span class="qw">— Victor Haghani</span></blockquote><blockquote class="q">"I think that investing in the stock market using market cap weighted index funds is um is mis is um is mistakenly criticized for creating problems. I think that creates very few problems. I think it&#x27;s a good thing for most investors."<span class="qw">— Victor Haghani</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Victor Haghani (Elm Wealth)</span><span class="tag dir-reduce">UNDERWEIGHT</span><span class="what">US equities — relative to baseline weight of 40% in Elm ETF (currently less than 30%)</span></div><div class="ivrow"><span class="who">Victor Haghani (Elm Wealth)</span><span class="tag dir-long">OVERWEIGHT</span><span class="what">non-US equities — relative to baseline</span></div><div class="ivrow"><span class="who">Victor Haghani (Elm Wealth)</span><span class="tag dir-reduce">UNDERWEIGHT</span><span class="what">equities (net net) — by about 10%</span></div><div class="ivrow"><span class="who">Victor Haghani (Elm Wealth)</span><span class="tag dir-long">OVERWEIGHT</span><span class="what">fixed income (net net) — by about 10%</span></div><div class="ivrow"><span class="who">Victor Haghani (Elm Wealth)</span><span class="tag dir-other">POSITIONED</span><span class="what">mostly in Treasury bills — within fixed income complex</span></div><div class="ivrow"><span class="who">Victor Haghani (Elm Wealth)</span><span class="tag dir-reduce">UNDERWEIGHT</span><span class="what">TIPS and nominal bonds — within fixed income bucket (due to negative momentum)</span></div><div class="ivrow"><span class="who">Jack Farley</span><span class="tag dir-long">LONG</span><span class="what">semiconductors — as of July 21st</span></div></section>

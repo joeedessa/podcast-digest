@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-14/morgan-stanley-the-potential-way-forward.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-14.html">14 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Morgan Stanley</span><span class="pill">14 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">The Potential Way Forward for the US-Iran Standoff</h1><div class="meta">Host: Mariana Salvatore · Solo episode · <a href="https://pdst.fm/e/pscrb.fm/rss/p/rss.art19.com/episodes/dc858555-6d0c-4055-ba21-d63330242de5.mp3?rss_browser=BAhJIgxNb3ppbGxhBjoGRVQ%3D--4f04cd103bfdd3e94cbbb356ead53321a4d63e94" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Mariana Salvatore discusses the evolving U.S.-Iran standoff, noting a shift from initial optimism to hardened positions and renewed escalation. She explains that the path forward is unlikely to be a simple deal but rather a series of partial agreements, setbacks, and renewed negotiations, with significant execution risks remaining. Morgan Stanley strategists remain constructive on oil prices due to supply uncertainty and new choke points, while U.S. equity strategists and economists see a sharp rise in oil as a key risk, though the Fed is expected to stay on hold this year.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-14/morgan-stanley-the-potential-way-forward.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-14.html">14 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Morgan Stanley</span><span class="pill">14 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">The Potential Way Forward for the US-Iran Standoff</h1><div class="meta">Host: Mariana Salvatore · Solo episode · <a href="https://pdst.fm/e/pscrb.fm/rss/p/rss.art19.com/episodes/dc858555-6d0c-4055-ba21-d63330242de5.mp3?rss_browser=BAhJIgxNb3ppbGxhBjoGRVQ%3D--4f04cd103bfdd3e94cbbb356ead53321a4d63e94" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Mariana Salvatore discusses the evolving U.S.-Iran standoff, noting a shift from initial optimism to hardened positions and renewed escalation. She explains that the path forward is unlikely to be a simple deal but rather a series of partial agreements, setbacks, and renewed negotiations, with significant execution risks remaining. Morgan Stanley strategists remain constructive on oil prices due to supply uncertainty and new choke points, while U.S. equity strategists and economists see a sharp rise in oil as a key risk, though the Fed is expected to stay on hold this year.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Mariana Salvatore notes that the diplomatic picture in the Middle East has shifted, with growing optimism for an arrangement through the Strait of Hormuz last week giving way to hardened positions and bouts of escalation this week.</li><li>Salvatore identifies three sticking points in negotiations: Iran tying full Strait reopening to a broader package including sanctions relief and compensation, while the U.S. seeks to preserve economic leverage; sanctions sequencing, with the U.S. wanting relief tied to progress and Iran seeking durable relief; and the nuclear question, involving enrichment levels, existing stockpiles, and a longer verification framework.</li><li>Salvatore frames the situation for investors not as a &quot;deal or no deal&quot; binary, but as &quot;a series of partial agreements, implementation tests, setbacks, and renewed negotiations,&quot; emphasizing that the bargaining process will be &quot;noisy, unstable, and nonlinear.&quot;</li><li>Morgan Stanley commodity strategists remain constructive on oil prices due to ongoing supply uncertainty and the emergence of new choke points across the region, expecting these constraints to keep the market relatively tight.</li><li>Morgan Stanley U.S. equity strategists and U.S. economists view a sharp rise in oil prices as a key risk to the near-term outlook, though economists believe the Fed would require a larger shock than previously expected to resume hiking, leading to an expectation for the Fed to stay on hold this year.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">&quot;Rather than a clean transition from conflict to ceasefire to final deal the more likely path will have fits and starts.&quot;</blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Morgan Stanley commodity strategists</span><span class="tag dir-other">CONSTRUCTIVE</span><span class="what">oil prices — given ongoing supply uncertainty and emergence of new choke points.</span></div><div class="ivrow"><span class="who">Morgan Stanley commodity strategists</span><span class="tag dir-other">VIEW</span><span class="what">market — relatively tight compared to June levels.</span></div><div class="ivrow"><span class="who">Morgan Stanley U.S. equity strategists</span><span class="tag dir-other">VIEW</span><span class="what">sharp rise in oil prices — key risk to the near-term outlook.</span></div><div class="ivrow"><span class="who">Morgan Stanley U.S. economists</span><span class="tag dir-other">VIEW</span><span class="what">sharp rise in oil prices — key risk to the near-term outlook.</span></div><div class="ivrow"><span class="who">Morgan Stanley U.S. economists</span><span class="tag dir-other">PREDICTION</span><span class="what">Fed — would need a bigger shock than markets previously expected to resume hiking.</span></div><div class="ivrow"><span class="who">Morgan Stanley U.S. economists</span><span class="tag dir-other">PREDICTION</span><span class="what">Fed — to stay on hold this year.</span></div></section>

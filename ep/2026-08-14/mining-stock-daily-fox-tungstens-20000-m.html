@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-14/mining-stock-daily-fox-tungstens-20000-m.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-14.html">14 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Mining Stock Daily</span><span class="pill">14 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Fox Tungstens 20000 Metre Drill Program Is Underway PEA Due in 27</h1><div class="meta">Host: Michael McCrae · Guest: Steve Gray, CEO and President, Fox Tungsten · <a href="https://www.youtube.com/watch?v=N4rc2ZwKtuI" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Michael McCrae interviews Steve Gray, CEO and President of Fox Tungsten, about the company&#x27;s tungsten project in central British Columbia. Gray discusses the ongoing 20,000-meter drill program, which aims to expand the resource and explore new targets, and the company&#x27;s progress towards a Preliminary Economic Assessment (PEA) in the first half of 2027. He highlights the significance of recent &quot;invisible sheelite&quot; findings at the Fox North target, indicating potential for vertical and lateral deposit expansion.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-14/mining-stock-daily-fox-tungstens-20000-m.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-14.html">14 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Mining Stock Daily</span><span class="pill">14 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Fox Tungstens 20000 Metre Drill Program Is Underway PEA Due in 27</h1><div class="meta">Host: Michael McCrae · Guest: Steve Gray, CEO and President, Fox Tungsten · <a href="https://www.youtube.com/watch?v=N4rc2ZwKtuI" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Michael McCrae interviews Steve Gray, CEO and President of Fox Tungsten, about the company&#x27;s tungsten project in central British Columbia. Gray discusses the ongoing 20,000-meter drill program, which aims to expand the resource and explore new targets, and the company&#x27;s progress towards a Preliminary Economic Assessment (PEA) in the first half of 2027. He highlights the significance of recent &quot;invisible sheelite&quot; findings at the Fox North target, indicating potential for vertical and lateral deposit expansion.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Fox Tungsten&#x27;s project, located in central BC, was a greenfield discovery by prospector David Bland approximately 20 years ago, identified by the UV light glow of sheelite, the tungsten-bearing mineral.</li><li>The company is currently undertaking a 20,000-meter drill program, which Steve Gray states will &quot;roughly double the amount of drilling that ever happened on this property historically.&quot; This program has two goals: maximizing resource size for an upcoming resource update and PEA, and broader exploration of the 400 square kilometer property.</li><li>Recent drilling at the Fox North Greenfield target intersected &quot;several parallel zones of tungsten that are vertically higher than our existing zones,&quot; which Steve Gray describes as &quot;potentially game changing&quot; for expanding the deposit not just laterally but also vertically.</li><li>Fox Tungsten is fully funded through the current drill program and the subsequent technical work for the PEA, following a C$12.7 million bought deal financing in April. Steve Gray anticipates needing to raise additional funds in &quot;late spring, early summer of 27&quot; for the 2027 drill program, which will shift focus from pure exploration to engineering work for a Pre-Feasibility Study (PFS).</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"One of the interesting things about tungsten, or sheelite rather, the tungsten-bearing mineral, is it glows under UV light. So this was a prospector, a guy by the name of David Bland, who was wandering around the woods at night with a black light and found some cool glowing rocks."<span class="qw">— Steve Gray</span></blockquote><blockquote class="q">"This is potentially game changing for us because it allows us to expand the deposit, not just laterally, but also vertically in these different parallel zones and potentially allow us exponential growth."<span class="qw">— Steve Gray</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Steve Gray (Fox Tungsten)</span><span class="tag dir-other">PREDICTION</span><span class="what">PEA and resource update — Q2 2027</span></div><div class="ivrow"><span class="who">Steve Gray (Fox Tungsten)</span><span class="tag dir-other">PREDICTION</span><span class="what">Final assays from current drill program — around Christmas 2026</span></div><div class="ivrow"><span class="who">Steve Gray (Fox Tungsten)</span><span class="tag dir-other">PREDICTION</span><span class="what">Need to raise money again — late spring, early summer of 2027 — to fund 2027 drill program</span></div></section>

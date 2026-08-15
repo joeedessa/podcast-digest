@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-09/steve-eisman-spacex-disappoints-ais-free.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-09.html">9 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Steve Eisman</span><span class="pill">9 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">SpaceX Disappoints AIs Free Cash Flow Shrinks Meta Struggles The Weekly Wrap</h1><div class="meta">Host: Steve Eisman · Solo episode · <a href="https://www.youtube.com/watch?v=85JeTkJ-fZU" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Steve Eisman reviews earnings reports from SpaceX, Palantir, AMD, Eli Lilly, Novo Nordisk, Arista Networks, Apollo, Caterpillar, and Disney. He discusses the implications of high CapEx for AI players like Meta, Microsoft, and Amazon, and the state of private credit. Eisman also provides further analysis on the demise of the &quot;situational awareness&quot; hedge fund, attributing it to high leverage and correlated long-short positions.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-09/steve-eisman-spacex-disappoints-ais-free.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-09.html">9 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Steve Eisman</span><span class="pill">9 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">SpaceX Disappoints AIs Free Cash Flow Shrinks Meta Struggles The Weekly Wrap</h1><div class="meta">Host: Steve Eisman · Solo episode · <a href="https://www.youtube.com/watch?v=85JeTkJ-fZU" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Steve Eisman reviews earnings reports from SpaceX, Palantir, AMD, Eli Lilly, Novo Nordisk, Arista Networks, Apollo, Caterpillar, and Disney. He discusses the implications of high CapEx for AI players like Meta, Microsoft, and Amazon, and the state of private credit. Eisman also provides further analysis on the demise of the &quot;situational awareness&quot; hedge fund, attributing it to high leverage and correlated long-short positions.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Steve Eisman explains that the demise of the &quot;situational awareness&quot; hedge fund was due to 4x leverage and completely correlated long and short positions, making it essentially &quot;one trade&quot; that went against the fund simultaneously.</li><li>Eisman notes that free cash flow has &quot;evaporated&quot; for Meta, Microsoft, and Amazon, with Meta&#x27;s free cash flow at $784 million, Amazon at negative $7.6 billion, and Microsoft&#x27;s positive $19.6 billion for the quarter but down 23% year-over-year, indicating the stress of AI build-out.</li><li>Eisman highlights Palantir&#x27;s strong earnings, with EPS up 156% and revenue up 93%, suggesting the market is beginning to discriminate between winners and losers in software, though he expresses &quot;main hesitation&quot; on the stock due to high 2026 and 2027 estimated PEs of 85x and 60x respectively.</li><li>Eisman describes SpaceX&#x27;s first reported results as &quot;very mixed at best,&quot; noting revenue of $7.8 billion (up 92%) and a smaller-than-expected loss per share, but a significant CapEx jump to $18.4 billion and lower-than-expected Starlink subscribers. He points out SpaceX&#x27;s market cap to annualized revenue is 54 times, calling it &quot;a tad expensive.&quot;</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"Elon Musk has a moat built by his personality. He has believers, not investors."<span class="qw">— Steve Eisman</span></blockquote><blockquote class="q">"The best way to support The Real Eisman Playbook is to subscribe to Substack at the realaismanplaybook.substack and to YouTube at The Real Eisman Playbook. Subscriptions are free, and we really, really, really appreciate your support."<span class="qw">— Steve Eisman</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Steve Eisman</span><span class="tag dir-other">VIEW</span><span class="what">SpaceX results — &quot;very mixed at best&quot;</span></div><div class="ivrow"><span class="who">Steve Eisman</span><span class="tag dir-other">VIEW</span><span class="what">SpaceX market cap to revenue — 54 times, &quot;a tad expensive&quot;</span></div><div class="ivrow"><span class="who">Steve Eisman</span><span class="tag dir-other">VIEW</span><span class="what">Palantir 2026 estimated PE — 85 times</span></div><div class="ivrow"><span class="who">Steve Eisman</span><span class="tag dir-other">VIEW</span><span class="what">Palantir 2027 estimated PE — 60 times</span></div><div class="ivrow"><span class="who">Steve Eisman</span><span class="tag dir-other">HESITATION</span><span class="what">Palantir stock at current prices — due to high PEs</span></div><div class="ivrow"><span class="who">Steve Eisman</span><span class="tag dir-other">VIEW</span><span class="what">Apollo quarter — &quot;decent quarter, but not one that would cause investors to plow into the stock&quot;</span></div><div class="ivrow"><span class="who">Steve Eisman</span><span class="tag dir-long">LONG</span><span class="what">Arista Networks — &quot;I&#x27;ve owned this stock for a long time.&quot; (stated 2x)</span></div><div class="ivrow"><span class="who">Steve Eisman</span><span class="tag dir-other">HOLDING</span><span class="what">Arista Networks — &quot;I like this story, and I&#x27;m holding it&quot;</span></div><div class="ivrow"><span class="who">Steve Eisman</span><span class="tag dir-avoid">AVOID</span><span class="what">Trading Arista Networks in and out of the quarter — &quot;an impossible endeavor&quot;</span></div><div class="ivrow"><span class="who">Steve Eisman</span><span class="tag dir-other">VIEW</span><span class="what">Eli Lilly vs. Novo Nordisk in diet drug wars — &quot;Lilly has won the diet drug wars&quot;</span></div><div class="ivrow"><span class="who">Steve Eisman</span><span class="tag dir-other">VIEW</span><span class="what">Novo Nordisk GLP-1 pill — &quot;no indication that this is closing the gap&quot; with Lilly</span></div></section>

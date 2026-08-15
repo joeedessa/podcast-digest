@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-03/the-monetary-matters-network-why-macro-i.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-03.html">3 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">The Monetary Matters Network</span><span class="pill">3 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Why Macro is Pretty Risk-On for Equities Tian Yang of Variant Perception</h1><div class="meta">Host: Jack Farley · Guest: Tian Yang, Co-founder and Head of Research at Variant Perception · <a href="https://traffic.megaphone.fm/EWWMN3753470494.mp3" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Tian Yang of Variant Perception discusses the current macro environment, which he views as broadly risk-on for equities despite recent weakness in semiconductor stocks. He argues that while the AI narrative has exhausted its current leg, the market is broadening out, and underlying macro indicators remain supportive. Yang also highlights the &quot;primacy of sovereignty&quot; as a key long-term investment theme influencing CapEx and global supply chains.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-03/the-monetary-matters-network-why-macro-i.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-03.html">3 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">The Monetary Matters Network</span><span class="pill">3 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Why Macro is Pretty Risk-On for Equities Tian Yang of Variant Perception</h1><div class="meta">Host: Jack Farley · Guest: Tian Yang, Co-founder and Head of Research at Variant Perception · <a href="https://traffic.megaphone.fm/EWWMN3753470494.mp3" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Tian Yang of Variant Perception discusses the current macro environment, which he views as broadly risk-on for equities despite recent weakness in semiconductor stocks. He argues that while the AI narrative has exhausted its current leg, the market is broadening out, and underlying macro indicators remain supportive. Yang also highlights the &quot;primacy of sovereignty&quot; as a key long-term investment theme influencing CapEx and global supply chains.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Tian Yang believes that while macro risk indicators look forward three to six months, the current mix of growth, inflation, policy, and liquidity is broadly supportive of risk assets, indicating a risk-on macro regime.</li><li>Yang states that the &quot;agentic AI&quot; narrative, which fueled the rally from April onwards, is &quot;clearly done&quot; as a growth factor for the semiconductor AI trade, and the market is awaiting a new narrative, possibly &quot;real world modeling.&quot;</li><li>Yang explains that Variant Perception&#x27;s LPPL (log periodic power law) model, a bubble and crash detection system, triggered exhaustion signals in semiconductors after a final leg up in May, indicating a tactical fade for the next month.</li><li>Yang identifies two key end-of-cycle signposts for generational tops: monetary policy tightening for six to nine months, and equity breadth narrowing during this period. He notes these conditions are not yet met.</li><li>Yang argues that the current cycle differs from previous private sector-driven bubbles due to the &quot;primacy of sovereignty&quot; investment theme, where government intervention in key pillars like energy, manufacturing, and technology will provide a backstop for CapEx.</li><li>Yang expresses skepticism about the Chinese equity market, believing its consumer sector will not return strongly due to the government&#x27;s prioritization of manufacturing, technology, and industrial policy, which crowds out the household sector.</li><li>Yang envisions a three-tiered end state for the AI market: a 150 IQ mass market (open, cheap, consumer-focused), a 150-200 IQ tier (for small businesses), and a 200 IQ plus tier (for governments and big businesses, consuming horizontal SaaS profit pools).</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">&quot;China is where profits go to die.&quot; — (speaker unclear)</blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Tian Yang</span><span class="tag dir-long">LONG</span><span class="what">Sony future — betting on Bank of England being less hawkish — (stated 2x)</span></div><div class="ivrow"><span class="who">Tian Yang</span><span class="tag dir-long">LONG</span><span class="what">energy</span></div><div class="ivrow"><span class="who">Tian Yang</span><span class="tag dir-long">LONG</span><span class="what">financials</span></div><div class="ivrow"><span class="who">Tian Yang</span><span class="tag dir-other">BUY BACK INTO</span><span class="what">crashed tech and semi names</span></div><div class="ivrow"><span class="who">Tian Yang</span><span class="tag dir-long">OVERWEIGHT</span><span class="what">energy — got in a little on the May leg</span></div><div class="ivrow"><span class="who">Tian Yang</span><span class="tag dir-long">LONG</span><span class="what">gold — found a floor, will be sideways from here — until central banks cut rates</span></div><div class="ivrow"><span class="who">Tian Yang</span><span class="tag dir-other">BULLISH EXPOSURE</span><span class="what">rest of the metals</span></div><div class="ivrow"><span class="who">Tian Yang</span><span class="tag dir-avoid">AVOID</span><span class="what">Chinese equity market</span></div><div class="ivrow"><span class="who">Tian Yang</span><span class="tag dir-other">LIKE</span><span class="what">Latin America (Americas) — Brazil has elections in October, might cause wobbles</span></div><div class="ivrow"><span class="who">Tian Yang</span><span class="tag dir-other">SKEPTICAL</span><span class="what">Europe — exposed to energy crisis and regulatory issues</span></div><div class="ivrow"><span class="who">Tian Yang</span><span class="tag dir-other">SKEPTICAL</span><span class="what">India as an allocation — due to valuations and geopolitical position</span></div><div class="ivrow"><span class="who">Tian Yang</span><span class="tag dir-other">PREFER</span><span class="what">China over India — if money rotates away from Korea</span></div><div class="ivrow"><span class="who">Tian Yang</span><span class="tag dir-watching">WATCHING</span><span class="what">Japan — needs government and BOJ to resolve currency issue</span></div></section>

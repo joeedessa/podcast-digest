@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-13/benny-the-squirrel-rupert-on-cnbc.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-13.html">13 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Benny The Squirrel</span><span class="pill">13 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Rupert on CNBC</h1><div class="meta">Host: Ben Brey, Rupert Mitchell · Solo episode · <a href="https://www.youtube.com/watch?v=S4zXtGGtezY" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Rupert Mitchell and Ben Brey discuss the valuation and future prospects of AI foundation models, specifically OpenAI and Anthropic. Mitchell expresses concern about the significant capital expenditure required to support these companies and the challenges they face in achieving sustained profitability, particularly given the rapid retraining cycles for frontier models and potential competition from open-weight models. Brey highlights the &quot;heavy lift&quot; required from OpenAI and Anthropic to justify their valuations.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-13/benny-the-squirrel-rupert-on-cnbc.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-13.html">13 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Benny The Squirrel</span><span class="pill">13 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Rupert on CNBC</h1><div class="meta">Host: Ben Brey, Rupert Mitchell · Solo episode · <a href="https://www.youtube.com/watch?v=S4zXtGGtezY" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Rupert Mitchell and Ben Brey discuss the valuation and future prospects of AI foundation models, specifically OpenAI and Anthropic. Mitchell expresses concern about the significant capital expenditure required to support these companies and the challenges they face in achieving sustained profitability, particularly given the rapid retraining cycles for frontier models and potential competition from open-weight models. Brey highlights the &quot;heavy lift&quot; required from OpenAI and Anthropic to justify their valuations.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Rupert Mitchell believes there is &quot;an awful lot of pressure&quot; on OpenAI and Anthropic to meet performance requirements to support vast capital expenditure, much of which is not yet reflected on balance sheets as depreciation.</li><li>Ben Brey identifies the &quot;Achilles heel&quot; of the AI story as the potential for Chinese open-weight models to be cheaper and close the performance gap, leading to market share loss and price wars for companies like OpenAI and Anthropic.</li><li>Rupert Mitchell&#x27;s personal hunch is that Fortune 1000 global enterprises will be more inclined to build LLM capacity internally with open-source models, controlling their own data, rather than relying on API spending from foundation labs like Anthropic.</li><li>Rupert Mitchell argues that the constant need to retrain frontier models every 3-to-6 months is an operational expense, not a one-off CapEx, and should be accounted for in cash flow metrics when evaluating these companies.</li><li>Rupert Mitchell&#x27;s analysis of OpenAI and Anthropic suggests that their latest private valuations are &quot;pretty close to fully valued,&quot; necessitating discussions about IPO discounts and a runway for new investors to achieve decent IRRs.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">"Retraining one of these frontier models or building a new frontier model is something that they&#x27;re having to do on a 3-to-6-month timeframe. I every This is This is an operational expense. It&#x27;s not a one-off CapEx."<span class="qw">— Rupert Mitchell</span></blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-other">VIEW</span><span class="what">Latest private marks of OpenAI and Anthropic — &quot;pretty close to fully valued&quot;</span></div><div class="ivrow"><span class="who">Rupert Mitchell</span><span class="tag dir-other">VIEW</span><span class="what">Need for IPO discounts for OpenAI and Anthropic — To allow new investors a chance of decent IRRs.</span></div></section>

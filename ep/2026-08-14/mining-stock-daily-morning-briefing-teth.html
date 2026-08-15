@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-14/mining-stock-daily-morning-briefing-teth.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-14.html">14 Aug 2026</a></span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Mining Stock Daily</span><span class="pill">14 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Morning Briefing Tether Continues to Add More Gold and Royalty Company Equity to</h1><div class="meta">Host: Trevor Hall · Solo episode · <a href="https://www.youtube.com/watch?v=bgSB5UUq9Fc" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Trevor Hall provides a morning briefing on commodity prices and recent news in the mining and mineral exploration sector. He highlights significant developments including Sweden&#x27;s approval for the Laver copper mine, Tether International&#x27;s increased stake in Metalla Royalty and Streaming, and Q2 results from several mining companies. The briefing also covers exploration updates from Great Pacific Gold, American Pacific Mining, and Intrepid Metals.</p></section>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="../../" data-canon="ep/2026-08-14/mining-stock-daily-morning-briefing-teth.html"><header class="top"><div class="wrap"><span class="brand"><a href="../../index.html">PodcastLM</a></span><span class="crumb"><a href="../../2026-08-14.html">14 Aug 2026</a></span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="../../calls.html">◈&nbsp; Calls</a><a class="btn" href="../../thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="../../archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><div class="meta" style="margin-bottom:6px"><span class="pill">Mining Stock Daily</span><span class="pill">14 Aug 2026</span></div><h1 style="font-size:clamp(24px,4vw,34px)">Morning Briefing Tether Continues to Add More Gold and Royalty Company Equity to</h1><div class="meta">Host: Trevor Hall · Solo episode · <a href="https://www.youtube.com/watch?v=bgSB5UUq9Fc" target="_blank" rel="noopener">Listen at source ↗</a></div></div><section id="overview"><h2>Overview</h2><p>Trevor Hall provides a morning briefing on commodity prices and recent news in the mining and mineral exploration sector. He highlights significant developments including Sweden&#x27;s approval for the Laver copper mine, Tether International&#x27;s increased stake in Metalla Royalty and Streaming, and Q2 results from several mining companies. The briefing also covers exploration updates from Great Pacific Gold, American Pacific Mining, and Intrepid Metals.</p></section>
 <section id="key-discussion-points"><h2>Key discussion points</h2><ul><li>Gold is pulling back, off about a half percent to $4,383 an ounce, as the front-month contract encounters resistance at its 200-day moving average, and the GLD ETF approaches overbought territory, potentially impacting sentiment.</li><li>Sweden has granted Beleden the green light to proceed with its Laver copper mine, a project that could double the country&#x27;s copper production and increase total European Union copper output by roughly 10%, pending final court approval.</li><li>Tether International has increased its stake in Metalla Royalty and Streaming to approximately 14% of the company, reflecting its strategy to build hard asset exposure, including 14 tons of physical gold added in Q2.</li><li>Magnum Mining reported a strong Q2 from its MacReady West Copper Precious Metals Nickel Mine, with record production of 98,500 tons processed at 3.34% copper equivalent, yielding 6.6 million contained copper equivalent pounds.</li><li>Intrepid Metals has identified a prospective porphyry alteration corridor at its Corral Copper Project, suggesting a bulk tonnage porphyry copper-gold system may underlie the historically understood carbonate replacement deposit.</li></ul></section>
 <section id="notable-quotes"><h2>Notable quotes</h2><blockquote class="q">&quot;Gold&#x27;s pulling back this morning, off about a half percent to 4,383 an ounce as the front month contract runs into stiff resistance at its 200-day moving average and the GLD ETF is approaching overbought territory which may be weighing in on sentiment.&quot;</blockquote></section>
 <section id="calls-positions"><h2>Calls &amp; positions</h2><div class="ivrow"><span class="who">Trevor Hall</span><span class="tag dir-other">VIEW</span><span class="what">Gold price — $4,383 an ounce, off about a half percent</span></div><div class="ivrow"><span class="who">Trevor Hall</span><span class="tag dir-other">VIEW</span><span class="what">Silver price — $64.88, down six tenths</span></div><div class="ivrow"><span class="who">Trevor Hall</span><span class="tag dir-other">VIEW</span><span class="what">Copper price — $6.57 a pound, off about 0.35%</span></div><div class="ivrow"><span class="who">Trevor Hall</span><span class="tag dir-other">VIEW</span><span class="what">GLD ETF — approaching overbought territory</span></div></section>

@@ -262,10 +262,53 @@ mark.tmark{background:var(--accent-soft);color:inherit;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
 .th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
 .th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
 #th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
       border:1px solid var(--line);background:var(--panel);color:var(--ink);
       font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
-</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="" data-canon="2026-08-15.html"><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Saturday, 15 August 2026</span><span style="margin-left:auto;display:flex;gap:8px"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><h1>Saturday, 15 August 2026</h1><div class="meta"><span class="pill">20 episodes</span>Commodities &amp; Hard Assets, Equities &amp; Trading, Investment Analysis &amp; Factors, Macroeconomics &amp; Strategy</div></div><section id="tl-dr-read-this-first"><h2>TL;DR (read this first)</h2><div class="tldr"><p>The market narrative is fracturing between a &quot;post-cyclical&quot; world driven by AI&#x27;s deflationary power, championed by Paul Krake, and a return to inflationary &quot;Hamiltonian economics&quot; centered on hard assets and reshoring, as articulated by Luke Gromen. This creates a fundamental tension between investing in intangible &quot;bits&quot; versus tangible &quot;atoms.&quot; The resolution hinges on whether AI&#x27;s productivity gains can overcome the inflationary pressures from deglobalization, geopolitical conflict, and unsustainable fiscal deficits, with the Federal Reserve&#x27;s policy path caught in the crossfire.</p>
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="" data-canon="2026-08-15.html"><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Saturday, 15 August 2026</span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="calls.html">◈&nbsp; Calls</a><a class="btn" href="thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><h1>Saturday, 15 August 2026</h1><div class="meta"><span class="pill">20 episodes</span>Commodities &amp; Hard Assets, Equities &amp; Trading, Investment Analysis &amp; Factors, Macroeconomics &amp; Strategy</div></div><section id="tl-dr-read-this-first"><h2>TL;DR (read this first)</h2><div class="tldr"><p>The market narrative is fracturing between a &quot;post-cyclical&quot; world driven by AI&#x27;s deflationary power, championed by Paul Krake, and a return to inflationary &quot;Hamiltonian economics&quot; centered on hard assets and reshoring, as articulated by Luke Gromen. This creates a fundamental tension between investing in intangible &quot;bits&quot; versus tangible &quot;atoms.&quot; The resolution hinges on whether AI&#x27;s productivity gains can overcome the inflationary pressures from deglobalization, geopolitical conflict, and unsustainable fiscal deficits, with the Federal Reserve&#x27;s policy path caught in the crossfire.</p>
 <ul><li>CENTRAL TENSION: A &quot;post-cyclical&quot; AI-driven economy (Paul Krake) vs. a new inflationary regime of &quot;Hamiltonian economics&quot; (Luke Gromen).</li><li>TOP THEME: AI&#x27;s Economic Impact — Debating whether AI creates a deflationary productivity boom or an overvalued, fiscally problematic bubble.</li><li>DIVERGENT: The US consumer is &quot;fine&quot; and spending broadly (Jeff Mackey) vs. consumer spending is slowing and will fade into year-end (Neil Dutta).</li><li>HIGH-CONVICTION TRADE: LONG Gold, supported by central bank buying, geopolitical risk, and its role as a hedge in a new economic regime (Jim Rickards, Luke Gromen, Jared Dillian, Andrew Sleigh).</li><li>CALENDAR: Upcoming FOMC minutes, which will reveal the extent of hawkish dissent at the last meeting.</li></ul></div></section>
 <section id="trade-ideas-positions"><h2>TRADE IDEAS &amp; POSITIONS</h2><div class="cards"><div class="tier">HIGH CONVICTION</div>
 <div class="card"><div class="head"><span class="asset">Gold</span><span class="tag dir-long">LONG</span><span class="who">Jim Rickards — The Julia La Roche Show · Luke Gromen — The Meb Faber Show · Jared Dillian — Mining Stock Daily · Andrew Sleigh — Sprott Money</span></div><p><span class="label">why</span>Gold is seen as a critical portfolio diversifier and a hedge against multiple macro risks. Key drivers include persistent central bank buying creating a price floor, its uncorrelated nature providing stability, its historical performance in inflationary environments with negative real rates, and its role as a safe haven amid geopolitical turmoil and concerns over fiscal sustainability.</p><p><span class="label">context</span>Speakers advocate for both physical gold and proxies like <strong>GLD</strong>. Allocations mentioned range from 5% to over 25% of a portfolio.</p><p><span class="label">voices</span>Jim Rickards — The Julia La Roche Show: Reiterates a $10,000/oz target, citing central bank buying, flat mining output, and its role as a hedge against both inflation and deflation. · Luke Gromen — The Meb Faber Show: Recommends a 5-10% allocation (personally holds &gt;25%) to replace bond duration, as it will &quot;soar&quot; in a world of negative real rates. · Jared Dillian — Mining Stock Daily: Advocates a 20% portfolio allocation to gold as the &quot;most uncorrelated asset in the world.&quot; · Andrew Sleigh — Sprott Money: Advises consistent accumulation of physical gold as a hedge against systemic risk and currency devaluation, noting strong central bank demand.</p></div>
