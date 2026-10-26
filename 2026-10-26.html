@@ -1,0 +1,614 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#14150f"><link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="apple-touch-icon" href="apple-touch-icon.png"><title>PodcastLM — Monday, 26 October 2026</title><style>
+:root{
+  --bg:#fbfbfa; --panel:#fff; --ink:#1a1a18; --muted:#6b6b66; --line:#e6e4df;
+  --accent:#b4552d; --accent-soft:#fdf3ee;
+  --long:#1a7340; --short:#c0392b; --watch:#2563a8; --reduce:#b8730f;
+  --radius:10px;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#14150f; --panel:#1c1d16; --ink:#eceade; --muted:#a3a094;
+         --line:#2f3126; --accent:#e08a5f; --accent-soft:#241a13;
+         --long:#5cc98a; --short:#ef7d6e; --watch:#7db3e8; --reduce:#e0a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+     line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 96px}
+
+/* masthead */
+header.top{border-bottom:1px solid var(--line);background:var(--panel);
+           position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.4) blur(6px)}
+header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
+                 align-items:baseline;gap:14px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.01em}
+.brand a{color:inherit}
+.crumb{color:var(--muted);font-size:13px}
+.crumb a{color:var(--muted)}
+/* header action — sits right, stays a 44px tap target on a phone */
+.btn{display:inline-flex;align-items:center;gap:2px;
+     padding:9px 15px;min-height:38px;border:1px solid var(--line);
+     border-radius:99px;background:var(--bg);color:var(--ink);
+     font-size:13.5px;font-weight:550;white-space:nowrap;line-height:1}
+.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.btn:active{transform:translateY(1px)}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,42px);line-height:1.12;
+         margin:0 0 10px;letter-spacing:-.02em;font-weight:600}
+.hero .meta{color:var(--muted);font-size:14px}
+.pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
+      border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
+
+/* sections */
+section{padding:28px 0 4px;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+h2{font-family:var(--serif);font-size:13px;font-weight:700;text-transform:uppercase;
+   letter-spacing:.14em;color:var(--accent);margin:0 0 16px}
+h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:28px 0 8px;
+   letter-spacing:-.01em}
+p{margin:0 0 13px}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin:5px 0}
+strong{font-weight:650}
+.tag{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+
+/* TL;DR */
+.tldr{background:var(--accent-soft);border:1px solid var(--line);
+      border-left:3px solid var(--accent);border-radius:var(--radius);
+      padding:18px 20px;margin-bottom:6px}
+.tldr p:last-child,.tldr ul:last-child{margin-bottom:0}
+.tldr ul{list-style:none;padding-left:0}
+.tldr li{padding-left:15px;position:relative}
+.tldr li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+
+/* trade cards */
+.cards{display:grid;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:15px 17px}
+.card .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.card .asset{font-family:var(--serif);font-size:18px;font-weight:600}
+.card .who{color:var(--muted);font-size:13px}
+.card p{margin:6px 0 0;font-size:14.5px}
+.card .label{color:var(--muted);font-size:11px;text-transform:uppercase;
+             letter-spacing:.08em;margin-right:5px}
+.dir-long{color:var(--long)} .dir-short{color:var(--short)}
+.dir-avoid{color:var(--short)} .dir-reduce{color:var(--reduce)}
+.dir-watching{color:var(--watch)} .dir-other{color:var(--muted)}
+.tier{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+      margin:22px 0 10px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+
+/* topics */
+.topic{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--muted);
+       border-radius:var(--radius);padding:15px 17px;margin:12px 0}
+.topic .t{font-weight:650;margin-bottom:9px}
+
+/* index */
+.days{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:9px}
+.days a{display:flex;justify-content:space-between;align-items:center;gap:14px;
+        background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+        padding:14px 17px;color:inherit}
+.days a:hover{border-color:var(--accent);text-decoration:none}
+.days .d{font-family:var(--serif);font-size:17px;font-weight:600}
+.days .s{color:var(--muted);font-size:13px;text-align:right}
+
+
+/* right-side outline rail (desktop) */
+.layout{display:block}
+@media(min-width:1150px){
+  .layout{display:grid;grid-template-columns:minmax(0,820px) 220px;gap:44px;
+          max-width:1120px;margin:0 auto;padding:0 20px}
+  .layout>.wrap{max-width:none;padding:0}
+  .layout .rail{display:block}
+}
+.rail{display:none;position:sticky;top:76px;align-self:start;max-height:calc(100vh - 100px);
+      overflow-y:auto;padding:8px 0 24px;font-size:12.5px}
+.rail .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+          margin-bottom:10px}
+.rail a{display:block;color:var(--muted);padding:4px 10px;border-left:2px solid var(--line);
+        line-height:1.4}
+.rail a:hover{color:var(--accent);text-decoration:none}
+.rail a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+
+/* floating buttons */
+.fab{position:fixed;right:16px;z-index:40;display:flex;align-items:center;justify-content:center;
+     width:44px;height:44px;border-radius:50%;background:var(--panel);color:var(--ink);
+     border:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.18);font-size:18px;
+     cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
+.fab.show{opacity:1;pointer-events:auto}
+.fab:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+#fab-top{bottom:18px}
+#fab-toc{bottom:72px}
+@media(min-width:1150px){#fab-toc{display:none}}
+
+/* outline drawer (mobile) */
+.drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;opacity:0;
+           pointer-events:none;transition:opacity .2s}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:var(--panel);
+        z-index:61;transform:translateX(105%);transition:transform .22s ease;
+        padding:20px 18px;overflow-y:auto;border-left:1px solid var(--line)}
+body.drawer-open .drawer{transform:none}
+body.drawer-open .drawer-bg{opacity:1;pointer-events:auto}
+.drawer .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+            margin:2px 0 12px}
+.drawer a{display:block;padding:9px 10px;border-radius:8px;color:var(--ink);font-size:14.5px}
+.drawer a:hover{background:var(--accent-soft);text-decoration:none}
+.drawer a.on{color:var(--accent);font-weight:600}
+
+/* search */
+.sbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;min-height:36px;
+      border:1px solid var(--line);border-radius:99px;background:var(--bg);color:var(--muted);
+      font-size:13px;cursor:pointer;white-space:nowrap}
+.sbtn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.search-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:70;opacity:0;
+           pointer-events:none;transition:opacity .15s}
+.search-box{position:fixed;top:min(12vh,110px);left:50%;transform:translateX(-50%) scale(.98);
+            width:min(620px,92vw);background:var(--panel);border:1px solid var(--line);
+            border-radius:14px;z-index:71;opacity:0;pointer-events:none;transition:all .15s;
+            box-shadow:0 18px 60px rgba(0,0,0,.35);overflow:hidden}
+body.search-open .search-bg{opacity:1;pointer-events:auto}
+body.search-open .search-box{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.search-box input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+                  font-size:17px;padding:17px 19px;border-bottom:1px solid var(--line);
+                  font-family:var(--sans)}
+.search-res{max-height:52vh;overflow-y:auto;padding:8px}
+.search-res a{display:block;padding:10px 12px;border-radius:9px;color:var(--ink)}
+.search-res a:hover,.search-res a.sel{background:var(--accent-soft);text-decoration:none}
+.search-res .st{font-weight:600;font-size:14.5px}
+.search-res .ss{color:var(--muted);font-size:12.5px;margin-top:1px}
+.search-res .empty{padding:16px;color:var(--muted);font-size:14px;text-align:center}
+
+/* episode cards inside a digest's episode index */
+.eplist{display:grid;gap:10px}
+.eplist a.epc{display:block;background:var(--panel);border:1px solid var(--line);
+              border-radius:var(--radius);padding:13px 16px;color:inherit}
+.eplist a.epc:hover{border-color:var(--accent);text-decoration:none}
+.eplist .epc .es{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.eplist .epc .et{font-family:var(--serif);font-size:16.5px;font-weight:600;margin:2px 0 3px}
+.eplist .epc .em{color:var(--muted);font-size:13px}
+.eplist div.epc{background:var(--panel);border:1px solid var(--line);opacity:.75;
+                border-radius:var(--radius);padding:13px 16px}
+
+/* episode page */
+blockquote.q{margin:14px 0;padding:13px 17px;background:var(--panel);border-left:3px solid var(--accent);
+             border-radius:var(--radius);font-family:var(--serif);font-size:16px;font-style:italic}
+blockquote.q .qw{display:block;margin-top:7px;font-family:var(--sans);font-size:12.5px;
+                 font-style:normal;color:var(--muted)}
+.verdict{background:var(--accent-soft);border:1px solid var(--line);border-left:3px solid var(--accent);
+         border-radius:var(--radius);padding:15px 18px;font-family:var(--serif);font-size:16.5px}
+.ivrow{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);
+       font-size:14.5px;flex-wrap:wrap}
+.ivrow:last-child{border-bottom:0}
+.ivrow .who{font-weight:600;min-width:130px}
+.ivrow .what{color:var(--ink)}
+
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+       color:var(--muted);font-size:12.5px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:12px 15px;font-size:12.5px;color:var(--muted);margin-top:20px}
+@media(max-width:600px){
+  .hero{padding:30px 0 20px}
+  nav.toc{position:static}
+  .card .head{gap:6px}
+}
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="" data-canon="2026-10-26.html"><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Monday, 26 October 2026</span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="calls.html">◈&nbsp; Calls</a><a class="btn" href="thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><h1>Monday, 26 October 2026</h1><div class="meta"><span class="pill">4 episodes (5 files — 1 arrived twice from two sources)</span>Macroeconomics &amp; Strategy, Real Estate &amp; Wealth Building</div></div><section id="tl-dr-read-this-first"><h2>TL;DR (read this first)</h2><div class="tldr"><p>A starkly bearish consensus is forming, with key voices calling for a significant market downturn. Mike McGlone sees an imminent global deflationary recession triggered by an overvalued US stock market, making long-duration Treasuries the primary safe haven. Chance Finucane targets 2027 for a 30%+ equity decline driven by slowing growth and inflation, preferring the safety of short-duration bonds. Against this macro risk-off backdrop, the AI theme is evolving from a simple hardware trade into a more complex landscape of second-order effects and new bottlenecks, where specialists like Citrini see selective opportunities.</p>
+<ul><li>CENTRAL TENSION: A macro-driven imperative to de-risk all assets versus a micro-driven search for selective opportunities within the AI disruption.</li><li>TOP THEME: The Evolving AI Trade — Focus is shifting from frothy hardware to second-order effects and real-world application bottlenecks.</li><li>DIVERGENT: US Treasuries — LONG long-duration as the best alpha trade (McGlone) vs. LONG short-duration for safety in a volatile yield environment (Finucane).</li><li>HIGH-CONVICTION TRADE: Reduce/Avoid AI Stocks, supported by Chance Finucane and Citrini, who both see the sector as overvalued and increasingly risky.</li><li>CALENDAR: US Midterm Elections, cited as a potential catalyst for a market shift.</li></ul></div></section>
+<section id="trade-ideas-positions"><h2>TRADE IDEAS &amp; POSITIONS</h2><div class="cards"><div class="tier">HIGH CONVICTION</div>
+<div class="card"><div class="head"><span class="asset">AI Hardware / Beneficiary Stocks</span><span class="tag dir-avoid">REDUCE / AVOID</span><span class="who">Chance Finucane — Adam Taggart | Thoughtful Money® · Citrini — The Monetary Matters Network</span></div><p><span class="label">why</span>The initial AI hardware trade is seen as overvalued and increasingly risky. Financing has shifted from operating cash flow to more sentiment-driven equity and debt, creating reflexivity. Valuations are stretched, with significant downside potential if growth expectations are not met.</p><p><span class="label">voices</span>Chance Finucane — Adam Taggart | Thoughtful Money®: Views AI beneficiary stocks as too highly priced with potential downside of 30-50%. · Citrini — The Monetary Matters Network: Has been reducing broad AI hardware exposure since March, citing increased reflexivity in financing and a shift to more asymmetric opportunities.</p></div>
+<div class="tier">OPPORTUNISTIC</div>
+<div class="card"><div class="head"><span class="asset">Charles River (<strong>CRL</strong>)</span><span class="tag dir-long">LONG</span><span class="who">Citrini — The Monetary Matters Network</span></div><p><span class="label">Citrini — The Monetary Matters Network</span>As his highest conviction long, <strong>CRL</strong> benefits from the &quot;long experiments&quot; thesis. As AI commoditizes drug design, the bottleneck shifts to physical preclinical testing. <strong>CRL</strong> is a key player in this space and benefits from the &quot;monkey shortage,&quot; a critical constraint in animal studies needed to generate data for AI models.</p></div>
+<div class="card"><div class="head"><span class="asset">Meta (<strong>META</strong>)</span><span class="tag dir-long">LONG</span><span class="who">Citrini — The Monetary Matters Network</span></div><p><span class="label">Citrini — The Monetary Matters Network</span>Believes Meta&#x27;s AI assistant, Muse, could increase Average Revenue Per User (ARPU) by 4x by 2030, leveraging the company&#x27;s vast customer data and existing AI infrastructure. This is part of a pair trade against <strong>GOOGL</strong>.</p><p><span class="label">context</span>Entered the position in Summer 2026.</p></div>
+<div class="card"><div class="head"><span class="asset">Alphabet (<strong>GOOGL</strong>)</span><span class="tag dir-short">SHORT</span><span class="who">Citrini — The Monetary Matters Network</span></div><p><span class="label">Citrini — The Monetary Matters Network</span>Cites concerns about a talent exodus from the DeepMind division and the potential negative impact of AI on its core search revenue.</p><p><span class="label">context</span>Has a stop-loss in place for the position.</p></div>
+<div class="card"><div class="head"><span class="asset">US Treasuries (2-3 year)</span><span class="tag dir-long">LONG</span><span class="who">Chance Finucane — Adam Taggart | Thoughtful Money®</span></div><p><span class="label">Chance Finucane — Adam Taggart | Thoughtful Money®</span>Incrementally adding to positions, especially near a 5% yield. Views the 4-5% return as a &quot;real gift&quot; and a great base rate for wealth preservation in a new era of rising and volatile yields.</p></div>
+<div class="card"><div class="head"><span class="asset">US Treasuries (5-year and 10-year)</span><span class="tag dir-long">LONG</span><span class="who">Mike McGlone — Wealth Building Blueprint – Vladyslav Grabarskyy</span></div><p><span class="label">Mike McGlone — Wealth Building Blueprint – Vladyslav Grabarskyy</span>Considers this the &quot;potential best alpha trade&quot; for the next 1-5 years. High yields are &quot;too attractive&quot; and act as a &quot;non-declining put on the S&amp;P 500&quot; amid a coming deflationary recession.</p></div>
+<div class="card"><div class="head"><span class="asset">Gold</span><span class="tag dir-avoid">AVOID</span><span class="who">Mike McGlone — Wealth Building Blueprint – Vladyslav Grabarskyy</span></div><p><span class="label">Mike McGlone — Wealth Building Blueprint – Vladyslav Grabarskyy</span>The rally is over; gold is &quot;way too expensive&quot; relative to long bonds yielding over 5%. He is &quot;off that gold bug horse.&quot;</p></div>
+<div class="card"><div class="head"><span class="asset">Bitcoin</span><span class="tag dir-avoid">AVOID</span><span class="who">Mike McGlone — Wealth Building Blueprint – Vladyslav Grabarskyy</span></div><p><span class="label">Mike McGlone — Wealth Building Blueprint – Vladyslav Grabarskyy</span>It is a non-income-producing asset facing a major headwind from high Treasury yields. Predicts it will drop 20-30% if the S&amp;P 500 drops 10%.</p></div>
+<div class="card"><div class="head"><span class="asset">Eli Lilly (<strong>LLY</strong>)</span><span class="tag dir-long">LONG</span><span class="who">Citrini — The Monetary Matters Network</span></div><p><span class="label">Citrini — The Monetary Matters Network</span>Believes large pharma companies like <strong>LLY</strong> will benefit from the commoditization of early-stage (Phase 1) assets, as they can acquire more shots on goal cheaply.</p></div>
+<div class="card"><div class="head"><span class="asset">Energy Sector</span><span class="tag dir-long">LONG</span><span class="who">Chance Finucane — Adam Taggart | Thoughtful Money®</span></div><p><span class="label">Chance Finucane — Adam Taggart | Thoughtful Money®</span>It is Oxbow&#x27;s favorite sector, and they have been adding to positions in recent months as part of a diversification strategy away from overvalued tech.</p></div>
+<div class="card"><div class="head"><span class="asset">Healthcare Sector</span><span class="tag dir-long">LONG</span><span class="who">Chance Finucane — Adam Taggart | Thoughtful Money®</span></div><p><span class="label">Chance Finucane — Adam Taggart | Thoughtful Money®</span>Adding to positions as part of a move towards more reasonably valued non-AI sectors.</p></div>
+<div class="card"><div class="head"><span class="asset">Long-duration Treasuries (beyond 3 years)</span><span class="tag dir-avoid">AVOID</span><span class="who">Chance Finucane — Adam Taggart | Thoughtful Money®</span></div><p><span class="label">Chance Finucane — Adam Taggart | Thoughtful Money®</span>Expects yields to be rising and volatile in the new era that began in 2020.</p></div>
+<div class="card"><div class="head"><span class="asset">Fortinet (<strong>FTNT</strong>)</span><span class="tag dir-reduce">REDUCE</span><span class="who">Chance Finucane — Adam Taggart | Thoughtful Money®</span></div><p><span class="label">Chance Finucane — Adam Taggart | Thoughtful Money®</span>Cut the position in half after it doubled in 6 months, as part of active risk management.</p></div>
+<div class="card"><div class="head"><span class="asset">Silver &amp; Silver Miners</span><span class="tag dir-reduce">REDUCE</span><span class="who">Chance Finucane — Adam Taggart | Thoughtful Money®</span></div><p><span class="label">Chance Finucane — Adam Taggart | Thoughtful Money®</span>Sold volatile positions in recent weeks to reduce risk while the market is choppy.</p></div>
+<div class="card"><div class="head"><span class="asset">Energy Exposure (Uranium, Coal, Transocean)</span><span class="tag dir-reduce">REDUCE</span><span class="who">Chance Finucane — Adam Taggart | Thoughtful Money®</span></div><p><span class="label">Chance Finucane — Adam Taggart | Thoughtful Money®</span>Trimmed exposure from a near 20% max weight in the high-income portfolio by selling specific sub-sectors.</p></div>
+<div class="tier">WATCHING</div>
+<div class="card"><div class="head"><span class="asset">Energy Sector</span><span class="tag dir-watching">WATCHING</span><span class="who">Chance Finucane — Adam Taggart | Thoughtful Money®</span></div><p><span class="label">Chance Finucane — Adam Taggart | Thoughtful Money®</span>Watching for a potential pullback over the next six months to add to core positions.</p></div></div></section>
+<section id="divergent-views"><h2>DIVERGENT VIEWS</h2><div class="topic"><div class="t">US Treasury Duration Strategy</div><p>Mike McGlone — Wealth Building Blueprint – Vladyslav Grabarskyy: BULLISH ON LONG DURATION <strong>Reasoning:</strong> Views longer-dated US Treasuries (5-year, 10-year) as the &quot;potential best alpha trade&quot; for the next 1-5 years. In a coming global deflationary recession triggered by a stock market crash, long-duration bonds will provide both safety and significant price appreciation as yields fall.</p>
+<p>Chance Finucane — Adam Taggart | Thoughtful Money®: BULLISH ON SHORT DURATION <strong>Reasoning:</strong> Explicitly avoids Treasuries with maturities beyond three years. He believes we are in a new era of rising and volatile yields, making long-duration bonds risky. He prefers to capture the &quot;gift&quot; of 4-5% yields in 2-3 year Treasuries for wealth preservation without taking duration risk.</p></div>
+<div class="topic"><div class="t">Gold&#x27;s Role in a Portfolio</div><p>Mike McGlone — Wealth Building Blueprint – Vladyslav Grabarskyy: BEARISH <strong>Reasoning:</strong> Gold is &quot;way too expensive&quot; compared to high-yielding long-term bonds, which offer a compelling, income-producing alternative. The decades-long bull case is over, and he is &quot;off that gold bug horse,&quot; predicting a reversion.</p>
+<p>Chance Finucane — Adam Taggart | Thoughtful Money®: HOLD / DIVERSIFIER <strong>Reasoning:</strong> While actively trimming more volatile precious metals positions like silver, his firm maintains core high-quality holdings like gold bullion and Agnico Eagle Mines. This suggests a view of gold as a strategic, long-term diversifier rather than a tactical trade to be abandoned due to rising yields.</p></div>
+<div class="topic"><div class="t">Bitcoin Outlook</div><p>Pascal Hügli — Less Noise More Signal: BULLISH <strong>Reasoning:</strong> Bitcoin is not an ideological anti-government asset but the &quot;purest AI trade.&quot; Its digital scarcity provides a unique and enduring moat against the unlimited competition and deflationary pressures enabled by AI, making it a crucial store of value in the new digital economy.</p>
+<p>Mike McGlone — Wealth Building Blueprint – Vladyslav Grabarskyy: BEARISH <strong>Reasoning:</strong> Bitcoin is a non-income-producing risk asset facing a major headwind from attractive Treasury yields. It is highly correlated to the stock market and he predicts it would fall 20-30% in a 10% S&amp;P 500 correction.</p></div></section>
+<section id="dominant-themes"><h2>DOMINANT THEMES</h2><h3>The Evolving AI Trade (3 shows)</h3>
+<p>THESIS: The initial, monolithic AI hardware boom is maturing and facing risks from reflexive financing and stretched valuations. This is forcing investors to shift focus to second-order effects, identifying new bottlenecks in real-world applications and unique hedges against AI&#x27;s disruptive economic impact.</p>
+<p>CAUTIOUS ON HARDWARE (Chance Finucane, Citrini) The consensus is that the easy money in the AI infrastructure trade has been made. Chance Finucane — Adam Taggart | Thoughtful Money® sees AI beneficiary stocks as too highly priced with 30-50% downside risk. Citrini — The Monetary Matters Network notes that the financing of the AI buildout has shifted from hyperscaler cash flow to more speculative equity and debt, creating a reflexive loop that is vulnerable to shifts in sentiment. He has been reducing his broad AI hardware exposure since March.</p>
+<p>FOCUS ON APPLICATION &amp; SECOND-ORDER EFFECTS (Citrini, Pascal Hügli) With the hardware trade now more complex, capital is seeking opportunities further down the value chain. Citrini — The Monetary Matters Network is now &quot;long experiments,&quot; identifying bottlenecks in the application of AI, particularly in drug discovery where physical lab work (like that done by <strong>CRL</strong>) cannot be accelerated. This creates a durable investment thesis. Separately, Pascal Hügli — Less Noise More Signal reframes Bitcoin as a necessary asset in the age of AI, arguing its digital scarcity is the only true moat against the hyper-competition AI will unleash, making it the &quot;purest AI trade.&quot;</p>
+<p>KEY TENSION: Resolution depends on whether AI-driven Annual Recurring Revenue (ARR) can accelerate to justify the massive infrastructure spending, or if a &quot;capability-ARR gap&quot; emerges, triggering a downturn in the AI hardware sector.</p>
+<h3>The Coming Deflationary Downturn (2 shows)</h3>
+<p>THESIS: A significant market correction and economic downturn are widely anticipated, driven by overvaluation and the lagged effects of monetary tightening. The key debate is not if, but when, and which assets will provide the best protection.</p>
+<p>DEFLATIONARY RECESSION CAMP (Mike McGlone) Mike McGlone — Wealth Building Blueprint – Vladyslav Grabarskyy argues that the US stock market is the final, overvalued domino to fall, which will trigger a &quot;global deflationary recession.&quot; He sees this as a normal reversion after the massive COVID-era stimulus. In this scenario, long-duration US Treasuries are the premier asset, offering both safety and alpha as yields collapse.</p>
+<p>2027 SLOWDOWN CAMP (Chance Finucane) Chance Finucane — Adam Taggart | Thoughtful Money® is specifically concerned about 2027, predicting a stock market decline of 30% or more. His catalyst is the combination of slowing economic growth and slowing inflation—historically the worst environment for stocks. His preferred havens are short-duration Treasuries for their safe yield and reasonably-valued, non-AI equities in sectors like energy and healthcare.</p>
+<p>KEY TENSION: The timing and nature of the downturn will determine whether long-duration bonds (McGlone&#x27;s recession trade) or short-duration bonds and value stocks (Finucane&#x27;s slowdown trade) offer superior risk-adjusted returns.</p></section>
+<section id="guest-briefs"><h2>GUEST BRIEFS</h2><h3>Mike McGlone — Wealth Building Blueprint – Vladyslav Grabarskyy</h3>
+<p><strong>Thesis:</strong> The post-COVID global asset bubble is unwinding, with the overvalued US stock market being the final domino to fall, triggering a global deflationary recession. In this environment, high-yielding US Treasuries are the most attractive asset class, creating a massive headwind for non-income-producing assets like gold and crypto. <strong>Predictions:</strong></p>
+<ul><li>A global deflationary recession will be triggered by a US stock market downturn.</li><li>US Treasuries (5-10 year) will be the &quot;best alpha trade&quot; for the next 1-5 years.</li><li>If the S&amp;P 500 drops 10%, Bitcoin and copper will drop 20-30%.</li><li>Gold will experience a &quot;normal reversion towards 3,000.&quot;</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p>
+<h3>Chance Finucane — Adam Taggart | Thoughtful Money®</h3>
+<p><strong>Thesis:</strong> A significant market downturn of 30%+ is likely in 2027, driven by the toxic combination of slowing growth and slowing inflation. The prudent strategy is to reduce exposure to overvalued growth areas like AI, diversify into reasonably priced sectors like energy and healthcare, and anchor the portfolio in high-quality, short-duration Treasuries yielding 4-5%. <strong>Predictions:</strong></p>
+<ul><li>The stock market could go down 30% or more in 2027.</li><li>Tech stocks have 30% potential downside; semiconductor stocks have 50% potential downside.</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p>
+<h3>Citrini — The Monetary Matters Network</h3>
+<p><strong>Thesis:</strong> The AI trade has evolved. The initial hardware buildout is now reflexively financed and risky, shifting the primary opportunity to the application layer. AI commoditizes digital work (like drug design), creating new, durable bottlenecks in the physical world (like preclinical testing). The best trades are now in companies that solve these physical bottlenecks (&quot;long experiments&quot;). <strong>Predictions:</strong></p>
+<ul><li>The value of early-stage preclinical or clinical assets in biopharma will decrease over time due to AI-driven commoditization.</li><li>Clearer evidence of AI&#x27;s impact on white-collar employment will emerge by mid-to-late 2027.</li></ul>
+<p><strong>Would change view if:</strong> A new AI capability breakthrough precedes a new product or unlock that significantly increases spending, which would invalidate his cautious view on semis.</p>
+<h3>Pascal Hügli — Less Noise More Signal</h3>
+<p><strong>Thesis:</strong> Bitcoin&#x27;s primary value proposition is not as an anti-government hedge, but as a digitally scarce store of value essential for the AI era. As AI erodes traditional business moats through hyper-competition, Bitcoin&#x27;s unbreachable scarcity makes it a unique and necessary asset—the &quot;purest AI trade.&quot; <strong>Predictions:</strong></p>
+<ul><li>Future GDP growth will be driven more by the velocity of money than the growth of money.</li><li>Compute demand will grow every single year for the next five years.</li><li>Gold&#x27;s moat as a store of value will be questioned within 5-7 years.</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p></section>
+<section id="conviction-scenarios"><h2>CONVICTION &amp; SCENARIOS</h2><p>Mike McGlone — Wealth Building Blueprint – Vladyslav Grabarskyy If the stock market drops 10%, then Bitcoin will drop 20-30% and copper will drop 20-30%.</p>
+<p>Chance Finucane — Adam Taggart | Thoughtful Money® Predicts a 30% or more stock market decline in 2027 is possible, driven by a scenario where both economic growth and inflation rates are slowing.</p>
+<p>Citrini — The Monetary Matters Network Believes the market-implied 60% chance of default for CoreWeave bonds by 2032 is too high, suggesting he is bullish on the credit. Would change view if: His bearish view on semiconductors would be invalidated if better AI capabilities lead to a new product/unlock that significantly increases spending.</p></section>
+<section id="tickers-assets"><h2>TICKERS &amp; ASSETS</h2><h3>THESIS TICKERS</h3>
+<ul><li><strong>AEM</strong> (Agnico Eagle Mines) — Chance Finucane — Adam Taggart | Thoughtful Money® — Core high-quality precious metals holding.</li><li><strong>ASML</strong> — Chance Finucane — Adam Taggart | Thoughtful Money® — Small position held as part of a minimal AI beneficiary allocation.</li><li><strong>CRL</strong> (Charles River) — Citrini — The Monetary Matters Network — Highest conviction long; benefits from the &quot;long experiments&quot; thesis and preclinical testing bottlenecks.</li><li><strong>GOOGL</strong> (Alphabet) — Citrini — The Monetary Matters Network — Short position due to DeepMind talent exodus and risks to search revenue.</li><li><strong>LLY</strong> (Eli Lilly) — Citrini — The Monetary Matters Network — Positioned to benefit from the commoditization of Phase 1 assets by AI.</li><li><strong>META</strong> (Meta) — Citrini — The Monetary Matters Network — Long position based on potential for Muse AI to dramatically increase ARPU.</li><li><strong>TXN</strong> (Texas Instruments) — Chance Finucane — Adam Taggart | Thoughtful Money® — Small position held as part of a minimal AI beneficiary allocation.</li><li><strong>ZM</strong> (Zoom) — Chance Finucane — Adam Taggart | Thoughtful Money® — Long position due to cheap valuation and its stake in Anthropic.</li></ul>
+<h3>TRADE EXPRESSION</h3>
+<p>None identified this session.</p>
+<h3>WATCH LEVELS</h3>
+<ul><li><strong>Energy Sector</strong> — A pullback over the next six months would be a buying opportunity — Chance Finucane — Adam Taggart | Thoughtful Money®</li></ul>
+<h3>CONTEXT MENTIONS</h3>
+<ul><li><strong>ACMR</strong> — Referenced in passing.</li><li><strong>AMZN</strong> (Amazon) — Referenced in passing.</li><li><strong>BBY</strong> (BlackBerry) — Referenced in passing.</li><li><strong>FTNT</strong> (Fortinet) — Position was reduced by half.</li><li><strong>M</strong> (Macy&#x27;s) — Referenced in passing.</li><li><strong>MSFT</strong> (Microsoft) — Referenced in passing.</li><li><strong>NVDA</strong> (Nvidia) — Citrini remains bullish but sees more asymmetric opportunities elsewhere.</li><li><strong>XLE</strong> — Referenced in passing.</li></ul></section>
+<section id="spotlight-bitcoin-isn-t-an-anti-governme"><h2>SPOTLIGHT: Bitcoin Isn&#x27;t an Anti-Government Trade, It&#x27;s an AI Trade</h2><p><strong>Host:</strong> Pascal Hügli <strong>Guest:</strong> Solo episode.</p>
+<ul><li>Pascal Hügli argues that Bitcoin&#x27;s core utility is not as an ideological tool against government debasement, but as a practical, digitally scarce store of value essential for the AI-driven economy.</li><li>He posits that AI will commoditize nearly everything and erode traditional business moats, including those of the &quot;Mag 7,&quot; by enabling unlimited competition.</li><li>In this environment, Bitcoin&#x27;s provable and finite scarcity provides a unique and durable moat that cannot be outcompeted, making it the &quot;purest AI trade.&quot;</li><li>Hügli asserts that Bitcoin has already won the &quot;digital store of value&quot; race, citing widespread adoption and institutional interest.</li><li>He challenges the &quot;liquidity equals bullish Bitcoin&quot; narrative, suggesting that as Bitcoin gains fundamental use cases, its value will be driven more by the velocity of money and usage, not just central bank balance sheets.</li></ul></section>
+<section id="notable-data-figures"><h2>NOTABLE DATA &amp; FIGURES</h2><ul><li><strong>170%:</strong> 12-month increase in the Bloomberg Heating Oil Total Return Index, its highest velocity since 1987. — Mike McGlone — Wealth Building Blueprint – Vladyslav Grabarskyy</li><li><strong>70%+:</strong> Annual growth in data center construction spending. — Chance Finucane — Adam Taggart | Thoughtful Money®</li><li><strong>80%:</strong> Profit margins for Chinese AI lab DeepSeek&#x27;s cloud API service (DeepInfer). — Citrini — The Monetary Matters Network</li><li><strong>65%:</strong> 50-week correlation between the S&amp;P 500 and copper, the highest since 1988. — Mike McGlone — Wealth Building Blueprint – Vladyslav Grabarskyy</li><li><strong>50%:</strong> Potential downside for semiconductor stocks. — Chance Finucane — Adam Taggart | Thoughtful Money®</li><li><strong>30%:</strong> Potential downside for tech stocks. — Chance Finucane — Adam Taggart | Thoughtful Money®</li><li><strong>10%:</strong> Growth in power construction spending. — Chance Finucane — Adam Taggart | Thoughtful Money®</li><li><strong>5.15%:</strong> Recent peak in the US 5-year note yield, the highest since 1999. — Mike McGlone — Wealth Building Blueprint – Vladyslav Grabarskyy</li><li><strong>4x:</strong> Potential increase in Meta&#x27;s ARPU by 2030 due to its AI assistant, Muse. — Citrini — The Monetary Matters Network</li><li><strong>2.5x:</strong> US stock market cap relative to GDP, the highest since 1928. — Mike McGlone — Wealth Building Blueprint – Vladyslav Grabarskyy</li><li><strong>2x:</strong> US stock market cap relative to public debt, the highest since 2001. — Mike McGlone — Wealth Building Blueprint – Vladyslav Grabarskyy</li></ul></section>
+<section id="watch-catalysts"><h2>WATCH CATALYSTS</h2><ul><li><strong>US Midterm Elections:</strong> Could be a significant catalyst for a market shift, potentially pushing back against policies that have inflated certain assets. — Mike McGlone — Wealth Building Blueprint – Vladyslav Grabarskyy</li><li><strong>Mid-to-late 2027:</strong> Timeframe by which clearer evidence of AI&#x27;s impact on white-collar employment is expected to emerge. — Citrini — The Monetary Matters Network</li></ul></section>
+<section id="miscellaneous"><h2>MISCELLANEOUS</h2><ul><li>The US economy is highly bifurcated, with strong growth only in data centers and power construction, while all other sectors show negative year-over-year growth. This makes the economy vulnerable to a slowdown in these specific areas. — Chance Finucane — Adam Taggart | Thoughtful Money®</li><li>A record high gap between the historic Shiller P/E and the forecasted P/E is a meaningful metric that tends to precede significant bear markets. — Chance Finucane — Adam Taggart | Thoughtful Money®</li><li>The &quot;Jevons paradox&quot; does not currently apply to AI tokens; a 10% cost reduction only leads to a 3% usage increase, suggesting demand is not yet exploding with commoditization. — Citrine — The Monetary Matters Network</li><li>A &quot;capability-ARR gap&quot; may be forming in AI, where model capabilities are improving faster than paid usage is growing, which could undermine the investment case for infrastructure spending. — Citrine — The Monetary Matters Network</li><li>Future GDP growth may be driven more by the velocity of money rather than the growth of money supply, which could change long-standing correlations for assets like Bitcoin. — Pascal Hügli — Less Noise More Signal</li><li>The Federal Reserve is priced to hike three more times in the next year, a strong headwind for risk assets. — Mike McGlone — Wealth Building Blueprint – Vladyslav Grabarskyy</li></ul></section>
+<section id="data-quality-note"><h2>DATA QUALITY NOTE</h2><ul><li><strong>Overlapping Episodes:</strong> Two summaries were provided for the same interview with a guest on The Monetary Matters Network. The guest&#x27;s name was spelled &quot;Citrini&quot; (with firm &quot;Citrini Research&quot;) in one and &quot;Citrine&quot; (with firm &quot;Saturna Research&quot;) in the other. The content was substantively identical. This digest has merged them into a single set of views attributed to &quot;Citrini — The Monetary Matters Network&quot; and de-duplicated all points.</li></ul></section>
+<section id="episode-index"><h2>EPISODE INDEX</h2><div class="eplist"><a class="epc" href="ep/2026-10-26/adam-taggart-thoughtful-money-were-worri.html"><span class="es">Adam Taggart Thoughtful Money</span><div class="et">Were Worried About 2027 - Stocks To Plunge 30 Chance Finucane OxbowAdvisors</div><div class="em">Host: Adam Taggart · Guest: Chance Finucane, Chief Investment Officer, Oxbow Advisors</div></a><a class="epc" href="ep/2026-10-26/less-noise-more-signal-bitcoin-isnt-an-a.html"><span class="es">Less Noise More Signal</span><div class="et">Bitcoin Isnt an Anti-Government Trade Its an AI Trade</div><div class="em">Host: Pascal Hügli · Solo episode</div></a><a class="epc" href="ep/2026-10-26/the-monetary-matters-network-citrini-mon.html"><span class="es">The Monetary Matters Network</span><div class="et">Citrini Monkeys Are The Next Bottleneck Citrini on AI Drug Discovery Experiment</div><div class="em">Host: Jack Farley · Guest: Citrini, Founder, Citrini Research</div></a><a class="epc" href="ep/2026-10-26/the-monetary-matters-network-the-reflexi.html"><span class="es">The Monetary Matters Network</span><div class="et">The Reflexive Risk in Financing AI Buildout Is Real Says Investor Who Nailed AI</div><div class="em">Host: Jack Farley · Guest: Citrine, Investor, Saturna Research</div></a><a class="epc" href="ep/2026-10-26/wealth-building-blueprint-vladyslav-grab.html"><span class="es">Wealth Building Blueprint Vladyslav Grab</span><div class="et">Next 2 Months Decide Everything Stock Market Crash Ahead What Happens to Gold Mi</div><div class="em">Host: Vladyslav Grabarskyy · Guest: Mike McGlone, Senior Commodity Strategist at Bloomberg Intelligence</div></a></div></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-10-26 · <a href="archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-bitcoin-isn-t-an-anti-governme">★ Bitcoin Isn&#x27;t an Anti-…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-bitcoin-isn-t-an-anti-governme">★ Bitcoin Isn&#x27;t an Anti-…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
+(function(){
+var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
+var top=qs('#fab-top');
+if(top){addEventListener('scroll',function(){top.classList.toggle('show',scrollY>600)},{passive:true});
+        top.onclick=function(){scrollTo({top:0,behavior:'smooth'})};}
+var toc=qs('#fab-toc');
+if(toc){toc.classList.add('show');
+        addEventListener('scroll',function(){toc.classList.toggle('show',true)},{passive:true});}
+function closeDrawer(){document.body.classList.remove('drawer-open')}
+if(toc){toc.onclick=function(){document.body.classList.add('drawer-open')};
+        qs('.drawer-bg').onclick=closeDrawer;
+        qa('.drawer a').forEach(function(a){a.addEventListener('click',closeDrawer)});}
+var links=qa('.rail a, .drawer a');
+if(links.length){
+  var map={};links.forEach(function(a){var id=a.getAttribute('href').slice(1);(map[id]=map[id]||[]).push(a)});
+  var cur=null;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){
+      if(cur&&map[cur])map[cur].forEach(function(a){a.classList.remove('on')});
+      cur=e.target.id;
+      if(map[cur])map[cur].forEach(function(a){a.classList.add('on')});
+    }});
+  },{rootMargin:'-10% 0px -80% 0px'});
+  qa('section[id]').forEach(function(x){io.observe(x)});
+}
+var ROOT=document.body.getAttribute('data-root')||'';
+var idx=null,inp=qs('.search-box input'),res=qs('.search-res');
+function openS(){document.body.classList.add('search-open');inp.focus();
+  if(!idx){fetch(ROOT+'search-index.json').then(function(r){return r.json()})
+    .then(function(j){idx=j;run()}).catch(function(){res.innerHTML='<div class=empty>index unavailable</div>'});}}
+function closeS(){document.body.classList.remove('search-open')}
+function run(){
+  if(!idx)return;
+  var q=inp.value.trim().toLowerCase();
+  var hits=!q?idx.slice(0,20):idx.filter(function(e){
+    return (e.t+' '+e.s+' '+e.d).toLowerCase().indexOf(q)>=0}).slice(0,30);
+  res.innerHTML=hits.length?hits.map(function(e){
+    return '<a href="'+ROOT+e.u+'"><div class=st>'+e.t+'</div><div class=ss>'+e.d+' · '+e.s+'</div></a>';
+  }).join(''):'<div class=empty>no matches</div>';}
+if(inp){inp.addEventListener('input',run);
+  qs('.sbtn').onclick=openS;qs('.search-bg').onclick=closeS;
+  addEventListener('keydown',function(e){
+    if(e.key==='/'&&!document.body.classList.contains('search-open')&&
+       document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
+    if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12, SYNC=window.PLM_SYNC||null;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+/* ── sync ────────────────────────────────────────────────────────────────
+   When an endpoint is configured the browser copy becomes a cache rather
+   than the record: every page pulls the shared set on load and pushes what
+   it has that the server does not. Everything degrades to local-only if the
+   network or the endpoint is unavailable — a thought is never lost because
+   sync failed, it just has not travelled yet. Deletes are tombstoned server
+   side so they propagate instead of resurrecting from another device. */
+function post(payload,cb){
+  if(!SYNC)return cb&&cb(0);
+  payload.k=SYNC.key;
+  /* text/plain keeps this a "simple request": Apps Script cannot answer the
+     CORS preflight that application/json would trigger. */
+  fetch(SYNC.url,{method:'POST',mode:'cors',redirect:'follow',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify(payload)})
+    .then(function(r){return r.json()}).then(function(j){cb&&cb(!j.error)})
+    .catch(function(){cb&&cb(0)});
+}
+function pull(cb){
+  if(!SYNC)return cb&&cb(null);
+  fetch(SYNC.url+'?k='+encodeURIComponent(SYNC.key)+'&_='+Date.now(),
+        {mode:'cors',redirect:'follow'})
+    .then(function(r){return r.json()})
+    .then(function(j){cb&&cb(j&&j.items?j.items:null)})
+    .catch(function(){cb&&cb(null)});
+}
+function merge(remote){
+  /* union by id, newest timestamp wins; anything local the server has not
+     seen is pushed up so a thought written offline still arrives. */
+  var local=load(),seen={},out=[];
+  remote.forEach(function(i){seen[i.id]=i});
+  var missing=local.filter(function(i){return !seen[i.id]});
+  local.forEach(function(i){
+    var r=seen[i.id];
+    if(!r||(i.ts||0)>(r.ts||0))seen[i.id]=i;
+  });
+  for(var k in seen)out.push(seen[k]);
+  out.sort(function(a,b){return (b.ts||0)-(a.ts||0)});
+  put(out);badge();
+  if(missing.length)post({action:'save',items:missing});
+  return out;
+}
+function sync(cb){
+  pull(function(remote){
+    if(remote)merge(remote);
+    cb&&cb(!!remote);
+  });
+}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge,
+                    sync:sync,post:post,enabled:!!SYNC};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load(),rec={id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()};
+    items.unshift(rec);
+    var ok=put(items);
+    toast(ok?(SYNC?'Saved · syncing…':'Saved to Thoughts')
+            :'Could not save — storage is full');
+    if(ok&&SYNC)post({action:'save',items:[rec]},function(sent){
+      if(sent)toast('Saved to all your devices');
+      else toast('Saved here — will sync when reachable');
+    });
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
+/* pull on every page so a thought saved on the phone shows up marked on the
+   laptop; re-mark afterwards in case the pull brought new ones for this page */
+if(SYNC)sync(function(){badge();if(pill&&comp)mark();});
+})();
+</script></body></html>
