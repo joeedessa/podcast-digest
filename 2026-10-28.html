@@ -1,0 +1,654 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#14150f"><link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="apple-touch-icon" href="apple-touch-icon.png"><title>PodcastLM — Wednesday, 28 October 2026</title><style>
+:root{
+  --bg:#fbfbfa; --panel:#fff; --ink:#1a1a18; --muted:#6b6b66; --line:#e6e4df;
+  --accent:#b4552d; --accent-soft:#fdf3ee;
+  --long:#1a7340; --short:#c0392b; --watch:#2563a8; --reduce:#b8730f;
+  --radius:10px;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#14150f; --panel:#1c1d16; --ink:#eceade; --muted:#a3a094;
+         --line:#2f3126; --accent:#e08a5f; --accent-soft:#241a13;
+         --long:#5cc98a; --short:#ef7d6e; --watch:#7db3e8; --reduce:#e0a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+     line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 96px}
+
+/* masthead */
+header.top{border-bottom:1px solid var(--line);background:var(--panel);
+           position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.4) blur(6px)}
+header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
+                 align-items:baseline;gap:14px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.01em}
+.brand a{color:inherit}
+.crumb{color:var(--muted);font-size:13px}
+.crumb a{color:var(--muted)}
+/* header action — sits right, stays a 44px tap target on a phone */
+.btn{display:inline-flex;align-items:center;gap:2px;
+     padding:9px 15px;min-height:38px;border:1px solid var(--line);
+     border-radius:99px;background:var(--bg);color:var(--ink);
+     font-size:13.5px;font-weight:550;white-space:nowrap;line-height:1}
+.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.btn:active{transform:translateY(1px)}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,42px);line-height:1.12;
+         margin:0 0 10px;letter-spacing:-.02em;font-weight:600}
+.hero .meta{color:var(--muted);font-size:14px}
+.pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
+      border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
+
+/* sections */
+section{padding:28px 0 4px;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+h2{font-family:var(--serif);font-size:13px;font-weight:700;text-transform:uppercase;
+   letter-spacing:.14em;color:var(--accent);margin:0 0 16px}
+h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:28px 0 8px;
+   letter-spacing:-.01em}
+p{margin:0 0 13px}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin:5px 0}
+strong{font-weight:650}
+.tag{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+
+/* TL;DR */
+.tldr{background:var(--accent-soft);border:1px solid var(--line);
+      border-left:3px solid var(--accent);border-radius:var(--radius);
+      padding:18px 20px;margin-bottom:6px}
+.tldr p:last-child,.tldr ul:last-child{margin-bottom:0}
+.tldr ul{list-style:none;padding-left:0}
+.tldr li{padding-left:15px;position:relative}
+.tldr li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+
+/* trade cards */
+.cards{display:grid;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:15px 17px}
+.card .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.card .asset{font-family:var(--serif);font-size:18px;font-weight:600}
+.card .who{color:var(--muted);font-size:13px}
+.card p{margin:6px 0 0;font-size:14.5px}
+.card .label{color:var(--muted);font-size:11px;text-transform:uppercase;
+             letter-spacing:.08em;margin-right:5px}
+.dir-long{color:var(--long)} .dir-short{color:var(--short)}
+.dir-avoid{color:var(--short)} .dir-reduce{color:var(--reduce)}
+.dir-watching{color:var(--watch)} .dir-other{color:var(--muted)}
+.tier{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+      margin:22px 0 10px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+
+/* topics */
+.topic{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--muted);
+       border-radius:var(--radius);padding:15px 17px;margin:12px 0}
+.topic .t{font-weight:650;margin-bottom:9px}
+
+/* index */
+.days{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:9px}
+.days a{display:flex;justify-content:space-between;align-items:center;gap:14px;
+        background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+        padding:14px 17px;color:inherit}
+.days a:hover{border-color:var(--accent);text-decoration:none}
+.days .d{font-family:var(--serif);font-size:17px;font-weight:600}
+.days .s{color:var(--muted);font-size:13px;text-align:right}
+
+
+/* right-side outline rail (desktop) */
+.layout{display:block}
+@media(min-width:1150px){
+  .layout{display:grid;grid-template-columns:minmax(0,820px) 220px;gap:44px;
+          max-width:1120px;margin:0 auto;padding:0 20px}
+  .layout>.wrap{max-width:none;padding:0}
+  .layout .rail{display:block}
+}
+.rail{display:none;position:sticky;top:76px;align-self:start;max-height:calc(100vh - 100px);
+      overflow-y:auto;padding:8px 0 24px;font-size:12.5px}
+.rail .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+          margin-bottom:10px}
+.rail a{display:block;color:var(--muted);padding:4px 10px;border-left:2px solid var(--line);
+        line-height:1.4}
+.rail a:hover{color:var(--accent);text-decoration:none}
+.rail a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+
+/* floating buttons */
+.fab{position:fixed;right:16px;z-index:40;display:flex;align-items:center;justify-content:center;
+     width:44px;height:44px;border-radius:50%;background:var(--panel);color:var(--ink);
+     border:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.18);font-size:18px;
+     cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
+.fab.show{opacity:1;pointer-events:auto}
+.fab:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+#fab-top{bottom:18px}
+#fab-toc{bottom:72px}
+@media(min-width:1150px){#fab-toc{display:none}}
+
+/* outline drawer (mobile) */
+.drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;opacity:0;
+           pointer-events:none;transition:opacity .2s}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:var(--panel);
+        z-index:61;transform:translateX(105%);transition:transform .22s ease;
+        padding:20px 18px;overflow-y:auto;border-left:1px solid var(--line)}
+body.drawer-open .drawer{transform:none}
+body.drawer-open .drawer-bg{opacity:1;pointer-events:auto}
+.drawer .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+            margin:2px 0 12px}
+.drawer a{display:block;padding:9px 10px;border-radius:8px;color:var(--ink);font-size:14.5px}
+.drawer a:hover{background:var(--accent-soft);text-decoration:none}
+.drawer a.on{color:var(--accent);font-weight:600}
+
+/* search */
+.sbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;min-height:36px;
+      border:1px solid var(--line);border-radius:99px;background:var(--bg);color:var(--muted);
+      font-size:13px;cursor:pointer;white-space:nowrap}
+.sbtn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.search-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:70;opacity:0;
+           pointer-events:none;transition:opacity .15s}
+.search-box{position:fixed;top:min(12vh,110px);left:50%;transform:translateX(-50%) scale(.98);
+            width:min(620px,92vw);background:var(--panel);border:1px solid var(--line);
+            border-radius:14px;z-index:71;opacity:0;pointer-events:none;transition:all .15s;
+            box-shadow:0 18px 60px rgba(0,0,0,.35);overflow:hidden}
+body.search-open .search-bg{opacity:1;pointer-events:auto}
+body.search-open .search-box{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.search-box input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+                  font-size:17px;padding:17px 19px;border-bottom:1px solid var(--line);
+                  font-family:var(--sans)}
+.search-res{max-height:52vh;overflow-y:auto;padding:8px}
+.search-res a{display:block;padding:10px 12px;border-radius:9px;color:var(--ink)}
+.search-res a:hover,.search-res a.sel{background:var(--accent-soft);text-decoration:none}
+.search-res .st{font-weight:600;font-size:14.5px}
+.search-res .ss{color:var(--muted);font-size:12.5px;margin-top:1px}
+.search-res .empty{padding:16px;color:var(--muted);font-size:14px;text-align:center}
+
+/* episode cards inside a digest's episode index */
+.eplist{display:grid;gap:10px}
+.eplist a.epc{display:block;background:var(--panel);border:1px solid var(--line);
+              border-radius:var(--radius);padding:13px 16px;color:inherit}
+.eplist a.epc:hover{border-color:var(--accent);text-decoration:none}
+.eplist .epc .es{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.eplist .epc .et{font-family:var(--serif);font-size:16.5px;font-weight:600;margin:2px 0 3px}
+.eplist .epc .em{color:var(--muted);font-size:13px}
+.eplist div.epc{background:var(--panel);border:1px solid var(--line);opacity:.75;
+                border-radius:var(--radius);padding:13px 16px}
+
+/* episode page */
+blockquote.q{margin:14px 0;padding:13px 17px;background:var(--panel);border-left:3px solid var(--accent);
+             border-radius:var(--radius);font-family:var(--serif);font-size:16px;font-style:italic}
+blockquote.q .qw{display:block;margin-top:7px;font-family:var(--sans);font-size:12.5px;
+                 font-style:normal;color:var(--muted)}
+.verdict{background:var(--accent-soft);border:1px solid var(--line);border-left:3px solid var(--accent);
+         border-radius:var(--radius);padding:15px 18px;font-family:var(--serif);font-size:16.5px}
+.ivrow{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);
+       font-size:14.5px;flex-wrap:wrap}
+.ivrow:last-child{border-bottom:0}
+.ivrow .who{font-weight:600;min-width:130px}
+.ivrow .what{color:var(--ink)}
+
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+       color:var(--muted);font-size:12.5px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:12px 15px;font-size:12.5px;color:var(--muted);margin-top:20px}
+@media(max-width:600px){
+  .hero{padding:30px 0 20px}
+  nav.toc{position:static}
+  .card .head{gap:6px}
+}
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="" data-canon="2026-10-28.html"><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Wednesday, 28 October 2026</span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="calls.html">◈&nbsp; Calls</a><a class="btn" href="thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><h1>Wednesday, 28 October 2026</h1><div class="meta"><span class="pill">19 episodes (21 files — 2 arrived twice from two sources)</span>Commodities &amp; Hard Assets, Investment Analysis &amp; Factors, Macroeconomics &amp; Strategy</div></div><section id="tl-dr-read-this-first"><h2>TL;DR (read this first)</h2><div class="tldr"><p>The AI capital expenditure boom, championed by voices like Craig Fuller, is the primary force holding up the industrial economy against a rapidly deteriorating consumer sector noted by Vincent Deluard and Larry McDonald. This creates a stark bifurcation, with bulls pointing to a new &quot;age&quot; of computing and security, while bears warn of an unsustainable bubble financed by debt that is now becoming scarce. The central tension is whether the AI buildout is a durable productivity revolution that can outgrow the nation&#x27;s debt, or a speculative mania whose collapse will trigger the next major market downturn.</p>
+<ul><li>CENTRAL TENSION: A powerful AI-driven industrial boom is masking a severe slowdown in the consumer economy, pitting capex bulls against bubble warnings.</li><li>TOP THEME: The AI Paradox — A structural revolution in computing and security versus a debt-fueled, unsustainable bubble destined to pop.</li><li>DIVERGENT: S&amp;P 500 outlook is split between a 30% crash (Larry McDonald) and a final corrective dip before a buying opportunity (Mike Wilson).</li><li>HIGH-CONVICTION TRADE: LONG Gold, supported by multiple speakers citing central bank diversification, fiscal unsustainability, and a hedge against fiat debasement.</li><li>CALENDAR: The Anthropic IPO (est. Nov 16) is seen as a &quot;titanic test&quot; for the entire AI sector&#x27;s valuation and sentiment.</li></ul></div></section>
+<section id="trade-ideas-positions"><h2>TRADE IDEAS &amp; POSITIONS</h2><div class="cards"><div class="tier">HIGH CONVICTION</div>
+<div class="card"><div class="head"><span class="asset">Gold</span><span class="tag dir-long">LONG</span><span class="who">Arthur Hayes — Wealthion · Larry McDonald — Wealthion · Trey Reich — Wealthion · E.J. Antoni — Sprott Money · Axel Merk — The Julia La Roche Show</span></div><p><span class="label">why</span>Speakers converge on the view that unsustainable fiscal deficits, central bank diversification away from the US dollar, and the likelihood of future currency debasement make gold a crucial long-term holding. It is seen as a hedge against both inflation and systemic risk.</p><p><span class="label">context</span>Most view this as a long-term strategic position. E.J. Antoni suggests dollar-cost averaging.</p><p><span class="label">voices</span>Arthur Hayes — Wealthion: Holds gold as part of his &quot;bailout&quot; thesis, expecting it to rise on central bank buying and geopolitical risk. · Larry McDonald — Wealthion: Long gold, as trillions will shift from financial assets to hard assets amid financial repression. · Trey Reich — Wealthion: The gold bull market is &quot;absolutely not over&quot; and will &quot;scream&quot; higher on long-term fundamentals. · E.J. Antoni — Sprott Money: Gold will see an increase over time due to the unsustainable US debt trajectory. · Axel Merk — The Julia La Roche Show: Long gold due to central bank diversification, deficit concerns, and as a non-correlated asset.</p></div>
+<div class="card"><div class="head"><span class="asset">Long-Duration U.S. Treasuries (e.g., TLT, ZROZ)</span><span class="tag dir-long">LONG</span><span class="who">Larry McDonald — Wealthion · Vincent Deluard — The Monetary Matters Network</span></div><p><span class="label">why</span>Both speakers see a tactical opportunity in long-duration bonds. McDonald points to a historic crash creating value and the potential for a 10-30% rally, while Deluard sees them as a short-term safe haven amid a broader equity bear market.</p><p><span class="label">context</span>Deluard&#x27;s timeframe is the next six months. McDonald is looking for a rally between now and next year.</p><p><span class="label">voices</span>Larry McDonald — Wealthion: The bond market has crashed, creating opportunities for equity-like returns; looking to buy TLT and ZROZ for a bear market rally. · Vincent Deluard — The Monetary Matters Network: Long-term Treasuries are a good place to be for the next six months as a refuge from expected stock market weakness.</p></div>
+<div class="tier">OPPORTUNISTIC</div>
+<div class="card"><div class="head"><span class="asset">S&amp;P 500 Index</span><span class="tag dir-short">SHORT / AVOID</span><span class="who">Larry McDonald — Wealthion</span></div><p><span class="label">Larry McDonald — Wealthion</span>The index is dangerously concentrated in overvalued tech, facing a &quot;supernova economy&quot; where high rates and oil are crushing the consumer. He predicts a 30% drop over the next year, followed by eight years of flat performance.</p><p><span class="label">context</span>Recommends buying puts during tax-loss season.</p></div>
+<div class="card"><div class="head"><span class="asset">Bitcoin (<strong>BTC</strong>)</span><span class="tag dir-long">LONG</span><span class="who">Arthur Hayes — Wealthion</span></div><p><span class="label">Arthur Hayes — Wealthion</span>Positions for a multi-trillion dollar &quot;bailout&quot; of the AI sector, which will debase fiat currency. Believes Bitcoin is the asset most responsive to an increase in fiat liquidity and will outperform gold.</p></div>
+<div class="card"><div class="head"><span class="asset">Uranium &amp; Nuclear Equities</span><span class="tag dir-long">LONG</span><span class="who">Justin Hune — Mining Stock Daily</span></div><p><span class="label">Justin Hune — Mining Stock Daily</span>The sector is experiencing indiscriminate selling due to macro factors, not fundamentals. With the commodity price stable and demand strong, he sees &quot;incredible value propositions&quot; and is a heavy buyer.</p></div>
+<div class="card"><div class="head"><span class="asset">Basket of &quot;world-class brands&quot; (e.g., Nike, Harley Davidson, Lennar)</span><span class="tag dir-long">LONG</span><span class="who">Larry McDonald — Wealthion</span></div><p><span class="label">Larry McDonald — Wealthion</span>These stocks are significantly undervalued and showing &quot;Category 5 capitulation&quot; scores after being beaten down, while the MAG-7 are overvalued. This is a rotation trade out of crowded tech.</p><p><span class="label">context</span>Advises buying during tax-loss season.</p></div>
+<div class="card"><div class="head"><span class="asset">Apple Bonds (2.55% coupon) / Apple Equity (<strong>AAPL</strong>)</span><span class="tag dir-short">PAIRED TRADE: LONG Bonds, SHORT Equity</span><span class="who">Larry McDonald — Wealthion</span></div><p><span class="label">Larry McDonald — Wealthion</span>If interest rates rise 1-2%, the deeply discounted bonds could offer significant returns while the high-multiple equity would be decimated.</p><p><span class="label">context</span>Expresses the short equity position via 2-year puts.</p></div>
+<div class="card"><div class="head"><span class="asset">CrowdStrike (<strong>CRWD</strong>)</span><span class="tag dir-long">LONG</span><span class="who">Josh Brown — The Compound</span></div><p><span class="label">Josh Brown — The Compound</span>Believes cybersecurity is a guaranteed bull market and is long the stock.</p></div>
+<div class="card"><div class="head"><span class="asset">Amazon (<strong>AMZN</strong>)</span><span class="tag dir-long">LONG</span><span class="who">Josh Brown — The Compound</span></div><p><span class="label">Josh Brown — The Compound</span>Likes the setup ahead of earnings, citing exploding EPS with no stock appreciation, a lower price-to-cash-flow multiple than peers, and AWS growth outpacing capex. Predicts it could be a $275 stock.</p></div>
+<div class="card"><div class="head"><span class="asset">Yen (JPY) and Korean Won (KRW) vs. Euro (EUR)</span><span class="tag dir-short">LONG JPY &amp; KRW, SHORT EUR</span><span class="who">Vincent Deluard — The Monetary Matters Network</span></div><p><span class="label">Vincent Deluard — The Monetary Matters Network</span>Believes the Euro needs to weaken significantly to resolve Europe&#x27;s fiscal problems, which will likely happen through &quot;chaos and repeated crisis.&quot;</p></div>
+<div class="card"><div class="head"><span class="asset">Bank of America (<strong>BAC</strong>)</span><span class="tag dir-short">SHORT</span><span class="who">Larry McDonald — Wealthion</span></div><p><span class="label">Larry McDonald — Wealthion</span>Cites exposure to commercial real estate loans and potential for deposit outflows.</p></div>
+<div class="card"><div class="head"><span class="asset">Meta (<strong>META</strong>)</span><span class="tag dir-avoid">AVOID</span><span class="who">Larry McDonald — Wealthion</span></div><p><span class="label">Larry McDonald — Wealthion</span>The company is incinerating cash on AI products that have no barriers to entry.</p><p><span class="label">changes if</span>Not stated.</p></div>
+<div class="card"><div class="head"><span class="asset">Meta (<strong>META</strong>)</span><span class="tag dir-avoid">AVOID</span><span class="who">Josh Brown — The Compound</span></div><p><span class="label">Josh Brown — The Compound</span>The planned $95 billion equity raise, including a $60 billion &quot;at-the-market&quot; program, creates a massive supply overhang that will cap any upward moves in the stock.</p></div>
+<div class="card"><div class="head"><span class="asset">MAG-7 Stocks</span><span class="tag dir-avoid">AVOID</span><span class="who">Larry McDonald — Wealthion</span></div><p><span class="label">Larry McDonald — Wealthion</span>Expects a big reset in the next 2-3 months as CapEx slows and political intervention increases.</p></div>
+<div class="card"><div class="head"><span class="asset">AI Vanguard Stocks (e.g., Anthropic, OpenAI)</span><span class="tag dir-avoid">AVOID</span><span class="who">Arthur Hayes — Wealthion</span></div><p><span class="label">Arthur Hayes — Wealthion</span>Believes AI is in a bubble and the vanguard companies are overvalued, though he would not short them. The real play is positioning for the inevitable bailout.</p></div>
+<div class="card"><div class="head"><span class="asset">Sphere Entertainment (<strong>SPHR</strong>)</span><span class="tag dir-long">LONG</span><span class="who">Michael Batnick — The Compound</span></div><p><span class="label">Michael Batnick — The Compound</span>A speculative technical call. The stock defended the $100 level after a significant drop, and the gap has been erased.</p><p><span class="label">changes if</span>&quot;If it rolls over, you&#x27;re out 15% lower.&quot;</p></div>
+<div class="tier">WATCHING</div>
+<div class="card"><div class="head"><span class="asset">S&amp;P 500</span><span class="tag dir-watching">WATCHING</span><span class="who">Mike Wilson — Morgan Stanley</span></div><p><span class="label">Mike Wilson — Morgan Stanley</span>A sharp downdraft of another 7-7.5% around Election Day should be embraced as a buying opportunity, as the correction would be in its final stages.</p></div>
+<div class="card"><div class="head"><span class="asset">Semiconductor Index</span><span class="tag dir-watching">WATCHING</span><span class="who">Mike Wilson — Morgan Stanley</span></div><p><span class="label">Mike Wilson — Morgan Stanley</span>Expects another 10-15% drop into mid-November, which would represent a buying opportunity.</p></div>
+<div class="card"><div class="head"><span class="asset">Gold</span><span class="tag dir-watching">WATCHING</span><span class="who">Trey Reich — Wealthion</span></div><p><span class="label">Trey Reich — Wealthion</span>The $4,000 level is critical. If it doesn&#x27;t hold, gold could see a 2-3 month flirtation with $3,600, which would presumably be a buying level.</p></div>
+<div class="card"><div class="head"><span class="asset">IQVIA (<strong>IQV</strong>)</span><span class="tag dir-watching">WATCHING</span><span class="who">Josh Brown — The Compound</span></div><p><span class="label">Josh Brown — The Compound</span>Believes the stock will fill its July gap at $213 over the next 6 months.</p></div></div></section>
+<section id="divergent-views"><h2>DIVERGENT VIEWS</h2><div class="topic"><div class="t">S&amp;P 500 Outlook</div><p><strong>Larry McDonald — Wealthion:</strong> BEARISH <strong>Reasoning:</strong> The S&amp;P 500 is in a bubble, dangerously concentrated in overvalued tech stocks. A &quot;supernova economy&quot; of high oil prices and interest rates is crushing the consumer, which will lead to a 30% crash in the index over the next year, followed by an eight-year flat period.</p>
+<p><strong>Mike Wilson — Morgan Stanley:</strong> CAUTIOUSLY BULLISH <strong>Reasoning:</strong> The market correction that began in June is in its final stages. While the index could fall another 7-7.5%, this final downdraft should be viewed as a buying opportunity, particularly around the midterm elections, setting the stage for the next leg higher.</p></div>
+<div class="topic"><div class="t">The Nature of the AI Boom</div><p><strong>Arthur Hayes — Wealthion:</strong> BUBBLE <strong>Reasoning:</strong> AI is a capital-intensive bubble with unproven returns on CapEx. The &quot;shitty debt&quot; from data center build-outs will end up on insurance company balance sheets, creating systemic risk. The bubble will crack in late 2027, requiring a multi-trillion dollar bailout.</p>
+<p><strong>George Kurtz — The Compound:</strong> STRUCTURAL SHIFT <strong>Reasoning:</strong> AI is not a temporary trade but a new &quot;age.&quot; The rise of AI agents in attacks necessitates a fundamental shift from &quot;cybersecurity&quot; to &quot;AI safety,&quot; creating a massive, long-term, and non-discretionary spending cycle for platforms like CrowdStrike.</p></div>
+<div class="topic"><div class="t">Bitcoin (<strong>BTC</strong>) Investment Case</div><p><strong>Arthur Hayes — Wealthion:</strong> LONG <strong>Reasoning:</strong> Bitcoin is the best-performing asset to own in anticipation of a massive AI-sector bailout. It is the asset most sensitive to an increase in fiat currency liquidity and will outperform gold in a debasement scenario.</p>
+<p><strong>Larry McDonald — Wealthion:</strong> REDUCED <strong>Reasoning:</strong> While he bought the lows this summer, he has recently lightened his position due to concerns about quantum computing becoming a credible threat to Bitcoin&#x27;s security in the next 5-7 years, a view he says is now shared by 50% of institutional investors.</p></div></section>
+<section id="dominant-themes"><h2>DOMINANT THEMES</h2><h3>The AI Paradox: Structural Boom or Epic Bubble? (8 shows)</h3>
+<p>THESIS: The market is dominated by the AI narrative, which is simultaneously seen as the engine of a new industrial revolution and a speculative, debt-fueled bubble on the verge of collapse. The resolution will determine whether the market leaders continue their ascent or lead a broad-based crash.</p>
+<p>BUBBLE CAMP (Arthur Hayes, Larry McDonald, John Llodra, John J. Hardy) This group sees a classic speculative mania. Arthur Hayes — Wealthion predicts the bubble cracks in late 2027 when AI firms miss payments on compute contracts, triggering a systemic crisis and a multi-trillion dollar bailout. Larry McDonald — Wealthion argues the AI-led market is dangerously concentrated, calling it the &quot;greatest cash out from billionaires in Silicon Valley&quot; and expects a &quot;big reset&quot; for the MAG-7. John Llodra — Adam Taggart | Thoughtful Money® fears the spending boom could hit a &quot;brick wall real quick,&quot; similar to the dot-com bust, citing anecdotes of piling GPU inventory. John J. Hardy — Saxo Market Call is skeptical of the valuations and broader productivity gains, highlighting the massive compute costs as a threat to profitability.</p>
+<p>STRUCTURAL BULLS (George Kurtz, Craig Fuller, Axel Merk) This camp views AI as a fundamental, long-term shift. George Kurtz — The Compound argues AI is not a &quot;trade&quot; but an &quot;age,&quot; creating a permanent and expanding need for &quot;AI safety&quot; and cybersecurity. Craig Fuller — Adam Taggart | Thoughtful Money® sees the AI capex boom as a primary driver of the entire industrial economy, with freight data showing no signs of a slowdown. Axel Merk — The Julia La Roche Show suggests new Fed Chair Kevin Warsh believes in an AI-driven productivity boom as the only way for the US to outgrow its massive debt.</p>
+<p>KEY TENSION: The sustainability of AI-related capital expenditures. A slowdown in data center construction or a series of high-profile defaults on compute contracts would validate the bubble thesis, while continued spending and evidence of broad productivity gains would support the structural shift narrative.</p>
+<h3>The Bifurcated Economy: Industrials vs. The Consumer (4 shows)</h3>
+<p>THESIS: The US economy is split in two. A robust industrial sector, fueled by AI capex, reshoring, and energy, is masking a sharp slowdown in the consumer-facing economy, which is buckling under the pressure of inflation and higher rates. This divergence explains the conflicting economic signals and the weakness in broad market indices versus the tech-heavy leaders.</p>
+<p>STRONG INDUSTRIALS / WEAK CONSUMER (Craig Fuller, Vincent Deluard, Larry McDonald) Craig Fuller — Adam Taggart | Thoughtful Money® provides the core thesis, stating the industrial economy is in its strongest expansion in a decade while the consumer sector is a &quot;concern,&quot; with slowing consumption in physical goods, food, and housing. Vincent Deluard — The Monetary Matters Network echoes this, noting that while the S&amp;P 500 is near highs, consumer names like Nike and McDonald&#x27;s are down 50-60%+, indicating the bull market has already ended for most stocks. Larry McDonald — Wealthion describes a &quot;supernova economy&quot; where a &quot;$300 billion punch to the face of the U.S. consumer&quot; from high oil and rates has already occurred, making consumer-exposed brands ripe for rotation *out of* and into beaten-down names.</p>
+<p>KEY TENSION: The durability of industrial capital spending. If the AI capex boom falters, the strong leg of the economy will be removed, likely tipping the entire economy into a recession that can no longer be ignored by headline indices.</p>
+<h3>The Fed&#x27;s Bind and the Inevitable Fiscal Reckoning (5 shows)</h3>
+<p>THESIS: The Federal Reserve is trapped between sticky inflation and a slowing economy, rendering the &quot;Fed put&quot; effectively dead. Meanwhile, the US fiscal situation is on an unsustainable trajectory, forcing investors to seek hedges like gold as confidence in fiat currency and government debt erodes.</p>
+<p>TRAPPED FED / FISCAL CRISIS (Vincent Deluard, E.J. Antoni, Axel Merk, Larry McDonald) Vincent Deluard — The Monetary Matters Network argues the Fed will be in a &quot;nightmare scenario&quot; of bad economic data and high inflation, and that both the &quot;Fed put&quot; and the &quot;fiscal put&quot; are gone for the first time since 2008. E.J. Antoni — Sprott Money believes the US debt trajectory, while not yet catastrophic, is unsustainable and the breaking point is a matter of investor psychology and confidence, not a specific metric. Axel Merk — The Julia La Roche Show sees the massive debt as the central problem, which an AI productivity boom is the only hope to outgrow. Larry McDonald — Wealthion predicts the government will resort to &quot;financial repression&quot; to manage its $40 trillion debt, forcing capital into hard assets and away from financial ones.</p>
+<p>KEY TENSION: Investor confidence in US Treasuries. A &quot;bond vigilante&quot; moment, as described by E.J. Antoni, where the market refuses to absorb new debt issuance without demanding significantly higher yields, would force a fiscal crisis and a dramatic policy response.</p></section>
+<section id="guest-briefs"><h2>GUEST BRIEFS</h2><h3>Larry McDonald — Wealthion</h3>
+<p><strong>Thesis:</strong> The S&amp;P 500 is in a dangerous, concentrated tech bubble reminiscent of 2000, while the real economy faces a &quot;supernova&quot; of high rates and energy costs crushing the consumer. This will force a 30% market crash and a major rotation from over-owned tech into beaten-down &quot;world-class brands&quot; and hard assets, which will benefit from a new era of financial repression.</p>
+<p><strong>Predictions:</strong></p>
+<ul><li>S&amp;P 500 will drop 30% over the next year and then be flat for eight years.</li><li>The weighting of hard asset companies in the S&amp;P 500 will grow from 12-14% to 20-30% over the next five years.</li><li>NVIDIA will &quot;get cut&quot; in the next 2-3 years.</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p>
+<h3>Arthur Hayes — Wealthion</h3>
+<p><strong>Thesis:</strong> The AI sector is a massive, debt-fueled bubble that will crack in late 2027, creating systemic risk comparable to 2008 and forcing a multi-trillion dollar government bailout. The correct way to position for this is not to short the bubble, but to be long assets like Bitcoin that will benefit most from the inevitable fiat currency debasement that follows the bailout.</p>
+<p><strong>Predictions:</strong></p>
+<ul><li>General equity markets will peak in the first half of 2027.</li><li>The AI bubble will be recognized as having cracked in late 2027, marked by a major player like Anthropic or OpenAI missing a payment.</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p>
+<h3>Vincent Deluard — The Monetary Matters Network</h3>
+<p><strong>Thesis:</strong> The US equity bull market is over, and the economy is heading for stagflation (sticky inflation, low growth) without the safety net of a &quot;Fed put&quot; or &quot;fiscal put.&quot; The Fed will be trapped, fiscal subsidies to corporate margins are ending, and the Euro is poised for a crisis-driven devaluation.</p>
+<p><strong>Predictions:</strong></p>
+<ul><li>US inflation will remain sticky in the 3.5-4% range.</li><li>The Fed will only hike one more time in December, then pause, disappointing market expectations for three hikes.</li><li>US equities will be lower in six to twelve months.</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p>
+<h3>Mike Wilson — Morgan Stanley</h3>
+<p><strong>Thesis:</strong> The equity market correction that began in June is a classic mid-cycle transition and is now in its final stages. A final, uncomfortable downdraft is likely, driven by AI supply absorption and election uncertainty, but this should be embraced as a buying opportunity for quality stocks.</p>
+<p><strong>Predictions:</strong></p>
+<ul><li>The S&amp;P 500 has another 7% to 7.5% to fall to find material support.</li><li>The semiconductor index could fall another 10-15% into mid-November.</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p>
+<h3>Craig Fuller — Adam Taggart | Thoughtful Money®</h3>
+<p><strong>Thesis:</strong> The US economy is bifurcated, with a strong industrial sector offsetting a weak consumer. The industrial strength is driven by a durable AI capex boom, cheap domestic energy, and defense spending, and leading freight indicators show no signs of this capex spending slowing down.</p>
+<p><strong>Predictions:</strong></p>
+<ul><li>The AI capex &quot;party is not going to continue&quot; at its current pace indefinitely, but freight data shows no slowdown on the horizon.</li><li>Self-driving trucks are 8 to 10 years away from ubiquity.</li></ul>
+<p><strong>Would change view if:</strong> Freight data for industrial capex begins to show a slowdown.</p>
+<h3>E.J. Antoni — Sprott Money</h3>
+<p><strong>Thesis:</strong> The Fed&#x27;s policy mix of hiking rates while maintaining a large balance sheet is contradictory. While the $40 trillion national debt is on an unsustainable path, the breaking point is not a mathematical certainty but a psychological one dependent on investor confidence. Official economic data, especially the jobs report, is unreliable.</p>
+<p><strong>Predictions:</strong></p>
+<ul><li>Gold will increase over time, even if erratically, due to the unsustainable debt trajectory.</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p>
+<h3>Justin Hune — Mining Stock Daily</h3>
+<p><strong>Thesis:</strong> There is a major disconnect between stable uranium commodity prices and falling uranium equity valuations. This is due to indiscriminate, macro-driven selling and tax-loss harvesting, creating a significant value opportunity in the sector ahead of an expected wave of new nuclear build announcements.</p>
+<p><strong>Predictions:</strong></p>
+<ul><li>Announcements of new nuclear builds in the US will occur in the first half of 2027, possibly Q1.</li><li>The price of uranium is headed higher.</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p>
+<h3>Trey Reich — Wealthion</h3>
+<p><strong>Thesis:</strong> The gold bull market is &quot;absolutely not over.&quot; Short-term weakness is driven by oil prices and Fed tightening fears, but the long-term fundamentals of anti-dollar sentiment, the US deficit, and eroding Fed credibility are intensifying.</p>
+<p><strong>Predictions:</strong></p>
+<ul><li>Gold will &quot;scream&quot; higher once the market recognizes the Fed will not get as tough as expected.</li><li>If gold&#x27;s $4,000 level does not hold, it could see a 2-3 month dip to the $3,600 area.</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p>
+<h3>George Kurtz — The Compound</h3>
+<p><strong>Thesis:</strong> AI is a new &quot;age,&quot; not a trade, that is fundamentally reshaping the cybersecurity landscape. The proliferation of AI agents in attacks creates an exponential threat, shifting the paradigm from &quot;security&quot; to &quot;AI safety&quot; and driving a massive, long-term, non-discretionary spending cycle for integrated platforms like CrowdStrike.</p>
+<p><strong>Predictions:</strong></p>
+<ul><li>CrowdStrike will achieve $10 billion in Annual Recurring Revenue (ARR) by fiscal 2030.</li><li>CrowdStrike will achieve $20 billion in ARR by fiscal 2035.</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p></section>
+<section id="conviction-scenarios"><h2>CONVICTION &amp; SCENARIOS</h2><p><strong>Trey Reich — Wealthion:</strong> On the price of gold: <strong>If</strong> the $4,000 level holds: The bull market remains intact and is poised to &quot;scream&quot; higher. <strong>If</strong> the $4,000 level does not hold: Gold is likely to enter a &quot;2 to 3 month flirt with, you know, 3600 or something like that.&quot;</p>
+<p><strong>Mike Wilson — Morgan Stanley:</strong> On the market correction: <strong>If</strong> the market experiences a sharp downdraft around Election Day, driven by &quot;clearing events&quot; like AI supply absorption or geopolitical shocks: This should be embraced as a buying opportunity.</p>
+<p><strong>Michael Batnick — The Compound:</strong> On Sphere Entertainment (<strong>SPHR</strong>): <strong>If</strong> the stock &quot;rolls over&quot; from current levels: The trade is invalidated, and the position should be exited for a 15% loss.</p></section>
+<section id="tickers-assets"><h2>TICKERS &amp; ASSETS</h2><h3>THESIS TICKERS</h3>
+<ul><li><strong>AMZN</strong> — Josh Brown — The Compound — Long due to strong AWS growth outpacing capex and a favorable valuation relative to peers.</li><li><strong>CRWD</strong> — Josh Brown — The Compound — Long as a play on the &quot;guaranteed bull market&quot; of cybersecurity, driven by the AI threat landscape.</li><li><strong>ISRG, BAX, SLB</strong> — Larry McDonald — Wealthion — Long these companies as they have proprietary data that allows them to be true beneficiaries of AI, unlike cash-incinerating firms like Meta.</li><li><strong>NKE</strong> — Larry McDonald — Wealthion — Long as an example of a &quot;world-class brand&quot; that is deeply undervalued and showing capitulation signals.</li><li><strong>SPHR</strong> — Michael Batnick — The Compound — Speculative long based on technicals, with the stock defending the $100 level.</li></ul>
+<h3>TRADE EXPRESSION</h3>
+<ul><li><strong>TLT, ZROZ</strong> — Long-duration U.S. Treasury exposure — Larry McDonald, Vincent Deluard — Wealthion, The Monetary Matters Network</li><li><strong>XME</strong> — Metals &amp; Mining ETF — Larry McDonald — Wealthion</li><li><strong>URA</strong> — Global X Uranium ETF — Justin Hune — Mining Stock Daily</li></ul>
+<h3>WATCH LEVELS</h3>
+<ul><li><strong>Gold</strong> — $4,000/oz critical support level — Trey Reich — Wealthion</li><li><strong>Silver</strong> — $53/oz, with downside risk to $45/oz — John J. Hardy — Saxo Market Call</li><li><strong>S&amp;P 500</strong> — A 7-7.5% drop from current levels is the target for a buying opportunity — Mike Wilson — Morgan Stanley</li><li><strong>FTNT</strong> — $150 seems to be a meaningful level for risk management — Josh Brown — The Compound</li><li><strong>IQV</strong> — Watching for it to fill the July gap at $213 — Josh Brown — The Compound</li></ul>
+<h3>CONTEXT MENTIONS</h3>
+<ul><li><strong>NVDA</strong> — Referenced by multiple speakers as the epicenter of the AI trade and a barometer for the sector.</li><li><strong>Anthropic</strong> — Its upcoming IPO is seen as a major test for the entire AI space.</li><li><strong>Coreweave</strong> — Mentioned as a key private company in the AI compute space, with its bonds trading down cited as a sign of stress.</li><li><strong>GDX</strong> — Used as a proxy for gold miners to show their relative strength vs. physical gold.</li><li><strong>XLP, XLF, XLV</strong> — Noted as sectors showing emerging leadership while tech weakens.</li></ul></section>
+<section id="spotlight-evolve-royalties-ceo-on-buildi"><h2>SPOTLIGHT: Evolve Royalties CEO on Building a Copper-Focused Portfolio</h2><p><strong>Host:</strong> Ian Wagner <strong>Guest:</strong> Joseph De La Plante, Evolve Royalties</p>
+<ul><li><strong>Thesis:</strong> Evolve Royalties is building a royalty portfolio anchored to copper, which Joseph De La Plante — Mining Stock Daily believes is at a &quot;unique inflection point&quot; of surging interest and price, making it a premium commodity.</li><li><strong>Strategy:</strong> The company acquires existing royalties and provides capital through new financing deals, preferring the latter as it allows for innovative and compelling contract structures.</li><li><strong>Advantage:</strong> The royalty model offers uncapped upside as operators spend on exploration and expansion, while risk is mitigated through diversification and due diligence on strong teams and geology.</li><li><strong>Market Dynamic:</strong> De La Plante notes that the pool of buyers for base metal royalties is smaller than for gold, leading to more attractive returns.</li><li><strong>Key Assets:</strong> The portfolio includes cash-flowing copper royalties like HVC in Canada and a high-return tin royalty on the Whis mine in Namibia, alongside development assets like Macana Bay and a lithium royalty in Argentina.</li></ul></section>
+<section id="spotlight-strikepoint-gold-how-a-small-n"><h2>SPOTLIGHT: StrikePoint Gold: How a Small Newmont Deal Led to $70M Northumberland Acquisition</h2><p><strong>Host:</strong> (speaker unclear) <strong>Guest:</strong> Michael Allen, StrikePoint Gold</p>
+<ul><li><strong>Thesis:</strong> StrikePoint Gold has acquired the past-producing Northumberland Carlin-type gold project in Nevada from Newmont, which holds 2.86 million ounces of indicated and 1.57 million ounces of inferred gold equivalent.</li><li><strong>Strategy:</strong> The company plans a 15,000-meter drill program starting in November to support a Preliminary Economic Assessment (PEA) by 2028. A key focus is on new metallurgical test work to improve recoveries on &quot;transitional material.&quot;</li><li><strong>Financing:</strong> StrikePoint closed a C$190 million transaction, leaving it well-financed with C$90 million post-acquisition. Major shareholders include Tempo, Aaka, and BlackRock.</li><li><strong>Opportunity:</strong> Michael Allen — Mining Stock Daily sees metallurgy as an opportunity, not a risk, given advancements in processing refractory ores. A low-capex starter pit with a CIL plant is a potential development path.</li><li><strong>Risk:</strong> The primary risk identified is not geological but human: securing skilled people (consultants, drillers) in a busy market to execute the program safely and efficiently.</li></ul></section>
+<section id="spotlight-orogen-metals-trek-south-is-ri"><h2>SPOTLIGHT: Orogen Metals&#x27; Trek South Is Right Beside Galore Creek</h2><p><strong>Host:</strong> Michael McCrae <strong>Guest:</strong> Kevin Keough, Orogen Metals</p>
+<ul><li><strong>Thesis:</strong> Orogen Metals is exploring the Trek South porphyry copper-gold target in BC&#x27;s Golden Triangle, which has been newly exposed by glacial retreat.</li><li><strong>Initial Results:</strong> A Phase 1 drill program showed visible copper minerals (chalcopyrite, bornite) and widespread porphyry-style alteration. The company is awaiting assay results.</li><li><strong>Next Steps:</strong> A larger Phase 2 drill program is planned for next season to drill deeper, targeting &quot;many hundreds of meters&quot; of grade greater than 0.5% copper equivalent.</li><li><strong>Goal:</strong> Kevin Keough — Mining Stock Daily stated the company aims to offer shareholders capital gains through exploration success rather than generating revenue.</li><li><strong>Financing:</strong> The company has around $2 million in cash and will need to raise capital ahead of the 2027 drill program.</li></ul></section>
+<section id="notable-data-figures"><h2>NOTABLE DATA &amp; FIGURES</h2><ul><li><strong>$40.4T:</strong> Current US national debt. — E.J. Antoni — Sprott Money</li><li><strong>30%:</strong> Predicted drop for the S&amp;P 500 over the next year. — Larry McDonald — Wealthion</li><li><strong>$1.5T - $2T:</strong> Potential valuation for the Anthropic IPO. — Michael McCrae — Mining Stock Daily</li><li><strong>$100B:</strong> Amount Anthropic is expected to raise in its IPO. — Michael McCrae — Mining Stock Daily</li><li><strong>11,900+:</strong> Number of Anthropic customers spending over $100,000 in the last 12 months. — Michael Batnick — The Compound</li><li><strong>$4,035:</strong> Price of gold mentioned. — Michael McCrae — Mining Stock Daily</li><li><strong>$3,600:</strong> Potential downside target for gold if $4,000 breaks. — Trey Reich — Wealthion</li><li><strong>$6.61:</strong> Price of copper futures mentioned. — Michael McCrae — Mining Stock Daily</li><li><strong>$101:</strong> Price of crude oil futures mentioned. — Michael McCrae — Mining Stock Daily</li><li><strong>2/3:</strong> Proportion of US stocks trading below their 200-day moving average. — Vincent Deluard — The Monetary Matters Network</li><li><strong>50-60%:</strong> Decline in some major consumer stocks like Nike and McDonald&#x27;s. — Vincent Deluard — The Monetary Matters Network</li><li><strong>1.34%:</strong> All-time low yield on the 5-year Chinese government bond. — John J. Hardy — Saxo Market Call</li></ul></section>
+<section id="watch-catalysts"><h2>WATCH CATALYSTS</h2><ul><li><strong>Mid-November (est. Nov 16):</strong> Anthropic IPO. Seen as a &quot;massive test&quot; for the entire AI sector&#x27;s valuation and market sentiment. — John J. Hardy — Saxo Market Call</li><li><strong>November 4:</strong> US Treasury Quarterly Refinancing Announcement (QRA). Watched for potential actions to add liquidity, such as buybacks or reduced issuance. — Pascal Hügli — Less Noise More Signal</li><li><strong>Early November:</strong> US Midterm Elections. A potential source of volatility and a &quot;clearing event&quot; for the market. — Mike Wilson — Morgan Stanley</li><li><strong>October/December FOMC Meetings:</strong> The market expects no hike in October but implies a 25 bps hike in December. Any deviation would be a major catalyst. — Pascal Hügli — Less Noise More Signal</li><li><strong>This Week:</strong> ECB Meeting. Seen as having the most potential to surprise this week, as the market is priced &quot;way too richly for further hikes.&quot; — John J. Hardy — Saxo Market Call</li><li><strong>This Week:</strong> UK Budget. Described as &quot;absolutely critical&quot; for UK markets. — John J. Hardy — Saxo Market Call</li><li><strong>End of 2026:</strong> Final investment decision for Energy Fuels&#x27; Donald Rare Earth project. — Michael McCrae — Mining Stock Daily</li></ul></section>
+<section id="miscellaneous"><h2>MISCELLANEOUS</h2><ul><li><strong>Behavioral Portfolios:</strong> A portfolio is only as good as an investor&#x27;s ability to stick with it. Investors should build &quot;behaviorally optimal&quot; portfolios that account for their risk composure, not just &quot;spreadsheet optimal&quot; ones. — Daniel Crosby — Excess Returns</li><li><strong>Unreliable Jobs Data:</strong> The official BLS jobs report has significant flaws, particularly the &quot;birth-death model&quot; and exclusion of gig work, leading to inaccurate data that market participants are increasingly ignoring. — E.J. Antoni — Sprott Money</li><li><strong>Stablecoins as New Money:</strong> Stablecoins are a &quot;revolutionary new form of money,&quot; not just a payment mechanism. Their growth is a global phenomenon, not just a US dollarization story, with diverse ecosystems developing worldwide. — Noelle Acheson — Maggie Lake Talking Markets</li><li><strong>The Casino-ification of Investing:</strong> The rise of prediction markets and sports betting has done a &quot;great disservice&quot; to the investing community, conflating prudent, long-term investing with gambling. — Daniel Crosby — Excess Returns</li><li><strong>Financial Repression:</strong> The US government will likely implement &quot;financial repression&quot; to manage its debt, potentially using mechanisms like stablecoins to force international investors to own T-bills, which will drive capital from financial to hard assets. — Larry McDonald — Wealthion</li><li><strong>AI Capex Bailed Out the Economy:</strong> The AI capex boom &quot;bailed out the administration&quot; from what could have been a dire economic situation a year ago, providing a powerful, non-consumer-driven source of growth. — Craig Fuller — Adam Taggart | Thoughtful Money®</li><li><strong>Bitcoin&#x27;s Unique AI Angle:</strong> Bitcoin is being framed as &quot;the only AI trade with no capex,&quot; as it has no corporate guidance, share issuance, or infrastructure spending plans, making it a pure, anti-fragile play on the theme. — Pascal Hügli — Less Noise More Signal</li></ul></section>
+<section id="data-quality-note"><h2>DATA QUALITY NOTE</h2><ul><li><strong>Overlapping Episodes:</strong> This digest synthesizes 19 unique episodes from 21 source files. Two episodes from Sprott Money featuring E.J. Antoni were identical and treated as one. Two episodes from Excess Returns featuring Dr. Daniel Crosby were also identical and treated as one.</li><li><strong>Cross-Show Appearances:</strong> Vincent Deluard (The Monetary Matters Network) also appeared on The Meb Faber Show on 2026-10-24. Larry McDonald (Wealthion) also appeared on The Julia La Roche Show on 2026-10-16. Today&#x27;s analysis is based only on the content from the episodes dated 2026-10-27/28.</li><li><strong>Ticker Discrepancy:</strong> In one episode from Sprott Money, the ticker for Paychex was mentioned as `PYC`. The correct ticker is <strong>PAYX</strong>. The digest uses the correct ticker.</li></ul></section>
+<section id="episode-index"><h2>EPISODE INDEX</h2><div class="eplist"><a class="epc" href="ep/2026-10-28/mining-stock-daily-evolve-royalties-ceo-.html"><span class="es">Mining Stock Daily</span><div class="et">Evolve Royalties CEO on Building a Copper-Focused Portfolio</div><div class="em">Host: Ian Wagner · Guest: Joseph De La Plante, President and CEO, Evolve Royalties</div></a><a class="epc" href="ep/2026-10-28/mining-stock-daily-morning-briefing-coll.html"><span class="es">Mining Stock Daily</span><div class="et">Morning Briefing Collective Mining Intersects High-Grade Gold</div><div class="em">Host: Michael McCrae · Solo episode</div></a><a class="epc" href="ep/2026-10-28/mining-stock-daily-oreterras-trek-south-.html"><span class="es">Mining Stock Daily</span><div class="et">Oreterras Trek South Is Right Beside Galore Creek Visible Copper in Core Assays</div><div class="em">Host: Michael McCrae · Guest: Kevin Keough, CEO, Orogen Metals</div></a><a class="epc" href="ep/2026-10-28/mining-stock-daily-strikepoint-gold-how-.html"><span class="es">Mining Stock Daily</span><div class="et">StrikePoint Gold How a Small Newmont Deal Led to 70M Northumberland Acquisition</div><div class="em">Host: (speaker unclear) · Guest: Michael Allen, CEO, StrikePoint Gold</div></a><a class="epc" href="ep/2026-10-28/mining-stock-daily-the-uranium-market-is.html"><span class="es">Mining Stock Daily</span><div class="et">The Uranium Market Is Sending Two Very Different Signals</div><div class="em">Host: Trevor Hall · Guest: Justin Hune, Uranium Insider</div></a><a class="epc" href="ep/2026-10-28/sprott-money-40-trillion-debt-crisis-is-.html"><span class="es">Sprott Money</span><div class="et">40 Trillion Debt Crisis Is Gold About to Surge Again EJ Antoni on the Feds Next</div><div class="em">Host: Craig Hemke · Guest: Dr. E.J. Antoni, Chief Economist at the Heritage Foundation</div></a><a class="epc" href="ep/2026-10-28/sprott-money-gold-prices-rising-inflatio.html"><span class="es">Sprott Money</span><div class="et">Gold Prices Rising Inflation the US Debt Spiral EJ Antoni Reveals Whats Next Spr</div><div class="em">Host: Craig Hemke · Guest: Dr. E.J. Antoni, Chief Economist, Heritage Foundation</div></a><a class="epc" href="ep/2026-10-28/wealthion-arthur-hayes-stocks-peak-in-20.html"><span class="es">Wealthion</span><div class="et">Arthur Hayes Stocks Peak in 2027 Before the AI Bubble Bursts</div><div class="em">Host: Wealthion host (unidentified) · Guest: Arthur Hayes, Chief Investment Officer at Malstrom and CEO of Flop Labs</div></a><a class="epc" href="ep/2026-10-28/wealthion-gold-could-plunge-to-3600-if-t.html"><span class="es">Wealthion</span><div class="et">Gold Could Plunge to 3600 If This Critical Level Breaks</div><div class="em">Host: Megan King Diaz · Guest: Trey Reich, Chief Economist, GBI</div></a><a class="epc" href="ep/2026-10-28/wealthion-larry-mcdonald-sp-500-could-cr.html"><span class="es">Wealthion</span><div class="et">Larry McDonald SP 500 Could Crash 30 Over the Next Year</div><div class="em">Host: Wealthion host (unidentified) · Guest: Larry McDonald, Founder of Bear Traps Report</div></a><a class="epc" href="ep/2026-10-28/excess-returns-a-fund-made-185-a-year-it.html"><span class="es">Excess Returns</span><div class="et">A Fund Made 185 a Year Its Investors Lost Money Daniel Crosby on Why Good Return</div><div class="em">Host: Matt Zeigler · Guest: Dr. Daniel Crosby, author of &quot;The Behavioral Investor&quot;</div></a><a class="epc" href="ep/2026-10-28/excess-returns-dr-daniel-crosby-on-behav.html"><span class="es">Excess Returns</span><div class="et">Dr Daniel Crosby on Behaviorally Optimal Portfolios Risk Composure and the Casin</div><div class="em">Host: Matt Zeigler · Guest: Dr. Daniel Crosby, Author of &quot;The Behavioral Investor&quot;</div></a><a class="epc" href="ep/2026-10-28/morgan-stanley-the-next-stage-of-the-mar.html"><span class="es">Morgan Stanley</span><div class="et">The Next Stage of the Market Correction</div><div class="em">Host: Mike Wilson · Solo episode</div></a><a class="epc" href="ep/2026-10-28/the-compound-how-crowdstrike-could-doubl.html"><span class="es">The Compound</span><div class="et">How CrowdStrike Could Double ARR by 2030 LFTC</div><div class="em">Host: Josh Brown · Guest: George Kurtz, Co-founder and CEO, CrowdStrike</div></a><a class="epc" href="ep/2026-10-28/the-compound-joshs-dirty-dozen-stock-cha.html"><span class="es">The Compound</span><div class="et">Joshs Dirty Dozen Stock Charts WAYT</div><div class="em">Host: Josh Brown, Michael Batnick · Solo episode</div></a><a class="epc" href="ep/2026-10-28/the-julia-la-roche-show-axel-merk-i-sat-.html"><span class="es">The Julia La Roche Show</span><div class="et">Axel Merk I Sat Down With Kevin Warsh What the Fed Is Really Up To and Where Gol</div><div class="em">Host: Julia La Roche · Guest: Axel Merk, CIO and founder of Merk Investments</div></a><a class="epc" href="ep/2026-10-28/adam-taggart-thoughtful-money-no-signs-o.html"><span class="es">Adam Taggart Thoughtful Money</span><div class="et">No Signs Of The AI Party Slowing Down Craig Fuller</div><div class="em">Host: Adam Taggart · Guest: Craig Fuller, CEO, FreightWaves</div></a><a class="epc" href="ep/2026-10-28/less-noise-more-signal-hello-world-very-.html"><span class="es">Less Noise More Signal</span><div class="et">Hello World Very First Less Noise More Signal Livestream</div><div class="em">Host: Pascal Hügli · Solo episode</div></a><a class="epc" href="ep/2026-10-28/maggie-lake-talking-markets-noelle-aches.html"><span class="es">Maggie Lake Talking Markets</span><div class="et">Noelle Acheson Why Bitcoins Original Believers Already Sold For The Record</div><div class="em">Host: Maggie Lake · Guest: Noelle Acheson, Author, Crypto Is Macro Now Substack</div></a><a class="epc" href="ep/2026-10-28/saxo-market-call-anthropic-ipo-a-coming-.html"><span class="es">Saxo Market Call</span><div class="et">Anthropic IPO A coming titanic test for the AI trade</div><div class="em">Host: John J. Hardy · Solo episode</div></a><a class="epc" href="ep/2026-10-28/the-monetary-matters-network-the-fed-put.html"><span class="es">The Monetary Matters Network</span><div class="et">The Fed Put Is Dead Why Stagflation a Bear Market Are Next Vincent Deluard</div><div class="em">Host: Jack Farley · Guest: Vincent Deluard, Director of Global Macro Strategy at StoneX</div></a></div></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-10-28 · <a href="archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-evolve-royalties-ceo-on-buildi">★ Evolve Royalties CEO o…</a><a href="#spotlight-strikepoint-gold-how-a-small-n">★ StrikePoint Gold: How …</a><a href="#spotlight-orogen-metals-trek-south-is-ri">★ Orogen Metals&#x27; Trek So…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-evolve-royalties-ceo-on-buildi">★ Evolve Royalties CEO o…</a><a href="#spotlight-strikepoint-gold-how-a-small-n">★ StrikePoint Gold: How …</a><a href="#spotlight-orogen-metals-trek-south-is-ri">★ Orogen Metals&#x27; Trek So…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
+(function(){
+var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
+var top=qs('#fab-top');
+if(top){addEventListener('scroll',function(){top.classList.toggle('show',scrollY>600)},{passive:true});
+        top.onclick=function(){scrollTo({top:0,behavior:'smooth'})};}
+var toc=qs('#fab-toc');
+if(toc){toc.classList.add('show');
+        addEventListener('scroll',function(){toc.classList.toggle('show',true)},{passive:true});}
+function closeDrawer(){document.body.classList.remove('drawer-open')}
+if(toc){toc.onclick=function(){document.body.classList.add('drawer-open')};
+        qs('.drawer-bg').onclick=closeDrawer;
+        qa('.drawer a').forEach(function(a){a.addEventListener('click',closeDrawer)});}
+var links=qa('.rail a, .drawer a');
+if(links.length){
+  var map={};links.forEach(function(a){var id=a.getAttribute('href').slice(1);(map[id]=map[id]||[]).push(a)});
+  var cur=null;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){
+      if(cur&&map[cur])map[cur].forEach(function(a){a.classList.remove('on')});
+      cur=e.target.id;
+      if(map[cur])map[cur].forEach(function(a){a.classList.add('on')});
+    }});
+  },{rootMargin:'-10% 0px -80% 0px'});
+  qa('section[id]').forEach(function(x){io.observe(x)});
+}
+var ROOT=document.body.getAttribute('data-root')||'';
+var idx=null,inp=qs('.search-box input'),res=qs('.search-res');
+function openS(){document.body.classList.add('search-open');inp.focus();
+  if(!idx){fetch(ROOT+'search-index.json').then(function(r){return r.json()})
+    .then(function(j){idx=j;run()}).catch(function(){res.innerHTML='<div class=empty>index unavailable</div>'});}}
+function closeS(){document.body.classList.remove('search-open')}
+function run(){
+  if(!idx)return;
+  var q=inp.value.trim().toLowerCase();
+  var hits=!q?idx.slice(0,20):idx.filter(function(e){
+    return (e.t+' '+e.s+' '+e.d).toLowerCase().indexOf(q)>=0}).slice(0,30);
+  res.innerHTML=hits.length?hits.map(function(e){
+    return '<a href="'+ROOT+e.u+'"><div class=st>'+e.t+'</div><div class=ss>'+e.d+' · '+e.s+'</div></a>';
+  }).join(''):'<div class=empty>no matches</div>';}
+if(inp){inp.addEventListener('input',run);
+  qs('.sbtn').onclick=openS;qs('.search-bg').onclick=closeS;
+  addEventListener('keydown',function(e){
+    if(e.key==='/'&&!document.body.classList.contains('search-open')&&
+       document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
+    if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12, SYNC=window.PLM_SYNC||null;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+/* ── sync ────────────────────────────────────────────────────────────────
+   When an endpoint is configured the browser copy becomes a cache rather
+   than the record: every page pulls the shared set on load and pushes what
+   it has that the server does not. Everything degrades to local-only if the
+   network or the endpoint is unavailable — a thought is never lost because
+   sync failed, it just has not travelled yet. Deletes are tombstoned server
+   side so they propagate instead of resurrecting from another device. */
+function post(payload,cb){
+  if(!SYNC)return cb&&cb(0);
+  payload.k=SYNC.key;
+  /* text/plain keeps this a "simple request": Apps Script cannot answer the
+     CORS preflight that application/json would trigger. */
+  fetch(SYNC.url,{method:'POST',mode:'cors',redirect:'follow',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify(payload)})
+    .then(function(r){return r.json()}).then(function(j){cb&&cb(!j.error)})
+    .catch(function(){cb&&cb(0)});
+}
+function pull(cb){
+  if(!SYNC)return cb&&cb(null);
+  fetch(SYNC.url+'?k='+encodeURIComponent(SYNC.key)+'&_='+Date.now(),
+        {mode:'cors',redirect:'follow'})
+    .then(function(r){return r.json()})
+    .then(function(j){cb&&cb(j&&j.items?j.items:null)})
+    .catch(function(){cb&&cb(null)});
+}
+function merge(remote){
+  /* union by id, newest timestamp wins; anything local the server has not
+     seen is pushed up so a thought written offline still arrives. */
+  var local=load(),seen={},out=[];
+  remote.forEach(function(i){seen[i.id]=i});
+  var missing=local.filter(function(i){return !seen[i.id]});
+  local.forEach(function(i){
+    var r=seen[i.id];
+    if(!r||(i.ts||0)>(r.ts||0))seen[i.id]=i;
+  });
+  for(var k in seen)out.push(seen[k]);
+  out.sort(function(a,b){return (b.ts||0)-(a.ts||0)});
+  put(out);badge();
+  if(missing.length)post({action:'save',items:missing});
+  return out;
+}
+function sync(cb){
+  pull(function(remote){
+    if(remote)merge(remote);
+    cb&&cb(!!remote);
+  });
+}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge,
+                    sync:sync,post:post,enabled:!!SYNC};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load(),rec={id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()};
+    items.unshift(rec);
+    var ok=put(items);
+    toast(ok?(SYNC?'Saved · syncing…':'Saved to Thoughts')
+            :'Could not save — storage is full');
+    if(ok&&SYNC)post({action:'save',items:[rec]},function(sent){
+      if(sent)toast('Saved to all your devices');
+      else toast('Saved here — will sync when reachable');
+    });
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
+/* pull on every page so a thought saved on the phone shows up marked on the
+   laptop; re-mark afterwards in case the pull brought new ones for this page */
+if(SYNC)sync(function(){badge();if(pill&&comp)mark();});
+})();
+</script></body></html>
