@@ -1,0 +1,617 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#14150f"><link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="apple-touch-icon" href="apple-touch-icon.png"><title>PodcastLM — Friday, 27 November 2026</title><style>
+:root{
+  --bg:#fbfbfa; --panel:#fff; --ink:#1a1a18; --muted:#6b6b66; --line:#e6e4df;
+  --accent:#b4552d; --accent-soft:#fdf3ee;
+  --long:#1a7340; --short:#c0392b; --watch:#2563a8; --reduce:#b8730f;
+  --radius:10px;
+  --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#14150f; --panel:#1c1d16; --ink:#eceade; --muted:#a3a094;
+         --line:#2f3126; --accent:#e08a5f; --accent-soft:#241a13;
+         --long:#5cc98a; --short:#ef7d6e; --watch:#7db3e8; --reduce:#e0a44a; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+     line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 96px}
+
+/* masthead */
+header.top{border-bottom:1px solid var(--line);background:var(--panel);
+           position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.4) blur(6px)}
+header.top .wrap{padding-top:14px;padding-bottom:14px;display:flex;
+                 align-items:baseline;gap:14px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.01em}
+.brand a{color:inherit}
+.crumb{color:var(--muted);font-size:13px}
+.crumb a{color:var(--muted)}
+/* header action — sits right, stays a 44px tap target on a phone */
+.btn{display:inline-flex;align-items:center;gap:2px;
+     padding:9px 15px;min-height:38px;border:1px solid var(--line);
+     border-radius:99px;background:var(--bg);color:var(--ink);
+     font-size:13.5px;font-weight:550;white-space:nowrap;line-height:1}
+.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.btn:active{transform:translateY(1px)}
+
+/* hero */
+.hero{padding:44px 0 26px}
+.hero h1{font-family:var(--serif);font-size:clamp(30px,5vw,42px);line-height:1.12;
+         margin:0 0 10px;letter-spacing:-.02em;font-weight:600}
+.hero .meta{color:var(--muted);font-size:14px}
+.pill{display:inline-block;padding:2px 9px;border:1px solid var(--line);
+      border-radius:99px;font-size:12px;color:var(--muted);margin-right:6px}
+
+/* sections */
+section{padding:28px 0 4px;border-top:1px solid var(--line)}
+section:first-of-type{border-top:none}
+h2{font-family:var(--serif);font-size:13px;font-weight:700;text-transform:uppercase;
+   letter-spacing:.14em;color:var(--accent);margin:0 0 16px}
+h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:28px 0 8px;
+   letter-spacing:-.01em}
+p{margin:0 0 13px}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin:5px 0}
+strong{font-weight:650}
+.tag{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12px}
+
+/* TL;DR */
+.tldr{background:var(--accent-soft);border:1px solid var(--line);
+      border-left:3px solid var(--accent);border-radius:var(--radius);
+      padding:18px 20px;margin-bottom:6px}
+.tldr p:last-child,.tldr ul:last-child{margin-bottom:0}
+.tldr ul{list-style:none;padding-left:0}
+.tldr li{padding-left:15px;position:relative}
+.tldr li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+
+/* trade cards */
+.cards{display:grid;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:15px 17px}
+.card .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+.card .asset{font-family:var(--serif);font-size:18px;font-weight:600}
+.card .who{color:var(--muted);font-size:13px}
+.card p{margin:6px 0 0;font-size:14.5px}
+.card .label{color:var(--muted);font-size:11px;text-transform:uppercase;
+             letter-spacing:.08em;margin-right:5px}
+.dir-long{color:var(--long)} .dir-short{color:var(--short)}
+.dir-avoid{color:var(--short)} .dir-reduce{color:var(--reduce)}
+.dir-watching{color:var(--watch)} .dir-other{color:var(--muted)}
+.tier{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+      margin:22px 0 10px;padding-bottom:5px;border-bottom:1px dashed var(--line)}
+
+/* topics */
+.topic{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--muted);
+       border-radius:var(--radius);padding:15px 17px;margin:12px 0}
+.topic .t{font-weight:650;margin-bottom:9px}
+
+/* index */
+.days{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:9px}
+.days a{display:flex;justify-content:space-between;align-items:center;gap:14px;
+        background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+        padding:14px 17px;color:inherit}
+.days a:hover{border-color:var(--accent);text-decoration:none}
+.days .d{font-family:var(--serif);font-size:17px;font-weight:600}
+.days .s{color:var(--muted);font-size:13px;text-align:right}
+
+
+/* right-side outline rail (desktop) */
+.layout{display:block}
+@media(min-width:1150px){
+  .layout{display:grid;grid-template-columns:minmax(0,820px) 220px;gap:44px;
+          max-width:1120px;margin:0 auto;padding:0 20px}
+  .layout>.wrap{max-width:none;padding:0}
+  .layout .rail{display:block}
+}
+.rail{display:none;position:sticky;top:76px;align-self:start;max-height:calc(100vh - 100px);
+      overflow-y:auto;padding:8px 0 24px;font-size:12.5px}
+.rail .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+          margin-bottom:10px}
+.rail a{display:block;color:var(--muted);padding:4px 10px;border-left:2px solid var(--line);
+        line-height:1.4}
+.rail a:hover{color:var(--accent);text-decoration:none}
+.rail a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+
+/* floating buttons */
+.fab{position:fixed;right:16px;z-index:40;display:flex;align-items:center;justify-content:center;
+     width:44px;height:44px;border-radius:50%;background:var(--panel);color:var(--ink);
+     border:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.18);font-size:18px;
+     cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s}
+.fab.show{opacity:1;pointer-events:auto}
+.fab:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+#fab-top{bottom:18px}
+#fab-toc{bottom:72px}
+@media(min-width:1150px){#fab-toc{display:none}}
+
+/* outline drawer (mobile) */
+.drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;opacity:0;
+           pointer-events:none;transition:opacity .2s}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:var(--panel);
+        z-index:61;transform:translateX(105%);transition:transform .22s ease;
+        padding:20px 18px;overflow-y:auto;border-left:1px solid var(--line)}
+body.drawer-open .drawer{transform:none}
+body.drawer-open .drawer-bg{opacity:1;pointer-events:auto}
+.drawer .rt{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);
+            margin:2px 0 12px}
+.drawer a{display:block;padding:9px 10px;border-radius:8px;color:var(--ink);font-size:14.5px}
+.drawer a:hover{background:var(--accent-soft);text-decoration:none}
+.drawer a.on{color:var(--accent);font-weight:600}
+
+/* search */
+.sbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;min-height:36px;
+      border:1px solid var(--line);border-radius:99px;background:var(--bg);color:var(--muted);
+      font-size:13px;cursor:pointer;white-space:nowrap}
+.sbtn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.search-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:70;opacity:0;
+           pointer-events:none;transition:opacity .15s}
+.search-box{position:fixed;top:min(12vh,110px);left:50%;transform:translateX(-50%) scale(.98);
+            width:min(620px,92vw);background:var(--panel);border:1px solid var(--line);
+            border-radius:14px;z-index:71;opacity:0;pointer-events:none;transition:all .15s;
+            box-shadow:0 18px 60px rgba(0,0,0,.35);overflow:hidden}
+body.search-open .search-bg{opacity:1;pointer-events:auto}
+body.search-open .search-box{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.search-box input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+                  font-size:17px;padding:17px 19px;border-bottom:1px solid var(--line);
+                  font-family:var(--sans)}
+.search-res{max-height:52vh;overflow-y:auto;padding:8px}
+.search-res a{display:block;padding:10px 12px;border-radius:9px;color:var(--ink)}
+.search-res a:hover,.search-res a.sel{background:var(--accent-soft);text-decoration:none}
+.search-res .st{font-weight:600;font-size:14.5px}
+.search-res .ss{color:var(--muted);font-size:12.5px;margin-top:1px}
+.search-res .empty{padding:16px;color:var(--muted);font-size:14px;text-align:center}
+
+/* episode cards inside a digest's episode index */
+.eplist{display:grid;gap:10px}
+.eplist a.epc{display:block;background:var(--panel);border:1px solid var(--line);
+              border-radius:var(--radius);padding:13px 16px;color:inherit}
+.eplist a.epc:hover{border-color:var(--accent);text-decoration:none}
+.eplist .epc .es{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.eplist .epc .et{font-family:var(--serif);font-size:16.5px;font-weight:600;margin:2px 0 3px}
+.eplist .epc .em{color:var(--muted);font-size:13px}
+.eplist div.epc{background:var(--panel);border:1px solid var(--line);opacity:.75;
+                border-radius:var(--radius);padding:13px 16px}
+
+/* episode page */
+blockquote.q{margin:14px 0;padding:13px 17px;background:var(--panel);border-left:3px solid var(--accent);
+             border-radius:var(--radius);font-family:var(--serif);font-size:16px;font-style:italic}
+blockquote.q .qw{display:block;margin-top:7px;font-family:var(--sans);font-size:12.5px;
+                 font-style:normal;color:var(--muted)}
+.verdict{background:var(--accent-soft);border:1px solid var(--line);border-left:3px solid var(--accent);
+         border-radius:var(--radius);padding:15px 18px;font-family:var(--serif);font-size:16.5px}
+.ivrow{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);
+       font-size:14.5px;flex-wrap:wrap}
+.ivrow:last-child{border-bottom:0}
+.ivrow .who{font-weight:600;min-width:130px}
+.ivrow .what{color:var(--ink)}
+
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);
+       color:var(--muted);font-size:12.5px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+      padding:12px 15px;font-size:12.5px;color:var(--muted);margin-top:20px}
+@media(max-width:600px){
+  .hero{padding:30px 0 20px}
+  nav.toc{position:static}
+  .card .head{gap:6px}
+}
+
+/* ── thoughts: highlight-to-save journaling ─────────────────────────────
+   Everything here is device-local (localStorage). No account, no backend,
+   nothing leaves the browser — which is also why the Thoughts page carries
+   an export: localStorage does not sync between a phone and a laptop. */
+.tpill{position:absolute;z-index:90;display:none;align-items:center;gap:6px;
+       padding:9px 14px;min-height:40px;border-radius:99px;border:1px solid var(--line);
+       background:var(--panel);color:var(--ink);font:550 13.5px/1 var(--sans);
+       box-shadow:0 6px 22px rgba(0,0,0,.18);cursor:pointer;white-space:nowrap}
+.tpill.show{display:inline-flex}
+.tpill:active{transform:translateY(1px)}
+.tcomp-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;opacity:0;
+          pointer-events:none;transition:opacity .16s}
+.tcomp{position:fixed;z-index:101;left:50%;transform:translateX(-50%) scale(.98);
+       top:min(9vh,80px);width:min(640px,94vw);background:var(--panel);
+       border:1px solid var(--line);border-radius:14px;opacity:0;pointer-events:none;
+       box-shadow:0 20px 60px rgba(0,0,0,.34);transition:opacity .16s,transform .16s;
+       overflow:hidden}
+body.tcomp-open .tcomp-bg{opacity:1;pointer-events:auto}
+body.tcomp-open .tcomp{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1)}
+.tcomp .th{padding:14px 18px;border-bottom:1px solid var(--line);
+           font:600 14px/1.3 var(--sans);display:flex;align-items:center;gap:8px}
+.tcomp .th .x{margin-left:auto;cursor:pointer;color:var(--muted);font-size:20px;
+              line-height:1;padding:2px 6px}
+.tcomp blockquote{margin:0;padding:14px 18px;border-left:3px solid var(--accent);
+       background:var(--accent-soft);font-family:var(--serif);font-size:15.5px;
+       line-height:1.55;max-height:31vh;overflow-y:auto}
+.tcomp textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);
+       font:15px/1.6 var(--sans);padding:14px 18px;min-height:104px;resize:vertical}
+.tcomp .tf{display:flex;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+           align-items:center;flex-wrap:wrap}
+.tcomp .src{color:var(--muted);font-size:12.5px;margin-right:auto;
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52%}
+.tbtn{padding:9px 16px;min-height:38px;border-radius:99px;border:1px solid var(--line);
+      background:var(--bg);color:var(--ink);font:550 13.5px/1 var(--sans);cursor:pointer}
+.tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn:active{transform:translateY(1px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+       background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;
+       font:550 13.5px/1 var(--sans);z-index:120;opacity:0;pointer-events:none;
+       transition:opacity .2s,transform .2s;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tbadge{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;
+        border-radius:99px;background:var(--accent);color:#fff;
+        font:600 11px/17px var(--sans);text-align:center;vertical-align:middle}
+.tbadge:empty,.tbadge[data-n="0"]{display:none}
+/* saved passages keep a mark on the page they came from */
+mark.tmark{background:var(--accent-soft);color:inherit;
+           box-shadow:inset 0 -2px 0 var(--accent);border-radius:2px}
+
+/* thoughts page */
+.th-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+         padding:16px 18px;margin:0 0 14px}
+.th-card blockquote{margin:0 0 10px;padding-left:13px;border-left:3px solid var(--accent);
+         font-family:var(--serif);font-size:15.5px;line-height:1.55;color:var(--ink)}
+.th-card .note{white-space:pre-wrap;font-size:15px;line-height:1.6;margin:0 0 10px}
+.th-card .note:empty{display:none}
+.th-card .m{display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+            color:var(--muted);font-size:12.5px}
+.th-card .m .del{margin-left:auto;cursor:pointer;border:0;background:none;
+                 color:var(--muted);font-size:12.5px;padding:4px}
+.th-card .m .del:hover{color:var(--short)}
+.th-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;align-items:center}
+.th-tools input[type=search]{flex:1;min-width:180px;padding:10px 14px;border-radius:99px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);font:14px var(--sans)}
+.th-empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.th-empty .big{font-size:34px;margin-bottom:10px}
+/* header actions wrap instead of overflowing once there are four of them */
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:560px){
+  header.top .wrap{gap:8px}
+  .hbtns{gap:6px;width:100%;justify-content:flex-start}
+  .btn{padding:8px 12px;font-size:13px}
+}
+
+/* calls table */
+.c-chips{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.c-chips button{padding:7px 13px;min-height:36px;border-radius:99px;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  font:550 13px/1 var(--sans);display:inline-flex;align-items:center;gap:6px}
+.c-chips button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.c-chips .n{font-size:11px;opacity:.75}
+.c-tools{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.c-tools input,.c-tools select{padding:9px 13px;border-radius:99px;border:1px solid var(--line);
+  background:var(--panel);color:var(--ink);font:13.5px var(--sans);min-height:38px}
+.c-tools input{flex:1;min-width:180px}
+.c-count{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+.c-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel)}
+.ctab{width:100%;border-collapse:collapse;font-size:14px}
+.ctab th{text-align:left;font:600 11px/1 var(--sans);text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--panel);z-index:1}
+.ctab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.ctab tr:last-child td{border-bottom:0}
+.ctab .cd{color:var(--muted);font-size:12.5px;white-space:nowrap}
+.ctab .cw{font-weight:600;min-width:130px}
+.ctab .cs{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.ctab .ca{min-width:220px}
+.ctab .ca a{font-weight:600}
+.ctab .cr{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.ctab .cempty{text-align:center;color:var(--muted);padding:34px}
+@media(max-width:640px){
+  .ctab thead{display:none}
+  .ctab,.ctab tbody,.ctab tr,.ctab td{display:block;width:100%}
+  .ctab tr{border-bottom:1px solid var(--line);padding:12px 14px}
+  .ctab tr:last-child{border-bottom:0}
+  .ctab td{border:0;padding:2px 0}
+  .ctab .cd{font-size:12px}
+}
+#th-import{display:none;width:100%;margin:14px 0 0;padding:12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);color:var(--ink);
+      font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;min-height:120px}
+</style><script>window.PLM_SYNC={"url": "https://script.google.com/macros/s/AKfycbx2ObwbqlptbkCgTLSFxxhli-fkEfYknFLGTx3hVSaVK1tsHUgzzV1q_yXkHrfXFyq1zg/exec", "key": "1FbfvC8B6hV8n1eTfvQ5I9khFoWjtiqj"};</script></head><body data-root="" data-canon="2026-11-27.html"><header class="top"><div class="wrap"><span class="brand"><a href="index.html">PodcastLM</a></span><span class="crumb">Friday, 27 November 2026</span><span class="hbtns"><button class="sbtn" type="button">⌕ Search</button><a class="btn" href="calls.html">◈&nbsp; Calls</a><a class="btn" href="thoughts.html">✎&nbsp; Thoughts<span class="tbadge" data-n="0"></span></a><a class="btn" href="archive.html">☰&nbsp; Archive</a></span></div></header><div class="layout"><div class="wrap"><div class="hero"><h1>Friday, 27 November 2026</h1><div class="meta"><span class="pill">9 episodes (10 files — 1 arrived twice from two sources)</span>Commodities &amp; Hard Assets, Equities &amp; Trading, Investment Analysis &amp; Factors, Macroeconomics &amp; Strategy, Real Estate &amp; Wealth Building</div></div><section id="tl-dr-read-this-first"><h2>TL;DR (read this first)</h2><div class="tldr"><p>A cautious consensus is forming around a 2027 &quot;air pocket&quot; for the AI trade, with Kenneth Tay, Rebecca Patterson, and Jeff deGraaf all flagging near-term headwinds from enterprise deployment friction and macro pressures. This challenges the dominant market narrative and sets up a conflict with the structural forces of high real yields, which deGraaf notes are punishing the long-duration tech assets that have led the market. The resolution hinges on whether corporate AI spending can power through a higher-for-longer rate environment or if the combination of bubble-like technicals and a viable bond market alternative finally breaks the momentum.</p>
+<ul><li>CENTRAL TENSION: The long-term AI growth narrative versus near-term macro headwinds (high real yields, Fed hikes) and deployment challenges.</li><li>TOP THEME: The 2027 AI &quot;Air Pocket&quot;: Multiple speakers flag a slowdown in AI demand due to deployment hurdles and macro pressures.</li><li>DIVERGENT: Don Durrett is extremely bullish on gold as a haven from an impending economic rollover, while Jeff deGraaf is cautious, citing high real yields as a major headwind for the asset.</li><li>HIGH-CONVICTION TRADE: None today.</li><li>CALENDAR: The December Federal Reserve meeting, where a rate hike is anticipated.</li></ul></div></section>
+<section id="trade-ideas-positions"><h2>TRADE IDEAS &amp; POSITIONS</h2><div class="cards"><div class="tier">OPPORTUNISTIC</div>
+<div class="card"><div class="head"><span class="asset">Silver Miners (Aveno, Ya, Ser Pasco, Endeavor Silver, Honeybadger)</span><span class="tag dir-long">LONG</span><span class="who">Don Durrett — Wealth Building Blueprint – Vladyslav Grabarskyy</span></div><p><span class="label">Don Durrett — Wealth Building Blueprint – Vladyslav Grabarskyy</span>These miners are viewed as &quot;unbelievably cheap&quot; based on their future free cash flow potential in a scenario where silver reaches $200/oz in the next 3-5 years. The market is not pricing in the future production from key projects.</p><p><span class="label">context</span>These are long-term (3-5 year) speculative positions. Durrett allocates no more than 1% of his total capital to any single stock.</p></div>
+<div class="card"><div class="head"><span class="asset">Traditional Cybersecurity (CrowdStrike, Palo Alto Networks)</span><span class="tag dir-long">LONG</span><span class="who">Kenneth Tay — The Monetary Matters Network</span></div><p><span class="label">Kenneth Tay — The Monetary Matters Network</span>These companies are seen as beneficiaries of AI integration, not victims of disruption. AI labs are unlikely to want to handle end-to-end cybersecurity or audit their own work, creating a durable role for established vendors.</p></div>
+<div class="card"><div class="head"><span class="asset">Airlines</span><span class="tag dir-long">LONG</span><span class="who">Michelle Weaver — Morgan Stanley</span></div><p><span class="label">Michelle Weaver — Morgan Stanley</span>Airlines are a &quot;brighter spot&quot; for investors as consumer demand for travel has remained strong despite fares rising more than 20% from last year, indicating travel remains a spending priority.</p></div>
+<div class="card"><div class="head"><span class="asset">Parabolic moves after a bubble signal</span><span class="tag dir-avoid">AVOID</span><span class="who">Jeff deGraaf — Excess Returns</span></div><p><span class="label">Jeff deGraaf — Excess Returns</span>When a proprietary bubble signal fires (e.g., on semiconductors), it indicates an unsustainable rise. Waiting for traditional trend-changing measures will leave an investor &quot;in the dust&quot; as the subsequent deflation is typically severe and prolonged.</p></div>
+<div class="tier">WATCHING</div>
+<div class="card"><div class="head"><span class="asset">S&amp;P 500</span><span class="tag dir-watching">WATCHING</span><span class="who">Don Durrett — Wealth Building Blueprint – Vladyslav Grabarskyy</span></div><p><span class="label">Don Durrett — Wealth Building Blueprint – Vladyslav Grabarskyy</span>Key levels will determine Fed action and market sentiment. A drop below 6,800 could cause the Fed to pause rate hikes. A drop below 6,500 would initiate a &quot;fear trade.&quot; Staying below 7,000 for two months could signal a multi-year bear market.</p></div>
+<div class="card"><div class="head"><span class="asset">Crude Oil Term Structure</span><span class="tag dir-watching">WATCHING</span><span class="who">Rory Johnston — Wealthion</span></div><p><span class="label">Rory Johnston — Wealthion</span>A full quarter where both the physical curve and futures curve are in contango for more than a month or two would be a key indicator that the market has started to loosen significantly and the current supply crisis may be ending.</p></div></div></section>
+<section id="divergent-views"><h2>DIVERGENT VIEWS</h2><div class="topic"><div class="t">Outlook for Gold</div><p>Don Durrett — Wealth Building Blueprint – Vladyslav Grabarskyy: BULLISH <strong>Reasoning:</strong> Gold&#x27;s fundamentals are improving daily. He anticipates a major rotation of capital out of an overvalued stock market and a fragile bond market into gold, driven by a US economic rollover in 2027 and a potential &quot;financial reset.&quot; He projects gold could reach $7,000 in three to five years.</p>
+<p>Jeff deGraaf — Excess Returns: CAUTIOUS <strong>Reasoning:</strong> The return of high real yields is a significant &quot;mega trend&quot; that is actively punishing long-duration assets like gold. He notes that gold has been in a downtrend for six to seven months, which is consistent with the headwind from high real rates.</p></div>
+<div class="topic"><div class="t">US Economic &amp; Equity Market Outlook for 2027</div><p>Don Durrett — Wealth Building Blueprint – Vladyslav Grabarskyy: BEARISH <strong>Reasoning:</strong> The S&amp;P 500 is at a 15-year top and poised to &quot;roll over.&quot; He predicts a US economic recession in 2027 that will trigger a multi-year bear market in stocks as capital rotates into havens like gold.</p>
+<p>Rebecca Patterson — Jimmy Connor: CAUTIOUSLY BULLISH <strong>Reasoning:</strong> The US economy is likely to continue growing in 2027, albeit at a slower rate (mid-twos). While there are risks from Fed tightening and a potential AI trade slowdown, she does not foresee an imminent rollover or recession.</p></div></section>
+<section id="dominant-themes"><h2>DOMINANT THEMES</h2><h3>The 2027 AI &quot;Air Pocket&quot; (3 shows)</h3>
+<p>THESIS: A consensus is forming that the explosive growth in AI may hit a near-term &quot;air pocket&quot; in 2027. While long-term bullishness remains intact, speakers point to enterprise deployment hurdles, macro pressures, and bubble-like technical signals as reasons for caution on revenue growth in the medium term.</p>
+<p>CAUTIOUS CAMP (Kenneth Tay, Rebecca Patterson, Jeff deGraaf) Multiple speakers are now flagging a potential slowdown. Kenneth Tay — The Monetary Matters Network states his firm&#x27;s research shows enterprise AI spending projections for 2027 are not high enough to meet market expectations, citing deployment challenges, compliance issues, and corporate resistance to change. Rebecca Patterson — Jimmy Connor anticipates the AI trade will slow in 2027 due to public and governmental pushback on data center construction and ongoing export controls impacting tech sales. Jeff deGraaf — Excess Returns provides a technical warning, noting his firm&#x27;s proprietary &quot;bubble signal&quot; fired on semiconductors in April/May, indicating an unsustainable rise that makes the sector &quot;fragile&quot; and prone to a significant, prolonged correction.</p>
+<p>KEY TENSION: Whether enterprises can overcome deployment friction and absorb massive AI investments at a rate that satisfies market expectations, especially as higher interest rates increase the cost of capital.</p>
+<h3>The Return of Real Yields and Asset Allocation (2 shows)</h3>
+<p>THESIS: The persistence of high real yields is a &quot;mega trend&quot; fundamentally altering the asset allocation landscape. For the first time since the Global Financial Crisis, there is a viable, low-risk alternative to equities, which punishes long-duration assets and could trigger a structural shift away from high equity exposure.</p>
+<p>THE NEW REGIME (Jeff deGraaf, Rebecca Patterson) The TINA (&quot;There Is No Alternative&quot;) trade is over. Jeff deGraaf — Excess Returns highlights that the free cash flow yield of the S&amp;P 500 is now effectively equal to the 10-year TIPS rate, meaning investors no longer need as much equity exposure to hit return hurdles. This creates a powerful headwind for stocks and other long-duration assets like gold. Rebecca Patterson — Jimmy Connor expects the Fed to continue hiking rates to combat persistent inflation, keeping both policy rates and long-term bond yields &quot;higher for longer,&quot; which will continue to pressure risk assets.</p>
+<p>THE FRAGILE SYSTEM (Don Durrett) In direct opposition, Don Durrett — Wealth Building Blueprint – Vladyslav Grabarskyy views the bond market not as a stable alternative but as a fragile system on the verge of a &quot;financial reset&quot; due to the unsustainable US debt situation. His thesis relies on a collapse of confidence in bonds, which would force a rotation into hard assets like gold, completely inverting the &quot;new regime&quot; argument.</p>
+<p>KEY TENSION: Whether high real yields represent a durable new investment regime or are a symptom of end-of-cycle stress in a system poised to break.</p></section>
+<section id="guest-briefs"><h2>GUEST BRIEFS</h2><h3>Jeff deGraaf — Excess Returns</h3>
+<p><strong>Thesis:</strong> The market is in a new regime defined by the return of high real yields, which punishes long-duration assets and provides a real alternative to equities for the first time in over a decade. His technical work, including a &quot;bubble signal&quot; on semiconductors, suggests the AI-led rally is fragile and prone to a significant, multi-month reversal.</p>
+<p><strong>Predictions:</strong></p>
+<ul><li>The deflation of the semiconductor bubble will take a minimum of 18 months to burn through.</li><li>The market is close to &quot;peak hawkishness&quot; from the Fed.</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p>
+<h3>Don Durrett — Wealth Building Blueprint – Vladyslav Grabarskyy</h3>
+<p><strong>Thesis:</strong> The US economy is headed for a 2027 rollover and a potential &quot;financial reset&quot; due to an unhealthy bond market and unsustainable debt. This will trigger a major rotation of capital out of overvalued stocks and bonds and into precious metals, leading to a multi-year bull market for gold and silver.</p>
+<p><strong>Predictions:</strong></p>
+<ul><li>Gold will reach $7,000 and silver will reach $200 in the next three to five years.</li><li>The US economy will roll over into recession in 2027.</li><li>The Fed will pause rate hikes if the S&amp;P 500 falls below 6,800.</li></ul>
+<p><strong>Would change view if:</strong> The economy remains strong and inflation stays under 3%, which he calls &quot;kryptonite for gold.&quot;</p>
+<h3>Rebecca Patterson — Jimmy Connor</h3>
+<p><strong>Thesis:</strong> The US economy will continue to grow in 2027, but at a slower pace due to persistent inflation forcing further Fed rate hikes. The primary risks to this outlook are a slowdown in the highly concentrated AI trade and geopolitical flare-ups, like the war in Iran, that could keep energy-related inflation elevated.</p>
+<p><strong>Predictions:</strong></p>
+<ul><li>The Fed will likely hike rates in December and a few more times in 2027.</li><li>US growth will slow from over 3% this year to the mid-twos in 2027.</li><li>The AI trade is likely to slow in 2027, with data center construction potentially losing 4-8% of its growth.</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p>
+<h3>Rory Johnston — Wealthion</h3>
+<p><strong>Thesis:</strong> The oil market is oversold and complacent, significantly underpricing the acute geopolitical risk of a major supply disruption from the Iran war. While the structural backdrop without the war would be bearish, the current unpriced &quot;fat tail&quot; risk of losing millions of barrels of supply per day is the dominant factor.</p>
+<p><strong>Predictions:</strong></p>
+<ul><li>The oil market is due for a &quot;pop&quot; from its currently oversold positioning.</li><li>Diesel prices will likely remain in a structurally higher band due to lost refining capacity.</li></ul>
+<p><strong>Would change view if:</strong> The crude term structure (physical and futures) moves into a sustained contango for a full quarter, signaling the market has truly loosened.</p>
+<h3>Kenneth Tay — The Monetary Matters Network</h3>
+<p><strong>Thesis:</strong> While long-term bullish on AI, near-term enterprise adoption faces an &quot;air pocket&quot; in 2027 due to significant deployment challenges, compliance hurdles, and internal resistance to change. This suggests current market revenue expectations for 2027 may be too optimistic.</p>
+<p><strong>Predictions:</strong></p>
+<ul><li>AI token prices will continue to drop as semiconductor and compute technology advances.</li><li>AI market valuations may see more downside before becoming attractive again in 2027.</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p>
+<h3>Jameson Lopp — Less Noise More Signal</h3>
+<p><strong>Thesis:</strong> The security landscape has fundamentally changed due to AI models accelerating the discovery of software vulnerabilities, forcing a shift to real-time security auditing and patching. For Bitcoin, this increases risks for hot wallets and Layer 2 protocols, making robust self-custody solutions like multi-signature setups increasingly critical.</p>
+<p><strong>Predictions:</strong></p>
+<ul><li>The Bitcoin base layer protocol is unlikely to be broken by these new threats.</li><li>Quantum computing does not pose a near-term risk to Bitcoin.</li></ul>
+<p><strong>Would change view if:</strong> Not stated.</p></section>
+<section id="conviction-scenarios"><h2>CONVICTION &amp; SCENARIOS</h2><p>Don Durrett — Wealth Building Blueprint – Vladyslav Grabarskyy <strong>If</strong> the S&amp;P 500 is above 6,800: the Fed will likely raise rates in December. <strong>If</strong> the S&amp;P 500 is below 6,800: the Fed will likely pause. <strong>If</strong> the S&amp;P 500 stays below 7,000 for two months: this could signal the start of a multi-year bear market.</p>
+<p>Jeff deGraaf — Excess Returns <strong>If</strong> equity market volatility is higher than credit market volatility: this often indicates an interim low opportunity for equities.</p></section>
+<section id="tickers-assets"><h2>TICKERS &amp; ASSETS</h2><h3>THESIS TICKERS</h3>
+<ul><li><strong>Aveno, Ya, Ser Pasco, Endeavor Silver, Honeybadger</strong> — Don Durrett — Wealth Building Blueprint – Vladyslav Grabarskyy — Undervalued silver miners with massive future free cash flow potential at higher silver prices.</li><li><strong>CrowdStrike, Palo Alto Networks</strong> — Kenneth Tay — The Monetary Matters Network — Traditional cybersecurity vendors seen as beneficiaries of AI, not disrupted by it.</li></ul>
+<h3>TRADE EXPRESSION</h3>
+<ul><li><strong>SILJ</strong> — Junior Silver Miners ETF, mentioned in context of silver mining speculation — Don Durrett — Wealth Building Blueprint – Vladyslav Grabarskyy</li></ul>
+<h3>WATCH LEVELS</h3>
+<ul><li><strong>S&amp;P 500</strong> — Levels at 6,800 (Fed pause trigger), 6,500 (fear trade trigger), and 7,000 (bear market signal) — Don Durrett — Wealth Building Blueprint – Vladyslav Grabarskyy</li></ul>
+<h3>CONTEXT MENTIONS</h3>
+<ul><li><strong>Bitcoin</strong> — Discussed in context of security risks from AI and quantum computing.</li><li><strong>Brent</strong> — Referenced as being around $90/barrel.</li><li><strong>Gold</strong> — Discussed as a long-duration asset and potential haven.</li><li><strong>Nvidia</strong> — Referenced as a leader in the AI trade and in a comparison to Fannie Mae&#x27;s role in the subprime crisis.</li><li><strong>S&amp;P 500</strong> — Used as a benchmark for the broad market and a trigger for Fed policy.</li><li><strong>10-year TIPS</strong> — Used as a benchmark for real yields and compared to the S&amp;P 500&#x27;s free cash flow yield.</li></ul></section>
+<section id="spotlight-breaking-china-s-grip-on-criti"><h2>SPOTLIGHT: Breaking China&#x27;s Grip on Critical Metals: The Scimplify Strategy</h2><p><strong>Host:</strong> Chris Berry <strong>Guest:</strong> Sachin Santos, Dheeraj Dhingra — Simplify</p>
+<ul><li>Simplify operates an &quot;asset-light&quot; manufacturing model for specialty chemicals and advanced materials, using an AI platform and a network of over 500 partner plants to provide a non-Chinese supply source.</li><li>The &quot;China plus one&quot; strategy is a primary driver of their business, as they help global OEMs in semiconductors, batteries, and defense diversify their supply chains away from geopolitical risk.</li><li>The company claims to accelerate the typical 12-18 month OEM qualification period by using its AI platform to compress information exchange and leverage pre-qualified factories.</li><li>Revenue is projected to double in the next 18 months, driven by international markets (US, Europe, Japan), with plans to establish a US-based R&amp;D center.</li><li>The founders aim to take the company public in the US or India in approximately five years, targeting a billion-dollar scale.</li></ul></section>
+<section id="spotlight-the-essential-steps-to-retire-"><h2>SPOTLIGHT: The Essential Steps To Retire Well - Are You Following Them?</h2><p><strong>Host:</strong> Adam Taggart <strong>Guest:</strong> Julia Lembcke — URS Advisory</p>
+<ul><li>This episode provides a detailed guide to retirement planning, focusing on tax diversification, healthcare optimization, and estate planning for different age brackets (55-75+).</li><li>A key strategy is to diversify savings across pre-tax (401k/IRA), Roth, and after-tax brokerage accounts to create flexibility and control taxable income in retirement.</li><li>For those retiring before 65, navigating healthcare is critical. Options include ACA plans, COBRA, and spousal plans, with a strong recommendation to manage income to qualify for premium subsidies.</li><li>Lembcke strongly prefers Medicare Supplement plans over Medicare Advantage for their comprehensive coverage and freedom of provider choice, but warns the decision at age 65 is critical due to later underwriting restrictions.</li><li>Comprehensive estate planning (wills, trusts, power of attorney) is emphasized as essential to avoid family conflict and ensure one&#x27;s wishes are honored.</li></ul></section>
+<section id="spotlight-the-ai-hacking-arms-race-has-b"><h2>SPOTLIGHT: The AI Hacking Arms Race Has Begun, Can Bitcoin Keep Up?</h2><p><strong>Host:</strong> Pascal Hügli <strong>Guest:</strong> Jameson Lopp — Casa</p>
+<ul><li>The pace of discovering software vulnerabilities has dramatically accelerated due to advanced AI models, particularly open-weight Chinese models with fewer guardrails, forcing a shift to real-time security patching.</li><li>This new environment poses a significant risk to any internet-facing software, especially &quot;hot wallets&quot; and Layer 2 protocols in the crypto space, which are now under constant threat.</li><li>Lopp remains optimistic that the Bitcoin base layer protocol itself is secure and will not be broken, as vulnerabilities are typically found in adjacent software implementations.</li><li>For significant Bitcoin holdings, a simple hardware wallet is no longer sufficient. The &quot;ultimate tier&quot; of security is a distributed, multi-vendor, multi-key, multi-signature setup to eliminate single points of failure.</li><li>The risk to Bitcoin from quantum computing is considered a distant, &quot;edge case&quot; issue, not a near-term threat.</li></ul></section>
+<section id="notable-data-figures"><h2>NOTABLE DATA &amp; FIGURES</h2><ul><li><strong>3.2%:</strong> Expected Core PCE inflation. — Rebecca Patterson — Jimmy Connor</li><li><strong>3.5%:</strong> Approximate US growth expected for the current year. — Rebecca Patterson — Jimmy Connor</li><li><strong>4-8%:</strong> Potential reduction in data center construction growth next year due to pushback. — Rebecca Patterson — Jimmy Connor</li><li><strong>8-10%:</strong> Expected year-over-year growth for holiday e-commerce spending. — Michelle Weaver — Morgan Stanley</li><li><strong>52%:</strong> Percentage of holiday shoppers who have used or plan to use AI tools this season. — Michelle Weaver — Morgan Stanley</li><li><strong>$90/barrel:</strong> Approximate current price of Brent crude. — Rebecca Patterson — Jimmy Connor</li><li><strong>3x:</strong> Diesel crack spreads are more than three times their normal level. — Rory Johnston — Wealthion</li><li><strong>5 million b/d:</strong> Potential oil supply loss from the Iran war that is not priced in. — Rory Johnston — Wealthion</li><li><strong>$7,000 &amp; $200:</strong> Don Durrett&#x27;s price targets for gold and silver, respectively, in 3-5 years. — Don Durrett — Wealth Building Blueprint – Vladyslav Grabarskyy</li><li><strong>$1.02 million:</strong> Average retirement savings for ages 55-60 (median is $440,000). — Julia Lembcke — Adam Taggart | Thoughtful Money®</li><li><strong>$218,000:</strong> Medicare IRMA threshold for joint filers in 2026. — Julia Lembcke — Adam Taggart | Thoughtful Money®</li></ul></section>
+<section id="watch-catalysts"><h2>WATCH CATALYSTS</h2><ul><li><strong>December 2026:</strong> Federal Reserve Meeting. A potential rate hike is expected. — Rebecca Patterson — Jimmy Connor, Don Durrett — Wealth Building Blueprint – Vladyslav Grabarskyy</li><li><strong>January 3, 2027:</strong> New US Congress takes its seat. This could be a catalyst for a reduction in US tariffs on Canada. — Rebecca Patterson — Jimmy Connor</li><li><strong>End of 2026 / Early 2027:</strong> Fed Chairman Walsh is expected to release reports from five task forces. — Rebecca Patterson — Jimmy Connor</li></ul></section>
+<section id="miscellaneous"><h2>MISCELLANEOUS</h2><ul><li>The financing of the AI build-out by hyperscalers is being compared to Fannie Mae&#x27;s role in the subprime crisis, where a pristine balance sheet (Nvidia&#x27;s) is used to backstop less creditworthy entities to fuel demand for its own products. — Jeff deGraaf — Excess Returns</li><li>The proliferation of ETFs has impacted market breadth, contributing to more binary &quot;everything&#x27;s up or everything&#x27;s down&quot; trading days. — Jeff deGraaf — Excess Returns</li><li>The oil market now requires daily tracking data to monitor volatility and risks (e.g., Hormuz transit), a high-frequency approach previously associated with monitoring the COVID-19 pandemic. — Rory Johnston — Wealthion</li><li>Open-weight Chinese AI models, despite lagging Western frontier models, are accelerating vulnerability discovery because they have fewer cybersecurity guardrails, making them cheap and effective tools for finding exploits. — Jameson Lopp — Less Noise More Signal</li><li>Asian investors, particularly in China, turned bearish on the AI supply chain earlier than their Western counterparts, having identified component shortages (NAND, lasers) in late 2025. — Kenneth Tay — The Monetary Matters Network</li></ul></section>
+<section id="data-quality-note"><h2>DATA QUALITY NOTE</h2><ul><li><strong>Overlapping Episodes:</strong> The digest contains two summaries from &quot;The Monetary Matters Network&quot; featuring host Jack Farley and guest Kenneth Tay. The content is identical, appearing to be the same interview. The guest&#x27;s firm is listed as &quot;Funda.AI&quot; in one summary and &quot;Funa&quot; in the other. His views have been synthesized and de-duplicated under a single entry.</li><li><strong>Same-Show Repeats:</strong></li><li>Jeff deGraaf appeared on *Excess Returns* today and on Nov 26. Content was checked for overlap.</li><li>Rebecca Patterson appeared on *Jimmy Connor* today and on Nov 25. Content was checked for overlap.</li><li><strong>Cross-Show Appearances (FYI):</strong></li><li>Don Durrett (*Wealth Building Blueprint*) also appeared on *Competent Man Podcast* on 2026-11-17.</li><li>Jeff deGraaf (*Excess Returns*) also appeared on *The Meb Faber Show* on 2026-11-14.</li><li>Rory Johnston (*Wealthion*) also appeared on *Mining Stock Daily* on 2026-11-13.</li></ul></section>
+<section id="episode-index"><h2>EPISODE INDEX</h2><div class="eplist"><a class="epc" href="ep/2026-11-27/mining-stock-daily-breaking-chinas-grip-.html"><span class="es">Mining Stock Daily</span><div class="et">Breaking Chinas Grip on Critical Metals The Scimplify Strategy</div><div class="em">Host: Chris Berry · Guest: Sachin Santos, Co-founder and CEO of Simplify</div></a><a class="epc" href="ep/2026-11-27/wealthion-why-the-oil-supply-crunch-isnt.html"><span class="es">Wealthion</span><div class="et">Why the Oil Supply Crunch Isnt Over Yet Rory Johnston</div><div class="em">Host: Maggie Lake · Guest: Rory Johnston, Founder, commoditycontext.com</div></a><a class="epc" href="ep/2026-11-27/jimmy-connor-rebecca-patterson-outlook-f.html"><span class="es">Jimmy Connor</span><div class="et">Rebecca Patterson Outlook For 2027</div><div class="em">Host: Jimmy Connor · Guest: Rebecca Patterson, former Chief Investment Strategist at Bridgewater Associates</div></a><a class="epc" href="ep/2026-11-27/excess-returns-the-real-yield-problem-je.html"><span class="es">Excess Returns</span><div class="et">The Real Yield Problem Jeff deGraaf on Why This Sell-Off Is Different</div><div class="em">Host: Jack Forehand, Justin Carbonneau · Guest: Jeff deGraaf, Founder and Head of Technovel Research at Renaissance Macro Research (RenMac)</div></a><a class="epc" href="ep/2026-11-27/morgan-stanley-holiday-shopping-in-2026-.html"><span class="es">Morgan Stanley</span><div class="et">Holiday Shopping in 2026 Higher Spending Fewer Bags</div><div class="em">Host: Michelle Weaver · Solo episode</div></a><a class="epc" href="ep/2026-11-27/adam-taggart-thoughtful-money-the-essent.html"><span class="es">Adam Taggart Thoughtful Money</span><div class="et">The Essential Steps To Retire Well - Are You Following Them Julia Lembcke</div><div class="em">Host: Adam Taggart · Guest: Julia Lembcke, Certified Financial Planner and Managing Director at URS Advisory</div></a><a class="epc" href="ep/2026-11-27/less-noise-more-signal-the-ai-hacking-ar.html"><span class="es">Less Noise More Signal</span><div class="et">The AI Hacking Arms Race Has Begun Can Bitcoin Keep Up</div><div class="em">Host: Pascal Hügli · Guest: Jameson Lopp, Co-founder and Chief Security Officer of Casa</div></a><a class="epc" href="ep/2026-11-27/the-monetary-matters-network-air-pocket-.html"><span class="es">The Monetary Matters Network</span><div class="et">Air Pocket for AI Demand in 2027 FundaAIs Kenneth Tay on Near-Term Headwinds for</div><div class="em">Host: Jack Farley · Guest: Kenneth Tay, Head of Content, Funda.AI</div></a><a class="epc" href="ep/2026-11-27/the-monetary-matters-network-why-asian-i.html"><span class="es">The Monetary Matters Network</span><div class="et">Why Asian Investors Turned Bearish on AI Before Wall Street And What They See Ri</div><div class="em">Host: Jack Farley · Guest: Kenneth Tay, Head of Content for Funa</div></a><a class="epc" href="ep/2026-11-27/wealth-building-blueprint-vladyslav-grab.html"><span class="es">Wealth Building Blueprint Vladyslav Grab</span><div class="et">Don Durretts Top Mining Stock Picks Whats Next for Gold and Silver</div><div class="em">Host: Vladyslav Grabarskyy · Guest: Don Durrett, Founder of goldstockdata.com</div></a></div></section><div class="note"><strong>How this page was made.</strong> Automatically generated from public podcast transcripts by a language model, and published without human review. Speaker attributions are inferred, not labelled — the transcripts carry no speaker tags. Measured against hand-checked ground truth, roughly 6% of calls are attributed to the wrong person, names are sometimes garbled, and about 1 quote in 1,400 does not appear in the source at all. Coverage is partial: dense episodes lose about a third of what was said. Nothing here is investment advice, and no one named on this page has reviewed or endorsed what is attributed to them. Treat every line as a pointer back to the original episode, not as a record of what someone said. Corrections: <a href="https://github.com/joeedessa/podcast-digest/issues">open an issue</a>.</div><footer>Built 2026-11-27 · <a href="archive.html">All days</a></footer></div><aside class="rail"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-breaking-china-s-grip-on-criti">★ Breaking China&#x27;s Grip …</a><a href="#spotlight-the-essential-steps-to-retire-">★ The Essential Steps To…</a><a href="#spotlight-the-ai-hacking-arms-race-has-b">★ The AI Hacking Arms Ra…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></aside></div><div class="drawer-bg"></div><nav class="drawer"><div class="rt">On this page</div><a href="#tl-dr-read-this-first">TL;DR (read this first)</a><a href="#trade-ideas-positions">TRADE IDEAS &amp; POSITIONS</a><a href="#divergent-views">DIVERGENT VIEWS</a><a href="#dominant-themes">DOMINANT THEMES</a><a href="#guest-briefs">GUEST BRIEFS</a><a href="#conviction-scenarios">CONVICTION &amp; SCENARIOS</a><a href="#tickers-assets">TICKERS &amp; ASSETS</a><a href="#spotlight-breaking-china-s-grip-on-criti">★ Breaking China&#x27;s Grip …</a><a href="#spotlight-the-essential-steps-to-retire-">★ The Essential Steps To…</a><a href="#spotlight-the-ai-hacking-arms-race-has-b">★ The AI Hacking Arms Ra…</a><a href="#notable-data-figures">NOTABLE DATA &amp; FIGURES</a><a href="#watch-catalysts">WATCH CATALYSTS</a><a href="#miscellaneous">MISCELLANEOUS</a><a href="#data-quality-note">DATA QUALITY NOTE</a><a href="#episode-index">EPISODE INDEX</a></nav><button id="fab-toc" class="fab" type="button" aria-label="Outline">☰</button><a id="fab-top" class="fab" aria-label="Back to top">↑</a><div class="search-bg"></div><div class="search-box"><input type="search" placeholder="Search digests and episodes…" aria-label="Search"><div class="search-res"></div></div><button class="tpill" type="button">✎ Save as thought</button><div class="tcomp-bg"></div><div class="tcomp"><div class="th">✎ New thought<span class="x" role="button" aria-label="Close">×</span></div><blockquote></blockquote><textarea placeholder="What do you make of it? (optional)"></textarea><div class="tf"><span class="src"></span><button class="tbtn cancel" type="button">Cancel</button><button class="tbtn primary save" type="button">Save</button></div></div><div class="toast"></div><script>
+(function(){
+var qs=function(x){return document.querySelector(x)},qa=function(x){return [].slice.call(document.querySelectorAll(x))};
+var top=qs('#fab-top');
+if(top){addEventListener('scroll',function(){top.classList.toggle('show',scrollY>600)},{passive:true});
+        top.onclick=function(){scrollTo({top:0,behavior:'smooth'})};}
+var toc=qs('#fab-toc');
+if(toc){toc.classList.add('show');
+        addEventListener('scroll',function(){toc.classList.toggle('show',true)},{passive:true});}
+function closeDrawer(){document.body.classList.remove('drawer-open')}
+if(toc){toc.onclick=function(){document.body.classList.add('drawer-open')};
+        qs('.drawer-bg').onclick=closeDrawer;
+        qa('.drawer a').forEach(function(a){a.addEventListener('click',closeDrawer)});}
+var links=qa('.rail a, .drawer a');
+if(links.length){
+  var map={};links.forEach(function(a){var id=a.getAttribute('href').slice(1);(map[id]=map[id]||[]).push(a)});
+  var cur=null;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){
+      if(cur&&map[cur])map[cur].forEach(function(a){a.classList.remove('on')});
+      cur=e.target.id;
+      if(map[cur])map[cur].forEach(function(a){a.classList.add('on')});
+    }});
+  },{rootMargin:'-10% 0px -80% 0px'});
+  qa('section[id]').forEach(function(x){io.observe(x)});
+}
+var ROOT=document.body.getAttribute('data-root')||'';
+var idx=null,inp=qs('.search-box input'),res=qs('.search-res');
+function openS(){document.body.classList.add('search-open');inp.focus();
+  if(!idx){fetch(ROOT+'search-index.json').then(function(r){return r.json()})
+    .then(function(j){idx=j;run()}).catch(function(){res.innerHTML='<div class=empty>index unavailable</div>'});}}
+function closeS(){document.body.classList.remove('search-open')}
+function run(){
+  if(!idx)return;
+  var q=inp.value.trim().toLowerCase();
+  var hits=!q?idx.slice(0,20):idx.filter(function(e){
+    return (e.t+' '+e.s+' '+e.d).toLowerCase().indexOf(q)>=0}).slice(0,30);
+  res.innerHTML=hits.length?hits.map(function(e){
+    return '<a href="'+ROOT+e.u+'"><div class=st>'+e.t+'</div><div class=ss>'+e.d+' · '+e.s+'</div></a>';
+  }).join(''):'<div class=empty>no matches</div>';}
+if(inp){inp.addEventListener('input',run);
+  qs('.sbtn').onclick=openS;qs('.search-bg').onclick=closeS;
+  addEventListener('keydown',function(e){
+    if(e.key==='/'&&!document.body.classList.contains('search-open')&&
+       document.activeElement.tagName!=='INPUT'){e.preventDefault();openS();}
+    if(e.key==='Escape'){closeS();closeDrawer();}});}
+})();
+
+(function(){
+/* ── thoughts ───────────────────────────────────────────────────────────
+   Select text on any page -> a pill offers to keep it, with a note. Stored
+   in localStorage under one key, so it is private to this browser and
+   survives the nightly rebuild (the store is keyed to the origin, not to
+   the page). Cross-device is deliberately export/import rather than an
+   account: the site is static and has nowhere to put a server. */
+var KEY='plm_thoughts', MIN=12, SYNC=window.PLM_SYNC||null;
+var qs=function(x){return document.querySelector(x)};
+function load(){try{var j=JSON.parse(localStorage.getItem(KEY)||'{}');
+                    return Array.isArray(j.items)?j.items:[]}catch(e){return []}}
+function put(items){try{localStorage.setItem(KEY,JSON.stringify({v:1,items:items}));return 1}
+                    catch(e){return 0}}
+function badge(){var b=qs('.tbadge');if(!b)return;var n=load().length;
+                 b.textContent=n?n:'';b.setAttribute('data-n',n)}
+var toastEl=qs('.toast'),toastT;
+function toast(m){if(!toastEl)return;toastEl.textContent=m;toastEl.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('show')},2200)}
+/* ── sync ────────────────────────────────────────────────────────────────
+   When an endpoint is configured the browser copy becomes a cache rather
+   than the record: every page pulls the shared set on load and pushes what
+   it has that the server does not. Everything degrades to local-only if the
+   network or the endpoint is unavailable — a thought is never lost because
+   sync failed, it just has not travelled yet. Deletes are tombstoned server
+   side so they propagate instead of resurrecting from another device. */
+function post(payload,cb){
+  if(!SYNC)return cb&&cb(0);
+  payload.k=SYNC.key;
+  /* text/plain keeps this a "simple request": Apps Script cannot answer the
+     CORS preflight that application/json would trigger. */
+  fetch(SYNC.url,{method:'POST',mode:'cors',redirect:'follow',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify(payload)})
+    .then(function(r){return r.json()}).then(function(j){cb&&cb(!j.error)})
+    .catch(function(){cb&&cb(0)});
+}
+function pull(cb){
+  if(!SYNC)return cb&&cb(null);
+  fetch(SYNC.url+'?k='+encodeURIComponent(SYNC.key)+'&_='+Date.now(),
+        {mode:'cors',redirect:'follow'})
+    .then(function(r){return r.json()})
+    .then(function(j){cb&&cb(j&&j.items?j.items:null)})
+    .catch(function(){cb&&cb(null)});
+}
+function merge(remote){
+  /* union by id, newest timestamp wins; anything local the server has not
+     seen is pushed up so a thought written offline still arrives. */
+  var local=load(),seen={},out=[];
+  remote.forEach(function(i){seen[i.id]=i});
+  var missing=local.filter(function(i){return !seen[i.id]});
+  local.forEach(function(i){
+    var r=seen[i.id];
+    if(!r||(i.ts||0)>(r.ts||0))seen[i.id]=i;
+  });
+  for(var k in seen)out.push(seen[k]);
+  out.sort(function(a,b){return (b.ts||0)-(a.ts||0)});
+  put(out);badge();
+  if(missing.length)post({action:'save',items:missing});
+  return out;
+}
+function sync(cb){
+  pull(function(remote){
+    if(remote)merge(remote);
+    cb&&cb(!!remote);
+  });
+}
+window.plmThoughts={load:load,put:put,toast:toast,badge:badge,
+                    sync:sync,post:post,enabled:!!SYNC};
+
+/* index.html is a copy of the newest digest, so its own address points at
+   whatever is newest — a thought saved there must record the dated page. */
+function permalink(){
+  var b=document.body,c=b.getAttribute('data-canon');
+  if(!c)return location.href.split('#')[0];
+  try{return new URL((b.getAttribute('data-root')||'')+c,location.href).href}
+  catch(e){return location.href.split('#')[0]}
+}
+var pill=qs('.tpill'),comp=qs('.tcomp'),pending=null;
+if(pill&&comp){
+  var ta=comp.querySelector('textarea'),quoteEl=comp.querySelector('blockquote'),
+      srcEl=comp.querySelector('.src');
+  /* asked per selection, not cached at load: a touchscreen laptop can switch
+     between pointer types, and the answer decides which side of the selection
+     the pill goes on. */
+  function coarse(){return matchMedia('(pointer:coarse)').matches}
+
+  function sectionOf(node){
+    var el=node&&node.nodeType===1?node:(node&&node.parentElement);
+    if(!el||!el.closest)return '';
+    if(el.closest('.tcomp,header.top,.rail,.drawer,.search-box'))return null; /* not content */
+    var sec=el.closest('section[id]');
+    if(sec){var h=sec.querySelector('h2,h3');if(h)return h.textContent.trim()}
+    return '';
+  }
+  function hide(){pill.classList.remove('show')}
+  function onSelect(){
+    var s=getSelection();
+    if(!s||s.isCollapsed||!s.rangeCount)return hide();
+    var txt=s.toString().replace(/\s+/g,' ').trim();
+    if(txt.length<MIN)return hide();
+    var r=s.getRangeAt(0), sec=sectionOf(r.startContainer);
+    if(sec===null)return hide();                      /* selection in chrome, not prose */
+    var rect=r.getBoundingClientRect();
+    if(!rect.width&&!rect.height)return hide();
+    pending={q:txt,s:sec};
+    pill.classList.add('show');
+    var pw=pill.offsetWidth,ph=pill.offsetHeight,
+        x=rect.left+rect.width/2+scrollX,
+        /* on touch devices the OS callout sits above the selection, so go below */
+        y=coarse()?(rect.bottom+scrollY+14):(rect.top+scrollY-ph-10);
+    x=Math.max(8+pw/2,Math.min(x,innerWidth-8-pw/2));
+    if(y<scrollY+4)y=rect.bottom+scrollY+12;
+    pill.style.left=(x-pw/2)+'px';pill.style.top=y+'px';
+  }
+  document.addEventListener('mouseup',function(){setTimeout(onSelect,10)});
+  document.addEventListener('touchend',function(){setTimeout(onSelect,260)});
+  document.addEventListener('selectionchange',function(){
+    var s=getSelection();if(!s||s.isCollapsed)hide()});
+  addEventListener('scroll',function(){if(pill.classList.contains('show'))hide()},{passive:true});
+
+  /* keep the selection alive when the pill is tapped */
+  pill.addEventListener('pointerdown',function(e){e.preventDefault()});
+  pill.addEventListener('click',function(){
+    if(!pending)return;
+    quoteEl.textContent=pending.q;
+    srcEl.textContent=(pending.s?pending.s+' · ':'')+document.title.replace(/^PodcastLM — /,'');
+    ta.value='';hide();document.body.classList.add('tcomp-open');
+    setTimeout(function(){ta.focus()},60);
+  });
+  function close(){document.body.classList.remove('tcomp-open');
+                   var s=getSelection();if(s)s.removeAllRanges()}
+  comp.querySelector('.x').onclick=close;
+  qs('.tcomp-bg').onclick=close;
+  comp.querySelector('.cancel').onclick=close;
+  comp.querySelector('.save').onclick=function(){
+    if(!pending)return close();
+    var items=load(),rec={id:'t'+Date.now()+Math.random().toString(36).slice(2,6),
+      q:pending.q,n:ta.value.trim(),s:pending.s||'',
+      t:document.title.replace(/^PodcastLM — /,''),u:permalink(),ts:Date.now()};
+    items.unshift(rec);
+    var ok=put(items);
+    toast(ok?(SYNC?'Saved · syncing…':'Saved to Thoughts')
+            :'Could not save — storage is full');
+    if(ok&&SYNC)post({action:'save',items:[rec]},function(sent){
+      if(sent)toast('Saved to all your devices');
+      else toast('Saved here — will sync when reachable');
+    });
+    badge();close();mark();
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='Escape')close();
+    if((e.metaKey||e.ctrlKey)&&e.key==='Enter'&&document.body.classList.contains('tcomp-open'))
+      comp.querySelector('.save').click();
+  });
+
+  /* re-mark passages saved from THIS page. Only when the quote sits inside a
+     single text node — spanning elements would mean rewriting markup, and a
+     highlight is never worth corrupting the page it decorates. */
+  function mark(){
+    var here=permalink(),
+        want=load().filter(function(i){return i.u===here}).map(function(i){return i.q});
+    if(!want.length)return;
+    var w=document.createTreeWalker(qs('.layout')||document.body,NodeFilter.SHOW_TEXT),
+        nodes=[],n;
+    while((n=w.nextNode()))if(n.nodeValue.trim().length>MIN&&
+        !(n.parentElement&&n.parentElement.closest('mark.tmark,script,style')))nodes.push(n);
+    want.forEach(function(q){
+      for(var i=0;i<nodes.length;i++){
+        var idx=nodes[i].nodeValue.indexOf(q);
+        if(idx<0)continue;
+        var r=document.createRange();
+        r.setStart(nodes[i],idx);r.setEnd(nodes[i],idx+q.length);
+        var m=document.createElement('mark');m.className='tmark';
+        try{r.surroundContents(m)}catch(e){}
+        return;
+      }
+    });
+  }
+  mark();
+}
+badge();
+/* pull on every page so a thought saved on the phone shows up marked on the
+   laptop; re-mark afterwards in case the pull brought new ones for this page */
+if(SYNC)sync(function(){badge();if(pill&&comp)mark();});
+})();
+</script></body></html>
